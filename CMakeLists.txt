@@ -1,5 +1,5 @@
 ### Top level cmake script for Utilities-API ###
-cmake_minimum_required(VERSION 3.12.0)
+cmake_minimum_required(VERSION 3.10.0)
 project(Utilities-API VERSION 1.0.0)
 
 
