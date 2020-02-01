@@ -1,0 +1,11 @@
+<data>
+    This is the data within the data tag
+</data>
+
+<metadata>
+    This is the data within the metadata tag
+</metadata>
+
+<otherTag>
+    This is the data within some other, non-default tag
+</otherTag>
