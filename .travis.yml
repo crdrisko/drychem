@@ -20,8 +20,8 @@ notifications:
 ### Installation procedure ###
 before_script:
   - previousLocation=$( pwd )
-  - bash utilities-api/ci/getVersions.sh 
-  - bash utilities-api/ci/install-gtest.sh
+  - bash ci/getVersions.sh 
+  - bash ci/install-gtest.sh
   - cd $previousLocation
   - mkdir build && cd build
 script:
