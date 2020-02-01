@@ -9,13 +9,14 @@
 The Utilities-API project has been built and tested on a number of operating systems, computer architectures, and compiler combinations.
 
 - Mac OS X
+
 - Linux
 
 ## Requirements
 
 The Utilities-API requires
 
-- [CMake](https://cmake.org): Version 3.12.0 or higher.
+- [CMake](https://cmake.org): Version 3.10.0 or higher.
 
 - A C++17-standard-compliant compiler.
 
@@ -33,8 +34,8 @@ Installation of the Utilities-API project is designed to be as easy as possible.
 $ mkdir Utilities-API && cd Utilities-API
 $ git clone https://github.com/crdrisko/utilities-api.git
 $ mkdir build && cd build
-$ cmake ../utilities-api/. [-DCMAKE_INSTALL_PREFIX=/path/to/install/directory]
-$ make && sudo make install
+$ cmake ../utilities-api/.
+$ make && [sudo] make install
 ```
 
 - NOTE: the default install directory is `/usr/local`.
