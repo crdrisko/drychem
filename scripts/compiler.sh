@@ -13,38 +13,38 @@ source errorHandling
 
 printHelpMessage()      #@ DESCRIPTION: Print the compiler program's help message
 {                       #@ USAGE: printHelpMessage
-  printf "\nUSAGE: compiler [-hvdr] [-o outputFile] [-i inputFile] [-l library] [-V Version]\n\n"
-  printf "  -h  Prints help information about the compiler program.\n"
-  printf "  -v  Verbose mode. Defaults to false/off.\n"
-  printf "  -d  Enter into debug mode. Defaults to false/off.\n"
-  printf "  -r  Run the program after compilation. Defaults to false/off.\n\n"
-  printf "  -o  REQUIRED: Output file, must be a .out file or error message occurs.\n"
-  printf "  -i  OPTIONAL: Input files or directory for additional .cpp files.\n"
-  printf "  -l  OPTIONAL: Compiled libraries to include with source code.\n"
-  printf "  -V  OPTIONAL: C++ version to run. Defaults to C++17.\n\n"
-  printf "EXAMPLE: compiler -i ../example.cpp -o example.out -V 20\n\n"
+    printf "\nUSAGE: compiler [-hvdr] [-o outputFile] [-i inputFile] [-l library] [-V Version]\n\n"
+    printf "  -h  Prints help information about the compiler program.\n"
+    printf "  -v  Verbose mode. Defaults to false/off.\n"
+    printf "  -d  Enter into debug mode. Defaults to false/off.\n"
+    printf "  -r  Run the program after compilation. Defaults to false/off.\n\n"
+    printf "  -o  REQUIRED: Output file, must be a .out file or error message occurs.\n"
+    printf "  -i  OPTIONAL: Input files or directory for additional .cpp files.\n"
+    printf "  -l  OPTIONAL: Compiled libraries to include with source code.\n"
+    printf "  -V  OPTIONAL: C++ version to run. Defaults to C++17.\n\n"
+    printf "EXAMPLE: compiler -i ../example.cpp -o example.out -V 20\n\n"
 }
 
 validVersion()		#@ DESCRIPTION: Checks entered C++ version against released versions
 {					#@ USAGE: validVersion INT
-  case $1 in
-    98) return 0 ;;  03) return 0 ;;  11) return 0 ;;
-    14) return 0 ;;  17) return 0 ;;  20) return 0 ;;
-     *) printNonFatalErrorMessage "Invalid version, C++17 used."
-        return 1 ;;
-  esac
+    case $1 in
+        98) return 0 ;;  03) return 0 ;;  11) return 0 ;;
+        14) return 0 ;;  17) return 0 ;;  20) return 0 ;;
+         *) printNonFatalErrorMessage "Invalid version, C++17 used."
+            return 1 ;;
+    esac
 }
 
 compileAndRun()     #@ DESCRIPTION: Compile and run the given C++ source code
 {                   #@ USAGE: compileAndRun [ADDITIONAL_ARGUMENTS]
-  additionalArguments+=( $1 )
+    additionalArguments+=( $1 )
 
-  ## Eliminate possibility for failed compilation to still run old output file ##
-  [ -e $outputFile ] && rm $outputFile
+    ## Eliminate possibility for failed compilation to still run old output file ##
+    [ -e $outputFile ] && rm $outputFile
 
-  g++ "${files[@]}" -o "$outputFile" ${libraries[@]} -std=c++"$version" "${additionalArguments[@]}"
+    g++ "${files[@]}" -o "$outputFile" ${libraries[@]} -std=c++"$version" "${additionalArguments[@]}"
 
-  [ $run -eq 1 ] && ./"$outputFile"
+    [ $run -eq 1 ] && ./"$outputFile"
 }
 
 
@@ -59,19 +59,19 @@ run=0
 ### Runtime Configuration ###
 while getopts o:i:l:V:drvh opt
 do
-  case $opt in
-    o) outputFile=$OPTARG ;;
-    i) inputFiles+=( $OPTARG ) ;;
-    l) libraries+=( "-l"$OPTARG ) ;;
-    V) if validVersion $OPTARG
-       then
-         version=$OPTARG
-       fi ;;
-    d) debug=1 ;;
-    r) run=1 ;;
-    v) verbose=1 ;;
-    h) printHelpMessage && printFatalErrorMessage 0 ;;
-  esac
+    case $opt in
+        o) outputFile=$OPTARG ;;
+        i) inputFiles+=( $OPTARG ) ;;
+        l) libraries+=( "-l"$OPTARG ) ;;
+        V) if validVersion $OPTARG
+           then
+               version=$OPTARG
+           fi ;;
+        d) debug=1 ;;
+        r) run=1 ;;
+        v) verbose=1 ;;
+        h) printHelpMessage && printFatalErrorMessage 0 ;;
+    esac
 done
 
 
@@ -84,18 +84,18 @@ declare -a files
 
 for file in *.cpp
 do
-  files+=( "$file" )                    ## All files in current working directory...
+    files+=( "$file" )                      ## All files in current working directory...
 done
 
-files+=( "${inputFiles[@]}" )           ## ...plus those indicated as input parameters
+files+=( "${inputFiles[@]}" )               ## ...plus those indicated as input parameters
 
 ## Threading option required for googletest on linux machines ##
 for library in ${libraries[@]}
 do
-  if [ ${library##*"-l"} = gtest ] && [[ $OSTYPE == linux* ]]
-  then
-    additionalArguments+=( -pthread )
-  fi
+    if [ ${library##*"-l"} = gtest ] && [[ $OSTYPE == linux* ]]
+    then
+        additionalArguments+=( -pthread )
+    fi
 done
 
 ## Raspberry Pi's g++ compiler raises unnecessary warnings by default ##
@@ -103,23 +103,23 @@ done
 
 if [ $debug -eq 0 ]
 then
-  ## Normal compilation without debugging ##
-  [ $debug -eq 0 ] && compileAndRun && printFatalErrorMessage 0
+    ## Normal compilation without debugging ##
+    [ $debug -eq 0 ] && compileAndRun && printFatalErrorMessage 0
 else
-  ## Debug mode - show input files used in compilation ##
-  set -x
-  compileAndRun -g
-  set +x
+    ## Debug mode - show input files used in compilation ##
+    set -x
+    compileAndRun -g
+    set +x
 
-  read -sn1 -p "Continue with debugging (y/n)? "
-  case $REPLY in
-    y|Y) if [[ $OSTYPE == linux* ]]
-         then
-           gdb "$outputFile"		    ## Debugger installed on linux
-         else
-           lldb "$outputFile"		    ## Debugger installed on Mac
-         fi ;;
-    n|N) printFatalErrorMessage 3 ;;
-      *) printFatalErrorMessage 4 "Sorry, that wasn't one of the options." ;;
-  esac
+    read -sn1 -p "Continue with debugging (y/n)? "
+    case $REPLY in
+        y|Y) if [[ $OSTYPE == linux* ]]
+             then
+                 gdb "$outputFile"		    ## Debugger installed on linux
+             else
+                 lldb "$outputFile"		    ## Debugger installed on Mac
+             fi ;;
+        n|N) printFatalErrorMessage 3 ;;
+          *) printFatalErrorMessage 4 "Sorry, that wasn't one of the options." ;;
+    esac
 fi

@@ -13,28 +13,28 @@ source errorHandling
 
 printHelpMessage()      #@ DESCRIPTION: Print the fileMaker program's help message
 {                       #@ USAGE: printHelpMessage
-  printf "\nUSAGE: fileMaker [-hvc] [-i inputFile]\n\n"
-  printf "  -h  Prints help information about the fileMaker program.\n"
-  printf "  -v  Verbose mode. Defaults to false/off.\n"
-  printf "  -c  Print copyright header in source code. Defaults to false/off.\n\n"
-  printf "  -i  REQUIRED: Either a .cpp, .cu, .hpp, .php, .py, or .sh input file.\n\n"
-  printf "EXAMPLE: fileMaker -i exampleFile.cpp -c\n\n"
+    printf "\nUSAGE: fileMaker [-hvc] [-i inputFile]\n\n"
+    printf "  -h  Prints help information about the fileMaker program.\n"
+    printf "  -v  Verbose mode. Defaults to false/off.\n"
+    printf "  -c  Print copyright header in source code. Defaults to false/off.\n\n"
+    printf "  -i  REQUIRED: Either a .cpp, .cu, .hpp, .php, .py, or .sh input file.\n\n"
+    printf "EXAMPLE: fileMaker -i exampleFile.cpp -c\n\n"
 }
 
 generateCopyrightHeader()   #@ DESCRIPTION: Print the MIT copyright header in .cpp and .hpp files
 {                           #@ USAGE: generateCopyrightHeader
-  licenseDirectory=@CMAKE_CURRENT_SOURCE_DIR@
+    licenseDirectory=@CMAKE_CURRENT_SOURCE_DIR@
 
-  if [ -f "$licenseDirectory"/LICENSE ]
-  then
-    copyright=$( grep Copyright\ \(c\) "$licenseDirectory"/LICENSE )
-    licenseType=$( head -n 1 "$licenseDirectory"/LICENSE )
+    if [ -f "$licenseDirectory"/LICENSE ]
+    then
+        copyright=$( grep Copyright\ \(c\) "$licenseDirectory"/LICENSE )
+        licenseType=$( head -n 1 "$licenseDirectory"/LICENSE )
 
-    printf "%s %s. All rights reserved.\n" "$commentType" "${copyright}"
-    printf "%s Licensed under the %s." "$commentType" "${licenseType}"
-    printf " See the LICENSE file in the project root for license information.\n"
-    printf "%s\n" "$commentType"
-  fi
+        printf "%s %s. All rights reserved.\n" "$commentType" "${copyright}"
+        printf "%s Licensed under the %s." "$commentType" "${licenseType}"
+        printf " See the LICENSE file in the project root for license information.\n"
+        printf "%s\n" "$commentType"
+    fi
 }
 
 
@@ -48,17 +48,17 @@ commentType="//"
 ### Runtime Configuration ###
 while getopts i:cvh opt
 do
-  case $opt in
-    i) fileName="${OPTARG##*/}"
-       if [ "$fileName" != "${OPTARG%/*}" ]
-       then
-         directory="${OPTARG%/*}"
-       fi ;;
-    c) copyright=1 ;;
-    v) verbose=1
-       verboseOption="-v" ;;
-    h) printHelpMessage && printFatalErrorMessage 0 ;;
-  esac
+    case $opt in
+        i) fileName="${OPTARG##*/}"
+           if [ "$fileName" != "${OPTARG%/*}" ]
+           then
+               directory="${OPTARG%/*}"
+           fi ;;
+        c) copyright=1 ;;
+        v) verbose=1
+           verboseOption="-v" ;;
+        h) printHelpMessage && printFatalErrorMessage 0 ;;
+    esac
 done
 
 
@@ -69,80 +69,79 @@ done
 
 ## Switch on file extension ##
 case $fileName in
-  *".cpp")
-    printf -v firstLine "%s Name: %s - Version 1.0.0" "$commentType" "$fileName"
+    *".cpp")
+        printf -v firstLine "%s Name: %s - Version 1.0.0" "$commentType" "$fileName"
 
-    printf -v additionalLines\
-      "\n#include <iostream>\n#include <vector>\n#include <string>\n\nint main()\n{\n\n}" ;;
+        printf -v additionalLines\
+            "\n#include <iostream>\n#include <vector>\n#include <string>\n\nint main()\n{\n\n}" ;;
 
-  *".hpp")
-    upperCaseFileName=$(changeCase -u -w ${fileName%.*})
+    *".hpp")
+        upperCaseFileName=$(changeCase -u -w ${fileName%.*})
 
-    printf -v firstLine "%s Name: %s - Version 1.0.0" "$commentType" "$fileName"
+        printf -v firstLine "%s Name: %s - Version 1.0.0" "$commentType" "$fileName"
 
-    printf -v additionalLines\
-      "\n#ifndef %s_HPP\n#define %s_HPP\n\n// Place Code Here\n\n#endif"\
-      $upperCaseFileName $upperCaseFileName ;;
+        printf -v additionalLines\
+            "\n#ifndef %s_HPP\n#define %s_HPP\n\n// Place Code Here\n\n#endif"\
+            $upperCaseFileName $upperCaseFileName ;;
 
-  *".php")
-    chapterNumber="${PWD:$(( ${#PWD} - 2 )):2}"
-    printf "<?php\n" > $fileName
+    *".php")
+        chapterNumber="${PWD:$(( ${#PWD} - 2 )):2}"
+        printf "<?php\n" > $fileName
 
-    printf -v firstLine "%s Name: %s - Version 1.0.0" "$commentType" "$fileName"
+        printf -v firstLine "%s Name: %s - Version 1.0.0" "$commentType" "$fileName"
 
-    printf -v additionalLines\
-      "// Website: http://localhost:80%s/%s\n?>" "$chapterNumber" "$fileName" ;;
+        printf -v additionalLines\
+            "// Website: http://localhost:80%s/%s\n?>" "$chapterNumber" "$fileName" ;;
 
-  *".sh")
-    commentType="#"
-    printf "#!/bin/bash\n" > $fileName
+    *".sh")
+        commentType="#"
+        printf "#!/bin/bash\n" > $fileName
 
-    printf -v firstLine "%s Name: %s - Version 1.0.0" "$commentType" "$fileName"
+        printf -v firstLine "%s Name: %s - Version 1.0.0" "$commentType" "$fileName"
 
-    printf -v additionalLines\
-      "\n\n### Functions ###\
-      \nsource errorHandling\
-      \n\nprintHelpMessage()      #@ DESCRIPTION: Print the %s program's help message\
-      \n{                       #@ USAGE: printHelpMessage\
-      \n  printf \"\\\nUSAGE: %s [-hv] [-r required] [-o optional]\\\n\\\n\"\
-      \n  printf \"  -h  Prints help information about the %s program.\\\n\"\
-      \n  printf \"  -v  Verbose mode. Defaults to false/off.\\\n\\\n\"\
-      \n  printf \"  -r  REQUIRED: Description of required input parameter.\\\n\"\
-      \n  printf \"  -o  OPTIONAL: Description of optional input parameter.\\\n\\\n\"\
-      \n  printf \"EXAMPLE: %s -r required -v\\\n\\\n\"\
-      \n}\
-      \n\n### Initial Variables / Default Values ###\
-      \nverbose=0
-      \n\n### Runtime Configuration ###\
-      \nwhile getopts r:o:vh opt\
-      \ndo\
-      \n  case \$opt in\
-      \n    r) requiredArgument=\$OPTARG ;;\
-      \n    o) optionalArgument=\$OPTARG ;;\
-      \n    v) verbose=1 ;;\
-      \n    h) printHelpMessage && printFatalErrorMessage 0 ;;\
-      \n  esac\
-      \ndone\
-      \n\n### Main Code ###\n" ${fileName%.*} ${fileName%.*} ${fileName%.*} ${fileName%.*} ;;
+        printf -v additionalLines\
+            "\n\n### Functions ###\
+            \nsource errorHandling\
+            \n\nprintHelpMessage()      #@ DESCRIPTION: Print the %s program's help message\
+            \n{                       #@ USAGE: printHelpMessage\
+            \n  printf \"\\\nUSAGE: %s [-hv] [-r required] [-o optional]\\\n\\\n\"\
+            \n  printf \"  -h  Prints help information about the %s program.\\\n\"\
+            \n  printf \"  -v  Verbose mode. Defaults to false/off.\\\n\\\n\"\
+            \n  printf \"  -r  REQUIRED: Description of required input parameter.\\\n\"\
+            \n  printf \"  -o  OPTIONAL: Description of optional input parameter.\\\n\\\n\"\
+            \n  printf \"EXAMPLE: %s -r required -v\\\n\\\n\"\
+            \n}\
+            \n\n### Initial Variables / Default Values ###\
+            \nverbose=0
+            \n\n### Runtime Configuration ###\
+            \nwhile getopts r:o:vh opt\
+            \ndo\
+            \n  case \$opt in\
+            \n    r) requiredArgument=\$OPTARG ;;\
+            \n    o) optionalArgument=\$OPTARG ;;\
+            \n    v) verbose=1 ;;\
+            \n    h) printHelpMessage && printFatalErrorMessage 0 ;;\
+            \n  esac\
+            \ndone\
+            \n\n### Main Code ###\n" ${fileName%.*} ${fileName%.*} ${fileName%.*} ${fileName%.*} ;;
 
-  *".py")
-    commentType="#"
-    printf "#!/usr/bin/env python3\n# -*- coding: utf-8 -*-\n" > $fileName
+    *".py")
+        commentType="#"
+        printf "#!/usr/bin/env python3\n# -*- coding: utf-8 -*-\n" > $fileName
 
-    printf -v firstLine "%s Name: %s - Version 1.0.0"\
-      "$commentType" "$fileName"
+        printf -v firstLine "%s Name: %s - Version 1.0.0" "$commentType" "$fileName"
 
-    printf -v additionalLines\
-      "\nimport numpy as np\nimport matplotlib.pyplot as plt" ;;
+        printf -v additionalLines\
+            "\nimport numpy as np\nimport matplotlib.pyplot as plt" ;;
 
-  *".cu")
-    printf -v firstLine "%s Name: %s - Version 1.0.0" "$commentType" "$fileName"
+    *".cu")
+        printf -v firstLine "%s Name: %s - Version 1.0.0" "$commentType" "$fileName"
 
-    printf -v additionalLines\
-      "\n#include <stdio.h>\n#include <driver_types.h>\n#include \"cuda_runtime.h\"\
-      \n#include \"device_launch_parameters.h\"\n\nint main( void )\n{\n\n}" ;;
+        printf -v additionalLines\
+            "\n#include <stdio.h>\n#include <driver_types.h>\n#include \"cuda_runtime.h\"\
+            \n#include \"device_launch_parameters.h\"\n\nint main( void )\n{\n\n}" ;;
 
-  *) printFatalErrorMessage 3 "Unknown file extension provided." ;;
+    *) printFatalErrorMessage 3 "Unknown file extension provided." ;;
 esac
 
 ## Append the standard template to file ##
@@ -152,8 +151,7 @@ printf "%s\n\
 %s Author: %s\n\
 %s Date: mm/dd/yyyy-hh:mm:ss\n\
 %s Description: \n\
-%s\n" "$firstLine" "$commentType" "${USER:-cdrisko}" "$commentType" "$commentType"\
-  "$additionalLines" >> $fileName
+%s\n" "$firstLine" "$commentType" "${USER:-cdrisko}" "$commentType" "$commentType" "$additionalLines" >> $fileName
 
 ## Modify the date template with current date-time ##
 modifyFiles -i $fileName -o "mm\/dd\/yyyy-hh:mm:ss" -n $(date '+%m\/%d\/%Y-%T') -f

@@ -11,11 +11,10 @@ bar="----------------------"
 bar=$bar$bar$bar$bar
 bar=${bar:0:80}
 
-printf "\n    Input: %s\n\
-Delimiter: <%s>\n\
-%s\n\
-    First: \${1%%%%\$2*} ==> %s\n\
-     Last: \${1##*\$2} ==> %s\n\
-Not First: \${1#*\$2}  ==> %s\n\
- Not Last: \${1%%\$2*}  ==> %s\n\n" \
-"$1" "${2:-space}" "$bar" "${1%%${2:-\ }*}" "${1##*${2:-\ }}" "${1#*${2:-\ }}" "${1%${2:-\ }*}"
+printf "\n    Input: %s\n" "$1"
+printf "Delimiter: <%s>\n" "${2:-space}"
+printf "%s\n" "$bar"
+printf "    First: \${1%%%%\$2*} ==> %s\n" "${1%%${2:-\ }*}"
+printf "     Last: \${1##*\$2} ==> %s\n" "${1##*${2:-\ }}"
+printf "Not First: \${1#*\$2}  ==> %s\n" "${1#*${2:-\ }}"
+printf " Not Last: \${1%%\$2*}  ==> %s\n\n" "${1%${2:-\ }*}"

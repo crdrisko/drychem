@@ -11,25 +11,25 @@
 ### Functions ###
 printNonFatalErrorMessage()     #@ DESCRIPTION: Print message to standard error
 {                               #@ USAGE: Exit MESSAGE
-  errorMessage="${1:?An error message is required}"
+    errorMessage="${1:?An error message is required}"
 
-  if [ -n "$errorMessage" ]
-  then
-    printf "%s\n" "$errorMessage" >&2
-  fi
+    if [ -n "$errorMessage" ]
+    then
+        printf "%s\n" "$errorMessage" >&2
+    fi
 }
 
-printFatalErrorMessage()    #@ DESCRIPTION: Exit the program with optional message
-{                           #@ USAGE: Exit INT [MESSAGE]
-  if [ ${verbose:=0} -eq 1 ] && [ ${1:?An exit code is required} -eq 0 ]
-  then
-    printf "Program terminated normally.\n"
-  elif [ $verbose -eq 1 ] && [ $1 -ne 0 ]
-  then
-    printf "Program terminated abnormally with exit code %d.\n" $1
-  fi
+printFatalErrorMessage()        #@ DESCRIPTION: Exit the program with optional message
+{                               #@ USAGE: Exit INT [MESSAGE]
+    if [ ${verbose:=0} -eq 1 ] && [ ${1:?An exit code is required} -eq 0 ]
+    then
+        printf "Program terminated normally.\n"
+    elif [ $verbose -eq 1 ] && [ $1 -ne 0 ]
+    then
+        printf "Program terminated abnormally with exit code %d.\n" $1
+    fi
 
-  [ -n "$2" ] && printNonFatalErrorMessage "$2"
+    [ -n "$2" ] && printNonFatalErrorMessage "$2"
 
-  exit $1
+    exit $1
 }
