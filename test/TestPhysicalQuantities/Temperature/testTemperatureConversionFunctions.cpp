@@ -7,7 +7,7 @@
 // Description: Provides 100% unit test coverage over all temperature conversion functions
 
 #include "../testAssertions.hpp"
-#include "../../../src/include/internal/PhysicalQuantities/TemperatureQuantities/temperature.hpp"
+#include "../../../include/internal/PhysicalQuantities/TemperatureQuantities/temperature.hpp"
 
 using namespace Utilities_API::PhysicalQuantities;
 

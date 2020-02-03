@@ -7,7 +7,7 @@
 // Description: Provides 100% unit test coverage over all string utility functions
 
 #include <gtest/gtest.h>
-#include "../../src/include/internal/Strings/stringUtilities.hpp"
+#include "../../include/internal/Strings/stringUtilities.hpp"
 
 using namespace Utilities_API::Strings;
 

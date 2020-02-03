@@ -7,8 +7,8 @@
 // Description: Provides 100% unit test coverage over all file utility functions
 
 #include <gtest/gtest.h>
-#include "../../src/include/internal/Files/textFile.hpp"
-#include "../../src/include/internal/Files/markupFile.hpp"
+#include "../../include/internal/Files/textFile.hpp"
+#include "../../include/internal/Files/markupFile.hpp"
 
 using namespace Utilities_API::Files;
 
@@ -21,9 +21,9 @@ int main(int argc, char** argv)
 TEST(testFileFunctions, testForFileNameFunctionality)
 {
     FileNamePtr fileNameWithPathAndExtension
-        { std::make_shared<FileName>("../../src/include/internal/Files/fileComponents.hpp") };
+        { std::make_shared<FileName>("../../include/internal/Files/fileComponents.hpp") };
 
-    ASSERT_EQ("../../src/include/internal/Files", fileNameWithPathAndExtension->getRelativePathToFile());
+    ASSERT_EQ("../../include/internal/Files", fileNameWithPathAndExtension->getRelativePathToFile());
     ASSERT_EQ("fileComponents.hpp", fileNameWithPathAndExtension->getBaseFileName());
     ASSERT_EQ("hpp", fileNameWithPathAndExtension->getFileExtension());
 

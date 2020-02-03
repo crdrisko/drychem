@@ -11,7 +11,7 @@
 
 #include <string_view>
 #include <gtest/gtest.h>
-#include "../../src/include/internal/Math/mathUtilities.hpp"
+#include "../../include/internal/Math/statistics.hpp"
 
 class ConversionAssert
 {

@@ -17,11 +17,12 @@ endif()
 
 
 ### Files / Directories ###
-set(SOURCES 
-    src/markupFile.cpp
-    src/mathUtilities.cpp
-    src/stringUtilities.cpp
-    src/textFile.cpp)
+set(SOURCES
+    src/Files/markupFile.cpp
+    src/Math/calculus.cpp
+    src/Math/basicMath.cpp
+    src/Strings/stringUtilities.cpp
+    src/Files/textFile.cpp)
 
 set(BASH_FILES
     scripts/changeCase.sh
@@ -34,19 +35,19 @@ set(BASH_FILES
     scripts/showArguments.sh
     scripts/showOptions.sh)
 
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY 
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY
     ${PROJECT_BINARY_DIR}/lib
-    CACHE PATH 
+    CACHE PATH
     "Single directory for all shared libraries.")
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
     ${PROJECT_BINARY_DIR}/bin
-    CACHE PATH 
+    CACHE PATH
     "Single directory for all executables.")
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY 
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY
     ${PROJECT_BINARY_DIR}/lib
-    CACHE PATH 
+    CACHE PATH
     "Single directory for all static libraries.")
 
 
@@ -58,8 +59,8 @@ add_library(utilities-api-static STATIC ${SOURCES})
 ### Installation ###
 install(TARGETS utilities-api utilities-api-static
         DESTINATION lib)
-        
-install(DIRECTORY src/include/
+
+install(DIRECTORY include/
         DESTINATION include/utilities-api)
 
 foreach(BASH_FILE ${BASH_FILES})
@@ -70,8 +71,8 @@ foreach(BASH_FILE ${BASH_FILES})
 
     install(FILES "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${filename}"
             DESTINATION bin
-            PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE 
-                        GROUP_READ             GROUP_EXECUTE 
+            PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+                        GROUP_READ             GROUP_EXECUTE
                         WORLD_READ             WORLD_EXECUTE)
 endforeach()
 
@@ -90,8 +91,8 @@ if (build_all_tests)
         add_executable(test${testname}Functions test/${interiorDirectory}/test${testname}Functions.cpp)
 
         target_link_libraries(test${testname}Functions ${GTEST_LIBRARIES} utilities-api)
-        
-        gtest_discover_tests(test${testname}Functions 
+
+        gtest_discover_tests(test${testname}Functions
                              WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/test/${interiorDirectory})
     endfunction(new_test)
 

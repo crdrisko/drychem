@@ -1,25 +1,27 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for license information.
 //
-// Name: mathUtilities.cpp - Version 1.0.0
+// Name: calculus.cpp - Version 1.0.0
 // Author: cdrisko
 // Date: 01/31/2020-15:22:23
-// Description: Common mathematical function definitions
+// Description: Common mathematical function definitions relating to calculus
 
-#include "include/internal/Math/mathUtilities.hpp"
-#include "include/internal/Errors/errorUtilities.hpp"
+#include "../../include/internal/Math/calculus.hpp"
+#include "../../include/internal/Errors/errorUtilities.hpp"
 
 using std::vector;
+using std::string_view;
 
 namespace Utilities_API::Math
 {
     vector<long double> finiteDifferenceMethod(vector<long double> x, vector<long double> y,
-        std::string_view method)
+        string_view method)
     {
         vector<long double> dy_dx;
 
         if (x.size() != y.size())
-            Errors::printFatalErrorMessage (1, "The vectors x and y must have the same number of elements.");
+            Utilities_API::Errors::printFatalErrorMessage (1,
+                "The vectors x and y must have the same number of elements.");
 
         if (method == "Forward")
             for (size_t i {}; i < y.size() - 1; ++i)
@@ -32,7 +34,7 @@ namespace Utilities_API::Math
         else
         {
             if (method != "Centered")
-                Errors::printNonFatalErrorMessage("Centered finite difference method used");
+                Utilities_API::Errors::printNonFatalErrorMessage("Centered finite difference method used");
 
             for (size_t i {}; i < y.size(); ++i)
             {
@@ -77,22 +79,5 @@ namespace Utilities_API::Math
         }
 
         return y_cumulative;
-    }
-
-
-    vector<long double> linearlyInterpolate(vector<long double> x, long double y1, long double y2)
-    {
-        vector<long double> y;
-
-        long double x2 { x[x.size() - 1] };
-        long double x1 { x[0] };
-
-        long double slope { (y2 - y1) / (x2 - x1) };
-        long double intercept { y1 - (slope * x1) };
-
-        for (const auto& element : x)
-            y.push_back(slope * element + intercept);
-
-        return y;
     }
 }

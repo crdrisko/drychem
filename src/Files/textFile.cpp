@@ -6,7 +6,7 @@
 // Date: 01/31/2020-15:22:50
 // Description: Constructors and non-inline functions from the TextFile class
 
-#include "include/internal/Files/textFile.hpp"
+#include "../../include/internal/Files/textFile.hpp"
 
 namespace Utilities_API::Files
 {

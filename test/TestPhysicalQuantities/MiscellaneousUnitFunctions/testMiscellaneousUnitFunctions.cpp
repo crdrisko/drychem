@@ -7,9 +7,9 @@
 // Description: Provides 100% unit test coverage over all operators and other miscellaneous functions
 
 #include <gtest/gtest.h>
-#include "../../../src/include/internal/PhysicalQuantities/MKSQuantities/GeometricQuantities/length.hpp"
-#include "../../../src/include/internal/PhysicalQuantities/MolarQuantities/concentration.hpp"
-#include "../../../src/include/internal/PhysicalQuantities/MolarQuantities/concentrationGradient.hpp"
+#include "../../../include/internal/PhysicalQuantities/MKSQuantities/GeometricQuantities/length.hpp"
+#include "../../../include/internal/PhysicalQuantities/MolarQuantities/concentration.hpp"
+#include "../../../include/internal/PhysicalQuantities/MolarQuantities/concentrationGradient.hpp"
 
 using namespace Utilities_API::PhysicalQuantities;
 

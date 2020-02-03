@@ -13,6 +13,8 @@
 #ifndef UTILITIES_API_MATH_HPP
 #define UTILITIES_API_MATH_HPP
 
-#include "internal/Math/mathUtilities.hpp"
+#include "internal/Math/basicMath.hpp"
+#include "internal/Math/statistics.hpp"
+#include "internal/Math/calculus.hpp"
 
 #endif

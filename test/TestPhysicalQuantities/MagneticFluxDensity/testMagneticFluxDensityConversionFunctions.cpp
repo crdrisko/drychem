@@ -7,7 +7,7 @@
 // Description: Provides 100% unit test coverage over all magnetic flux density conversion functions
 
 #include "../testAssertions.hpp"
-#include "../../../src/include/internal/PhysicalQuantities/ElectromagneticQuantities/MagneticQuantities/magneticFluxDensity.hpp"
+#include "../../../include/internal/PhysicalQuantities/ElectromagneticQuantities/MagneticQuantities/magneticFluxDensity.hpp"
 
 using namespace Utilities_API::PhysicalQuantities;
 

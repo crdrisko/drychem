@@ -12,7 +12,8 @@
 #include <utility>
 #include <iostream>
 #include <algorithm>
-#include "../Math/mathUtilities.hpp"
+#include "../Math/statistics.hpp"
+#include "../Math/calculus.hpp"
 
 using namespace std::rel_ops;           // Allow unqualified comparison operators
 

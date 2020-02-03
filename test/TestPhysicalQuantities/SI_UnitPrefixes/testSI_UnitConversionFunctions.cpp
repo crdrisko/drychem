@@ -7,7 +7,7 @@
 // Description: Provides 100% unit test coverage over all SI unit prefix conversion functions
 
 #include "../testAssertions.hpp"
-#include "../../../src/include/internal/PhysicalQuantities/conversions.hpp"
+#include "../../../include/internal/PhysicalQuantities/conversions.hpp"
 
 using namespace Utilities_API::PhysicalQuantities;
 

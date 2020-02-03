@@ -6,7 +6,7 @@
 // Date: 01/31/2020-15:22:40
 // Description: Additional string functions and utilities
 
-#include "include/internal/Strings/stringUtilities.hpp"
+#include "../../include/internal/Strings/stringUtilities.hpp"
 
 namespace Utilities_API::Strings
 {

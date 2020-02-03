@@ -7,7 +7,7 @@
 // Description: Provides 100% unit test coverage over all pressure conversion functions
 
 #include "../testAssertions.hpp"
-#include "../../../src/include/internal/PhysicalQuantities/MKSQuantities/PhysicsQuantities/pressure.hpp"
+#include "../../../include/internal/PhysicalQuantities/MKSQuantities/PhysicsQuantities/pressure.hpp"
 
 using namespace Utilities_API::PhysicalQuantities;
 

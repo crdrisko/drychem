@@ -7,7 +7,7 @@
 // Description: Provides 100% unit test coverage over all length conversion functions
 
 #include "../testAssertions.hpp"
-#include "../../../src/include/internal/PhysicalQuantities/MKSQuantities/GeometricQuantities/length.hpp"
+#include "../../../include/internal/PhysicalQuantities/MKSQuantities/GeometricQuantities/length.hpp"
 
 using namespace Utilities_API::PhysicalQuantities;
 

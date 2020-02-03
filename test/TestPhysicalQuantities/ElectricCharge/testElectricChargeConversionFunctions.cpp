@@ -7,7 +7,7 @@
 // Description: Provides 100% unit test coverage over all electric charge conversion functions
 
 #include "../testAssertions.hpp"
-#include "../../../src/include/internal/PhysicalQuantities/ElectromagneticQuantities/ChargedQuantities/electricCharge.hpp"
+#include "../../../include/internal/PhysicalQuantities/ElectromagneticQuantities/ChargedQuantities/electricCharge.hpp"
 
 using namespace Utilities_API::PhysicalQuantities;
 

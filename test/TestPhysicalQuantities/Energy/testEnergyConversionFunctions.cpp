@@ -7,7 +7,7 @@
 // Description: Provides 100% unit test coverage over all energy conversion functions
 
 #include "../testAssertions.hpp"
-#include "../../../src/include/internal/PhysicalQuantities/MKSQuantities/WaveQuantities/energy.hpp"
+#include "../../../include/internal/PhysicalQuantities/MKSQuantities/WaveQuantities/energy.hpp"
 
 using namespace Utilities_API::PhysicalQuantities;
 

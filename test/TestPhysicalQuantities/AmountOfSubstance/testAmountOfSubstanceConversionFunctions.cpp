@@ -7,7 +7,7 @@
 // Description: Provides 100% unit test coverage over all amount of substance conversion functions
 
 #include "../testAssertions.hpp"
-#include "../../../src/include/internal/PhysicalQuantities/MolarQuantities/amountOfSubstance.hpp"
+#include "../../../include/internal/PhysicalQuantities/MolarQuantities/amountOfSubstance.hpp"
 
 using namespace Utilities_API::PhysicalQuantities;
 

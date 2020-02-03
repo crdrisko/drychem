@@ -7,7 +7,7 @@
 // Description: Provides 100% unit test coverage over all molar energy conversion functions
 
 #include "../testAssertions.hpp"
-#include "../../../src/include/internal/PhysicalQuantities/MolarQuantities/molarEnergy.hpp"
+#include "../../../include/internal/PhysicalQuantities/MolarQuantities/molarEnergy.hpp"
 
 using namespace Utilities_API::PhysicalQuantities;
 

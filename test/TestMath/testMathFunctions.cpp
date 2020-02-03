@@ -7,7 +7,9 @@
 // Description: Provides 100% unit test coverage over all math utility functions
 
 #include <gtest/gtest.h>
-#include "../../src/include/internal/Math/mathUtilities.hpp"
+#include "../../include/internal/Math/basicMath.hpp"
+#include "../../include/internal/Math/statistics.hpp"
+#include "../../include/internal/Math/calculus.hpp"
 
 using namespace Utilities_API::Math;
 

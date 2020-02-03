@@ -7,7 +7,7 @@
 // Description: Provides 100% unit test coverage over all error utility functions
 
 #include <gtest/gtest.h>
-#include "../../src/include/internal/Errors/errorUtilities.hpp"
+#include "../../include/internal/Errors/errorUtilities.hpp"
 
 using namespace Utilities_API::Errors;
 

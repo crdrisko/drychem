@@ -7,7 +7,7 @@
 // Description: Provides 100% unit test coverage over all time conversion functions
 
 #include "../testAssertions.hpp"
-#include "../../../src/include/internal/PhysicalQuantities/MKSQuantities/PhysicsQuantities/time.hpp"
+#include "../../../include/internal/PhysicalQuantities/MKSQuantities/PhysicsQuantities/time.hpp"
 
 using namespace Utilities_API::PhysicalQuantities;
 
