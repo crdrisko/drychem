@@ -36,11 +36,3 @@ TEST(testElectricChargeConversionFunctions, conversionsOfElectricChargeFrom_e)
     assertThat("e", "C").isConvertedTo(1.602176634e-19);
     assertThat("e", "e").isConvertedTo(1.0);
 }
-
-TEST(testElectricChargeConversionFunctions, testIonicChargeFunction)
-{
-    ASSERT_DOUBLE_EQ(1.0, getChargeOfIon("Na+").getMagnitude());
-    ASSERT_DOUBLE_EQ(1.0, getChargeOfIon("Li+").getMagnitude());
-    ASSERT_DOUBLE_EQ(2.0, getChargeOfIon("Ca+2").getMagnitude());
-    ASSERT_DOUBLE_EQ(-1.0, getChargeOfIon("Cl-").getMagnitude());
-}

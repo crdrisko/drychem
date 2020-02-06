@@ -45,21 +45,6 @@ namespace Utilities_API::PhysicalQuantities
         inline auto getElectricChargeConversionFactor = std::bind(getConversionFactor, std::placeholders::_1,
             std::placeholders::_2, electricChargeUnitsRelativeToElectrons);
     }
-
-    // ElectricCharge Functions
-    inline ElectricCharge getChargeOfIon(std::string_view ionName)
-    {
-        static std::map<std::string_view, ElectricCharge> magnitudeOfIonicCharge { {"Na+",  1.0_e},
-                                                                                   {"Li+",  1.0_e},
-                                                                                   {"Ca+2", 2.0_e},
-                                                                                   {"Cl-",  1.0_e} };
-
-        if (magnitudeOfIonicCharge.count(ionName) != 1)
-            Errors::printFatalErrorMessage(1, "Only Cl-, Na+, Li+, and Ca+2 are currently supported.");
-
-        return (ionName == "Cl-") ? magnitudeOfIonicCharge[ionName].negateQuantity()
-            : magnitudeOfIonicCharge[ionName];
-    }
 }
 
 #endif

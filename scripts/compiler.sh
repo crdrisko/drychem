@@ -119,7 +119,7 @@ else
              else
                  lldb "$outputFile"		    ## Debugger installed on Mac
              fi ;;
-        n|N) printFatalErrorMessage 3 ;;
+        n|N) echo && printFatalErrorMessage 3 ;;
           *) printFatalErrorMessage 4 "Sorry, that wasn't one of the options." ;;
     esac
 fi

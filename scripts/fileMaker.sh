@@ -2,7 +2,7 @@
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 # Licensed under the MIT License. See the LICENSE file in the project root for license information.
 #
-# Name: fileMaker.sh - Version 1.0.0
+# Name: fileMaker.sh - Version 1.0.1
 # Author: cdrisko
 # Date: 01/31/2020-14:45:20
 # Description: Creates new files based off simple, pre-defined templates
@@ -21,20 +21,32 @@ printHelpMessage()      #@ DESCRIPTION: Print the fileMaker program's help messa
     printf "EXAMPLE: fileMaker -i exampleFile.cpp -c\n\n"
 }
 
-generateCopyrightHeader()   #@ DESCRIPTION: Print the MIT copyright header in .cpp and .hpp files
+generateCopyrightHeader()   #@ DESCRIPTION: Search backwards for LICENSCE file and print copyright header if found
 {                           #@ USAGE: generateCopyrightHeader
-    licenseDirectory=@CMAKE_CURRENT_SOURCE_DIR@
+    previousDirectory="$PWD"
+    
+    while ! [ -f "LICENSE" ] || ! [ -d .git ]
+    do
+      cd ../
+      licenseDirectory=$PWD
 
-    if [ -f "$licenseDirectory"/LICENSE ]
-    then
-        copyright=$( grep Copyright\ \(c\) "$licenseDirectory"/LICENSE )
-        licenseType=$( head -n 1 "$licenseDirectory"/LICENSE )
+      if [ "$licenseDirectory" == "$HOME" ]
+      then
+        printNonFatalErrorMessage "LICENSE file not found."
+        cd "$previousDirectory"
+        return
+      fi
+    done
 
-        printf "%s %s. All rights reserved.\n" "$commentType" "${copyright}"
-        printf "%s Licensed under the %s." "$commentType" "${licenseType}"
-        printf " See the LICENSE file in the project root for license information.\n"
-        printf "%s\n" "$commentType"
-    fi
+    cd "$previousDirectory"
+
+    copyright=$( grep Copyright\ \(c\) "$licenseDirectory"/LICENSE )
+    licenseType=$( head -n 1 "$licenseDirectory"/LICENSE )
+
+    printf "%s %s. All rights reserved.\n" "$commentType" "$copyright"
+    printf "%s Licensed under the %s." "$commentType" "$licenseType"
+    printf " See the LICENSE file in the project root for license information.\n"
+    printf "%s\n" "$commentType"
 }
 
 

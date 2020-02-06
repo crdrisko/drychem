@@ -10,7 +10,7 @@
 
 ### Functions ###
 printNonFatalErrorMessage()     #@ DESCRIPTION: Print message to standard error
-{                               #@ USAGE: Exit MESSAGE
+{                               #@ USAGE: printNonFatalErrorMessage MESSAGE
     errorMessage="${1:?An error message is required}"
 
     if [ -n "$errorMessage" ]
@@ -20,7 +20,7 @@ printNonFatalErrorMessage()     #@ DESCRIPTION: Print message to standard error
 }
 
 printFatalErrorMessage()        #@ DESCRIPTION: Exit the program with optional message
-{                               #@ USAGE: Exit INT [MESSAGE]
+{                               #@ USAGE: printFatalErrorMessage INT [MESSAGE]
     if [ ${verbose:=0} -eq 1 ] && [ ${1:?An exit code is required} -eq 0 ]
     then
         printf "Program terminated normally.\n"
