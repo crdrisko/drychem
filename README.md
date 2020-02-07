@@ -31,7 +31,6 @@ Optional:
 Installation of the Utilities-API project is designed to be as easy as possible. Using CMake, the following commands can be run:
 
 ```bash
-$ mkdir Utilities-API && cd Utilities-API
 $ git clone https://github.com/crdrisko/utilities-api.git
 $ mkdir build && cd build
 $ cmake ../utilities-api/.
