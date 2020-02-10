@@ -21,21 +21,21 @@ printHelpMessage()      #@ DESCRIPTION: Print the fileMaker program's help messa
     printf "EXAMPLE: fileMaker -i exampleFile.cpp -c\n\n"
 }
 
-generateCopyrightHeader()   #@ DESCRIPTION: Search backwards for LICENSCE file and print copyright header if found
+generateCopyrightHeader()   #@ DESCRIPTION: Search for LICENSCE file and print copyright header if found
 {                           #@ USAGE: generateCopyrightHeader
     previousDirectory="$PWD"
-    
+
     while ! [ -f "LICENSE" ] || ! [ -d .git ]
     do
-      cd ../
-      licenseDirectory=$PWD
+        cd ../
+        licenseDirectory=$PWD
 
-      if [ "$licenseDirectory" == "$HOME" ]
-      then
-        printNonFatalErrorMessage "LICENSE file not found."
-        cd "$previousDirectory"
-        return
-      fi
+        if [ "$licenseDirectory" == '/' ]
+        then
+            printNonFatalErrorMessage "LICENSE file not found."
+            cd "$previousDirectory"
+            return
+        fi
     done
 
     cd "$previousDirectory"
@@ -116,26 +116,26 @@ case $fileName in
             \nsource errorHandling\
             \n\nprintHelpMessage()      #@ DESCRIPTION: Print the %s program's help message\
             \n{                       #@ USAGE: printHelpMessage\
-            \n  printf \"\\\nUSAGE: %s [-hv] [-r required] [-o optional]\\\n\\\n\"\
-            \n  printf \"  -h  Prints help information about the %s program.\\\n\"\
-            \n  printf \"  -v  Verbose mode. Defaults to false/off.\\\n\\\n\"\
-            \n  printf \"  -r  REQUIRED: Description of required input parameter.\\\n\"\
-            \n  printf \"  -o  OPTIONAL: Description of optional input parameter.\\\n\\\n\"\
-            \n  printf \"EXAMPLE: %s -r required -v\\\n\\\n\"\
+            \n    printf \"\\\nUSAGE: %s [-hv] [-r required] [-o optional]\\\n\\\n\"\
+            \n    printf \"  -h  Prints help information about the %s program.\\\n\"\
+            \n    printf \"  -v  Verbose mode. Defaults to false/off.\\\n\\\n\"\
+            \n    printf \"  -r  REQUIRED: Description of required input parameter.\\\n\"\
+            \n    printf \"  -o  OPTIONAL: Description of optional input parameter.\\\n\\\n\"\
+            \n    printf \"EXAMPLE: %s -r required -v\\\n\\\n\"\
             \n}\
-            \n\n### Initial Variables / Default Values ###\
-            \nverbose=0
-            \n\n### Runtime Configuration ###\
+            \n\n\n### Initial Variables / Default Values ###\
+            \nverbose=0\
+            \n\n\n### Runtime Configuration ###\
             \nwhile getopts r:o:vh opt\
             \ndo\
-            \n  case \$opt in\
-            \n    r) requiredArgument=\$OPTARG ;;\
-            \n    o) optionalArgument=\$OPTARG ;;\
-            \n    v) verbose=1 ;;\
-            \n    h) printHelpMessage && printFatalErrorMessage 0 ;;\
-            \n  esac\
+            \n    case \$opt in\
+            \n        r) requiredArgument=\$OPTARG ;;\
+            \n        o) optionalArgument=\$OPTARG ;;\
+            \n        v) verbose=1 ;;\
+            \n        h) printHelpMessage && printFatalErrorMessage 0 ;;\
+            \n    esac\
             \ndone\
-            \n\n### Main Code ###\n" ${fileName%.*} ${fileName%.*} ${fileName%.*} ${fileName%.*} ;;
+            \n\n\n### Main Code ###\n" ${fileName%.*} ${fileName%.*} ${fileName%.*} ${fileName%.*} ;;
 
     *".py")
         commentType="#"
@@ -163,7 +163,8 @@ printf "%s\n\
 %s Author: %s\n\
 %s Date: mm/dd/yyyy-hh:mm:ss\n\
 %s Description: \n\
-%s\n" "$firstLine" "$commentType" "${USER:-cdrisko}" "$commentType" "$commentType" "$additionalLines" >> $fileName
+%s\n" "$firstLine" "$commentType" "${USER:-cdrisko}" "$commentType"\
+  "$commentType" "$additionalLines" >> $fileName
 
 ## Modify the date template with current date-time ##
 modifyFiles -i $fileName -o "mm\/dd\/yyyy-hh:mm:ss" -n $(date '+%m\/%d\/%Y-%T') -f
