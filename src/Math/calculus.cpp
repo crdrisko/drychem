@@ -14,7 +14,7 @@ using std::string_view;
 
 namespace Utilities_API::Math
 {
-    vector<long double> finiteDifferenceMethod(vector<long double> x, vector<long double> y,
+    vector<long double> finiteDifferenceMethod(const vector<long double>& x, const vector<long double>& y,
         string_view method)
     {
         vector<long double> dy_dx;
@@ -64,19 +64,20 @@ namespace Utilities_API::Math
     }
 
 
-    vector<long double> cumulativeTrapz(vector<long double> x, vector<long double> y)
+    vector<long double> cumulativeTrapz(const vector<long double>& x, const vector<long double>& y,
+        const size_t& referenceIndex)
     {
         vector<long double> y_cumulative;
 
         if (x.size() != y.size())
             Errors::printFatalErrorMessage (1, "The vectors x and y must have the same number of elements.");
         else
-        {
-            y_cumulative.push_back(0);
-
             for (size_t i {}; i < y.size() - 1; ++i)
+            {
+                if (i == referenceIndex)
+                    y_cumulative.push_back(0);
                 y_cumulative.push_back( y_cumulative[i] + trapz(x[i], x[i+1], y[i], y[i+1]) );
-        }
+            }
 
         return y_cumulative;
     }

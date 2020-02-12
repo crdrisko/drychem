@@ -10,6 +10,8 @@
 #include "../../../include/internal/PhysicalQuantities/MKSQuantities/GeometricQuantities/length.hpp"
 #include "../../../include/internal/PhysicalQuantities/MolarQuantities/concentration.hpp"
 #include "../../../include/internal/PhysicalQuantities/MolarQuantities/concentrationGradient.hpp"
+#include "../../../include/internal/PhysicalQuantities/ElectromagneticQuantities/ChargedQuantities/electricField.hpp"
+#include "../../../include/internal/PhysicalQuantities/ElectromagneticQuantities/ChargedQuantities/electricPotential.hpp"
 
 using namespace Utilities_API::PhysicalQuantities;
 
@@ -71,24 +73,43 @@ TEST(testMiscellaneousUnitFunctions, testArithmeticOperators)
 TEST(testMiscellaneousUnitFunctions, testAdvancedMathFunctions)
 {
     // A test of the PhysicalQuantity class's finite difference method function
-    std::vector<Length> lengthVector { 1.0_m, 2.0_m, 3.0_m, 4.0_m, 5.0_m };
+    std::vector<Length> lengthVectorForDerivative { 1.0_m, 2.0_m, 3.0_m, 4.0_m, 5.0_m };
     std::vector<Concentration> concentrationVector { 1.0_M, 2.0_M, 3.0_M, 4.0_M, 5.0_M };
 
-    std::vector<double> expectedResults { 1.0, 1.0, 1.0, 1.0, 1.0 };
+    std::vector<double> expectedDerivativeResults { 1.0, 1.0, 1.0, 1.0, 1.0 };
 
-    std::vector<ConcentrationGradient> gradientVector = finiteDifferenceMethod(lengthVector,
-        concentrationVector, "Centered");
+    std::vector<ConcentrationGradient> derivativeVector 
+        = advancedMathematicalFunctionCall<ConcentrationGradientDimensionality>(finiteDifferenceMethod, 
+            lengthVectorForDerivative, concentrationVector);
 
-    std::vector<double> actualResults;
+    std::vector<double> actualDerivativeResults;
 
-    for (const auto& result : gradientVector)
-        actualResults.push_back(result.getMagnitude());
+    for (const auto& result : derivativeVector)
+        actualDerivativeResults.push_back(result.getMagnitude());
 
-    ASSERT_EQ(expectedResults, actualResults);
+    ASSERT_EQ(expectedDerivativeResults, actualDerivativeResults);
+
+
+    // A test of the PhysicalQuantity class's cumulative trapz function
+    std::vector<Length> lengthVectorForIntegration { 1.0_m, 2.0_m, 3.0_m, 4.0_m, 5.0_m };
+    std::vector<ElectricField> eFieldVector { 1.0_V_m, 2.0_V_m, 3.0_V_m, 4.0_V_m, 5.0_V_m };
+
+    std::vector<double> expectedIntegralResults { 0.0, 1.5, 4.0, 7.5, 12.0 };
+
+    std::vector<ElectricPotential> integralVector 
+        = advancedMathematicalFunctionCall<ElectricPotentialDimensionality>(cumulativeTrapz, 
+            lengthVectorForIntegration, eFieldVector);
+
+    std::vector<double> actualIntegralResults;
+
+    for (const auto& result : integralVector)
+        actualIntegralResults.push_back(result.getMagnitude());
+
+    ASSERT_EQ(expectedIntegralResults, actualIntegralResults);
 
 
     // A test of the PhysicalQuantity class's average calculation method
-    Length averageLength = calculateAverage(lengthVector);
+    Length averageLength = calculateAverage(lengthVectorForIntegration);
 
     ASSERT_EQ(3, averageLength.getMagnitude());
 }
@@ -99,6 +120,11 @@ TEST(testMiscellaneousUnitFunctions, testAllOtherMiscellaneousFunctions)
     DimensionlessQuantity positiveValue = 1.0_;
     ASSERT_DOUBLE_EQ(1.0, positiveValue.getMagnitude());
     ASSERT_DOUBLE_EQ(-1.0, positiveValue.negateQuantity().getMagnitude());
+
+    
+    // A test of the PhysicalQuantity class's natural logarithm function
+    Concentration concentration = 1.0_M;
+    ASSERT_DOUBLE_EQ(0.0, concentration.takeNaturalLogarithm().getMagnitude());
 
 
     // A test of the PhysicalQuantity class's default initializer
