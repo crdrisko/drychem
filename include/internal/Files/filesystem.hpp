@@ -27,9 +27,9 @@
 
     namespace fs 
     {
-        bool is_regular_file(std::string_view fullFileName)
+        bool is_regular_file(const std::string& fullFileName)
         {
-            std::ifstream testFile {fullFileName};
+            std::ifstream testFile { fullFileName };
 
             if ( testFile.is_open() )
             {
