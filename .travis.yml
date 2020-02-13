@@ -18,6 +18,11 @@ notifications:
   
 
 ### Installation procedure ###
+install:
+  - if [ "${TRAVIS_OS_NAME}" = "osx" ]
+    then
+      brew update
+    fi
 before_script:
   - previousLocation=$( pwd )
   - bash ci/getVersions.sh 
