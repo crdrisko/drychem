@@ -12,8 +12,6 @@
 #include <vector>
 #include <memory>
 #include <string>
-#include <fstream>
-#include <string_view>
 #include "filesystem.hpp"
 #include "../Errors/errorUtilities.hpp"
 
@@ -26,7 +24,6 @@ namespace Utilities_API::Files
         std::string baseFileName;
         std::string relativePathToFile {""};
         std::string fileExtension {""};
-        bool isRegularFile {false};
 
         void splitFileName()
         {
@@ -48,28 +45,10 @@ namespace Utilities_API::Files
             }
         }
 
-        void sanatizeFileNameInput()
-        {
-            if ( (HAS_STD_FILESYSTEM_SUPPORT) && (filesystem::is_regular_file(fullFileName)) )
-                isRegularFile = true;
-            else
-            {
-                std::ifstream testFile {fullFileName};
-
-                if (testFile.is_open())
-                {
-                    testFile.close();
-                    isRegularFile = true;
-                }
-            }
-        }
-
     public:
         explicit FileName(std::string_view FullFileName) : fullFileName{FullFileName}
         {
-            this->sanatizeFileNameInput();
-
-            if (isRegularFile)
+            if ( fs::is_regular_file(fullFileName) )
                 this->splitFileName();
             else
                 Utilities_API::Errors::printFatalErrorMessage(1, "File name provided is not a valid file.");
@@ -77,8 +56,8 @@ namespace Utilities_API::Files
 
         std::string getFullFileName() const { return this->fullFileName; }
         std::string getBaseFileName() const { return this->baseFileName; }
-        std::string getRelativePathToFile() const { return this->relativePathToFile; }
         std::string getFileExtension() const { return this->fileExtension; }
+        std::string getRelativePathToFile() const { return this->relativePathToFile; }
     };
 
     using FileNamePtr = std::shared_ptr<FileName>;
