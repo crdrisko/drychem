@@ -20,28 +20,27 @@ int main(int argc, char** argv)
 
 TEST(testFileFunctions, testForFileNameFunctionality)
 {
-    FileNamePtr fileNameWithPathAndExtension
-        { std::make_shared<FileName>("../../include/internal/Files/fileComponents.hpp") };
+    FileNamePtr fullFileName {std::make_shared<FileName>("../../include/internal/Files/fileComponents.hpp")};
 
-    ASSERT_EQ("../../include/internal/Files", fileNameWithPathAndExtension->getRelativePathToFile());
-    ASSERT_EQ("fileComponents.hpp", fileNameWithPathAndExtension->getBaseFileName());
-    ASSERT_EQ("hpp", fileNameWithPathAndExtension->getFileExtension());
-
-
-    FileNamePtr fileNameWithExtension
-        { std::make_shared<FileName>("fileComponents.hpp") };
-
-    ASSERT_EQ("", fileNameWithExtension->getRelativePathToFile());
-    ASSERT_EQ("fileComponents.hpp", fileNameWithExtension->getBaseFileName());
-    ASSERT_EQ("hpp", fileNameWithExtension->getFileExtension());
+    ASSERT_EQ("../../include/internal/Files", fullFileName->getRelativePathToFile());
+    ASSERT_EQ("../../include/internal/Files/fileComponents.hpp", fullFileName->getFullFileName());
+    ASSERT_EQ("fileComponents.hpp", fullFileName->getBaseFileName());
+    ASSERT_EQ("hpp", fullFileName->getFileExtension());
 
 
-    FileNamePtr fileName
-        {std::make_shared<FileName>("fileComponents")};
+    FileNamePtr fileName {std::make_shared<FileName>("testFileFunctions.cpp")};
 
     ASSERT_EQ("", fileName->getRelativePathToFile());
-    ASSERT_EQ("fileComponents", fileName->getBaseFileName());
-    ASSERT_EQ("", fileName->getFileExtension());
+    ASSERT_EQ("testFileFunctions.cpp", fileName->getFullFileName());
+    ASSERT_EQ("testFileFunctions.cpp", fileName->getBaseFileName());
+    ASSERT_EQ("cpp", fileName->getFileExtension());
+
+
+    ASSERT_DEATH(
+    {
+        FileNamePtr invalidFileName {std::make_shared<FileName>("fileComponents")};
+    }, "File name provided is not a valid file.");
+
 }
 
 TEST(testFileFunctions, testForFileContentsFunctionality)
@@ -63,15 +62,6 @@ TEST(testFileFunctions, testForFileContentsFunctionality)
     FileContentsPtr fileContentsWithPath {std::make_shared<FileContents>(fileNameWithPath)};
 
     ASSERT_EQ(contentsOfFile, fileContentsWithPath->getContentInFile());
-
-
-    ASSERT_DEATH(
-    {
-        FileNamePtr nonExistentFile { std::make_shared<FileName>("nonExistentFile.txt") };
-        FileContentsPtr fileThatDoesntExist {std::make_shared<FileContents>(nonExistentFile)};
-
-        fileThatDoesntExist->getContentInFile();
-    }, "Unable to open file nonExistentFile.txt");
 }
 
 TEST(testFileFunctions, testForTextFileFunctionality)

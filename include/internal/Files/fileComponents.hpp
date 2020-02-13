@@ -14,6 +14,7 @@
 #include <string>
 #include <fstream>
 #include <string_view>
+#include "filesystem.hpp"
 #include "../Errors/errorUtilities.hpp"
 
 namespace Utilities_API::Files
@@ -21,11 +22,13 @@ namespace Utilities_API::Files
     class FileName
     {
     private:
+        std::string fullFileName;
         std::string baseFileName;
         std::string relativePathToFile {""};
         std::string fileExtension {""};
+        bool isRegularFile {false};
 
-        void splitFileName(std::string_view fullFileName)
+        void splitFileName()
         {
             size_t pathLocation {fullFileName.find_last_of("/")};
             size_t extensionLocation {fullFileName.find_last_of(".")};
@@ -45,12 +48,37 @@ namespace Utilities_API::Files
             }
         }
 
-    public:
-        explicit FileName(std::string_view FullFileName) { this->splitFileName(FullFileName); }
+        void sanatizeFileNameInput()
+        {
+            if ( (HAS_STD_FILESYSTEM_SUPPORT) && (filesystem::is_regular_file(fullFileName)) )
+                isRegularFile = true;
+            else
+            {
+                std::ifstream testFile {fullFileName};
 
-        std::string getBaseFileName() const { return baseFileName; }
-        std::string getRelativePathToFile() const { return relativePathToFile; }
-        std::string getFileExtension() const { return fileExtension; }
+                if (testFile.is_open())
+                {
+                    testFile.close();
+                    isRegularFile = true;
+                }
+            }
+        }
+
+    public:
+        explicit FileName(std::string_view FullFileName) : fullFileName{FullFileName}
+        {
+            this->sanatizeFileNameInput();
+
+            if (isRegularFile)
+                this->splitFileName();
+            else
+                Utilities_API::Errors::printFatalErrorMessage(1, "File name provided is not a valid file.");
+        }
+
+        std::string getFullFileName() const { return this->fullFileName; }
+        std::string getBaseFileName() const { return this->baseFileName; }
+        std::string getRelativePathToFile() const { return this->relativePathToFile; }
+        std::string getFileExtension() const { return this->fileExtension; }
     };
 
     using FileNamePtr = std::shared_ptr<FileName>;
@@ -86,7 +114,7 @@ namespace Utilities_API::Files
     public:
         explicit FileContents(FileNamePtr FileName) { this->setContentInFile(FileName); }
 
-        std::vector<std::string> getContentInFile() { return contentInFile; }
+        std::vector<std::string> getContentInFile() { return this->contentInFile; }
     };
 
     using FileContentsPtr = std::shared_ptr<FileContents>;
