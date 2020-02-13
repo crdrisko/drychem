@@ -27,7 +27,7 @@
 
     namespace fs 
     {
-        bool is_regular_file(const std::string& fullFileName)
+        inline bool is_regular_file(const std::string& fullFileName)
         {
             std::ifstream testFile { fullFileName };
 
