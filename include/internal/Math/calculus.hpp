@@ -14,10 +14,10 @@
 
 namespace Utilities_API::Math
 {
-    std::vector<long double> finiteDifferenceMethod(const std::vector<long double>& x, 
+    std::vector<long double> finiteDifferenceMethod(const std::vector<long double>& x,
         const std::vector<long double>& y, std::string_view method="Centered");
 
-    std::vector<long double> cumulativeTrapz(const std::vector<long double>& x, 
+    std::vector<long double> cumulativeTrapz(const std::vector<long double>& x,
         const std::vector<long double>& y, const size_t& referenceIndex = 0);
 
     inline long double trapz(long double x1, long double x2, long double y1, long double y2)

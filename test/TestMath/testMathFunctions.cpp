@@ -47,7 +47,7 @@ TEST(testMathFunctions, withinRangeTest)
     ASSERT_FALSE( failingRangeTestDoubles );
 }
 
-TEST(testMathFunctions, absoluteErrorAndOrderOfMagnitudeTests)
+TEST(testMathFunctions, statisticalTests)
 {
     ASSERT_EQ(-15, findOrderOfMagnitude(1e-15));
     ASSERT_EQ(0, findOrderOfMagnitude(6.8));
@@ -58,13 +58,26 @@ TEST(testMathFunctions, absoluteErrorAndOrderOfMagnitudeTests)
 
     // The fraction 355/113 is an approximation of pi accurate up to 6 decimal places
     ASSERT_NEAR(3.14159265, (355.0 / 113.0), findAbsoluteError(3.14159265, 7));
-}
 
-TEST(testMathFunctions, findAverageWithAccumulate)
-{
+
+    // Test of the calculateAverage functionality
     std::vector<long double> x {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
-
     ASSERT_EQ(5.5, calculateAverage(x));
+
+
+    // Test of the averageCorrection functionality
+    std::vector<long double> predictedValues {-4.5, -3.5, -2.5, -1.5,-0.5, 0.5, 1.5, 2.5, 3.5, 4.5};
+    ASSERT_EQ(predictedValues, averageCorrection(x));
+
+
+    // Test of the linearLeastSquaresFitting functionality
+    std::vector<double> x_values { 1.0,  2.0,  3.0,  4.0,  5.0,  6.0,  7.0,  8.0,  9.0, 10.0};
+    std::vector<double> y_values { 2.0,  4.0,  6.0,  8.0, 10.0, 12.0, 14.0, 16.0, 18.0, 20.0};
+
+    std::map<std::string, double> parameters { linearLeastSquaresFitting<double>(x_values, y_values) };
+
+    ASSERT_EQ(2.0, parameters["slope"]);
+    ASSERT_EQ(0.0, parameters["intercept"]);
 }
 
 TEST(testMathFunctions, allOtherMathematicalTests)

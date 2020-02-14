@@ -83,7 +83,7 @@ namespace Utilities_API::PhysicalQuantities
         constexpr auto takeNaturalLogarithm() const
         {
             if (this->magnitude <= 0)
-                Utilities_API::Errors::printFatalErrorMessage(1, 
+                Utilities_API::Errors::printFatalErrorMessage(1,
                     "The value inside the natural logarithm must be positive.");
 
             return PhysicalQuantity< Dimensionality<> >(std::log(this->magnitude));
@@ -146,7 +146,7 @@ namespace Utilities_API::PhysicalQuantities
 
     template <typename NewDimensionality,
               int L1, int M1, int T1, int I1, int Th1, int N1, int J1,
-              int L2, int M2, int T2, int I2, int Th2, int N2, int J2> 
+              int L2, int M2, int T2, int I2, int Th2, int N2, int J2>
     inline auto advancedMathematicalFunctionCall( std::function<std::vector<long double>(
         std::vector<long double> xMagnitudes, std::vector<long double> yMagnitudes )> mathematicalOperation,
         const std::vector< PhysicalQuantity< Dimensionality<L1, M1, T1, I1, Th1, N1, J1> > >& x,
@@ -178,10 +178,10 @@ namespace Utilities_API::PhysicalQuantities
         return results;
     }
 
-    inline auto finiteDifferenceMethod = std::bind( &Utilities_API::Math::finiteDifferenceMethod, 
+    inline auto finiteDifferenceMethod = std::bind( &Utilities_API::Math::finiteDifferenceMethod,
         std::placeholders::_1, std::placeholders::_2, "Centered" );
 
-    inline auto cumulativeTrapz = std::bind( &Utilities_API::Math::cumulativeTrapz, 
+    inline auto cumulativeTrapz = std::bind( &Utilities_API::Math::cumulativeTrapz,
         std::placeholders::_1, std::placeholders::_2, 0 );
 }
 
