@@ -35,7 +35,7 @@ namespace Utilities_API::PhysicalQuantities
     // Temperature Conversions
     namespace Conversions
     {
-        constexpr Temperature convertTemperature(Temperature temperatureToConvert,
+        inline Temperature convertTemperature(Temperature temperatureToConvert,
             const std::string& initialUnits, const std::string& finalUnits)
         {
             Temperature convertedTemperature = temperatureToConvert;

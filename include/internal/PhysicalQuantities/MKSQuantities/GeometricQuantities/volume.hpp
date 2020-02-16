@@ -35,7 +35,7 @@ namespace Utilities_API::PhysicalQuantities
     // Volume Conversions
     namespace Conversions
     {
-        constexpr long double getVolumeUnitsFromLengthCubed(std::string_view desiredLengthUnits)
+        inline long double getVolumeUnitsFromLengthCubed(std::string_view desiredLengthUnits)
         {
             Length length(lengthUnitsRelativeToMeters[desiredLengthUnits]);
             Volume volume = length.raisePower<VolumeDimensionality>(3);
@@ -50,7 +50,7 @@ namespace Utilities_API::PhysicalQuantities
             {"L", 1e3}
         };
 
-        constexpr auto getVolumeConversionFactor = [&](const std::string& initialUnits,
+        inline auto getVolumeConversionFactor = [&](const std::string& initialUnits,
             const std::string& finalUnits) -> auto { return getConversionFactor(initialUnits,
                 finalUnits, volumeUnitsRelativeToMetersCubed); };
     }

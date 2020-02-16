@@ -42,7 +42,7 @@ namespace Utilities_API::PhysicalQuantities
             {"kcal_mol", 1 / 4'184.0}
         };
 
-        constexpr auto getMolarEnergyConversionFactor = [&](const std::string& initialUnits,
+        inline auto getMolarEnergyConversionFactor = [&](const std::string& initialUnits,
             const std::string& finalUnits) -> auto { return getConversionFactor(initialUnits,
                 finalUnits, molarEnergyUnitsRelativeToJoules); };
     }

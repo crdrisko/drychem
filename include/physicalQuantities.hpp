@@ -13,6 +13,8 @@
 #ifndef UTILITIES_API_PHYSICALQUANTITIES_HPP
 #define UTILITIES_API_PHYSICALQUANTITIES_HPP
 
+#include "internal/PhysicalQuantities/mathematicalFunctions.hpp"
+
 #include "internal/PhysicalQuantities/MKSQuantities/GeometricQuantities/angle.hpp"
 #include "internal/PhysicalQuantities/MKSQuantities/GeometricQuantities/area.hpp"
 #include "internal/PhysicalQuantities/MKSQuantities/GeometricQuantities/length.hpp"

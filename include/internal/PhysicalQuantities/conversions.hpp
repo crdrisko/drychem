@@ -27,7 +27,7 @@ namespace Utilities_API::PhysicalQuantities
 
     namespace Conversions
     {
-        constexpr DimensionlessQuantity getConversionFactor(const std::string& initialUnits,
+        inline DimensionlessQuantity getConversionFactor(const std::string& initialUnits,
             const std::string& finalUnits, std::map<std::string_view, long double>& unitsRelativeToBase)
         {
             if ( unitsRelativeToBase.count(initialUnits) != 1 )
@@ -53,7 +53,7 @@ namespace Utilities_API::PhysicalQuantities
             {"atto",  1e18},  {"zepto", 1e21},  {"yocto", 1e24}
         };
 
-        constexpr auto getSIPrexixConversionFactor = [&](const std::string& initialUnits,
+        inline auto getSIPrexixConversionFactor = [&](const std::string& initialUnits,
             const std::string& finalUnits) -> auto { return getConversionFactor(initialUnits,
                 finalUnits, siUnitPrefixesRelativeToBase); };
     }

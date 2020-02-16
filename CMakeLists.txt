@@ -11,11 +11,12 @@ if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Release")
 endif()
 
+add_compile_options(-Wall -Wextra -pedantic -Werror)
+
 if (CMAKE_COMPILER_IS_GNUCXX)
-    add_definitions("-Wno-psabi")
-    add_compile_options("-lstdc++fs")
+    add_compile_options(-lstdc++fs -Wno-psabi)
 else()
-    add_compile_options("-lc++fs")
+    add_compile_options(-lc++fs)
 endif()
 
 
@@ -23,6 +24,7 @@ endif()
 set(SOURCES
     src/Files/markupFile.cpp
     src/Math/calculus.cpp
+    src/Math/statistics.cpp
     src/Math/basicMath.cpp
     src/Strings/stringUtilities.cpp
     src/Files/textFile.cpp)

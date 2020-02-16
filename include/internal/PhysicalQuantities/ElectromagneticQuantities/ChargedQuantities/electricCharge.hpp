@@ -42,7 +42,7 @@ namespace Utilities_API::PhysicalQuantities
             {"e", 1.0}
         };
 
-        constexpr auto getElectricChargeConversionFactor = [&](const std::string& initialUnits,
+        inline auto getElectricChargeConversionFactor = [&](const std::string& initialUnits,
             const std::string& finalUnits) -> auto { return getConversionFactor(initialUnits,
                 finalUnits, electricChargeUnitsRelativeToElectrons); };
     }

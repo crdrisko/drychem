@@ -54,7 +54,7 @@ namespace Utilities_API::PhysicalQuantities
             {"psi", 14.5038}
         };
 
-        constexpr auto getPressureConversionFactor = [&](const std::string& initialUnits,
+        inline auto getPressureConversionFactor = [&](const std::string& initialUnits,
             const std::string& finalUnits) -> auto { return getConversionFactor(initialUnits,
                 finalUnits, pressureUnitsRelativeToBar); };
     }

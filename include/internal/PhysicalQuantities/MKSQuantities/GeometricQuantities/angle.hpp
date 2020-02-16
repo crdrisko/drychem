@@ -41,7 +41,7 @@ namespace Utilities_API::PhysicalQuantities
             {"rad", 1.0}
         };
 
-        constexpr auto getAngleConversionFactor = [&](const std::string& initialUnits,
+        inline auto getAngleConversionFactor = [&](const std::string& initialUnits,
             const std::string& finalUnits) -> auto { return getConversionFactor(initialUnits,
                 finalUnits, angleUnitsRelativeToRadians); };
     }

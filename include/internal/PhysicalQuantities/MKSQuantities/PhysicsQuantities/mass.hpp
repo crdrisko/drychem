@@ -36,7 +36,7 @@ namespace Utilities_API::PhysicalQuantities
             {"lbs", 2.20462}
         };
 
-        constexpr auto getMassConversionFactor = [&](const std::string& initialUnits,
+        inline auto getMassConversionFactor = [&](const std::string& initialUnits,
             const std::string& finalUnits) -> auto { return getConversionFactor(initialUnits,
                 finalUnits, massUnitsRelativeToKilograms); };
     }
