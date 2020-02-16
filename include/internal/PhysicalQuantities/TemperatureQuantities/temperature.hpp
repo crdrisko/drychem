@@ -35,7 +35,7 @@ namespace Utilities_API::PhysicalQuantities
     // Temperature Conversions
     namespace Conversions
     {
-        inline Temperature convertTemperature(Temperature temperatureToConvert,
+        constexpr Temperature convertTemperature(Temperature temperatureToConvert,
             const std::string& initialUnits, const std::string& finalUnits)
         {
             Temperature convertedTemperature = temperatureToConvert;
@@ -50,7 +50,7 @@ namespace Utilities_API::PhysicalQuantities
                         -273.15);
 
                 else
-                    Errors::printFatalErrorMessage(1, finalUnits
+                    Utilities_API::Errors::printFatalErrorMessage(1, finalUnits
                         + " are not recognized Temperature units.");
             }
             else if ( (initialUnits != "K") && (finalUnits == "K") )
@@ -63,7 +63,7 @@ namespace Utilities_API::PhysicalQuantities
                         -32.0);
 
                 else
-                    Errors::printFatalErrorMessage(1, initialUnits
+                    Utilities_API::Errors::printFatalErrorMessage(1, initialUnits
                         + " are not recognized Temperature units.");
             }
             else if ( (initialUnits != "K") && (finalUnits != "K") && (initialUnits != finalUnits) )

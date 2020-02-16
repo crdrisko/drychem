@@ -30,7 +30,7 @@ namespace Utilities_API::PhysicalQuantities
     // Area Conversions
     namespace Conversions
     {
-        inline long double getAreaUnitsFromLengthSquared(std::string_view desiredLengthUnits)
+        constexpr long double getAreaUnitsFromLengthSquared(std::string_view desiredLengthUnits)
         {
             Length length(lengthUnitsRelativeToMeters[desiredLengthUnits]);
             Area area = length.raisePower<AreaDimensionality>(2);
@@ -44,8 +44,9 @@ namespace Utilities_API::PhysicalQuantities
             {"Ang2", getAreaUnitsFromLengthSquared("Ang")}
         };
 
-        inline auto getAreaConversionFactor = std::bind(getConversionFactor, std::placeholders::_1,
-            std::placeholders::_2, areaUnitsRelativeToMetersSquared);
+        constexpr auto getAreaConversionFactor = [&](const std::string& initialUnits,
+            const std::string& finalUnits) -> auto { return getConversionFactor(initialUnits,
+                finalUnits, areaUnitsRelativeToMetersSquared); };
     }
 }
 

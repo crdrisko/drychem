@@ -9,12 +9,9 @@
 #ifndef UTILITIES_API_PHYSICALQUANTITY_HPP
 #define UTILITIES_API_PHYSICALQUANTITY_HPP
 
+#include <cmath>
 #include <utility>
 #include <iostream>
-#include <algorithm>
-#include <functional>
-#include "../Math/statistics.hpp"
-#include "../Math/calculus.hpp"
 #include "../Errors/errorUtilities.hpp"
 
 using namespace std::rel_ops;           // Allow unqualified comparison operators
@@ -129,60 +126,6 @@ namespace Utilities_API::PhysicalQuantities
         stream << physicalQuantity.getMagnitude();
         return stream;
     }
-
-    template <int L, int M, int T, int I, int Th, int N, int J>
-    inline auto calculateAverage(const std::vector< PhysicalQuantity< Dimensionality<L, M, T,
-        I, Th, N, J> > >& values)
-    {
-        std::vector<long double> magnitudeValues(values.size());
-
-        std::transform(values.begin(), values.end(), magnitudeValues.begin(),
-            [](const PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >& value)
-                -> long double { return value.getMagnitude(); });
-
-        return PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >
-            (Math::calculateAverage(magnitudeValues));
-    }
-
-    template <typename NewDimensionality,
-              int L1, int M1, int T1, int I1, int Th1, int N1, int J1,
-              int L2, int M2, int T2, int I2, int Th2, int N2, int J2>
-    inline auto advancedMathematicalFunctionCall( std::function<std::vector<long double>(
-        std::vector<long double> xMagnitudes, std::vector<long double> yMagnitudes )> mathematicalOperation,
-        const std::vector< PhysicalQuantity< Dimensionality<L1, M1, T1, I1, Th1, N1, J1> > >& x,
-        const std::vector< PhysicalQuantity< Dimensionality<L2, M2, T2, I2, Th2, N2, J2> > >& y )
-    {
-        using NewQuantity = PhysicalQuantity< NewDimensionality>;
-
-        std::vector<long double> xMagnitudes(x.size());
-        std::vector<long double> yMagnitudes(y.size());
-
-        // From PhysicalQuantities to doubles
-        std::transform(x.begin(), x.end(), xMagnitudes.begin(),
-            [](const PhysicalQuantity< Dimensionality<L1, M1, T1, I1, Th1, N1, J1> >& value)
-                -> long double { return value.getMagnitude(); });
-
-        std::transform(y.begin(), y.end(), yMagnitudes.begin(),
-            [](const PhysicalQuantity< Dimensionality<L2, M2, T2, I2, Th2, N2, J2> >& value)
-                -> long double { return value.getMagnitude(); });
-
-        std::vector<NewQuantity> results(x.size());
-
-        std::vector<long double> resultsMagnitudes { mathematicalOperation(xMagnitudes, yMagnitudes) };
-
-        // From doubles back to PhysicalQuantities
-        std::transform(resultsMagnitudes.begin(), resultsMagnitudes.end(), results.begin(),
-            [](long double resultMagnitude)
-                -> NewQuantity { return NewQuantity(resultMagnitude); });
-
-        return results;
-    }
-
-    inline auto finiteDifferenceMethod = std::bind( &Utilities_API::Math::finiteDifferenceMethod,
-        std::placeholders::_1, std::placeholders::_2, "Centered" );
-
-    inline auto cumulativeTrapz = std::bind( &Utilities_API::Math::cumulativeTrapz,
-        std::placeholders::_1, std::placeholders::_2, 0 );
 }
 
 #endif

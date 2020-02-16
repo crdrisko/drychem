@@ -5,8 +5,8 @@ os:
 compiler:
   - clang
   - gcc
-osx_image: 
-  # - xcode11.2
+osx_image:
+  - xcode11.2
   - xcode10.1
 dist: bionic
 arch:
@@ -15,12 +15,12 @@ arch:
 
 notifications:
   email: false
-  
+
 
 ### Installation procedure ###
 before_script:
   - previousLocation=$( pwd )
-  - bash ci/getVersions.sh 
+  - bash ci/getVersions.sh
   - bash ci/install-gtest.sh
   - cd $previousLocation
   - mkdir build && cd build

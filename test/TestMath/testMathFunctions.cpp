@@ -67,14 +67,14 @@ TEST(testMathFunctions, statisticalTests)
 
     // Test of the averageCorrection functionality
     std::vector<long double> predictedValues {-4.5, -3.5, -2.5, -1.5,-0.5, 0.5, 1.5, 2.5, 3.5, 4.5};
-    ASSERT_EQ(predictedValues, averageCorrection(x));
+    ASSERT_EQ(predictedValues, correctForAverage(x));
 
 
     // Test of the linearLeastSquaresFitting functionality
-    std::vector<double> x_values { 1.0,  2.0,  3.0,  4.0,  5.0,  6.0,  7.0,  8.0,  9.0, 10.0};
-    std::vector<double> y_values { 2.0,  4.0,  6.0,  8.0, 10.0, 12.0, 14.0, 16.0, 18.0, 20.0};
+    std::vector<long double> x_values { 1.0,  2.0,  3.0,  4.0,  5.0,  6.0,  7.0,  8.0,  9.0, 10.0};
+    std::vector<long double> y_values { 2.0,  4.0,  6.0,  8.0, 10.0, 12.0, 14.0, 16.0, 18.0, 20.0};
 
-    std::map<std::string, double> parameters { linearLeastSquaresFitting<double>(x_values, y_values) };
+    std::map<std::string, long double> parameters { linearLeastSquaresFitting(x_values, y_values) };
 
     ASSERT_EQ(2.0, parameters["slope"]);
     ASSERT_EQ(0.0, parameters["intercept"]);

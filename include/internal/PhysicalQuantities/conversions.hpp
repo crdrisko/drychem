@@ -27,14 +27,16 @@ namespace Utilities_API::PhysicalQuantities
 
     namespace Conversions
     {
-        inline DimensionlessQuantity getConversionFactor(const std::string& initialUnits,
+        constexpr DimensionlessQuantity getConversionFactor(const std::string& initialUnits,
             const std::string& finalUnits, std::map<std::string_view, long double>& unitsRelativeToBase)
         {
             if ( unitsRelativeToBase.count(initialUnits) != 1 )
-                Errors::printFatalErrorMessage(1, initialUnits + " is not one of the pre-defined units.");
+                Utilities_API::Errors::printFatalErrorMessage(1, initialUnits
+                    + " is not one of the pre-defined units.");
 
             else if ( unitsRelativeToBase.count(finalUnits) != 1 )
-                Errors::printFatalErrorMessage(1, finalUnits + " is not one of the pre-defined units.");
+                Utilities_API::Errors::printFatalErrorMessage(1, finalUnits
+                    + " is not one of the pre-defined units.");
 
             return DimensionlessQuantity(unitsRelativeToBase[finalUnits]
                 / unitsRelativeToBase[initialUnits]);
@@ -51,8 +53,9 @@ namespace Utilities_API::PhysicalQuantities
             {"atto",  1e18},  {"zepto", 1e21},  {"yocto", 1e24}
         };
 
-        inline auto getSIPrexixConversionFactor = std::bind(getConversionFactor, std::placeholders::_1,
-            std::placeholders::_2, siUnitPrefixesRelativeToBase);
+        constexpr auto getSIPrexixConversionFactor = [&](const std::string& initialUnits,
+            const std::string& finalUnits) -> auto { return getConversionFactor(initialUnits,
+                finalUnits, siUnitPrefixesRelativeToBase); };
     }
 }
 

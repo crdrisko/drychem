@@ -42,8 +42,9 @@ namespace Utilities_API::PhysicalQuantities
             {"part", Constants::avogadrosNumber.getMagnitude()}
         };
 
-        inline auto getAmountOfSubstanceConversionFactor = std::bind(getConversionFactor,
-            std::placeholders::_1, std::placeholders::_2, amountOfSubstanceUnitsRelativeToMoles);
+        constexpr auto getAmountOfSubstanceConversionFactor = [&](const std::string& initialUnits,
+            const std::string& finalUnits) -> auto { return getConversionFactor(initialUnits,
+                finalUnits, amountOfSubstanceUnitsRelativeToMoles); };
     }
 }
 

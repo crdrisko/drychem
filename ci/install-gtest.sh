@@ -13,6 +13,6 @@ git clone https://github.com/google/googletest.git
 
 mkdir build && cd build
 
-cmake ../googletest/. -Dgtest_disable_pthreads=ON
+cmake ../googletest/. -Dgtest_disable_pthreads=ON -DCMAKE_CXX_FLAGS=-std=c++11
 
 make && sudo make install

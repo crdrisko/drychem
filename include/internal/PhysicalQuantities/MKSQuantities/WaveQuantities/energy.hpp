@@ -54,8 +54,9 @@ namespace Utilities_API::PhysicalQuantities
             {"Cal", 0.0002390}
         };
 
-        inline auto getEnergyConversionFactor = std::bind(getConversionFactor, std::placeholders::_1,
-            std::placeholders::_2, energyUnitsRelativeToJoules);
+        constexpr auto getEnergyConversionFactor = [&](const std::string& initialUnits,
+            const std::string& finalUnits) -> auto { return getConversionFactor(initialUnits,
+                finalUnits, energyUnitsRelativeToJoules); };
     }
 }
 

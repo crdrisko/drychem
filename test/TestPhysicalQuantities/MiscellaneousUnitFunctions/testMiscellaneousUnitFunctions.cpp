@@ -7,6 +7,7 @@
 // Description: Provides 100% unit test coverage over all operators and other miscellaneous functions
 
 #include <gtest/gtest.h>
+#include "../../../include/internal/PhysicalQuantities/mathematicalFunctions.hpp"
 #include "../../../include/internal/PhysicalQuantities/MKSQuantities/GeometricQuantities/length.hpp"
 #include "../../../include/internal/PhysicalQuantities/MolarQuantities/concentration.hpp"
 #include "../../../include/internal/PhysicalQuantities/MolarQuantities/concentrationGradient.hpp"
@@ -78,9 +79,9 @@ TEST(testMiscellaneousUnitFunctions, testAdvancedMathFunctions)
 
     std::vector<double> expectedDerivativeResults { 1.0, 1.0, 1.0, 1.0, 1.0 };
 
-    std::vector<ConcentrationGradient> derivativeVector 
-        = advancedMathematicalFunctionCall<ConcentrationGradientDimensionality>(finiteDifferenceMethod, 
-            lengthVectorForDerivative, concentrationVector);
+    std::vector<ConcentrationGradient> derivativeVector
+        = Mathematics::mathematicalFunction< Length, Concentration, std::string, ConcentrationGradient >
+            (lengthVectorForDerivative, concentrationVector, "Centered", Mathematics::finiteDifferenceMethod);
 
     std::vector<double> actualDerivativeResults;
 
@@ -90,15 +91,24 @@ TEST(testMiscellaneousUnitFunctions, testAdvancedMathFunctions)
     ASSERT_EQ(expectedDerivativeResults, actualDerivativeResults);
 
 
+    // A test of the PhysicalQuantity class's least squares fitting function
+    std::map<std::string, long double> fittingParameters
+        = Mathematics::mathematicalFunction< Length, Concentration, std::map<std::string, long double> >
+            (lengthVectorForDerivative, concentrationVector, Mathematics::linearLeastSquaresFitting);
+
+    ASSERT_EQ(1.0, fittingParameters["slope"]);
+    ASSERT_EQ(0.0, fittingParameters["intercept"]);
+
+
     // A test of the PhysicalQuantity class's cumulative trapz function
     std::vector<Length> lengthVectorForIntegration { 1.0_m, 2.0_m, 3.0_m, 4.0_m, 5.0_m };
     std::vector<ElectricField> eFieldVector { 1.0_V_m, 2.0_V_m, 3.0_V_m, 4.0_V_m, 5.0_V_m };
 
     std::vector<double> expectedIntegralResults { 0.0, 1.5, 4.0, 7.5, 12.0 };
 
-    std::vector<ElectricPotential> integralVector 
-        = advancedMathematicalFunctionCall<ElectricPotentialDimensionality>(cumulativeTrapz, 
-            lengthVectorForIntegration, eFieldVector);
+    std::vector<ElectricPotential> integralVector
+        = Mathematics::mathematicalFunction< Length, ElectricField, int, ElectricPotential >
+            (lengthVectorForIntegration, eFieldVector, 0, Mathematics::cumulativeTrapz);
 
     std::vector<double> actualIntegralResults;
 
@@ -109,7 +119,9 @@ TEST(testMiscellaneousUnitFunctions, testAdvancedMathFunctions)
 
 
     // A test of the PhysicalQuantity class's average calculation method
-    Length averageLength = calculateAverage(lengthVectorForIntegration);
+    Length averageLength
+        = Mathematics::mathematicalFunction<Length>
+            (lengthVectorForIntegration, Mathematics::calculateAverage);
 
     ASSERT_EQ(3, averageLength.getMagnitude());
 }
@@ -121,7 +133,7 @@ TEST(testMiscellaneousUnitFunctions, testAllOtherMiscellaneousFunctions)
     ASSERT_DOUBLE_EQ(1.0, positiveValue.getMagnitude());
     ASSERT_DOUBLE_EQ(-1.0, positiveValue.negateQuantity().getMagnitude());
 
-    
+
     // A test of the PhysicalQuantity class's natural logarithm function
     Concentration concentration = 1.0_M;
     ASSERT_DOUBLE_EQ(0.0, concentration.takeNaturalLogarithm().getMagnitude());

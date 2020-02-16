@@ -66,8 +66,9 @@ namespace Utilities_API::PhysicalQuantities
             {"mil", 6.213712e-4}
         };
 
-        inline auto getLengthConversionFactor = std::bind(getConversionFactor, std::placeholders::_1,
-            std::placeholders::_2, lengthUnitsRelativeToMeters);
+        constexpr auto getLengthConversionFactor = [&](const std::string& initialUnits,
+            const std::string& finalUnits) -> auto { return getConversionFactor(initialUnits,
+                finalUnits, lengthUnitsRelativeToMeters); };
     }
 }
 
