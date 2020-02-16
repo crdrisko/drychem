@@ -44,7 +44,7 @@ namespace Utilities_API::PhysicalQuantities
             {"Ang2", getAreaUnitsFromLengthSquared("Ang")}
         };
 
-        inline auto getAreaConversionFactor = [&](const std::string& initialUnits,
+        inline auto getAreaConversionFactor = [](const std::string& initialUnits,
             const std::string& finalUnits) -> auto { return getConversionFactor(initialUnits,
                 finalUnits, areaUnitsRelativeToMetersSquared); };
     }

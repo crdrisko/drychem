@@ -50,7 +50,7 @@ namespace Utilities_API::PhysicalQuantities
             {"L", 1e3}
         };
 
-        inline auto getVolumeConversionFactor = [&](const std::string& initialUnits,
+        inline auto getVolumeConversionFactor = [](const std::string& initialUnits,
             const std::string& finalUnits) -> auto { return getConversionFactor(initialUnits,
                 finalUnits, volumeUnitsRelativeToMetersCubed); };
     }

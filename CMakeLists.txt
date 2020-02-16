@@ -14,9 +14,7 @@ endif()
 add_compile_options(-Wall -Wextra -pedantic -Werror)
 
 if (CMAKE_COMPILER_IS_GNUCXX)
-    add_compile_options(-lstdc++fs -Wno-psabi)
-else()
-    add_compile_options(-lc++fs)
+    add_compile_options(-Wno-psabi)
 endif()
 
 
@@ -59,6 +57,11 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY
 ### Libraries / Executables ###
 add_library(utilities-api SHARED ${SOURCES})
 add_library(utilities-api-static STATIC ${SOURCES})
+
+if (CMAKE_COMPILER_IS_GNUCXX)
+    target_link_libraries(utilities-api stdc++fs)
+    target_link_libraries(utilities-api-static stdc++fs)
+endif()
 
 
 ### Installation ###

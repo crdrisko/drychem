@@ -66,7 +66,7 @@ namespace Utilities_API::PhysicalQuantities
             {"years", 1 / 3.154e7}
         };
 
-        inline auto getTimeConversionFactor = [&](const std::string& initialUnits,
+        inline auto getTimeConversionFactor = [](const std::string& initialUnits,
             const std::string& finalUnits) -> auto { return getConversionFactor(initialUnits,
                 finalUnits, timeUnitsRelativeToSeconds); };
     }

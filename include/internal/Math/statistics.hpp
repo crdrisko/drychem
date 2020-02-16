@@ -17,18 +17,18 @@
 
 namespace Utilities_API::Math
 {
-    constexpr int findOrderOfMagnitude(const long double& value)
+    inline int findOrderOfMagnitude(const long double& value)
     {
         return std::floor(std::log10(value));
     }
 
-    constexpr long double findAbsoluteError(const long double& expectedValue, const int& significantFigures)
+    inline long double findAbsoluteError(const long double& expectedValue, const int& significantFigures)
     {
         return std::pow(10, findOrderOfMagnitude(expectedValue) - (significantFigures - 1));
     }
 
     template<typename T>
-    constexpr T calculateAverage(const std::vector<T>& values)
+    inline T calculateAverage(const std::vector<T>& values)
     {
         return std::accumulate(values.begin(), values.end(), static_cast<T>(0)) / values.size();
     }

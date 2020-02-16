@@ -18,7 +18,7 @@
 namespace Utilities_API::PhysicalQuantities::Mathematics
 {
     template <typename T>
-    constexpr auto convertQuantitiesToMagnitudes(const std::vector<T>& values)
+    inline auto convertQuantitiesToMagnitudes(const std::vector<T>& values)
     {
         std::vector<long double> magnitudes(values.size());
 
@@ -30,18 +30,18 @@ namespace Utilities_API::PhysicalQuantities::Mathematics
 
 
     template <typename TArg, typename TReturn = TArg>
-    constexpr auto mathematicalFunction(const std::vector<TArg>& values,
+    inline auto mathematicalFunction(const std::vector<TArg>& values,
         std::function<long double (const std::vector<long double>&)> unaryOperator)
     {
         return TReturn(unaryOperator(convertQuantitiesToMagnitudes(values)));
     }
 
-    constexpr auto calculateAverage = [](const std::vector<long double>& values)
+    inline auto calculateAverage = [](const std::vector<long double>& values)
         -> long double { return Utilities_API::Math::calculateAverage<long double>(values); };
 
 
     template <typename TArg1, typename TArg2, typename TReturn>
-    constexpr auto mathematicalFunction(const std::vector<TArg1>& x_values,
+    inline auto mathematicalFunction(const std::vector<TArg1>& x_values,
         const std::vector<TArg2>& y_values, std::function<TReturn
             (const std::vector<long double>&, const std::vector<long double>&)> binaryOperator)
     {
@@ -49,13 +49,13 @@ namespace Utilities_API::PhysicalQuantities::Mathematics
             convertQuantitiesToMagnitudes(y_values)));
     }
 
-    constexpr auto linearLeastSquaresFitting = [](const std::vector<long double>& x_values,
+    inline auto linearLeastSquaresFitting = [](const std::vector<long double>& x_values,
         const std::vector<long double>& y_values)
             -> auto { return Utilities_API::Math::linearLeastSquaresFitting(x_values, y_values); };
 
 
     template <typename TArg1, typename TArg2, typename TArg3, typename TReturn>
-    constexpr auto mathematicalFunction(const std::vector<TArg1>& x_values,
+    inline auto mathematicalFunction(const std::vector<TArg1>& x_values,
         const std::vector<TArg2>& y_values, TArg3 argument, std::function<std::vector<long double>
             (const std::vector<long double>&, const std::vector<long double>&, TArg3)> ternaryOperator)
     {
@@ -71,11 +71,11 @@ namespace Utilities_API::PhysicalQuantities::Mathematics
         return results;
     }
 
-    constexpr auto finiteDifferenceMethod = [](const std::vector<long double>& x_values,
+    inline auto finiteDifferenceMethod = [](const std::vector<long double>& x_values,
         const std::vector<long double>& y_values, std::string_view method = "Centered")
             -> auto { return Utilities_API::Math::finiteDifferenceMethod(x_values, y_values, method); };
 
-    constexpr auto cumulativeTrapz = [](const std::vector<long double>& x_values,
+    inline auto cumulativeTrapz = [](const std::vector<long double>& x_values,
         const std::vector<long double>& y_values, const int& referenceIndex = 0)
             -> auto { return Utilities_API::Math::cumulativeTrapz(x_values, y_values, referenceIndex); };
 }

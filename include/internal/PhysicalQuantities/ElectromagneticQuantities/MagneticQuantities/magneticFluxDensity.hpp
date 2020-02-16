@@ -52,7 +52,7 @@ namespace Utilities_API::PhysicalQuantities
             {"gamma", 1e9}
         };
 
-        inline auto getMagneticFluxDensityConversionFactor = [&](const std::string& initialUnits,
+        inline auto getMagneticFluxDensityConversionFactor = [](const std::string& initialUnits,
             const std::string& finalUnits) -> auto { return getConversionFactor(initialUnits,
                 finalUnits, magneticFluxDensityUnitsRelativeToTesla); };
     }
