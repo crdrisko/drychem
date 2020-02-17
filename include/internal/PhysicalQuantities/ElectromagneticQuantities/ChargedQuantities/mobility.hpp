@@ -9,7 +9,8 @@
 #ifndef UTILITIES_API_MOBILITY_HPP
 #define UTILITIES_API_MOBILITY_HPP
 
-#include "../../physicalQuantity.hpp"
+#include "../../MolarQuantities/faradays.hpp"
+#include "../../MolarQuantities/molarConductivity.hpp"
 
 namespace Utilities_API::PhysicalQuantities
 {
@@ -25,6 +26,15 @@ namespace Utilities_API::PhysicalQuantities
     constexpr Mobility operator"" _As2_kg(long double magnitude)
     {
         return Mobility(magnitude);
+    }
+
+    // Mobility Calculations
+    namespace Calculations
+    {
+        constexpr Mobility calculateMobility(MolarConductivity lambda, ElectricCharge charge)
+        {
+            return lambda / (charge.raisePower(2) * Constants::faradaysConstant);
+        }
     }
 }
 
