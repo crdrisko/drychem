@@ -10,22 +10,23 @@
 
 namespace Utilities_API::Strings
 {
-    std::vector<std::string> splitString(std::string inputString, std::string separators)
+    std::vector<std::string> splitString(const std::string& inputString, const std::string& separators)
     {
         std::vector<std::string> words;
-        size_t start {inputString.find_first_not_of(separators)};
+        size_t startOfWord {inputString.find_first_not_of(separators)};
 
-        while (start != std::string::npos)
+        while (startOfWord != std::string::npos)
         {
-            size_t end = inputString.find_first_of(separators, start + 1);
+            size_t endOfWord = inputString.find_first_of(separators, startOfWord + 1);
 
-            if (end == std::string::npos)
-                end = inputString.length();
+            if (endOfWord == std::string::npos)
+                endOfWord = inputString.length();
 
-            words.push_back(inputString.substr(start, end - start));
+            words.push_back(inputString.substr(startOfWord, endOfWord - startOfWord));
 
-            start = inputString.find_first_not_of(separators, end + 1);
+            startOfWord = inputString.find_first_not_of(separators, endOfWord + 1);
         }
+
         return words;
     }
 }

@@ -68,30 +68,27 @@ namespace Utilities_API::Files
     private:
         std::vector<std::string> contentInFile;
 
-        void setContentInFile(FileNamePtr FileName)
+        void setContentInFile(const FileNamePtr& FileName)
         {
             std::string fileName {FileName->getBaseFileName()};
             std::string relativePath {FileName->getRelativePathToFile()};
 
-            std::ifstream inputFile { ((relativePath != "") ? relativePath + "/" : relativePath)
-                + fileName };
+            std::ifstream inputFile { ((relativePath != "") ? relativePath + "/" : relativePath) + fileName };
 
             std::string line;
 
-            if (inputFile.is_open())
+            if (inputFile)
             {
-                while (getline(inputFile, line))
-                    if (!line.empty())
+                while ( getline(inputFile, line) )
+                    if ( !line.empty() )
                         contentInFile.push_back(line);
-
-                inputFile.close();
             }
             else
                 Errors::printFatalErrorMessage(1, "Unable to open file " + fileName);
         }
 
     public:
-        explicit FileContents(FileNamePtr FileName) { this->setContentInFile(FileName); }
+        explicit FileContents(const FileNamePtr& FileName) { this->setContentInFile(FileName); }
 
         std::vector<std::string> getContentInFile() { return this->contentInFile; }
     };

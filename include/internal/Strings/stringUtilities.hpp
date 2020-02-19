@@ -15,7 +15,8 @@
 
 namespace Utilities_API::Strings
 {
-    std::vector<std::string> splitString(std::string inputString, std::string separators = " \t\n");
+    std::vector<std::string> splitString(const std::string& inputString, 
+        const std::string& separators = " \t\n");
 
     inline bool stringFinder(std::string_view stringToFind, std::string_view stringToSearch)
     {
