@@ -17,33 +17,39 @@
 
 namespace Utilities_API::PhysicalQuantities::Mathematics
 {
-    template <typename T>
-    inline auto convertQuantitiesToMagnitudes(const std::vector<T>& values)
+    template <int L, int M, int T, int I, int Th, int N, int J>
+    inline auto convertQuantitiesToMagnitudes(const std::vector< PhysicalQuantity< Dimensionality<L, M, T, I,
+        Th, N, J> > >& values)
     {
         std::vector<long double> magnitudes(values.size());
 
-        std::transform(values.begin(), values.end(), magnitudes.begin(), [](const T& value)
-            -> long double { return value.getMagnitude(); });
+        std::transform(values.begin(), values.end(), magnitudes.begin(),
+            [](const PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >& value)
+                -> long double { return value.getMagnitude(); });
 
         return magnitudes;
     }
 
 
-    template <typename TArg, typename TReturn = TArg>
-    inline auto mathematicalFunction(const std::vector<TArg>& values,
-        std::function<long double (const std::vector<long double>&)> unaryOperator)
+    template <int L, int M, int T, int I, int Th, int N, int J>
+    inline auto mathematicalFunction(const std::vector< PhysicalQuantity< Dimensionality<L, M, T, I,
+        Th, N, J> > >& values, std::function<long double (const std::vector<long double>&)> unaryOperator)
     {
-        return TReturn(unaryOperator(convertQuantitiesToMagnitudes(values)));
+        return PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >(
+            unaryOperator(convertQuantitiesToMagnitudes(values)) );
     }
 
     inline auto calculateAverage = [](const std::vector<long double>& values)
         -> long double { return Utilities_API::Math::calculateAverage<long double>(values); };
 
 
-    template <typename TArg1, typename TArg2, typename TReturn>
-    inline auto mathematicalFunction(const std::vector<TArg1>& x_values,
-        const std::vector<TArg2>& y_values, std::function<TReturn
-            (const std::vector<long double>&, const std::vector<long double>&)> binaryOperator)
+    template <typename TReturn,
+              int L1, int M1, int T1, int I1, int Th1, int N1, int J1,
+              int L2, int M2, int T2, int I2, int Th2, int N2, int J2>
+    inline auto mathematicalFunction(const std::vector< PhysicalQuantity< Dimensionality<L1, M1, T1, I1,
+        Th1, N1, J1> > >& x_values, const std::vector< PhysicalQuantity< Dimensionality<L2, M2, T2, I2,
+        Th2, N2, J2> > >& y_values, std::function< TReturn(const std::vector<long double>&,
+        const std::vector<long double>&)> binaryOperator)
     {
         return TReturn(binaryOperator(convertQuantitiesToMagnitudes(x_values),
             convertQuantitiesToMagnitudes(y_values)));
@@ -54,10 +60,13 @@ namespace Utilities_API::PhysicalQuantities::Mathematics
             -> auto { return Utilities_API::Math::linearLeastSquaresFitting(x_values, y_values); };
 
 
-    template <typename TArg1, typename TArg2, typename TArg3, typename TReturn>
-    inline auto mathematicalFunction(const std::vector<TArg1>& x_values,
-        const std::vector<TArg2>& y_values, TArg3 argument, std::function<std::vector<long double>
-            (const std::vector<long double>&, const std::vector<long double>&, TArg3)> ternaryOperator)
+    template <typename TReturn, typename TArg,
+              int L1, int M1, int T1, int I1, int Th1, int N1, int J1,
+              int L2, int M2, int T2, int I2, int Th2, int N2, int J2>
+    inline auto mathematicalFunction(const std::vector< PhysicalQuantity< Dimensionality<L1, M1, T1, I1,
+        Th1, N1, J1> > >& x_values, const std::vector< PhysicalQuantity< Dimensionality<L2, M2, T2, I2,
+        Th2, N2, J2> > >& y_values, TArg argument, std::function< std::vector<long double>
+            (const std::vector<long double>&, const std::vector<long double>&, TArg)> ternaryOperator)
     {
         std::vector<TReturn> results(x_values.size());
         std::vector<long double> resultsMagnitudes(x_values.size());

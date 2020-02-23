@@ -38,7 +38,7 @@ TEST(testMiscellaneousUnitFunctions, testComparisonOperators)
     DimensionlessQuantity value1 = 1.0_;
     DimensionlessQuantity value2 = 2.0_;
     DimensionlessQuantity value3 = 5.0_;
-    DimensionlessQuantity value4(1.0);
+    DimensionlessQuantity value4 = 1.0_;
 
     ASSERT_TRUE(value1 < value2);
     ASSERT_TRUE(value1 <= value2);
@@ -80,7 +80,7 @@ TEST(testMiscellaneousUnitFunctions, testAdvancedMathFunctions)
     std::vector<double> expectedDerivativeResults { 1.0, 1.0, 1.0, 1.0, 1.0 };
 
     std::vector<ConcentrationGradient> derivativeVector
-        = Mathematics::mathematicalFunction< Length, Concentration, std::string, ConcentrationGradient >
+        = Mathematics::mathematicalFunction<ConcentrationGradient, std::string>
             (lengthVectorForDerivative, concentrationVector, "Centered", Mathematics::finiteDifferenceMethod);
 
     std::vector<double> actualDerivativeResults;
@@ -93,7 +93,7 @@ TEST(testMiscellaneousUnitFunctions, testAdvancedMathFunctions)
 
     // A test of the PhysicalQuantity class's least squares fitting function
     std::map<std::string, long double> fittingParameters
-        = Mathematics::mathematicalFunction< Length, Concentration, std::map<std::string, long double> >
+        = Mathematics::mathematicalFunction< std::map<std::string, long double> >
             (lengthVectorForDerivative, concentrationVector, Mathematics::linearLeastSquaresFitting);
 
     ASSERT_EQ(1.0, fittingParameters["slope"]);
@@ -107,7 +107,7 @@ TEST(testMiscellaneousUnitFunctions, testAdvancedMathFunctions)
     std::vector<double> expectedIntegralResults { 0.0, 1.5, 4.0, 7.5, 12.0 };
 
     std::vector<ElectricPotential> integralVector
-        = Mathematics::mathematicalFunction< Length, ElectricField, int, ElectricPotential >
+        = Mathematics::mathematicalFunction<ElectricPotential, int>
             (lengthVectorForIntegration, eFieldVector, 0, Mathematics::cumulativeTrapz);
 
     std::vector<double> actualIntegralResults;
@@ -120,8 +120,7 @@ TEST(testMiscellaneousUnitFunctions, testAdvancedMathFunctions)
 
     // A test of the PhysicalQuantity class's average calculation method
     Length averageLength
-        = Mathematics::mathematicalFunction<Length>
-            (lengthVectorForIntegration, Mathematics::calculateAverage);
+        = Mathematics::mathematicalFunction(lengthVectorForIntegration, Mathematics::calculateAverage);
 
     ASSERT_EQ(3, averageLength.getMagnitude());
 }
@@ -138,6 +137,13 @@ TEST(testMiscellaneousUnitFunctions, testAllOtherMiscellaneousFunctions)
     Concentration concentration = 1.0_M;
     ASSERT_DOUBLE_EQ(0.0, concentration.takeNaturalLogarithm().getMagnitude());
 
+    ASSERT_DEATH(
+    {
+        Concentration concentration = 1.0_M;
+        Concentration negativeConcentration = concentration.negateQuantity();
+        negativeConcentration.takeNaturalLogarithm();
+    }, "The value inside the natural logarithm must be positive.");
+
 
     // A test of the PhysicalQuantity class's default initializer
     DimensionlessQuantity defaultInitialized;
@@ -145,6 +151,23 @@ TEST(testMiscellaneousUnitFunctions, testAllOtherMiscellaneousFunctions)
 
     defaultInitialized.setMagnitude(1e5);
     ASSERT_DOUBLE_EQ(1e5, defaultInitialized.getMagnitude());
+
+
+    // A test of the PhysicalQuantity class's string constructor
+    DimensionlessQuantity dimensionlessQuantity("1e5");
+    ASSERT_DOUBLE_EQ(1e5, dimensionlessQuantity.getMagnitude());
+
+    ASSERT_DEATH(
+    {
+        try
+        {
+            DimensionlessQuantity dimensionlessQuantity("Not a number");
+        }
+        catch(const std::exception& e)
+        {
+            Utilities_API::Errors::printFatalErrorMessage(1, "stold: no conversion");
+        }
+    }, "stold: no conversion");
 }
 
 TEST(testMiscellaneousUnitFunctions, testTransportCalculations)

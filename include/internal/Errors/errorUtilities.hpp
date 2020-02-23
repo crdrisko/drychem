@@ -9,6 +9,7 @@
 #ifndef UTILITIES_API_ERRORUTILITIES_HPP
 #define UTILITIES_API_ERRORUTILITIES_HPP
 
+#include <cstdlib>
 #include <iostream>
 #include <string_view>
 
@@ -22,7 +23,7 @@ namespace Utilities_API::Errors
     inline void printFatalErrorMessage(int error_code, std::string_view message)
     {
         printNonFatalErrorMessage(message);
-        _Exit(error_code);
+        std::exit(error_code);
     }
 }
 

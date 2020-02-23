@@ -48,28 +48,21 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
     CACHE PATH
     "Single directory for all executables.")
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY
-    ${PROJECT_BINARY_DIR}/lib
-    CACHE PATH
-    "Single directory for all static libraries.")
-
 
 ### Libraries / Executables ###
 add_library(utilities-api SHARED ${SOURCES})
-add_library(utilities-api-static STATIC ${SOURCES})
 
 if (CMAKE_COMPILER_IS_GNUCXX)
     target_link_libraries(utilities-api stdc++fs)
-    target_link_libraries(utilities-api-static stdc++fs)
 endif()
 
 
 ### Installation ###
-install(TARGETS utilities-api utilities-api-static
+install(TARGETS utilities-api
         DESTINATION lib)
 
 install(DIRECTORY include/
-        DESTINATION include/utilities-api)
+        DESTINATION include/utils-api)
 
 foreach(BASH_FILE ${BASH_FILES})
     ## Remove bash extensions and make scripts executable ##

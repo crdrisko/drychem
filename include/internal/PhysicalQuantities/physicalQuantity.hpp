@@ -10,8 +10,8 @@
 #define UTILITIES_API_PHYSICALQUANTITY_HPP
 
 #include <cmath>
+#include <string>
 #include <utility>
-#include <iostream>
 #include "../Errors/errorUtilities.hpp"
 
 using namespace std::rel_ops;           // Allow unqualified comparison operators
@@ -34,6 +34,7 @@ namespace Utilities_API::PhysicalQuantities
     public:
         constexpr PhysicalQuantity() = default;
         constexpr explicit PhysicalQuantity(const long double Magnitude) noexcept : magnitude{Magnitude} {}
+        constexpr explicit PhysicalQuantity(const std::string& Magnitude) { magnitude = std::stold(Magnitude); }
 
         constexpr long double getMagnitude() const noexcept { return magnitude; }
         constexpr void setMagnitude(long double Magnitude) noexcept { magnitude = Magnitude; }
