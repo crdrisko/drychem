@@ -13,7 +13,6 @@
 #include <string>
 #include <functional>
 #include "physicalQuantity.hpp"
-#include "../Errors/errorUtilities.hpp"
 
 namespace Utilities_API::PhysicalQuantities
 {

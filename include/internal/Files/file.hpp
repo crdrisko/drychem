@@ -14,7 +14,7 @@
 
 namespace Utilities_API::Files
 {
-    class File
+    class InputFile
     {
     private:
         FileNamePtr fileName;
@@ -36,10 +36,14 @@ namespace Utilities_API::Files
         std::vector<std::string> metaDataVector;
 
     public:
-        explicit File(std::string_view FullFileName) : fileName{std::make_shared<FileName>(FullFileName)},
-            fileContents{std::make_unique<FileContents>(fileName)} {}
+        explicit InputFile(std::string_view FullFileName) : fileName{std::make_shared<FileName>(FullFileName)},
+            fileContents{std::make_unique<FileContents>(fileName)}
+        {
+            if ( !fs::is_regular_file(fileName->getFullFileName()) )
+                Utilities_API::Errors::printFatalErrorMessage(1, "File name provided is not a valid file.");
+        }
 
-        virtual ~File() = default;
+        virtual ~InputFile() = default;
         virtual void separateFileData() = 0;
 
         FileNamePtr getFileName() const { return this->fileName; }
@@ -56,7 +60,7 @@ namespace Utilities_API::Files
         }
     };
 
-    using FilePtr = std::shared_ptr<File>;
+    using InputFilePtr = std::shared_ptr<InputFile>;
 }
 
 #endif

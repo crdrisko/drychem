@@ -13,7 +13,7 @@
 
 namespace Utilities_API::Files
 {
-    class TextFile : public File
+    class TextFile : public InputFile
     {
     private:
         std::string comments;

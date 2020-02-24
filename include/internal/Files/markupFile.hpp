@@ -13,7 +13,7 @@
 
 namespace Utilities_API::Files
 {
-    class MarkupFile : public File
+    class MarkupFile : public InputFile
     {
     private:
         std::string dataTag;

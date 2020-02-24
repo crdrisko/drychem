@@ -46,13 +46,7 @@ namespace Utilities_API::Files
         }
 
     public:
-        explicit FileName(std::string_view FullFileName) : fullFileName{FullFileName}
-        {
-            if ( fs::is_regular_file(fullFileName) )
-                this->splitFileName();
-            else
-                Utilities_API::Errors::printFatalErrorMessage(1, "File name provided is not a valid file.");
-        }
+        explicit FileName(std::string_view FullFileName) : fullFileName{FullFileName} { this->splitFileName(); }
 
         std::string getFullFileName() const { return this->fullFileName; }
         std::string getBaseFileName() const { return this->baseFileName; }

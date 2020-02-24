@@ -34,13 +34,6 @@ TEST(testFileFunctions, testForFileNameFunctionality)
     ASSERT_EQ("testFileFunctions.cpp", fileName->getFullFileName());
     ASSERT_EQ("testFileFunctions.cpp", fileName->getBaseFileName());
     ASSERT_EQ("cpp", fileName->getFileExtension());
-
-
-    ASSERT_DEATH(
-    {
-        FileNamePtr invalidFileName {std::make_shared<FileName>("fileComponents")};
-    }, "File name provided is not a valid file.");
-
 }
 
 TEST(testFileFunctions, testForFileContentsFunctionality)
@@ -81,7 +74,7 @@ TEST(testFileFunctions, testForTextFileFunctionality)
 
 
     // Use of all defaults
-    FilePtr defaultsTextFile {std::make_shared<TextFile>("test.txt")};
+    InputFilePtr defaultsTextFile {std::make_shared<TextFile>("test.txt")};
 
     std::vector< std::vector<std::string> > defaultDataResults { line3, line4 };
     std::vector< std::vector<std::string> > defaultMetaDataResults { line1, line2 };
@@ -91,7 +84,7 @@ TEST(testFileFunctions, testForTextFileFunctionality)
 
 
     // Use of a different comment style
-    FilePtr c_styleCommentsTextFile {std::make_shared<TextFile>("test.txt", "//")};
+    InputFilePtr c_styleCommentsTextFile {std::make_shared<TextFile>("test.txt", "//")};
 
     std::vector< std::vector<std::string> > c_styleDataResults { line1, line2, line4 };
     std::vector< std::vector<std::string> > c_styleMetaDataResults { line3 };
@@ -102,7 +95,7 @@ TEST(testFileFunctions, testForTextFileFunctionality)
 
     // Use of a selection vector
     std::vector<std::string> seletionVector {"comments"};
-    FilePtr selectMetaTextFile {std::make_shared<TextFile>("test.txt", "#", seletionVector)};
+    InputFilePtr selectMetaTextFile {std::make_shared<TextFile>("test.txt", "#", seletionVector)};
 
     std::vector< std::vector<std::string> > selectDataResults { line3, line4 };
     std::vector< std::vector<std::string> > selectMetaDataResults { line2 };
@@ -124,7 +117,7 @@ TEST(testFileFunctions, testForMarkupFileFunctionality)
 
 
     // Using the default tag values
-    FilePtr defaultTagFile {std::make_shared<MarkupFile>("test.inp")};
+    InputFilePtr defaultTagFile {std::make_shared<MarkupFile>("test.inp")};
 
     std::vector< std::vector<std::string> > defaultTagDataResults { dataTag };
     std::vector< std::vector<std::string> > defaultTagMetaDataResults { metadataTag };
@@ -134,7 +127,7 @@ TEST(testFileFunctions, testForMarkupFileFunctionality)
 
 
     // Using otherTag for data
-    FilePtr otherDataTagFile {std::make_shared<MarkupFile>("test.inp", "<otherTag>")};
+    InputFilePtr otherDataTagFile {std::make_shared<MarkupFile>("test.inp", "<otherTag>")};
 
     std::vector< std::vector<std::string> > otherDataTagDataResults { otherdataTag };
     std::vector< std::vector<std::string> > otherDataTagMetaDataResults { metadataTag };
@@ -144,7 +137,7 @@ TEST(testFileFunctions, testForMarkupFileFunctionality)
 
 
     // Using otherTag for metadata
-    FilePtr otherMetaDataTagFile {std::make_shared<MarkupFile>("test.inp", "<data>", "<otherTag>")};
+    InputFilePtr otherMetaDataTagFile {std::make_shared<MarkupFile>("test.inp", "<data>", "<otherTag>")};
 
     std::vector< std::vector<std::string> > otherMetaDataTagDataResults { dataTag };
     std::vector< std::vector<std::string> > otherMetaDataTagMetaDataResults { otherdataTag };

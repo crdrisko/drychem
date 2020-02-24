@@ -14,7 +14,7 @@ namespace Utilities_API::Files
     using std::string;
 
     TextFile::TextFile(std::string_view FullFileName, string Comments, vector<string> MetaDataKeywords)
-        : File{FullFileName}, comments{Comments}, metaDataKeywords{MetaDataKeywords}
+        : InputFile{FullFileName}, comments{Comments}, metaDataKeywords{MetaDataKeywords}
     {
         this->separateFileData();
     }
@@ -28,13 +28,13 @@ namespace Utilities_API::Files
             if (metaDataKeywords[0] != "Null Selection" && Strings::stringFinder(comments, line))
             {
                 for (const auto& selection : metaDataKeywords)
-                    if (Strings::stringFinder(selection, line))
+                    if ( Strings::stringFinder(selection, line) )
                         metaDataVector.push_back(line);
             }
-            else if ( metaDataKeywords[0] == "Null Selection" && Strings::stringFinder(comments, line))
+            else if ( (metaDataKeywords[0] == "Null Selection") && (Strings::stringFinder(comments, line)) )
                 metaDataVector.push_back(line);
 
-            else if (!Strings::stringFinder(comments, line))
+            else if ( !Strings::stringFinder(comments, line) )
                 dataVector.push_back(line);
         }
     }

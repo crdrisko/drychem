@@ -14,7 +14,7 @@ namespace Utilities_API::Files
     using std::string;
 
     MarkupFile::MarkupFile(std::string_view FullFileName, std::string_view DataTag, std::string_view MetaTag)
-        : File{FullFileName}, dataTag{DataTag}, metaTag{MetaTag}
+        : InputFile{FullFileName}, dataTag{DataTag}, metaTag{MetaTag}
     {
         this->separateFileData();
     }
