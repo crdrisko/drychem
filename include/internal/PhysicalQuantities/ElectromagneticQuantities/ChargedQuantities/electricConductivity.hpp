@@ -9,9 +9,7 @@
 #ifndef UTILITIES_API_ELECTRICCONDUCTIVITY_HPP
 #define UTILITIES_API_ELECTRICCONDUCTIVITY_HPP
 
-#include "electricCharge.hpp"
-#include "currentDensity.hpp"
-#include "../../MKSQuantities/PhysicsQuantities/force.hpp"
+#include "../../physicalQuantity.hpp"
 
 namespace Utilities_API::PhysicalQuantities
 {
@@ -32,16 +30,6 @@ namespace Utilities_API::PhysicalQuantities
     constexpr ElectricConductivity operator"" _A2s3_kgm3(long double magnitude)
     {
         return ElectricConductivity(magnitude);
-    }
-
-    // ElectricConductivity Calculations
-    namespace Calculations
-    {
-        constexpr ElectricConductivity calculateElectricalConductivity(ElectricCharge charge, CurrentDensity Jc,
-            Force gradientOfElectrochemcialPotential)
-        {
-            return charge * Jc / gradientOfElectrochemcialPotential;
-        }
     }
 }
 

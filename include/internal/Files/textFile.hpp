@@ -9,7 +9,7 @@
 #ifndef UTILITIES_API_TEXTFILE_HPP
 #define UTILITIES_API_TEXTFILE_HPP
 
-#include "file.hpp"
+#include "inputFile.hpp"
 
 namespace Utilities_API::Files
 {

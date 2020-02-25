@@ -9,8 +9,7 @@
 #ifndef UTILITIES_API_MOLARCONDUCTIVITY_HPP
 #define UTILITIES_API_MOLARCONDUCTIVITY_HPP
 
-#include "concentration.hpp"
-#include "../ElectromagneticQuantities/ChargedQuantities/electricConductivity.hpp"
+#include "../physicalQuantity.hpp"
 
 namespace Utilities_API::PhysicalQuantities
 {
@@ -26,15 +25,6 @@ namespace Utilities_API::PhysicalQuantities
     constexpr MolarConductivity operator"" _A2s3_kgmol(long double magnitude)
     {
         return MolarConductivity(magnitude);
-    }
-
-    // MolarConductivity Calculations
-    namespace Calculations
-    {
-        constexpr MolarConductivity calculateMolarConductivity(ElectricConductivity sigma, Concentration conc)
-        {
-            return sigma / conc;
-        }
     }
 }
 

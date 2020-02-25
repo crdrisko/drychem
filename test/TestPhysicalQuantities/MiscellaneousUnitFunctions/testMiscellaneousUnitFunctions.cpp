@@ -9,10 +9,10 @@
 #include <gtest/gtest.h>
 #include "../../../include/internal/PhysicalQuantities/mathematicalFunctions.hpp"
 #include "../../../include/internal/PhysicalQuantities/MKSQuantities/GeometricQuantities/length.hpp"
+#include "../../../include/internal/PhysicalQuantities/MolarQuantities/concentration.hpp"
 #include "../../../include/internal/PhysicalQuantities/MolarQuantities/concentrationGradient.hpp"
 #include "../../../include/internal/PhysicalQuantities/ElectromagneticQuantities/ChargedQuantities/electricField.hpp"
 #include "../../../include/internal/PhysicalQuantities/ElectromagneticQuantities/ChargedQuantities/electricPotential.hpp"
-#include "../../../include/internal/PhysicalQuantities/ElectromagneticQuantities/ChargedQuantities/mobility.hpp"
 
 using namespace Utilities_API::PhysicalQuantities;
 
@@ -168,23 +168,4 @@ TEST(testMiscellaneousUnitFunctions, testAllOtherMiscellaneousFunctions)
             Utilities_API::Errors::printFatalErrorMessage(1, "stold: no conversion");
         }
     }, "stold: no conversion");
-}
-
-TEST(testMiscellaneousUnitFunctions, testTransportCalculations)
-{
-    ElectricCharge q_ion = 1.0_C;
-    CurrentDensity Jc_ion = 1.0e8_A_m2;
-    Force gradientOfElectrochemcialPotential_ion = 10.0_N;
-    Concentration conc_ion = 0.1_M;
-
-    ElectricConductivity sigma_ion { Calculations::calculateElectricalConductivity(q_ion, Jc_ion,
-        gradientOfElectrochemcialPotential_ion) };
-
-    MolarConductivity lambda_ion { Calculations::calculateMolarConductivity(sigma_ion, conc_ion) };
-
-    Mobility mobility_ion { Calculations::calculateMobility(lambda_ion, q_ion) };
-
-    ASSERT_DOUBLE_EQ(1.0e7, sigma_ion.getMagnitude());
-    ASSERT_DOUBLE_EQ(1.0e8, lambda_ion.getMagnitude());
-    ASSERT_NEAR( 1036.43, mobility_ion.getMagnitude(), Utilities_API::Math::findAbsoluteError(1036.43, 6) );
 }

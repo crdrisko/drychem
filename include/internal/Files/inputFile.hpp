@@ -1,13 +1,13 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for license information.
 //
-// Name: file.hpp - Version 1.0.0
+// Name: inputFile.hpp - Version 1.0.0
 // Author: cdrisko
 // Date: 01/31/2020-15:39:06
 // Description: An abstract class interface for representing different file types
 
-#ifndef UTILITIES_API_FILE_HPP
-#define UTILITIES_API_FILE_HPP
+#ifndef UTILITIES_API_INPUTFILE_HPP
+#define UTILITIES_API_INPUTFILE_HPP
 
 #include "fileComponents.hpp"
 #include "../Strings/stringUtilities.hpp"
