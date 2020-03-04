@@ -98,6 +98,7 @@ TEST(testMiscellaneousUnitFunctions, testAdvancedMathFunctions)
 
     ASSERT_EQ(1.0, fittingParameters["slope"]);
     ASSERT_EQ(0.0, fittingParameters["intercept"]);
+    ASSERT_EQ(0.0, fittingParameters["stdDev(slope)"]);
 
 
     // A test of the PhysicalQuantity class's cumulative trapz function

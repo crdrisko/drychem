@@ -1,8 +1,12 @@
 # Utilities-API
 
-### Build Status - Version 1.0.0
+## Release - Version 0.0.1 (Pre-Release)
+
+### Build Status
 
 [![Build Status](https://travis-ci.com/crdrisko/utilities-api.svg?branch=master)](https://travis-ci.com/crdrisko/utilities-api)
+
+- NOTE: Until Version 1.0.0 is released, the project's interface is subject to change at any time without warning.
 
 ## Platforms
 
@@ -14,15 +18,15 @@ The Utilities-API project has been built and tested on a number of operating sys
 
 ## Requirements
 
-The Utilities-API requires
+The Utilities-API project requires
 
 - [CMake](https://cmake.org): Version 3.10.0 or higher.
 
-- A C++17-standard-compliant compiler.
+- A C++17-standard-compliant compiler with support for the Standard Library.
 
 Optional:
 
-- [GoogleTest](https://github.com/google/googletest) was used for the testing of all source code in the project (see the `test` directory). The `ci/install-gtest.sh` script can be used to install GoogleTest where desired. Running all these tests is optional and can be turned on using the `-Dbuild_all_tests=ON` flag during the build.
+- [GoogleTest](https://github.com/google/googletest) was used for the testing of all source code in the project (see the `test` directory). The `ci/install-gtest.sh` script can be used to install GoogleTest where desired. Running all these tests is optional and can be turned on using the `build_all_tests=ON` flag during the build.
 
 - The Bourne Again SHell (bash) is required if the use of any of the scripts in the `scripts` directory is desired. While other versions of bash may work, the lowest version of bash I have tested these scripts on is 3.2. Many, if not all, shell scripts in this repository are *not* compliant with the POSIX shell.
 

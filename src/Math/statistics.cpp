@@ -14,40 +14,47 @@ using std::vector;
 
 namespace Utilities_API::Math
 {
-    vector<long double> correctForAverage(const vector<long double>& values)
-    {
-        vector<long double> newValues(values.size());
-        long double averageValue { calculateAverage(values) };
-
-        std::transform(values.begin(), values.end(), newValues.begin(), [&](const long double& value)
-            -> long double { return value - averageValue; });
-
-        return newValues;
-    }
-
-
     std::map<std::string, long double> linearLeastSquaresFitting(const vector<long double>& x,
         const vector<long double>& y)
     {
         if (x.size() != y.size())
             Utilities_API::Errors::printFatalErrorMessage (1,
                 "The vectors x and y must have the same number of elements.");
-
-        vector<long double> newX { correctForAverage(x) };
-        vector<long double> newY { correctForAverage(y) };
-
+        
         std::map<std::string, long double> fitParameters;
 
-        vector<long double> newXSquared(x.size());
+        long double x_average { calculateAverage(x) };
+        long double y_average { calculateAverage(y) };
 
-        std::transform(newX.begin(), newX.end(), newXSquared.begin(), [](const long double& x_value)
-            -> long double { return std::pow(x_value, 2); });
+        vector<long double> numerator(x.size());
+        vector<long double> denominator(x.size());
 
-        long double slope_numerator { std::inner_product(newX.begin(), newX.end(), newY.begin(), 0.0) };
-        long double slope_denominator { std::accumulate(newXSquared.begin(), newXSquared.end(), 0.0) };
+        auto y_iter = y.begin();
+
+        std::transform(x.begin(), x.end(), numerator.begin(), 
+            [&](long double x_value) { return (x_value - x_average) * (*y_iter++ - y_average); });
+
+        std::transform(x.begin(), x.end(), denominator.begin(), 
+            [&](long double x_value) { return std::pow(x_value - x_average, 2); });
+
+        long double slope_numerator = std::accumulate(numerator.begin(), numerator.end(), 0.0);
+        long double slope_denominator = std::accumulate(denominator.begin(), denominator.end(), 0.0);
 
         fitParameters["slope"] = slope_numerator / slope_denominator;
         fitParameters["intercept"] = calculateAverage(y) - (fitParameters["slope"] * calculateAverage(x));
+
+
+        vector<long double> y_predictionCorrected(y.size());
+        auto x_iter = x.begin();
+
+        std::transform(y.begin(), y.end(), y_predictionCorrected.begin(), 
+            [&](const long double& y_value) { return std::pow(y_value - (fitParameters["slope"] * *x_iter++
+                + fitParameters["intercept"]), 2); });
+
+        long double stdDevSlope_numerator = std::accumulate(y_predictionCorrected.begin(), 
+            y_predictionCorrected.end(), 0.0);
+
+        fitParameters["stdDev(slope)"] = std::sqrt(stdDevSlope_numerator / slope_denominator / (x.size() - 2));
 
         return fitParameters;
     }

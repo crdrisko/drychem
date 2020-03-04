@@ -62,22 +62,19 @@ TEST(testMathFunctions, statisticalTests)
 
     // Test of the calculateAverage functionality
     std::vector<long double> x {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
+
     ASSERT_EQ(5.5, calculateAverage(x));
-
-
-    // Test of the averageCorrection functionality
-    std::vector<long double> predictedValues {-4.5, -3.5, -2.5, -1.5,-0.5, 0.5, 1.5, 2.5, 3.5, 4.5};
-    ASSERT_EQ(predictedValues, correctForAverage(x));
-
+    ASSERT_NEAR(3.027650, calculateStandardDeviation(x), findAbsoluteError(3.027650, 7));
 
     // Test of the linearLeastSquaresFitting functionality
     std::vector<long double> x_values { 1.0,  2.0,  3.0,  4.0,  5.0,  6.0,  7.0,  8.0,  9.0, 10.0};
-    std::vector<long double> y_values { 2.0,  4.0,  6.0,  8.0, 10.0, 12.0, 14.0, 16.0, 18.0, 20.0};
+    std::vector<long double> y_values { 2.0,  5.0,  3.0,  7.0,  8.0,  9.0, 12.0, 10.0, 15.0, 20.0};
 
     std::map<std::string, long double> parameters { linearLeastSquaresFitting(x_values, y_values) };
 
-    ASSERT_EQ(2.0, parameters["slope"]);
-    ASSERT_EQ(0.0, parameters["intercept"]);
+    ASSERT_NEAR(1.7152, parameters["slope"], findAbsoluteError(1.7152, 5));
+    ASSERT_NEAR(-0.33333, parameters["intercept"], findAbsoluteError(-0.33333, 5));
+    ASSERT_NEAR(0.2139317, parameters["stdDev(slope)"], findAbsoluteError(0.2139317, 7));
 }
 
 TEST(testMathFunctions, allOtherMathematicalTests)

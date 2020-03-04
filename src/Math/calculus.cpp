@@ -70,7 +70,8 @@ namespace Utilities_API::Math
         vector<long double> y_cumulative;
 
         if (x.size() != y.size())
-            Errors::printFatalErrorMessage (1, "The vectors x and y must have the same number of elements.");
+            Utilities_API::Errors::printFatalErrorMessage (1, 
+                "The vectors x and y must have the same number of elements.");
         else
             for (size_t i {}; i < y.size() - 1; ++i)
             {

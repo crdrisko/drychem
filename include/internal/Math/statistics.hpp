@@ -33,7 +33,19 @@ namespace Utilities_API::Math
         return std::accumulate(values.begin(), values.end(), static_cast<T>(0)) / values.size();
     }
 
-    std::vector<long double> correctForAverage(const std::vector<long double>& values);
+    template<typename T>
+    inline T calculateStandardDeviation(const std::vector<T>& values)
+    {
+        T average { calculateAverage(values) };
+
+        std::vector<T> averageCorrectedValues(values.size());
+
+        std::transform(values.begin(), values.end(), averageCorrectedValues.begin(), 
+            [&](T value) { return std::pow(value - average, 2); });
+
+        return std::sqrt( std::accumulate(averageCorrectedValues.begin(), averageCorrectedValues.end(), 
+            static_cast<T>(0)) / (values.size() - 1) );
+    }
 
     std::map<std::string, long double> linearLeastSquaresFitting(const std::vector<long double>& x,
         const std::vector<long double>& y);
