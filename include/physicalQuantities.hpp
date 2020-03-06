@@ -19,8 +19,8 @@
 
 namespace PhysicalQuantities
 {
-    #define DeclareNewPhysicalQuantity(NAME, ...)                                                   \
-        using NAME ##Dimensionality = Dimensionality<__VA_ARGS__>;                                  \
+    #define DeclareNewPhysicalQuantity(NAME, ...)                                               \
+        using NAME ##Dimensionality = Dimensionality<__VA_ARGS__>;                              \
         using NAME = PhysicalQuantity<NAME ##Dimensionality>;
 
     // Dimensionless Quantities
@@ -53,7 +53,25 @@ namespace PhysicalQuantities
     DeclareNewPhysicalQuantity(WaveNumber, -1, 0, 0)
 
     // Electromagnetic Quantities
+    DeclareNewPhysicalQuantity(Capacitance, -2, -1, 4, 2)
+    DeclareNewPhysicalQuantity(CurrentDensity, -2, 0, 0, 1)
+    DeclareNewPhysicalQuantity(ElectricCharge, 0, 0, 1, 1)
+    DeclareNewPhysicalQuantity(ElectricChargeDensity, -3, 0, 1, 1)
+    DeclareNewPhysicalQuantity(ElectricConductance, -2, -1, 3, 2)
+    DeclareNewPhysicalQuantity(ElectricConductivity, -3, -1, 3, 2)
+    DeclareNewPhysicalQuantity(ElectricCurrent, 0, 0, 0, 1)
+    DeclareNewPhysicalQuantity(ElectricField, 1, 1, -3, -1)
+    DeclareNewPhysicalQuantity(ElectricFluxDensity, -2, 0, 1, 1)
+    DeclareNewPhysicalQuantity(ElectricPotential, 2, 1, -3, -1)
+    DeclareNewPhysicalQuantity(ElectricResistance, 2, 1, -3, -2)
+    DeclareNewPhysicalQuantity(Mobility, 0, -1, 2, 1)
+    DeclareNewPhysicalQuantity(Permittivity, -3, -1, 4, 2)
 
+    DeclareNewPhysicalQuantity(Inductance, 2, 1, -2, -2)
+    DeclareNewPhysicalQuantity(MagneticFieldStrength, -1, 0, 0, 1)
+    DeclareNewPhysicalQuantity(MagneticFlux, 2, 1, -2, -1)
+    DeclareNewPhysicalQuantity(MagneticFluxDensity, 0, 1, -2, -1)
+    DeclareNewPhysicalQuantity(Permeability, 1, 1, -2, -2)
 
 
     // Molar Quantities
@@ -77,7 +95,7 @@ namespace PhysicalQuantities
 
     namespace Literals
     {
-        #define DeclareNewLiteral(NAME, UNIT)                                                       \
+        #define DeclareNewLiteral(NAME, UNIT)                                                   \
             constexpr NAME operator"" UNIT(long double magnitude) { return NAME(magnitude); }
 
 
@@ -160,7 +178,64 @@ namespace PhysicalQuantities
 
 
         // Electromagnetic Quantities
+        DeclareNewLiteral(Capacitance, _F)
+        DeclareNewLiteral(Capacitance, _C_V)
+        DeclareNewLiteral(Capacitance, _A2s4_kgm2)
 
+        DeclareNewLiteral(CurrentDensity, _A_m2)
+
+        DeclareNewLiteral(ElectricCharge, _C)
+        DeclareNewLiteral(ElectricCharge, _e)
+
+        DeclareNewLiteral(ElectricChargeDensity, _C_m3)
+        DeclareNewLiteral(ElectricChargeDensity, _As_m3)
+
+        DeclareNewLiteral(ElectricConductance, _S)
+        DeclareNewLiteral(ElectricConductance, _A_V)
+        DeclareNewLiteral(ElectricConductance, _A2s3_kgm2)
+
+        DeclareNewLiteral(ElectricConductivity, _S_m)
+        DeclareNewLiteral(ElectricConductivity, _A_Vm)
+        DeclareNewLiteral(ElectricConductivity, _A2s3_kgm3)
+
+        DeclareNewLiteral(ElectricCurrent, _A)
+
+        DeclareNewLiteral(ElectricField, _V_m)
+        DeclareNewLiteral(ElectricField, _N_C)
+        DeclareNewLiteral(ElectricField, _kgm_As3)
+
+        DeclareNewLiteral(ElectricFluxDensity, _C_m2)
+        DeclareNewLiteral(ElectricFluxDensity, _As_m2)
+
+        DeclareNewLiteral(ElectricPotential, _V)
+        DeclareNewLiteral(ElectricPotential, _kgm2_As3)
+
+        DeclareNewLiteral(ElectricResistance, _Ohm)
+        DeclareNewLiteral(ElectricResistance, _kgm2_A2s3)
+
+        DeclareNewLiteral(Mobility, _m2_Vs)
+        DeclareNewLiteral(Mobility, _As2_kg)
+
+        DeclareNewLiteral(Permittivity, _F_m)
+        DeclareNewLiteral(Permittivity, _A2s4_kgm3)
+
+        DeclareNewLiteral(Inductance, _H)
+        DeclareNewLiteral(Inductance, _kgm2_A2s2)
+
+        DeclareNewLiteral(MagneticFieldStrength, _A_m)
+
+        DeclareNewLiteral(MagneticFlux, _Wb)
+        DeclareNewLiteral(MagneticFlux, _kgm2_As2)
+
+        DeclareNewLiteral(MagneticFluxDensity, _T)
+        DeclareNewLiteral(MagneticFluxDensity, _G)
+        DeclareNewLiteral(MagneticFluxDensity, _gamma)
+        DeclareNewLiteral(MagneticFluxDensity, _Wb_m2)
+        DeclareNewLiteral(MagneticFluxDensity, _kg_As2)
+
+        DeclareNewLiteral(Permeability, _H_m)
+        DeclareNewLiteral(Permeability, _N_A2)
+        DeclareNewLiteral(Permeability, _kgm_A2s2)
 
 
         // Molar Quantities
@@ -212,15 +287,13 @@ namespace PhysicalQuantities
         using namespace Literals;
 
         constexpr DimensionlessQuantity avogadrosNumber = 6.02214076e23_;
-
         constexpr Length bohrRadius = 5.29177210903e-11_m;
         constexpr Entropy boltzmannConstant = 1.380649e-23_J_K;
-
-        // constexpr Faradays faradaysConstant = (elementaryCharge * avogadrosNumber) / 1.0_mol;
-
+        constexpr ElectricCharge elementaryCharge = 1.602176634e-19_C;
+        constexpr Faradays faradaysConstant = (elementaryCharge * avogadrosNumber) / 1.0_mol;
+        constexpr Permittivity permittivityFreeSpace = 8.8541878128e-12_F_m;
         constexpr DimensionlessQuantity pi = 3.14159265_;
         constexpr Action plancksConstant = 6.62607015e-34_Js;
-
         constexpr Velocity speedOfLight = 299'792'458.0_m_s;
     }
 

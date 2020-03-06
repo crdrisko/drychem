@@ -90,6 +90,19 @@ namespace PhysicalQuantities::Conversions
         {"Cal", 0.0002390}
     };
 
+    static inline std::map<std::string_view, long double> ElectricChargeUnitsRelativeToElectrons
+    {
+        {"e", 1.0},
+        {"C", 1.602176634e-19}
+    };
+
+    static inline std::map<std::string_view, long double> MagneticFluxDensityUnitsRelativeToTesla
+    {
+        {"T", 1.0},
+        {"G", 10'000.0},
+        {"gamma", 1e9}
+    };
+
     static inline std::map<std::string_view, long double> AmountOfSubstanceUnitsRelativeToMoles
     {
         {"mol", 1.0},
@@ -183,6 +196,15 @@ namespace PhysicalQuantities::Conversions
         {"Hartree", EnergyUnitsRelativeToJoules},
         {"cal", EnergyUnitsRelativeToJoules},
         {"Cal", EnergyUnitsRelativeToJoules},
+
+        // Electric Charge Units
+        {"e", ElectricChargeUnitsRelativeToElectrons},
+        {"C", ElectricChargeUnitsRelativeToElectrons},
+
+        // Magnetic Flux Density Units
+        {"T", MagneticFluxDensityUnitsRelativeToTesla},
+        {"G", MagneticFluxDensityUnitsRelativeToTesla},
+        {"gamma", MagneticFluxDensityUnitsRelativeToTesla},
 
         // Amount of Substance Units
         {"mol", AmountOfSubstanceUnitsRelativeToMoles},
