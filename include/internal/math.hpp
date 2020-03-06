@@ -10,11 +10,9 @@
 #define CPP_UNITS_MATH_HPP
 
 #include <cmath>
-#include <vector>
-#include <algorithm>
 #include <functional>
 
-#include <utils-api/math.hpp>
+#include <utils-api/errors.hpp>
 
 #include "physicalQuantity.hpp"
 
@@ -23,6 +21,9 @@ namespace PhysicalQuantities::Math
     template <int L, int M, int T, int I, int Th, int N, int J>
     constexpr auto log(const PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >& value)
     {
+        if (value.getMagnitude() < 0.0)
+            Utilities_API::Errors::printFatalErrorMessage(1, "The value inside the natural logarithm must be positive.");
+
         return PhysicalQuantity< Dimensionality<> >( std::log(value.getMagnitude()) );
     }
 

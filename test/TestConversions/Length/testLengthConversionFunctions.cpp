@@ -17,17 +17,14 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-
 long double ConversionAssert::doConversion() const
 {
     Length length(1.0);
 
-    Length convertedValue 
-        = length.convertQuantity(Conversions::getLengthConversionFactor(initialUnits, finalUnits));
+    Length convertedValue = length.convertQuantity(initialUnits, finalUnits);
 
     return convertedValue.getMagnitude();
 }
-
 
 TEST(testLengthConversionFunctions, conversionsOfLengthFrom_m)
 {

@@ -15,6 +15,8 @@
 
 #include <utils-api/errors.hpp>
 
+#include "conversions.hpp"
+
 using namespace std::rel_ops;           // Allow unqualified comparison operators
 
 namespace PhysicalQuantities
@@ -81,17 +83,7 @@ namespace PhysicalQuantities
             return *this;
         }
 
-        // constexpr explicit operator long double() const noexcept
-        // {
-        //     return magnitude;
-        // }
-
-        constexpr auto convertQuantity(PhysicalQuantity< Dimensionality<> > conversionFactor,
-            long double externalShearingFactor = 0.0, long double internalShearingFactor = 0.0) const noexcept
-        {
-            return PhysicalQuantity<BaseDimensionality>( ((magnitude + internalShearingFactor)
-                * conversionFactor.getMagnitude()) + externalShearingFactor );
-        }
+        constexpr auto convertQuantity(const std::string& initialUnits, const std::string& finalUnits) const;
     };
 
 
@@ -119,6 +111,72 @@ namespace PhysicalQuantities
     {
         stream << physicalQuantity.getMagnitude();
         return stream;
+    }
+
+
+    template <typename BaseDimensionality>
+    constexpr auto PhysicalQuantity<BaseDimensionality>::convertQuantity(const std::string& initialUnits,
+        const std::string& finalUnits) const
+    {
+        long double internalShearingFactor {0.0};
+        long double externalShearingFactor {0.0};
+
+        // Sanitize User Input
+        if ( Conversions::conversionMap.count(initialUnits) != 1 )
+            Utilities_API::Errors::printFatalErrorMessage(1, initialUnits + " is not a valid unit.");
+
+        else if ( Conversions::conversionMap.count(finalUnits) != 1 )
+            Utilities_API::Errors::printFatalErrorMessage(1, finalUnits + " is not a valid unit.");
+
+        else if (Conversions::conversionMap[initialUnits] != Conversions::conversionMap[finalUnits])
+            Utilities_API::Errors::printFatalErrorMessage(1, "Initial and final units must be of the same type.");
+
+        else if (initialUnits == finalUnits)
+            return *this;
+
+        // Temperature requires a different process for determining the conversion factors
+        else if (Conversions::conversionMap[initialUnits] == Conversions::TemperatureUnitsRelativeToKelvin)
+        {
+            if ( (initialUnits == "K") && (finalUnits == "degC") )
+            {
+                externalShearingFactor = -273.15;
+                internalShearingFactor = 0.0;
+            }
+            else if ( (initialUnits == "K") && (finalUnits == "degF") )
+            {
+                externalShearingFactor = 32.0;
+                internalShearingFactor = -273.15;
+            }
+            else if ( (initialUnits == "degC") && (finalUnits == "K") )
+            {
+                externalShearingFactor = 273.15;
+                internalShearingFactor = 0.0;
+            }
+            else if ( (initialUnits == "degC") && (finalUnits == "degF") )
+            {
+                externalShearingFactor = 32.0;
+                internalShearingFactor = 0.0;
+            }
+            else if ( (initialUnits == "degF") && (finalUnits == "K") )
+            {
+                externalShearingFactor = 273.15;
+                internalShearingFactor = -32.0;
+            }
+            else if ( (initialUnits == "degF") && (finalUnits == "degC") )
+            {
+                externalShearingFactor = 0.0;
+                internalShearingFactor = -32.0;
+            }
+        }
+
+
+        long double conversionFactor { Conversions::conversionMap[finalUnits][finalUnits]
+            / Conversions::conversionMap[initialUnits][initialUnits] };
+
+        PhysicalQuantity<BaseDimensionality> convertedValue { ((magnitude + internalShearingFactor)
+            * conversionFactor) + externalShearingFactor };
+
+        return convertedValue;
     }
 }
 

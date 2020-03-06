@@ -4,7 +4,7 @@
 // Name: testSI_UnitPrefixesConversionFunctions.cpp - Version 1.0.0
 // Author: crdrisko
 // Date: 03/05/2020-08:54:51
-// Description: Provides 100% unit test coverage over all SI unit prefix conversion functions
+// Description: Provides 100% unit test coverage over all si unit prefix conversion functions
 
 #include "../testAssertions.hpp"
 #include "../../../include/physicalQuantities.hpp"
@@ -17,17 +17,14 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-
 long double ConversionAssert::doConversion() const
 {
     DimensionlessQuantity dimensionlessQuantity(1.0);
 
-    DimensionlessQuantity convertedValue 
-        = dimensionlessQuantity.convertQuantity(Conversions::getSIPrefixConversionFactor(initialUnits, finalUnits));
+    DimensionlessQuantity convertedValue = dimensionlessQuantity.convertQuantity(initialUnits, finalUnits);
 
     return convertedValue.getMagnitude();
 }
-
 
 TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_yotta)
 {

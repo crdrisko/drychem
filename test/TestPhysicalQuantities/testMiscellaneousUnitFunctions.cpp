@@ -4,7 +4,9 @@
 // Name: testMiscellaneousUnitFunctions.cpp - Version 1.0.0
 // Author: crdrisko
 // Date: 03/05/2020-09:03:19
-// Description: Provides 100% unit test coverage over all operators and other miscellaneous functions
+// Description: Provides 100% unit test coverage over all overloaded operators and other miscellaneous functions
+
+#include <exception>
 
 #include <gtest/gtest.h>
 #include <utils-api/errors.hpp>
@@ -19,7 +21,6 @@ int main(int argc, char** argv)
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
-
 
 TEST(testMiscellaneousUnitFunctions, testPrintingMagnitudeUsingStreamOperator)
 {

@@ -40,9 +40,9 @@ public:
     }
 };
 
-ConversionAssert assertThat(std::string_view InitialUnits, std::string_view FinalUnits)
+ConversionAssert assertThat(std::string_view initialUnits, std::string_view finalUnits)
 {
-    ConversionAssert assert {InitialUnits, FinalUnits};
+    ConversionAssert assert {initialUnits, finalUnits};
     return assert;
 }
 

@@ -4,7 +4,9 @@
 // Name: testMathFunctions.cpp - Version 1.0.0
 // Author: crdrisko
 // Date: 03/04/2020-07:50:11
-// Description: 
+// Description:
+
+#include <exception>
 
 #include <gtest/gtest.h>
 
@@ -19,10 +21,17 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-
 TEST(testMathFunctions, testNaturalLogFunctionality)
 {
-    
+    Length length = 1.0_m;
+    ASSERT_DOUBLE_EQ(0.0, Math::log(length).getMagnitude());
+
+    ASSERT_DEATH(
+    {
+        Length length = -1.0_m;
+
+        Math::log(length);
+    }, "The value inside the natural logarithm must be positive.");
 }
 
 TEST(testMathFunctions, testPowerFunctionality)
