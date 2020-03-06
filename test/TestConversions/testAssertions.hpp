@@ -15,13 +15,22 @@
 #include <gtest/gtest.h>
 #include <utils-api/math.hpp>
 
+#include "../../include/physicalQuantities.hpp"
+
+template <typename PhysicalQuantity>
 class ConversionAssert
 {
 private:
     std::string initialUnits;
     std::string finalUnits;
 
-    long double doConversion() const;
+    long double doConversion() const
+    {
+        PhysicalQuantity value(1.0);
+        PhysicalQuantity convertedValue = value.convertQuantity(initialUnits, finalUnits);
+
+        return convertedValue.getMagnitude();
+    }
 
 public:
     ConversionAssert() = delete;
@@ -40,9 +49,10 @@ public:
     }
 };
 
-ConversionAssert assertThat(std::string_view initialUnits, std::string_view finalUnits)
+template <typename PhysicalQuantity>
+auto assertThat(std::string_view initialUnits, std::string_view finalUnits)
 {
-    ConversionAssert assert {initialUnits, finalUnits};
+    ConversionAssert<PhysicalQuantity> assert {initialUnits, finalUnits};
     return assert;
 }
 
