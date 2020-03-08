@@ -10,7 +10,6 @@
 #define CPP_UNITS_MATH_HPP
 
 #include <cmath>
-#include <functional>
 
 #include <utils-api/errors.hpp>
 
@@ -19,19 +18,31 @@
 namespace PhysicalQuantities::Math
 {
     template <int L, int M, int T, int I, int Th, int N, int J>
-    constexpr auto log(const PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >& value)
+    constexpr auto log(const PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >& physicalQuantity)
     {
-        if (value.getMagnitude() < 0.0)
-            Utilities_API::Errors::printFatalErrorMessage(1, "The value inside the natural logarithm must be positive.");
+        if (physicalQuantity.getMagnitude() <= 0.0)
+            Utilities_API::Errors::printFatalErrorMessage(1,
+                "The value inside the natural logarithm must be positive.");
 
-        return PhysicalQuantity< Dimensionality<> >( std::log(value.getMagnitude()) );
+        return PhysicalQuantity< Dimensionality<> >( std::log(physicalQuantity.getMagnitude()) );
     }
 
-
-    template <typename NewDimensionality, int L, int M, int T, int I, int Th, int N, int J>
-    constexpr auto pow(const PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >& value, int power)
+    template <int L, int M, int T, int I, int Th, int N, int J>
+    constexpr auto square(const PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >& physicalQuantity)
     {
-        return PhysicalQuantity<NewDimensionality>( std::pow(value.getMagnitude(), power) );
+        return physicalQuantity * physicalQuantity;
+    }
+
+    template <int L, int M, int T, int I, int Th, int N, int J>
+    constexpr auto cube(const PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >& physicalQuantity)
+    {
+        return physicalQuantity * square(physicalQuantity);
+    }
+
+    template <typename TReturn, int L, int M, int T, int I, int Th, int N, int J>
+    constexpr auto pow(const PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >& physicalQuantity, int power)
+    {
+        return TReturn( std::pow(physicalQuantity.getMagnitude(), power) );
     }
 }
 

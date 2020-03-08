@@ -4,9 +4,7 @@
 // Name: testMathFunctions.cpp - Version 1.0.0
 // Author: crdrisko
 // Date: 03/04/2020-07:50:11
-// Description:
-
-#include <exception>
+// Description: Provides 100% unit test coverage over all mathematical functions for the PhysicalQuantities
 
 #include <gtest/gtest.h>
 
@@ -28,9 +26,7 @@ TEST(testMathFunctions, testNaturalLogFunctionality)
 
     ASSERT_DEATH(
     {
-        Length length = -1.0_m;
-
-        Math::log(length);
+        Math::log(-1.0_m);
     }, "The value inside the natural logarithm must be positive.");
 }
 
@@ -38,6 +34,16 @@ TEST(testMathFunctions, testPowerFunctionality)
 {
     Length length = 5.0_m;
 
-    ASSERT_DOUBLE_EQ(25.0, Math::pow<AreaDimensionality>(length, 2).getMagnitude());
-    ASSERT_DOUBLE_EQ(125.0, Math::pow<VolumeDimensionality>(length, 3).getMagnitude());
+    WaveNumber waveNumber = Math::pow<WaveNumber>(length, -1);
+    DimensionlessQuantity dimensionlessQuantity = Math::pow<DimensionlessQuantity>(length, 0);
+
+    ASSERT_DOUBLE_EQ(0.2, waveNumber.getMagnitude());
+    ASSERT_DOUBLE_EQ(1.0, dimensionlessQuantity.getMagnitude());
+
+    // Specializations of pow with automatic type deduction
+    ASSERT_DOUBLE_EQ(25.0, Math::square(length).getMagnitude());
+    ASSERT_TRUE(Math::square(length) == Math::pow<Area>(length, 2));
+
+    ASSERT_DOUBLE_EQ(125.0, Math::cube(length).getMagnitude());
+    ASSERT_TRUE(Math::cube(length) == Math::pow<Volume>(length, 3));
 }

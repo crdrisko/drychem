@@ -107,15 +107,15 @@ namespace PhysicalQuantities
 
 
         // MKS Quantities
+        DeclareNewLiteral(Area, _m2)
+        DeclareNewLiteral(Area, _Ang2)
+
         DeclareNewLiteral(Length, _m)
         DeclareNewLiteral(Length, _Ang)
         DeclareNewLiteral(Length, _in)
         DeclareNewLiteral(Length, _ft)
         DeclareNewLiteral(Length, _yd)
         DeclareNewLiteral(Length, _mil)
-
-        DeclareNewLiteral(Area, _m2)
-        DeclareNewLiteral(Area, _Ang2)
 
         DeclareNewLiteral(Volume, _m3)
         DeclareNewLiteral(Volume, _Ang3)
