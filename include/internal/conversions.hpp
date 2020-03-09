@@ -235,7 +235,7 @@ namespace PhysicalQuantities::Conversions
     };
 
 
-    long double Conversion::convertQuantity(long double magnitude, const std::string& initialUnits,
+    inline long double Conversion::convertQuantity(long double magnitude, const std::string& initialUnits,
             const std::string& finalUnits) const
     {
         long double internalShearingFactor {0.0};

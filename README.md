@@ -1,6 +1,6 @@
 # C++ Units
 
-## Release - Version 0.0.1 (Pre-Release)
+## Release: Version 0.0.1 (Pre-Release)
 
 ### Build Status
 
