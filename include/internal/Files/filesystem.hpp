@@ -21,13 +21,13 @@
 
 #else
     #include <fstream>
-    #include <string_view>
+    #include <string>
 
     namespace fs
     {
-        inline bool is_regular_file(std::string_view fullFileName)
+        inline bool is_regular_file(std::string fullFileName)
         {
-            std::ifstream testFile { fullFileName };
+            std::ifstream testFile { fullFileName, std::ifstream::in };
 
             return (testFile) ? true : false;
         }
