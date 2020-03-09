@@ -10,6 +10,7 @@
 #define CPP_UNITS_MATH_HPP
 
 #include <cmath>
+#include <memory>
 
 #include <utils-api/errors.hpp>
 
@@ -20,9 +21,11 @@ namespace PhysicalQuantities::Math
     template <int L, int M, int T, int I, int Th, int N, int J>
     constexpr auto log(const PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >& physicalQuantity)
     {
+        const Utilities_API::Errors::ErrorMessagePtr& errorMessage
+            = std::make_shared<Utilities_API::Errors::FatalErrorMessage>("CPP-Units", 1);
+
         if (physicalQuantity.getMagnitude() <= 0.0)
-            Utilities_API::Errors::printFatalErrorMessage(1,
-                "The value inside the natural logarithm must be positive.");
+            errorMessage->printErrorMessage("The value inside the natural logarithm must be positive.");
 
         return PhysicalQuantity< Dimensionality<> >( std::log(physicalQuantity.getMagnitude()) );
     }

@@ -6,7 +6,7 @@ compiler:
   - clang
   - gcc
 osx_image:
-#   - xcode11.2
+  - xcode11.2
   - xcode10.1
 dist: bionic
 arch:
@@ -26,6 +26,5 @@ before_script:
 script:
   - cmake ../. -Dbuild_all_tests=ON
   - make && sudo make install
-after_script:
   - cd test
   - ctest

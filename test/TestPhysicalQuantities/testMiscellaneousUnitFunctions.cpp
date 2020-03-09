@@ -7,6 +7,9 @@
 // Description: Provides 100% unit test coverage over all overloaded operators and other miscellaneous functions
 
 #include <exception>
+#include <iostream>
+#include <memory>
+#include <string>
 
 #include <gtest/gtest.h>
 #include <utils-api/errors.hpp>
@@ -22,7 +25,7 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-TEST(testMiscellaneousUnitFunctions, testPrintingMagnitudeUsingStreamOperator)
+TEST(testMiscellaneousUnitFunctions, overloadedStreamOperatorPrintsMagnitudeToStandardOut)
 {
     testing::internal::CaptureStdout();
 
@@ -33,7 +36,7 @@ TEST(testMiscellaneousUnitFunctions, testPrintingMagnitudeUsingStreamOperator)
     ASSERT_EQ(output, "1\n");
 }
 
-TEST(testMiscellaneousUnitFunctions, testComparisonOperators)
+TEST(testMiscellaneousUnitFunctions, overloadedComparsionOperatorsPerformComparisonsOnMagnitude)
 {
     DimensionlessQuantity value1 = 1.0_;
     DimensionlessQuantity value2 = 2.0_;
@@ -52,7 +55,7 @@ TEST(testMiscellaneousUnitFunctions, testComparisonOperators)
     ASSERT_FALSE(value4 != value1);
 }
 
-TEST(testMiscellaneousUnitFunctions, testArithmeticOperators)
+TEST(testMiscellaneousUnitFunctions, overloadedArithmeticOperatorsPerformArimeticOnMagnitude)
 {
     DimensionlessQuantity dimensionlessQuantity1 = 5.0_;
     DimensionlessQuantity dimensionlessQuantity2 = 25.0_;
@@ -71,7 +74,7 @@ TEST(testMiscellaneousUnitFunctions, testArithmeticOperators)
     ASSERT_DOUBLE_EQ(5.0, (dimensionlessQuantity2 / dimensionlessQuantity1).getMagnitude());
 }
 
-TEST(testMiscellaneousUnitFunctions, testUnaryMinusOperator)
+TEST(testMiscellaneousUnitFunctions, unaryMinusOperatorNegatesMagnitude)
 {
     DimensionlessQuantity dimensionlessQuantity = -5.0_;
 
@@ -87,20 +90,23 @@ TEST(testMiscellaneousUnitFunctions, testDefaultInitializerAndSetter)
     ASSERT_EQ(1e5, defaultInitialized.getMagnitude());
 }
 
-TEST(testMiscellaneousUnitFunctions, testStringConstructor)
+TEST(testMiscellaneousUnitFunctions, stringConstructorCanThrowAnException)
 {
     DimensionlessQuantity dimensionlessQuantity("1e5");
     ASSERT_DOUBLE_EQ(1e5, dimensionlessQuantity.getMagnitude());
 
     ASSERT_DEATH(
     {
+        Utilities_API::Errors::ErrorMessagePtr errorMessage
+                = std::make_shared<Utilities_API::Errors::FatalErrorMessage>("CPP-Units", 1);
+
         try
         {
             DimensionlessQuantity dimensionlessQuantity("Not a number");
         }
         catch(const std::exception& e)
         {
-            Utilities_API::Errors::printFatalErrorMessage(1, "stold: no conversion");
+            errorMessage->printErrorMessage("stold: no conversion");
         }
-    }, "stold: no conversion");
+    }, "CPP-Units:\n\tstold: no conversion");
 }

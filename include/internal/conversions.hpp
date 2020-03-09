@@ -9,8 +9,9 @@
 #ifndef CPP_UNITS_CONVERSIONS_HPP
 #define CPP_UNITS_CONVERSIONS_HPP
 
-#include <map>
 #include <cmath>
+#include <map>
+#include <memory>
 #include <string>
 #include <string_view>
 
@@ -21,10 +22,6 @@ namespace PhysicalQuantities::Conversions
     class Conversion
     {
     private:
-        long double magnitude;
-        std::string initialUnits;
-        std::string finalUnits;
-
         static inline std::map<std::string_view, long double> SIPrefixUnitsRelativeToBase
         {
             {"yotta", 1e-24}, {"zetta", 1e-21}, {"exa",   1e-18},
@@ -36,13 +33,13 @@ namespace PhysicalQuantities::Conversions
             {"atto",  1e18},  {"zepto", 1e21},  {"yocto", 1e24}
         };
 
-        static inline std::map<std::string_view, long double> AngleUnitsRelativeToRadians
+        static inline std::map<std::string_view, long double> AngleUnitsRelativeTo_rad
         {
             {"deg", 57.2957795},
             {"rad", 1.0}
         };
 
-        static inline std::map<std::string_view, long double> LengthUnitsRelativeToMeters
+        static inline std::map<std::string_view, long double> LengthUnitsRelativeTo_m
         {
             {"m", 1.0},
             {"Ang", 1e10},
@@ -52,26 +49,26 @@ namespace PhysicalQuantities::Conversions
             {"mil", 6.213712e-4}
         };
 
-        static inline std::map<std::string_view, long double> AreaUnitsRelativeToMetersSquared
+        static inline std::map<std::string_view, long double> AreaUnitsRelativeTo_m2
         {
-            {"m2", std::pow(LengthUnitsRelativeToMeters["m"], 2)},
-            {"Ang2", std::pow(LengthUnitsRelativeToMeters["Ang"], 2)}
+            {"m2", std::pow(LengthUnitsRelativeTo_m["m"], 2)},
+            {"Ang2", std::pow(LengthUnitsRelativeTo_m["Ang"], 2)}
         };
 
-        static inline std::map<std::string_view, long double> VolumeUnitsRelativeToMetersCubed
+        static inline std::map<std::string_view, long double> VolumeUnitsRelativeTo_m3
         {
-            {"m3", std::pow(LengthUnitsRelativeToMeters["m"], 3)},
-            {"Ang3", std::pow(LengthUnitsRelativeToMeters["Ang"], 3)},
+            {"m3", std::pow(LengthUnitsRelativeTo_m["m"], 3)},
+            {"Ang3", std::pow(LengthUnitsRelativeTo_m["Ang"], 3)},
             {"L", 1e3}
         };
 
-        static inline std::map<std::string_view, long double> MassUnitsRelativeToKilograms
+        static inline std::map<std::string_view, long double> MassUnitsRelativeTo_kg
         {
             {"kg", 1.0},
             {"lbs", 2.20462}
         };
 
-        static inline std::map<std::string_view, long double> PressureUnitsRelativeToBar
+        static inline std::map<std::string_view, long double> PressureUnitsRelativeTo_bar
         {
             {"Pa", 1e5},
             {"atm", 0.986923},
@@ -80,7 +77,7 @@ namespace PhysicalQuantities::Conversions
             {"psi", 14.5038}
         };
 
-        static inline std::map<std::string_view, long double> TimeUnitsRelativeToSeconds
+        static inline std::map<std::string_view, long double> TimeUnitsRelativeTo_s
         {
             {"s", 1.0},
             {"min", 1 / 60.0},
@@ -91,7 +88,7 @@ namespace PhysicalQuantities::Conversions
             {"years", 1 / 3.154e7}
         };
 
-        static inline std::map<std::string_view, long double> EnergyUnitsRelativeToJoules
+        static inline std::map<std::string_view, long double> EnergyUnitsRelativeTo_J
         {
             {"J", 1.0},
             {"eV", 6.241509074e18},
@@ -100,33 +97,33 @@ namespace PhysicalQuantities::Conversions
             {"Cal", 0.0002390}
         };
 
-        static inline std::map<std::string_view, long double> ElectricChargeUnitsRelativeToElectrons
+        static inline std::map<std::string_view, long double> ElectricChargeUnitsRelativeTo_e
         {
             {"e", 1.0},
             {"C", 1.602176634e-19}
         };
 
-        static inline std::map<std::string_view, long double> MagneticFluxDensityUnitsRelativeToTesla
+        static inline std::map<std::string_view, long double> MagneticFluxDensityUnitsRelativeTo_T
         {
             {"T", 1.0},
             {"G", 10'000.0},
             {"gamma", 1e9}
         };
 
-        static inline std::map<std::string_view, long double> AmountOfSubstanceUnitsRelativeToMoles
+        static inline std::map<std::string_view, long double> AmountOfSubstanceUnitsRelativeTo_mol
         {
             {"mol", 1.0},
             {"part", 6.02214076e23}
         };
 
-        static inline std::map<std::string_view, long double> MolarEnergyUnitsRelativeToJoulesPerMol
+        static inline std::map<std::string_view, long double> MolarEnergyUnitsRelativeTo_J_mol
         {
             {"J_mol", 1.0},
             {"eV_part", 1.036426966e-5},
             {"kcal_mol", 0.00023901}
         };
 
-        static inline std::map<std::string_view, long double> TemperatureUnitsRelativeToKelvin
+        static inline std::map<std::string_view, long double> TemperatureUnitsRelativeTo_K
         {
             {"K", 1.0},
             {"degC", 1.0},
@@ -159,105 +156,109 @@ namespace PhysicalQuantities::Conversions
             {"yocto", SIPrefixUnitsRelativeToBase},
 
             // Angle Units
-            {"deg", AngleUnitsRelativeToRadians},
-            {"rad", AngleUnitsRelativeToRadians},
+            {"deg", AngleUnitsRelativeTo_rad},
+            {"rad", AngleUnitsRelativeTo_rad},
 
             // Length Units
-            {"m", LengthUnitsRelativeToMeters},
-            {"Ang", LengthUnitsRelativeToMeters},
-            {"in", LengthUnitsRelativeToMeters},
-            {"ft", LengthUnitsRelativeToMeters},
-            {"yd", LengthUnitsRelativeToMeters},
-            {"mil", LengthUnitsRelativeToMeters},
+            {"m", LengthUnitsRelativeTo_m},
+            {"Ang", LengthUnitsRelativeTo_m},
+            {"in", LengthUnitsRelativeTo_m},
+            {"ft", LengthUnitsRelativeTo_m},
+            {"yd", LengthUnitsRelativeTo_m},
+            {"mil", LengthUnitsRelativeTo_m},
 
             // Area Units
-            {"m2", AreaUnitsRelativeToMetersSquared},
-            {"Ang2", AreaUnitsRelativeToMetersSquared},
+            {"m2", AreaUnitsRelativeTo_m2},
+            {"Ang2", AreaUnitsRelativeTo_m2},
 
             // Volume Units
-            {"m3", VolumeUnitsRelativeToMetersCubed},
-            {"Ang3", VolumeUnitsRelativeToMetersCubed},
-            {"L", VolumeUnitsRelativeToMetersCubed},
+            {"m3", VolumeUnitsRelativeTo_m3},
+            {"Ang3", VolumeUnitsRelativeTo_m3},
+            {"L", VolumeUnitsRelativeTo_m3},
 
             // Mass Units
-            {"kg", MassUnitsRelativeToKilograms},
-            {"lbs", MassUnitsRelativeToKilograms},
+            {"kg", MassUnitsRelativeTo_kg},
+            {"lbs", MassUnitsRelativeTo_kg},
 
             // Pressure Units
-            {"Pa", PressureUnitsRelativeToBar},
-            {"atm", PressureUnitsRelativeToBar},
-            {"torr", PressureUnitsRelativeToBar},
-            {"bar", PressureUnitsRelativeToBar},
-            {"psi", PressureUnitsRelativeToBar},
+            {"Pa", PressureUnitsRelativeTo_bar},
+            {"atm", PressureUnitsRelativeTo_bar},
+            {"torr", PressureUnitsRelativeTo_bar},
+            {"bar", PressureUnitsRelativeTo_bar},
+            {"psi", PressureUnitsRelativeTo_bar},
 
             // Time Units
-            {"s", TimeUnitsRelativeToSeconds},
-            {"min", TimeUnitsRelativeToSeconds},
-            {"hr", TimeUnitsRelativeToSeconds},
-            {"days", TimeUnitsRelativeToSeconds},
-            {"weeks", TimeUnitsRelativeToSeconds},
-            {"months", TimeUnitsRelativeToSeconds},
-            {"years", TimeUnitsRelativeToSeconds},
+            {"s", TimeUnitsRelativeTo_s},
+            {"min", TimeUnitsRelativeTo_s},
+            {"hr", TimeUnitsRelativeTo_s},
+            {"days", TimeUnitsRelativeTo_s},
+            {"weeks", TimeUnitsRelativeTo_s},
+            {"months", TimeUnitsRelativeTo_s},
+            {"years", TimeUnitsRelativeTo_s},
 
             // Energy Units
-            {"J", EnergyUnitsRelativeToJoules},
-            {"eV", EnergyUnitsRelativeToJoules},
-            {"Hartree", EnergyUnitsRelativeToJoules},
-            {"cal", EnergyUnitsRelativeToJoules},
-            {"Cal", EnergyUnitsRelativeToJoules},
+            {"J", EnergyUnitsRelativeTo_J},
+            {"eV", EnergyUnitsRelativeTo_J},
+            {"Hartree", EnergyUnitsRelativeTo_J},
+            {"cal", EnergyUnitsRelativeTo_J},
+            {"Cal", EnergyUnitsRelativeTo_J},
 
             // Electric Charge Units
-            {"e", ElectricChargeUnitsRelativeToElectrons},
-            {"C", ElectricChargeUnitsRelativeToElectrons},
+            {"e", ElectricChargeUnitsRelativeTo_e},
+            {"C", ElectricChargeUnitsRelativeTo_e},
 
             // Magnetic Flux Density Units
-            {"T", MagneticFluxDensityUnitsRelativeToTesla},
-            {"G", MagneticFluxDensityUnitsRelativeToTesla},
-            {"gamma", MagneticFluxDensityUnitsRelativeToTesla},
+            {"T", MagneticFluxDensityUnitsRelativeTo_T},
+            {"G", MagneticFluxDensityUnitsRelativeTo_T},
+            {"gamma", MagneticFluxDensityUnitsRelativeTo_T},
 
             // Amount of Substance Units
-            {"mol", AmountOfSubstanceUnitsRelativeToMoles},
-            {"part", AmountOfSubstanceUnitsRelativeToMoles},
+            {"mol", AmountOfSubstanceUnitsRelativeTo_mol},
+            {"part", AmountOfSubstanceUnitsRelativeTo_mol},
 
             // Molar Energy Units
-            {"J_mol", MolarEnergyUnitsRelativeToJoulesPerMol},
-            {"eV_part", MolarEnergyUnitsRelativeToJoulesPerMol},
-            {"kcal_mol", MolarEnergyUnitsRelativeToJoulesPerMol},
+            {"J_mol", MolarEnergyUnitsRelativeTo_J_mol},
+            {"eV_part", MolarEnergyUnitsRelativeTo_J_mol},
+            {"kcal_mol", MolarEnergyUnitsRelativeTo_J_mol},
 
             // Temperature Units
-            {"K", TemperatureUnitsRelativeToKelvin},
-            {"degC", TemperatureUnitsRelativeToKelvin},
-            {"degF", TemperatureUnitsRelativeToKelvin}
+            {"K", TemperatureUnitsRelativeTo_K},
+            {"degC", TemperatureUnitsRelativeTo_K},
+            {"degF", TemperatureUnitsRelativeTo_K}
         };
 
     public:
-        Conversion(long double Magnitude, std::string_view InitialUnits, std::string_view FinalUnits) noexcept
-            : magnitude{Magnitude}, initialUnits{InitialUnits}, finalUnits{FinalUnits} {}
+        Conversion() = default;
 
-        long double convertQuantity() const;
+        long double convertQuantity(long double magnitude, const std::string& initialUnits,
+            const std::string& finalUnits) const;
     };
 
 
-    long double Conversion::convertQuantity() const
+    long double Conversion::convertQuantity(long double magnitude, const std::string& initialUnits,
+            const std::string& finalUnits) const
     {
         long double internalShearingFactor {0.0};
         long double externalShearingFactor {0.0};
 
+        Utilities_API::Errors::ErrorMessagePtr errorMessage
+            = std::make_shared<Utilities_API::Errors::FatalErrorMessage>("CPP-Units", 1);
+
         // Sanitize User Input
         if ( conversionMap.count(initialUnits) != 1 )
-            Utilities_API::Errors::printFatalErrorMessage(1, initialUnits + " is not a valid unit.");
+            errorMessage->printErrorMessage(initialUnits + " is not a valid unit.");
 
         else if ( conversionMap.count(finalUnits) != 1 )
-            Utilities_API::Errors::printFatalErrorMessage(1, finalUnits + " is not a valid unit.");
+            errorMessage->printErrorMessage(finalUnits + " is not a valid unit.");
 
         else if ( conversionMap[initialUnits] != conversionMap[finalUnits] )
-            Utilities_API::Errors::printFatalErrorMessage(1, "Initial and final units must be of the same type.");
+            errorMessage->printErrorMessage("Initial and final units must be of the same type.");
 
         else if (initialUnits == finalUnits)
             return magnitude;
 
         // Temperature requires a different process for determining the conversion factors
-        else if (conversionMap[initialUnits] == TemperatureUnitsRelativeToKelvin)
+        else if (conversionMap[initialUnits] == TemperatureUnitsRelativeTo_K)
         {
             if ( (initialUnits == "K") && (finalUnits == "degC") )
             {
@@ -291,9 +292,11 @@ namespace PhysicalQuantities::Conversions
             }
         }
 
-        long double conversionFactor { conversionMap[finalUnits][finalUnits] / conversionMap[initialUnits][initialUnits] };
+        long double conversionFactor { conversionMap[finalUnits][finalUnits]
+            / conversionMap[initialUnits][initialUnits] };
 
-        long double convertedValue { ((magnitude + internalShearingFactor) * conversionFactor) + externalShearingFactor };
+        long double convertedValue { ((magnitude + internalShearingFactor) * conversionFactor)
+            + externalShearingFactor };
 
         return convertedValue;
     }

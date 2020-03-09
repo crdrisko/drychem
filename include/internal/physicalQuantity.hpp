@@ -12,7 +12,6 @@
 #include <string>
 #include <utility>
 #include <iostream>
-#include <string_view>
 
 #include "conversions.hpp"
 
@@ -33,6 +32,7 @@ namespace PhysicalQuantities
     {
     private:
         long double magnitude {0.0};
+        static inline const Conversions::Conversion conversion {};
 
     public:
         constexpr PhysicalQuantity() = default;
@@ -82,11 +82,10 @@ namespace PhysicalQuantities
             return *this;
         }
 
-        constexpr auto convertQuantity(std::string_view initialUnits, std::string_view finalUnits) const
+        constexpr auto convertQuantity(const std::string& initialUnits, const std::string& finalUnits) const
         {
-            const Conversions::Conversion& conversion {magnitude, initialUnits, finalUnits};
-
-            return PhysicalQuantity<BaseDimensionality>(conversion.convertQuantity());
+            return PhysicalQuantity<BaseDimensionality>( conversion.convertQuantity(magnitude, initialUnits,
+                finalUnits) );
         }
     };
 

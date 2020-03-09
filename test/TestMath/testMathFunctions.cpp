@@ -19,7 +19,7 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-TEST(testMathFunctions, testNaturalLogFunctionality)
+TEST(testMathFunctions, nonPositiveInputErrorsInNaturalLogAreCaughtAndThrowAnError)
 {
     Length length = 1.0_m;
     ASSERT_DOUBLE_EQ(0.0, Math::log(length).getMagnitude());
@@ -27,10 +27,10 @@ TEST(testMathFunctions, testNaturalLogFunctionality)
     ASSERT_DEATH(
     {
         Math::log(-1.0_m);
-    }, "The value inside the natural logarithm must be positive.");
+    }, "CPP-Units:\n\tThe value inside the natural logarithm must be positive.");
 }
 
-TEST(testMathFunctions, testPowerFunctionality)
+TEST(testMathFunctions, powFunctionRaisesTheMagnitudeToAGivenPower)
 {
     Length length = 5.0_m;
 
@@ -39,8 +39,12 @@ TEST(testMathFunctions, testPowerFunctionality)
 
     ASSERT_DOUBLE_EQ(0.2, waveNumber.getMagnitude());
     ASSERT_DOUBLE_EQ(1.0, dimensionlessQuantity.getMagnitude());
+}
 
-    // Specializations of pow with automatic type deduction
+TEST(testMathFunctions, specializationsOfPowWithAutomaticTypeDeduction)
+{
+    Length length = 5.0_m;
+
     ASSERT_DOUBLE_EQ(25.0, Math::square(length).getMagnitude());
     ASSERT_TRUE(Math::square(length) == Math::pow<Area>(length, 2));
 
