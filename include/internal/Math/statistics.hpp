@@ -82,7 +82,7 @@ namespace Utilities_API::Math
     using LinearLeastSquaresFittingPtr = std::shared_ptr<LinearLeastSquaresFitting>;
 
 
-    std::vector<long double> LinearLeastSquaresFitting::doCalculation() const
+    inline std::vector<long double> LinearLeastSquaresFitting::doCalculation() const
     {
         std::vector<long double> results(numberOfFittingParameters);
 
