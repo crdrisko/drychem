@@ -14,7 +14,6 @@
 #include <string_view>
 #include <vector>
 
-#include "filesystem.hpp"
 #include "../Errors/errorUtilities.hpp"
 
 namespace Utilities_API::Files
