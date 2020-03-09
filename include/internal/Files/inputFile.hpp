@@ -45,9 +45,9 @@ namespace Utilities_API::Files
     public:
         explicit InputFile(std::string_view FullFileName) : fileName{FullFileName}, fileContents{fileName}
         {
-            std::ifstream testFile { fileName.getFullFileName() };
+            std::ifstream testFile { fileName.getFullFileName(), std::ifstream::in };
 
-            if (testFile)
+            if (!testFile)
             {
                 errorMessage = std::make_shared<Errors::FatalErrorMessage>("Utilities-API", 2);
                 errorMessage->printErrorMessage("File name provided is not a valid file.");

@@ -27,6 +27,5 @@ before_script:
 script:
   - cmake ../. -Dbuild_all_tests=ON
   - make && sudo make install
-after_script:
   - cd test
   - ctest
