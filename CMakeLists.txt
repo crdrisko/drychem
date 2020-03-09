@@ -21,9 +21,6 @@ endif()
 ### Files / Directories ###
 set(SOURCES
     src/Files/markupFile.cpp
-    src/Math/calculus.cpp
-    src/Math/statistics.cpp
-    src/Math/basicMath.cpp
     src/Strings/stringUtilities.cpp
     src/Files/textFile.cpp)
 

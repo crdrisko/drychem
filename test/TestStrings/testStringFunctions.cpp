@@ -6,7 +6,11 @@
 // Date: 01/31/2020-16:00:27
 // Description: Provides 100% unit test coverage over all string utility functions
 
+#include <string>
+#include <vector>
+
 #include <gtest/gtest.h>
+
 #include "../../include/internal/Strings/stringUtilities.hpp"
 
 using namespace Utilities_API::Strings;
@@ -19,7 +23,7 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-TEST(testStringFunctions, testOf_splitString)
+TEST(testStringFunctions, splitStringFunctionSplitsStringsCorrectly)
 {
     std::vector<std::string> wordsInStringToSearch {splitString(stringToSearch)};
 
@@ -31,6 +35,11 @@ TEST(testStringFunctions, testOf_splitString)
     ASSERT_EQ("the", wordsInStringToSearch[5]);
     ASSERT_EQ("stringFinder", wordsInStringToSearch[6]);
     ASSERT_EQ("function.", wordsInStringToSearch[7]);
+}
+
+TEST(testStringFunctions, splitStringOnlySplitsOnValueOfSeparators)
+{
+    std::vector<std::string> wordsInStringToSearch {splitString(stringToSearch)};
 
     // Implementation Note: Will not split on '.' unless we tell it to
     ASSERT_NE("function", wordsInStringToSearch[7]);
@@ -39,7 +48,7 @@ TEST(testStringFunctions, testOf_splitString)
     ASSERT_EQ("function", wordsInStringToSearch[7]);
 }
 
-TEST(testStringFunctions, testOf_stringFinder)
+TEST(testStringFunctions, stringFinderFindsIndividualWordsInLongerString)
 {
     ASSERT_TRUE(stringFinder("This", stringToSearch));
     ASSERT_TRUE(stringFinder("is", stringToSearch));
@@ -49,10 +58,17 @@ TEST(testStringFunctions, testOf_stringFinder)
     ASSERT_TRUE(stringFinder("the", stringToSearch));
     ASSERT_TRUE(stringFinder("stringFinder", stringToSearch));
     ASSERT_TRUE(stringFinder("function", stringToSearch));
+}
 
+TEST(testStringFunctions, stringFinderFindsPartialWordsInLongerString)
+{
     // Implementation Note: Finds partial words within the string it's searching for
     ASSERT_TRUE(stringFinder("fun", stringToSearch));
+    ASSERT_TRUE(stringFinder("string", stringToSearch));
+}
 
+TEST(testStringFunctions, stringFinderFunctionIsCaseSensitive)
+{
     // Implementation Note: Case sensitive searches
     ASSERT_FALSE(stringFinder("this", stringToSearch));
     ASSERT_FALSE(stringFinder("THIS", stringToSearch));

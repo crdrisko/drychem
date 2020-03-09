@@ -9,11 +9,14 @@
 #ifndef UTILITIES_API_STATISTICS_HPP
 #define UTILITIES_API_STATISTICS_HPP
 
-#include <map>
+#include <algorithm>
 #include <cmath>
+#include <map>
+#include <numeric>
 #include <string>
 #include <vector>
-#include <numeric>
+
+#include "advancedMath.hpp"
 
 namespace Utilities_API::Math
 {
@@ -40,15 +43,84 @@ namespace Utilities_API::Math
 
         std::vector<T> averageCorrectedValues(values.size());
 
-        std::transform(values.begin(), values.end(), averageCorrectedValues.begin(), 
+        std::transform(values.begin(), values.end(), averageCorrectedValues.begin(),
             [&](T value) { return std::pow(value - average, 2); });
 
-        return std::sqrt( std::accumulate(averageCorrectedValues.begin(), averageCorrectedValues.end(), 
+        return std::sqrt( std::accumulate(averageCorrectedValues.begin(), averageCorrectedValues.end(),
             static_cast<T>(0)) / (values.size() - 1) );
     }
 
-    std::map<std::string, long double> linearLeastSquaresFitting(const std::vector<long double>& x,
-        const std::vector<long double>& y);
+
+    class LinearLeastSquaresFitting : public AdvancedMath
+    {
+    private:
+        static inline const int numberOfFittingParameters {3};
+
+    public:
+        LinearLeastSquaresFitting(const std::vector<long double>& X, const std::vector<long double>& Y)
+            : AdvancedMath{X, Y} {}
+
+        virtual std::vector<long double> doCalculation() const override;
+
+        std::map<std::string, long double> mapFittingParametersToLabels() const
+        {
+            const std::vector<long double>& fittingResults { this->doCalculation() };
+
+            if (fittingResults.size() != numberOfFittingParameters)
+                errorMessage->printErrorMessage("The size of input vector must be " + std::to_string(numberOfFittingParameters));
+
+            std::map<std::string, long double> fitParameters;
+
+            fitParameters["slope"] = fittingResults[0];
+            fitParameters["intercept"] = fittingResults[1];
+            fitParameters["stdDev(slope)"] = fittingResults[2];
+
+            return fitParameters;
+        }
+    };
+
+    using LinearLeastSquaresFittingPtr = std::shared_ptr<LinearLeastSquaresFitting>;
+
+
+    std::vector<long double> LinearLeastSquaresFitting::doCalculation() const
+    {
+        std::vector<long double> results(numberOfFittingParameters);
+
+        long double x_average { calculateAverage(x) };
+        long double y_average { calculateAverage(y) };
+
+        std::vector<long double> numerator(x.size());
+        std::vector<long double> denominator(x.size());
+
+        auto y_iter = y.begin();
+
+        std::transform(x.begin(), x.end(), numerator.begin(),
+            [&](long double x_value) { return (x_value - x_average) * (*y_iter++ - y_average); });
+
+        std::transform(x.begin(), x.end(), denominator.begin(),
+            [&](long double x_value) { return std::pow(x_value - x_average, 2); });
+
+        long double slope_numerator = std::accumulate(numerator.begin(), numerator.end(), 0.0);
+        long double slope_denominator = std::accumulate(denominator.begin(), denominator.end(), 0.0);
+
+        results[0] = slope_numerator / slope_denominator;
+        results[1] = y_average - (results[0] * x_average);
+
+        std::vector<long double> y_predictionCorrected(y.size());
+
+        auto x_iter = x.begin();
+
+        std::transform(y.begin(), y.end(), y_predictionCorrected.begin(),
+            [&](const long double& y_value) { return std::pow(y_value - (results[0] * *x_iter++
+                + results[1]), 2); });
+
+        long double stdDevSlope_numerator = std::accumulate(y_predictionCorrected.begin(),
+            y_predictionCorrected.end(), 0.0);
+
+        results[2] = std::sqrt(stdDevSlope_numerator / slope_denominator / (x.size() - 2));
+
+        return results;
+    }
 }
 
 #endif

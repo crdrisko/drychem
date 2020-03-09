@@ -9,9 +9,11 @@
 #ifndef UTILITIES_API_FILECOMPONENTS_HPP
 #define UTILITIES_API_FILECOMPONENTS_HPP
 
-#include <vector>
-#include <memory>
+#include <fstream>
 #include <string>
+#include <string_view>
+#include <vector>
+
 #include "filesystem.hpp"
 #include "../Errors/errorUtilities.hpp"
 
@@ -27,8 +29,8 @@ namespace Utilities_API::Files
 
         void splitFileName()
         {
-            size_t pathLocation {fullFileName.find_last_of("/")};
-            size_t extensionLocation {fullFileName.find_last_of(".")};
+            size_t pathLocation { fullFileName.find_last_of("/") };
+            size_t extensionLocation { fullFileName.find_last_of(".") };
 
             if (pathLocation == std::string::npos)
             {
@@ -46,28 +48,31 @@ namespace Utilities_API::Files
         }
 
     public:
-        explicit FileName(std::string_view FullFileName) : fullFileName{FullFileName} { this->splitFileName(); }
+        explicit FileName(std::string_view FullFileName) : fullFileName{FullFileName}
+        {
+            splitFileName();
+        }
 
-        std::string getFullFileName() const { return this->fullFileName; }
-        std::string getBaseFileName() const { return this->baseFileName; }
-        std::string getFileExtension() const { return this->fileExtension; }
-        std::string getRelativePathToFile() const { return this->relativePathToFile; }
+        std::string getFullFileName() const { return fullFileName; }
+        std::string getBaseFileName() const { return baseFileName; }
+        std::string getFileExtension() const { return fileExtension; }
+        std::string getRelativePathToFile() const { return relativePathToFile; }
     };
-
-    using FileNamePtr = std::shared_ptr<FileName>;
 
 
     class FileContents
     {
     private:
+        FileName fileName;
         std::vector<std::string> contentInFile;
+        Errors::ErrorMessagePtr errorMessage;
 
-        void setContentInFile(const FileNamePtr& FileName)
+        void setContentInFile()
         {
-            std::string fileName {FileName->getBaseFileName()};
-            std::string relativePath {FileName->getRelativePathToFile()};
+            std::string baseFileName { fileName.getBaseFileName() };
+            std::string relativePath { fileName.getRelativePathToFile() };
 
-            std::ifstream inputFile { ((relativePath != "") ? relativePath + "/" : relativePath) + fileName };
+            std::ifstream inputFile { ((relativePath != "") ? relativePath + "/" : relativePath) + baseFileName };
 
             std::string line;
 
@@ -78,16 +83,21 @@ namespace Utilities_API::Files
                         contentInFile.push_back(line);
             }
             else
-                Errors::printFatalErrorMessage(1, "Unable to open file " + fileName);
+            {
+                errorMessage = std::make_shared<Errors::FatalErrorMessage>("Utilities-API", 1);
+
+                errorMessage->printErrorMessage("Unable to open file: " + baseFileName + ".");
+            }
         }
 
     public:
-        explicit FileContents(const FileNamePtr& FileName) { this->setContentInFile(FileName); }
+        explicit FileContents(const FileName& FileName) : fileName{FileName}
+        {
+            setContentInFile();
+        }
 
-        std::vector<std::string> getContentInFile() { return this->contentInFile; }
+        std::vector<std::string> getContentInFile() { return contentInFile; }
     };
-
-    using FileContentsPtr = std::shared_ptr<FileContents>;
 }
 
 #endif

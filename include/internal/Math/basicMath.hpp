@@ -13,18 +13,30 @@
 
 namespace Utilities_API::Math
 {
-    std::vector<long double> linearlyInterpolate(std::vector<long double> x, long double y1, long double y2);
-
     template<typename T>
-    inline bool withinRange(const T& value, const T& min, const T& max)
+    constexpr bool withinRange(const T& value, const T& min, const T& max)
     {
         return (value <= max) && (value >= min);
     }
 
     template<int min, int max, typename T>
-    inline bool withinRange(const T& value)
+    constexpr bool withinRange(const T& value)
     {
         return withinRange(value, static_cast<T>(min), static_cast<T>(max));
+    }
+
+    template<typename T>
+    constexpr auto linearlyInterpolate(const std::vector<T>& x, T y1, T y2)
+    {
+        std::vector<T> y;
+
+        long double slope { (y2 - y1) / (x[x.size() - 1] - x[0]) };
+        long double intercept { y1 - (slope * x[0]) };
+
+        for (const auto& element : x)
+            y.push_back(slope * element + intercept);
+
+        return y;
     }
 }
 

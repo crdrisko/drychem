@@ -9,7 +9,13 @@
 #ifndef UTILITIES_API_INPUTFILE_HPP
 #define UTILITIES_API_INPUTFILE_HPP
 
+#include <memory>
+#include <string>
+#include <string_view>
+#include <vector>
+
 #include "fileComponents.hpp"
+#include "../Errors/errorUtilities.hpp"
 #include "../Strings/stringUtilities.hpp"
 
 namespace Utilities_API::Files
@@ -17,8 +23,9 @@ namespace Utilities_API::Files
     class InputFile
     {
     private:
-        FileNamePtr fileName;
-        FileContentsPtr fileContents;
+        FileName fileName;
+        FileContents fileContents;
+        Errors::ErrorMessagePtr errorMessage;
 
         std::vector< std::vector<std::string> > splitDataVector(const std::vector<std::string>& dataVector,
             std::string separators = " \t\n")
@@ -36,18 +43,20 @@ namespace Utilities_API::Files
         std::vector<std::string> metaDataVector;
 
     public:
-        explicit InputFile(std::string_view FullFileName) : fileName{std::make_shared<FileName>(FullFileName)},
-            fileContents{std::make_unique<FileContents>(fileName)}
+        explicit InputFile(std::string_view FullFileName) : fileName{FullFileName}, fileContents{fileName}
         {
-            if ( !fs::is_regular_file(fileName->getFullFileName()) )
-                Utilities_API::Errors::printFatalErrorMessage(1, "File name provided is not a valid file.");
+            if ( !fs::is_regular_file(fileName.getFullFileName()) )
+            {
+                errorMessage = std::make_shared<Errors::FatalErrorMessage>("Utilities-API", 2);
+                errorMessage->printErrorMessage("File name provided is not a valid file.");
+            }
         }
 
         virtual ~InputFile() = default;
         virtual void separateFileData() = 0;
 
-        FileNamePtr getFileName() const { return this->fileName; }
-        FileContentsPtr getFileContents() const { return this->fileContents; }
+        FileName getFileName() const { return fileName; }
+        FileContents getFileContents() const { return fileContents; }
 
         std::vector< std::vector<std::string> > getSuperDataVector(std::string separators = " \t\n")
         {

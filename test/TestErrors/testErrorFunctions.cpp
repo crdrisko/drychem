@@ -6,7 +6,11 @@
 // Date: 01/31/2020-15:55:57
 // Description: Provides 100% unit test coverage over all error utility functions
 
+#include <memory>
+#include <string>
+
 #include <gtest/gtest.h>
+
 #include "../../include/internal/Errors/errorUtilities.hpp"
 
 using namespace Utilities_API::Errors;
@@ -17,20 +21,24 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-TEST(testErrorFunctions, properErrorMessagePrinting)
+TEST(testErrorFunctions, errorPrintsMessageToStandardError)
 {
     testing::internal::CaptureStderr();
 
-    printNonFatalErrorMessage("Testing the output of the non-fatal error message command.");
+    ErrorMessagePtr errorMessage { std::make_shared<ErrorMessage>("Utilities-API") };
+
+    errorMessage->printErrorMessage("Testing the output of the non-fatal error message command.");
 
     std::string output = testing::internal::GetCapturedStderr();
-    ASSERT_EQ(output, "Testing the output of the non-fatal error message command.\n");
+    ASSERT_EQ(output, "Utilities-API:\n\tTesting the output of the non-fatal error message command.\n");
 }
 
-TEST(testErrorFunctions, properFatalErrorProgramExit)
+TEST(testErrorFunctions, fatalErrorCausesProgramTermination)
 {
     ASSERT_DEATH(
     {
-        printFatalErrorMessage(1, "Fatal Error, Program Terminated.");
-    }, "Fatal Error, Program Terminated.");
+        ErrorMessagePtr errorMessage { std::make_shared<FatalErrorMessage>("Utilities-API", 1) };
+
+        errorMessage->printErrorMessage("Fatal Error, Program Terminated.");
+    }, "Utilities-API:\n\tFatal Error, Program Terminated.");
 }

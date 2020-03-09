@@ -6,22 +6,25 @@
 // Date: 01/31/2020-15:22:50
 // Description: Constructors and non-inline functions from the TextFile class
 
+#include <string>
+#include <string_view>
+#include <vector>
+
 #include "../../include/internal/Files/textFile.hpp"
+#include "../../include/internal/Strings/stringUtilities.hpp"
 
 namespace Utilities_API::Files
 {
-    using std::vector;
-    using std::string;
-
-    TextFile::TextFile(std::string_view FullFileName, string Comments, vector<string> MetaDataKeywords)
-        : InputFile{FullFileName}, comments{Comments}, metaDataKeywords{MetaDataKeywords}
+    TextFile::TextFile(std::string_view FullFileName, std::string Comments,
+        const std::vector<std::string>& MetaDataKeywords) : InputFile{FullFileName},
+            comments{Comments}, metaDataKeywords{MetaDataKeywords}
     {
-        this->separateFileData();
+        separateFileData();
     }
 
     void TextFile::separateFileData()
     {
-        vector<string> allDataVector { this->getFileContents()->getContentInFile() };
+        std::vector<std::string> allDataVector { getFileContents().getContentInFile() };
 
         for (const auto& line : allDataVector)
         {

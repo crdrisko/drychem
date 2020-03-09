@@ -6,28 +6,30 @@
 // Date: 01/31/2020-15:21:46
 // Description: Constructors and non-inline functions from the MarkupFile class
 
+#include <string>
+#include <string_view>
+#include <vector>
+
 #include "../../include/internal/Files/markupFile.hpp"
+#include "../../include/internal/Strings/stringUtilities.hpp"
 
 namespace Utilities_API::Files
 {
-    using std::vector;
-    using std::string;
-
     MarkupFile::MarkupFile(std::string_view FullFileName, std::string_view DataTag, std::string_view MetaTag)
         : InputFile{FullFileName}, dataTag{DataTag}, metaTag{MetaTag}
     {
-        this->separateFileData();
+        separateFileData();
     }
 
     void MarkupFile::separateFileData()
     {
-        vector<string> allDataVector { this->getFileContents()->getContentInFile() };
+        std::vector<std::string> allDataVector { getFileContents().getContentInFile() };
 
         for (size_t i {}; i < allDataVector.size(); ++i)
         {
             if (Strings::stringFinder(metaTag, allDataVector[i]))
             {
-                string endMetaTag {metaTag};
+                std::string endMetaTag {metaTag};
                 endMetaTag.insert(1, "/");
 
                 for (size_t j {i + 1}; j < allDataVector.size(); ++j)
@@ -40,7 +42,7 @@ namespace Utilities_API::Files
             }
             else if (Strings::stringFinder(dataTag, allDataVector[i]))
             {
-                string endDataTag {dataTag};
+                std::string endDataTag {dataTag};
                 endDataTag.insert(1, "/");
 
                 for (size_t j {i + 1}; j < allDataVector.size(); ++j)

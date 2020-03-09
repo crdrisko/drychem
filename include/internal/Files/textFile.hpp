@@ -9,6 +9,10 @@
 #ifndef UTILITIES_API_TEXTFILE_HPP
 #define UTILITIES_API_TEXTFILE_HPP
 
+#include <string>
+#include <string_view>
+#include <vector>
+
 #include "inputFile.hpp"
 
 namespace Utilities_API::Files
@@ -23,7 +27,7 @@ namespace Utilities_API::Files
 
     public:
         TextFile(std::string_view FullFileName, std::string Comments = "#",
-            std::vector<std::string> MetaDataKeywords = {"Null Selection"});
+            const std::vector<std::string>& MetaDataKeywords = {"Null Selection"});
     };
 }
 

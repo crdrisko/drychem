@@ -11,20 +11,45 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <memory>
+#include <string>
 #include <string_view>
 
 namespace Utilities_API::Errors
 {
-    inline void printNonFatalErrorMessage(std::string_view message)
+    class ErrorMessage
     {
-        std::cerr << message << std::endl;
-    }
+    private:
+        std::string projectName;
 
-    inline void printFatalErrorMessage(int error_code, std::string_view message)
+    public:
+        explicit ErrorMessage(std::string_view ProjectName) noexcept : projectName{ProjectName} {}
+        virtual ~ErrorMessage() = default;
+
+        virtual void printErrorMessage(std::string_view message) const
+        {
+            std::cerr << projectName << ":\n\t" << message << std::endl;
+        }
+    };
+
+    using ErrorMessagePtr = std::shared_ptr<ErrorMessage>;
+
+
+    class FatalErrorMessage : public ErrorMessage
     {
-        printNonFatalErrorMessage(message);
-        std::exit(error_code);
-    }
+    private:
+        int exitCode;
+
+    public:
+        FatalErrorMessage(std::string_view ProjectName, int ExitCode) noexcept : ErrorMessage{ProjectName},
+            exitCode{ExitCode} {}
+
+        virtual void printErrorMessage(std::string_view message) const override
+        {
+            ErrorMessage::printErrorMessage(message);
+            std::exit(exitCode);
+        }
+    };
 }
 
 #endif

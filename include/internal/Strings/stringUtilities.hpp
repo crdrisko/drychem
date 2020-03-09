@@ -9,14 +9,13 @@
 #ifndef UTILITIES_API_STRINGUTILITIES_HPP
 #define UTILITIES_API_STRINGUTILITIES_HPP
 
-#include <vector>
 #include <string>
 #include <string_view>
+#include <vector>
 
 namespace Utilities_API::Strings
 {
-    std::vector<std::string> splitString(const std::string& inputString, 
-        const std::string& separators = " \t\n");
+    std::vector<std::string> splitString(const std::string& stringToSplit, const std::string& separators = " \t\n");
 
     inline bool stringFinder(std::string_view stringToFind, std::string_view stringToSearch)
     {

@@ -6,7 +6,12 @@
 // Date: 01/31/2020-15:56:44
 // Description: Provides 100% unit test coverage over all file utility functions
 
+#include <memory>
+#include <string>
+#include <vector>
+
 #include <gtest/gtest.h>
+
 #include "../../include/internal/Files/textFile.hpp"
 #include "../../include/internal/Files/markupFile.hpp"
 
@@ -18,25 +23,27 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-TEST(testFileFunctions, testForFileNameFunctionality)
+TEST(testFileFunctions, fileNameWithFullPathIsParsedCorrectly)
 {
-    FileNamePtr fullFileName {std::make_shared<FileName>("../../include/internal/Files/fileComponents.hpp")};
+    FileName fullFileName {"../../include/internal/Files/fileComponents.hpp"};
 
-    ASSERT_EQ("../../include/internal/Files", fullFileName->getRelativePathToFile());
-    ASSERT_EQ("../../include/internal/Files/fileComponents.hpp", fullFileName->getFullFileName());
-    ASSERT_EQ("fileComponents.hpp", fullFileName->getBaseFileName());
-    ASSERT_EQ("hpp", fullFileName->getFileExtension());
-
-
-    FileNamePtr fileName {std::make_shared<FileName>("testFileFunctions.cpp")};
-
-    ASSERT_EQ("", fileName->getRelativePathToFile());
-    ASSERT_EQ("testFileFunctions.cpp", fileName->getFullFileName());
-    ASSERT_EQ("testFileFunctions.cpp", fileName->getBaseFileName());
-    ASSERT_EQ("cpp", fileName->getFileExtension());
+    ASSERT_EQ("../../include/internal/Files", fullFileName.getRelativePathToFile());
+    ASSERT_EQ("../../include/internal/Files/fileComponents.hpp", fullFileName.getFullFileName());
+    ASSERT_EQ("fileComponents.hpp", fullFileName.getBaseFileName());
+    ASSERT_EQ("hpp", fullFileName.getFileExtension());
 }
 
-TEST(testFileFunctions, testForFileContentsFunctionality)
+TEST(testFileFunctions, fileNameWithNoPathIsParsedCorrectly)
+{
+    FileName fileName {"testFileFunctions.cpp"};
+
+    ASSERT_EQ("", fileName.getRelativePathToFile());
+    ASSERT_EQ("testFileFunctions.cpp", fileName.getFullFileName());
+    ASSERT_EQ("testFileFunctions.cpp", fileName.getBaseFileName());
+    ASSERT_EQ("cpp", fileName.getFileExtension());
+}
+
+TEST(testFileFunctions, fileContentParsingFunctionsCorrectlyRegardlessOfFileName)
 {
     std::vector<std::string> contentsOfFile
         { "# This is a test file for use in testing the functionality of the file utility functions",
@@ -45,19 +52,19 @@ TEST(testFileFunctions, testForFileContentsFunctionality)
           "Plain text is written without the hash" };
 
 
-    FileNamePtr fileName { std::make_shared<FileName>("test.txt") };
-    FileContentsPtr fileContents {std::make_shared<FileContents>(fileName)};
+    FileName fileName {"test.txt"};
+    FileContents fileContents {fileName};
 
-    ASSERT_EQ(contentsOfFile, fileContents->getContentInFile());
+    ASSERT_EQ(contentsOfFile, fileContents.getContentInFile());
 
 
-    FileNamePtr fileNameWithPath { std::make_shared<FileName>("../TestFiles/test.txt") };
-    FileContentsPtr fileContentsWithPath {std::make_shared<FileContents>(fileNameWithPath)};
+    FileName fileNameWithPath {"../TestFiles/test.txt"};
+    FileContents fileContentsWithPath {fileNameWithPath};
 
-    ASSERT_EQ(contentsOfFile, fileContentsWithPath->getContentInFile());
+    ASSERT_EQ(contentsOfFile, fileContentsWithPath.getContentInFile());
 }
 
-TEST(testFileFunctions, testForTextFileFunctionality)
+TEST(testFileFunctions, textFileOpensAndReadsSampleFileCorrectly)
 {
     std::vector<std::string> line1 { {"#"}, {"This"}, {"is"}, {"a"}, {"test"}, {"file"}, {"for"},
                                      {"use"}, {"in"}, {"testing"}, {"the"}, {"functionality"},
@@ -74,7 +81,7 @@ TEST(testFileFunctions, testForTextFileFunctionality)
 
 
     // Use of all defaults
-    InputFilePtr defaultsTextFile {std::make_shared<TextFile>("test.txt")};
+    InputFilePtr defaultsTextFile { std::make_shared<TextFile>("test.txt") };
 
     std::vector< std::vector<std::string> > defaultDataResults { line3, line4 };
     std::vector< std::vector<std::string> > defaultMetaDataResults { line1, line2 };
@@ -84,7 +91,7 @@ TEST(testFileFunctions, testForTextFileFunctionality)
 
 
     // Use of a different comment style
-    InputFilePtr c_styleCommentsTextFile {std::make_shared<TextFile>("test.txt", "//")};
+    InputFilePtr c_styleCommentsTextFile { std::make_shared<TextFile>("test.txt", "//") };
 
     std::vector< std::vector<std::string> > c_styleDataResults { line1, line2, line4 };
     std::vector< std::vector<std::string> > c_styleMetaDataResults { line3 };
@@ -95,7 +102,7 @@ TEST(testFileFunctions, testForTextFileFunctionality)
 
     // Use of a selection vector
     std::vector<std::string> seletionVector {"comments"};
-    InputFilePtr selectMetaTextFile {std::make_shared<TextFile>("test.txt", "#", seletionVector)};
+    InputFilePtr selectMetaTextFile { std::make_shared<TextFile>("test.txt", "#", seletionVector) };
 
     std::vector< std::vector<std::string> > selectDataResults { line3, line4 };
     std::vector< std::vector<std::string> > selectMetaDataResults { line2 };
@@ -104,7 +111,7 @@ TEST(testFileFunctions, testForTextFileFunctionality)
     ASSERT_EQ(selectMetaDataResults, selectMetaTextFile->getSuperMetaDataVector());
 }
 
-TEST(testFileFunctions, testForMarkupFileFunctionality)
+TEST(testFileFunctions, markupFileOpensAndReadsSampleFileCorrectly)
 {
     std::vector<std::string> dataTag { {"This"}, {"is"}, {"the"}, {"data"}, {"within"}, {"the"},
                                        {"data"}, {"tag"} };
@@ -117,7 +124,7 @@ TEST(testFileFunctions, testForMarkupFileFunctionality)
 
 
     // Using the default tag values
-    InputFilePtr defaultTagFile {std::make_shared<MarkupFile>("test.inp")};
+    InputFilePtr defaultTagFile { std::make_shared<MarkupFile>("test.inp") };
 
     std::vector< std::vector<std::string> > defaultTagDataResults { dataTag };
     std::vector< std::vector<std::string> > defaultTagMetaDataResults { metadataTag };
@@ -127,7 +134,7 @@ TEST(testFileFunctions, testForMarkupFileFunctionality)
 
 
     // Using otherTag for data
-    InputFilePtr otherDataTagFile {std::make_shared<MarkupFile>("test.inp", "<otherTag>")};
+    InputFilePtr otherDataTagFile { std::make_shared<MarkupFile>("test.inp", "<otherTag>") };
 
     std::vector< std::vector<std::string> > otherDataTagDataResults { otherdataTag };
     std::vector< std::vector<std::string> > otherDataTagMetaDataResults { metadataTag };
@@ -137,7 +144,7 @@ TEST(testFileFunctions, testForMarkupFileFunctionality)
 
 
     // Using otherTag for metadata
-    InputFilePtr otherMetaDataTagFile {std::make_shared<MarkupFile>("test.inp", "<data>", "<otherTag>")};
+    InputFilePtr otherMetaDataTagFile { std::make_shared<MarkupFile>("test.inp", "<data>", "<otherTag>") };
 
     std::vector< std::vector<std::string> > otherMetaDataTagDataResults { dataTag };
     std::vector< std::vector<std::string> > otherMetaDataTagMetaDataResults { otherdataTag };
