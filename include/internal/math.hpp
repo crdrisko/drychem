@@ -65,6 +65,24 @@ namespace PhysicalQuantities::Math
         return magnitudes;
     }
 
+
+    template <int L, int M, int T, int I, int Th, int N, int J>
+    constexpr auto calculateAverage(const std::vector< PhysicalQuantity< Dimensionality<L, M, T, I, 
+        Th, N, J> > >& physicalQuantity)
+    {
+        return PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >( Utilities_API::Math::calculateAverage(
+            convertQuantitiesToMagnitudes(physicalQuantity)) );
+    }
+
+    template <int L, int M, int T, int I, int Th, int N, int J>
+    constexpr auto calculateStandardDeviation(const std::vector< PhysicalQuantity< Dimensionality<L, M, T, I, 
+        Th, N, J> > >& physicalQuantity)
+    {
+        return PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >( Utilities_API::Math::calculateStandardDeviation(
+            convertQuantitiesToMagnitudes(physicalQuantity)) );
+    }
+
+
     template <typename TReturn, class AdvancedMathFunction,
               int L1, int M1, int T1, int I1, int Th1, int N1, int J1,
               int L2, int M2, int T2, int I2, int Th2, int N2, int J2>
