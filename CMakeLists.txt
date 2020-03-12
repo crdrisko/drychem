@@ -18,9 +18,6 @@ if (CMAKE_COMPILER_IS_GNUCXX)
 endif()
 
 
-### Files / Directories ###
-
-
 ### Libraries / Executables ###
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 

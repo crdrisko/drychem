@@ -22,18 +22,52 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-TEST(testMathFunctions, nonPositiveInputErrorsInNaturalLogAreCaughtAndThrowAnError)
+TEST(testMathFunctions, exponentialOverloads)
 {
-    Length length = 1.0_m;
-    ASSERT_DOUBLE_EQ(0.0, Math::log(length).getMagnitude());
+    Length length = 2.0_m;
 
-    ASSERT_DEATH(
-    {
-        Math::log(-1.0_m);
-    }, "CPP-Units:\n\tThe value inside the natural logarithm must be positive.");
+    ASSERT_NEAR(7.38906, Math::exp(length / 1.0_m).getMagnitude(),
+        Utilities_API::Math::findAbsoluteError(7.38906, 6));
 }
 
-TEST(testMathFunctions, powFunctionRaisesTheMagnitudeToAGivenPower)
+TEST(testMathFunctions, logarithmOverloads)
+{
+    Length length = 2.0_m;
+
+    ASSERT_NEAR(0.693147, Math::log(length / 1.0_m).getMagnitude(),
+        Utilities_API::Math::findAbsoluteError(0.693147, 6));
+
+    ASSERT_NEAR(0.30103, Math::log10(length / 1.0_m).getMagnitude(),
+        Utilities_API::Math::findAbsoluteError(0.30103, 5));
+}
+
+TEST(testMathFunctions, trigonometricOverloads)
+{
+    Angle angle = 2.0_rad * Constants::pi;
+
+    ASSERT_NEAR(0.0, Math::sin(angle / 1.0_rad).getMagnitude(), Utilities_API::Math::findAbsoluteError(0.0, 9));
+    ASSERT_NEAR(0.0, Math::cos(angle / 1.0_rad).getMagnitude(), Utilities_API::Math::findAbsoluteError(0.0, 9));
+    ASSERT_NEAR(0.0, Math::tan(angle / 1.0_rad).getMagnitude(), Utilities_API::Math::findAbsoluteError(0.0, 9));
+}
+
+TEST(testMathFunctions, squareAndCubeRootOverloads)
+{
+    Length length = 64.0_m;
+
+    ASSERT_EQ(8.0, Math::sqrt(length / 1.0_m).getMagnitude());
+    ASSERT_EQ(4.0, Math::cbrt(length / 1.0_m).getMagnitude());
+}
+
+TEST(testMathFunctions, absoluteValueOverload)
+{
+    Length positiveLength = 1.0_m;
+    Length negativeLength = -1.0_m;
+
+    ASSERT_DOUBLE_EQ(1.0, Math::abs(positiveLength).getMagnitude());
+    ASSERT_DOUBLE_EQ(1.0, Math::abs(negativeLength).getMagnitude());
+}
+
+TEST(testMathFunctions, powerOverload)
 {
     Length length = 5.0_m;
 
@@ -53,6 +87,25 @@ TEST(testMathFunctions, specializationsOfPowWithAutomaticTypeDeduction)
 
     ASSERT_DOUBLE_EQ(125.0, Math::cube(length).getMagnitude());
     ASSERT_TRUE(Math::cube(length) == Math::pow<Volume>(length, 3));
+}
+
+TEST(testMathFunctions, calculateAverageOverload)
+{
+    std::vector<Length> lengths { 1.0_m, 2.0_m, 3.0_m, 4.0_m, 5.0_m };
+
+    Length averageLength = Math::calculateAverage(lengths);
+
+    ASSERT_EQ(3, averageLength.getMagnitude());
+}
+
+TEST(testMathFunctions, calculateStandardDeviationOverload)
+{
+    std::vector<Length> lengths { 1.0_m, 2.0_m, 3.0_m, 4.0_m, 5.0_m };
+
+    Length stdDevLength = Math::calculateStandardDeviation(lengths);
+
+    ASSERT_NEAR(1.5811388300842, stdDevLength.getMagnitude(),
+        Utilities_API::Math::findAbsoluteError(1.5811388300842, 14));
 }
 
 TEST(testMathFunctions, centeredDifferenceMethodOverload)

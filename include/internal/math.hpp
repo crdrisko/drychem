@@ -14,25 +14,44 @@
 #include <memory>
 #include <vector>
 
-#include <utils-api/errors.hpp>
 #include <utils-api/math.hpp>
 
 #include "physicalQuantity.hpp"
 
 namespace PhysicalQuantities::Math
 {
+    // For cmath functions that would ordinarily accept and return only dimensionless quantities
+    #define DeclareNewCMathOverload(NAME)                                                               \
+        inline auto NAME(const PhysicalQuantity< Dimensionality<> >& physicalQuantity)                  \
+        {                                                                                               \
+            return PhysicalQuantity< Dimensionality<> >( std::NAME(physicalQuantity.getMagnitude()) );  \
+        }
+
+    DeclareNewCMathOverload(exp)
+    DeclareNewCMathOverload(log)
+    DeclareNewCMathOverload(log10)
+    DeclareNewCMathOverload(sin)
+    DeclareNewCMathOverload(cos)
+    DeclareNewCMathOverload(tan)
+    DeclareNewCMathOverload(sqrt)
+    DeclareNewCMathOverload(cbrt)
+
+
     template <int L, int M, int T, int I, int Th, int N, int J>
-    constexpr auto log(const PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >& physicalQuantity)
+    constexpr auto abs(const PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >& physicalQuantity)
     {
-        const Utilities_API::Errors::ErrorMessagePtr& errorMessage
-            = std::make_shared<Utilities_API::Errors::FatalErrorMessage>("CPP-Units", 1);
-
-        if (physicalQuantity.getMagnitude() <= 0.0)
-            errorMessage->printErrorMessage("The value inside the natural logarithm must be positive.");
-
-        return PhysicalQuantity< Dimensionality<> >( std::log(physicalQuantity.getMagnitude()) );
+        return PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >(std::abs(physicalQuantity.getMagnitude()));
     }
 
+
+    template <typename TReturn, int L, int M, int T, int I, int Th, int N, int J>
+    constexpr auto pow(const PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >& physicalQuantity, int power)
+    {
+        return TReturn( std::pow(physicalQuantity.getMagnitude(), power) );
+    }
+
+
+    // Alternatives to pow with automatic return-type deduction
     template <int L, int M, int T, int I, int Th, int N, int J>
     constexpr auto square(const PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >& physicalQuantity)
     {
@@ -42,44 +61,39 @@ namespace PhysicalQuantities::Math
     template <int L, int M, int T, int I, int Th, int N, int J>
     constexpr auto cube(const PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >& physicalQuantity)
     {
-        return physicalQuantity * square(physicalQuantity);
-    }
-
-    template <typename TReturn, int L, int M, int T, int I, int Th, int N, int J>
-    constexpr auto pow(const PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >& physicalQuantity, int power)
-    {
-        return TReturn( std::pow(physicalQuantity.getMagnitude(), power) );
+        return physicalQuantity * physicalQuantity * physicalQuantity;
     }
 
 
+    // Advanced mathematical functions that act on vector(s) of physical quantities
     template <int L, int M, int T, int I, int Th, int N, int J>
     inline auto convertQuantitiesToMagnitudes(const std::vector< PhysicalQuantity< Dimensionality<L, M, T, I,
-        Th, N, J> > >& values)
+        Th, N, J> > >& physicalQuantities)
     {
-        std::vector<long double> magnitudes(values.size());
+        std::vector<long double> magnitudes(physicalQuantities.size());
 
-        std::transform(values.begin(), values.end(), magnitudes.begin(),
-            [](const PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >& value)
-                { return value.getMagnitude(); });
+        std::transform(physicalQuantities.begin(), physicalQuantities.end(), magnitudes.begin(),
+            [](const PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >& physicalQuantity)
+                { return physicalQuantity.getMagnitude(); });
 
         return magnitudes;
     }
 
 
     template <int L, int M, int T, int I, int Th, int N, int J>
-    constexpr auto calculateAverage(const std::vector< PhysicalQuantity< Dimensionality<L, M, T, I, 
-        Th, N, J> > >& physicalQuantity)
+    constexpr auto calculateAverage(const std::vector< PhysicalQuantity< Dimensionality<L, M, T, I,
+        Th, N, J> > >& physicalQuantities)
     {
         return PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >( Utilities_API::Math::calculateAverage(
-            convertQuantitiesToMagnitudes(physicalQuantity)) );
+            convertQuantitiesToMagnitudes(physicalQuantities)) );
     }
 
     template <int L, int M, int T, int I, int Th, int N, int J>
-    constexpr auto calculateStandardDeviation(const std::vector< PhysicalQuantity< Dimensionality<L, M, T, I, 
-        Th, N, J> > >& physicalQuantity)
+    constexpr auto calculateStandardDeviation(const std::vector< PhysicalQuantity< Dimensionality<L, M, T, I,
+        Th, N, J> > >& physicalQuantities)
     {
-        return PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >( Utilities_API::Math::calculateStandardDeviation(
-            convertQuantitiesToMagnitudes(physicalQuantity)) );
+        return PhysicalQuantity< Dimensionality<L, M, T, I, Th, N, J> >(
+            Utilities_API::Math::calculateStandardDeviation(convertQuantitiesToMagnitudes(physicalQuantities)) );
     }
 
 
@@ -131,6 +145,10 @@ namespace PhysicalQuantities::Math
         return mathematicalFunction<PhysicalQuantity< Dimensionality<L2 - L1, M2 - M1, T2 - T1, I2 - I1, Th2 - Th1,
             N2 - N1, J2 - J1> >, Utilities_API::Math::LinearLeastSquaresFitting>(x, y);
     }
+
+
+    // Limit the scope of the preprocessing macros we used by undefining them here
+    #undef DeclareNewCMathOverload
 }
 
 #endif

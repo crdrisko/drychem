@@ -13,8 +13,8 @@
 #ifndef CPP_UNITS_PHYSICALQUANTITIES_HPP
 #define CPP_UNITS_PHYSICALQUANTITIES_HPP
 
-#include "internal/math.hpp"
 #include "internal/conversions.hpp"
+#include "internal/math.hpp"
 #include "internal/physicalQuantity.hpp"
 
 namespace PhysicalQuantities
