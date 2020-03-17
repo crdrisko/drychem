@@ -13,7 +13,7 @@ source errorHandling
 
 printHelpMessage()      #@ DESCRIPTION: Print the linkLogin program's help message
 {                       #@ USAGE: printHelpMessage
-    printf "\nUSAGE: linkLogin [-h] [--help]\n\n"
+    printf "\nUSAGE: [sudo] linkLogin [-h] [--help]\n\n"
     printf "The linkLogin program will search for all .config files in the current working\n"
     printf "  directory. The configuration files should be formatted in the manner shown\n"
     printf "  below. The comments are unnecessary, but the keywords are case sensitive. The\n"
@@ -65,9 +65,11 @@ do
 
     ## Options for standard ssh login ##
     else
-        printf -v sshScript "slogin %s@%s -p %s -Y" ${username:?} ${hostname:?} ${port:-22}
+        printf -v sshScript "slogin %s@%s -p %s" ${username:?} ${hostname:?} ${port:-22}
     fi
 
     printf "#!/bin/bash\n%s" "$sshScript" > /usr/local/bin/${configurationFile%%.*}
     chmod +x /usr/local/bin/${configurationFile%%.*}
+
+    unset hostname username port hostchain fontsize profile
 done
