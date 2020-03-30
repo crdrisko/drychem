@@ -21,7 +21,6 @@ notifications:
 before_script:
   - previousLocation=$( pwd )
   - bash ci/getVersions.sh
-  - bash ci/install-gtest.sh
   - cd $previousLocation
   - mkdir build && cd build
 script:
