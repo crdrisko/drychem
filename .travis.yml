@@ -1,3 +1,4 @@
+### Continuous Integration for Utilities-API ###
 language: cpp
 os:
   - linux
@@ -18,13 +19,24 @@ notifications:
 
 
 ### Installation procedure ###
+before_install:
+  - brew update
+  - brew install pyenv
+  - eval "$(pyenv init -)"
+  - pyenv install 2.7.6
+  - pyenv global 2.7.6
+  - pyenv rehash
+  - pip install --user cpp-coveralls
+  - pyenv rehash
+
 before_script:
-  - previousLocation=$( pwd )
-  - bash ci/getVersions.sh
-  - cd $previousLocation
   - mkdir build && cd build
+
 script:
-  - cmake ../. -Dbuild_all_tests=ON
+  - cmake ../. -DCOVERAGE=1 -Dbuild_all_tests=ON
   - make && sudo make install
   - cd test
   - ctest
+
+after_success:
+  - coveralls --root . -E ".*gtest.*" -E ".*CMakeFiles.*"
