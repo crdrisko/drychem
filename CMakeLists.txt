@@ -77,6 +77,7 @@ endforeach()
 
 ### Unit Testing ###
 option(build_all_tests "Build all unit tests in the test directory." OFF)
+option(coverage "Run coverage tests with coveralls." OFF)
 
 if (build_all_tests)
     ## Download and unpack googletest at configure time ##

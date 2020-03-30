@@ -8,6 +8,11 @@ enable_testing()
 function(new_test testname interiorDirectory)
     add_executable(test${testname}Functions ${interiorDirectory}/test${testname}Functions.cpp)
 
+    if (coverage)
+        target_compile_options(test${testname}Functions PRIVATE --coverage)
+        target_link_libraries(test${testname}Functions PRIVATE --coverage)
+    endif()
+
     target_link_libraries(test${testname}Functions gtest utilities-api)
 
     gtest_discover_tests(test${testname}Functions

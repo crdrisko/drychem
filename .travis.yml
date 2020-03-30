@@ -19,21 +19,20 @@ notifications:
 
 
 ### Installation procedure ###
+addons:
+  homebrew:
+    packages:
+      - pyenv
+    update: true
+
 before_install:
-  # - brew update
-  # - brew install pyenv
-  # - eval "$(pyenv init -)"
-  # - pyenv install 2.7.6
-  # - pyenv global 2.7.6
-  # - pyenv rehash
   - pip install --user cpp-coveralls
-  # - pyenv rehash
 
 before_script:
   - mkdir build && cd build
 
 script:
-  - cmake ../. -DCOVERAGE=1 -Dbuild_all_tests=ON
+  - cmake ../. -Dcoverage=1 -Dbuild_all_tests=ON
   - make && sudo make install
   - cd test
   - ctest
