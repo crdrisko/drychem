@@ -20,14 +20,14 @@ notifications:
 
 ### Installation procedure ###
 before_install:
-  - brew update
-  - brew install pyenv
-  - eval "$(pyenv init -)"
-  - pyenv install 2.7.6
-  - pyenv global 2.7.6
-  - pyenv rehash
+  # - brew update
+  # - brew install pyenv
+  # - eval "$(pyenv init -)"
+  # - pyenv install 2.7.6
+  # - pyenv global 2.7.6
+  # - pyenv rehash
   - pip install --user cpp-coveralls
-  - pyenv rehash
+  # - pyenv rehash
 
 before_script:
   - mkdir build && cd build
