@@ -15,11 +15,30 @@
 
 namespace Utilities_API::Strings
 {
-    std::vector<std::string> splitString(const std::string& stringToSplit, const std::string& separators = " \t\n");
-
-    inline bool stringFinder(std::string_view stringToFind, std::string_view stringToSearch)
+    constexpr bool stringFinder(std::string_view stringToFind, std::string_view stringToSearch)
     {
         return (stringToSearch.find(stringToFind) != std::string::npos) ? true : false;
+    }
+
+    inline std::vector<std::string> splitString(const std::string& stringToSplit,
+        const std::string& separators = " \t\n")
+    {
+        std::vector<std::string> words;
+        size_t startOfWord { stringToSplit.find_first_not_of(separators) };
+
+        while (startOfWord != std::string::npos)
+        {
+            size_t endOfWord { stringToSplit.find_first_of(separators, startOfWord + 1) };
+
+            if (endOfWord == std::string::npos)
+                endOfWord = stringToSplit.length();
+
+            words.push_back( stringToSplit.substr(startOfWord, endOfWord - startOfWord) );
+
+            startOfWord = stringToSplit.find_first_not_of(separators, endOfWord + 1);
+        }
+
+        return words;
     }
 }
 

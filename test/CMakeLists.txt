@@ -8,12 +8,7 @@ enable_testing()
 function(new_test testname interiorDirectory)
     add_executable(test${testname}Functions ${interiorDirectory}/test${testname}Functions.cpp)
 
-    if (coverage)
-        target_compile_options(test${testname}Functions PRIVATE --coverage)
-        target_link_libraries(test${testname}Functions PRIVATE --coverage gtest utilities-api )
-    else()
-        target_link_libraries(test${testname}Functions gtest utilities-api)
-    endif()
+    target_link_libraries(test${testname}Functions gtest)
 
     gtest_discover_tests(test${testname}Functions
                          WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${interiorDirectory})

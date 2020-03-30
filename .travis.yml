@@ -2,13 +2,13 @@
 language: cpp
 os:
   - linux
-  # - osx
+  - osx
 compiler:
   - clang
   - gcc
-# osx_image:
-#   - xcode11.2
-#   - xcode10.1
+osx_image:
+  - xcode11.2
+  - xcode10.1
 dist: bionic
 arch:
   - arm64
@@ -19,23 +19,9 @@ notifications:
 
 
 ### Installation procedure ###
-# addons:
-#   homebrew:
-#     packages:
-#       - pyenv
-#     update: true
-
-before_install:
-  - pip install --user cpp-coveralls
-
-before_script:
-  - mkdir build && cd build
-
 script:
-  - cmake ../. -Dcoverage=1 -Dbuild_all_tests=ON
+  - mkdir build && cd build
+  - cmake ../. -Dbuild_all_tests=ON
   - make && sudo make install
   - cd test
   - ctest
-
-after_success:
-  - coveralls --root . -E ".*gtest.*" -E ".*CMakeFiles.*"

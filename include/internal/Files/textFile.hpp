@@ -14,6 +14,7 @@
 #include <vector>
 
 #include "inputFile.hpp"
+#include "../Strings/stringUtilities.hpp"
 
 namespace Utilities_API::Files
 {
@@ -23,11 +24,34 @@ namespace Utilities_API::Files
         std::string comments;
         std::vector<std::string> metaDataKeywords;
 
-        virtual void separateFileData() override;
+        virtual void separateFileData() override
+        {
+            std::vector<std::string> allDataVector { getFileContents().getContentInFile() };
+
+            for (const auto& line : allDataVector)
+            {
+                if (metaDataKeywords[0] != "Null Selection" && Strings::stringFinder(comments, line))
+                {
+                    for (const auto& selection : metaDataKeywords)
+                        if ( Strings::stringFinder(selection, line) )
+                            metaDataVector.push_back(line);
+                }
+                else if ( (metaDataKeywords[0] == "Null Selection") && (Strings::stringFinder(comments, line)) )
+                    metaDataVector.push_back(line);
+
+                else if ( !Strings::stringFinder(comments, line) )
+                    dataVector.push_back(line);
+            }
+        }
 
     public:
         TextFile(std::string_view FullFileName, std::string Comments = "#",
-            const std::vector<std::string>& MetaDataKeywords = {"Null Selection"});
+            const std::vector<std::string>& MetaDataKeywords = {"Null Selection"})
+                : InputFile{FullFileName}, comments{Comments}, metaDataKeywords{MetaDataKeywords}
+        {
+            separateFileData();
+        }
+
     };
 }
 

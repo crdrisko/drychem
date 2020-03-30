@@ -19,11 +19,6 @@ endif()
 
 
 ### Files / Directories ###
-set(SOURCES
-    src/Files/markupFile.cpp
-    src/Strings/stringUtilities.cpp
-    src/Files/textFile.cpp)
-
 set(BASH_FILES
     scripts/changeCase.sh
     scripts/compiler.sh
@@ -35,29 +30,13 @@ set(BASH_FILES
     scripts/showArguments.sh
     scripts/showOptions.sh)
 
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY
-    ${PROJECT_BINARY_DIR}/lib
-    CACHE PATH
-    "Single directory for all shared libraries.")
-
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
     ${PROJECT_BINARY_DIR}/bin
     CACHE PATH
     "Single directory for all executables.")
 
 
-### Libraries / Executables ###
-add_library(utilities-api SHARED ${SOURCES})
-
-if (CMAKE_COMPILER_IS_GNUCXX)
-    target_link_libraries(utilities-api stdc++fs)
-endif()
-
-
 ### Installation ###
-install(TARGETS utilities-api
-        DESTINATION lib)
-
 install(DIRECTORY include/
         DESTINATION include/utils-api)
 
@@ -77,7 +56,6 @@ endforeach()
 
 ### Unit Testing ###
 option(build_all_tests "Build all unit tests in the test directory." OFF)
-option(coverage "Run coverage tests with coveralls." OFF)
 
 if (build_all_tests)
     ## Download and unpack googletest at configure time ##

@@ -11,8 +11,10 @@
 
 #include <string>
 #include <string_view>
+#include <vector>
 
 #include "inputFile.hpp"
+#include "../Strings/stringUtilities.hpp"
 
 namespace Utilities_API::Files
 {
@@ -22,11 +24,48 @@ namespace Utilities_API::Files
         std::string dataTag;
         std::string metaTag;
 
-        virtual void separateFileData() override;
+        virtual void separateFileData() override
+        {
+            std::vector<std::string> allDataVector { getFileContents().getContentInFile() };
+
+            for (size_t i {}; i < allDataVector.size(); ++i)
+            {
+                if (Strings::stringFinder(metaTag, allDataVector[i]))
+                {
+                    std::string endMetaTag {metaTag};
+                    endMetaTag.insert(1, "/");
+
+                    for (size_t j {i + 1}; j < allDataVector.size(); ++j)
+                    {
+                        if (Strings::stringFinder(endMetaTag, allDataVector[j]))
+                            break;
+                        else
+                            metaDataVector.push_back(allDataVector[j]);
+                    }
+                }
+                else if (Strings::stringFinder(dataTag, allDataVector[i]))
+                {
+                    std::string endDataTag {dataTag};
+                    endDataTag.insert(1, "/");
+
+                    for (size_t j {i + 1}; j < allDataVector.size(); ++j)
+                    {
+                        if (Strings::stringFinder(endDataTag, allDataVector[j]))
+                            break;
+                        else
+                            dataVector.push_back(allDataVector[j]);
+                    }
+                }
+            }
+        }
 
     public:
         MarkupFile(std::string_view FullFileName, std::string_view DataTag = "<data>",
-            std::string_view MetaTag = "<metadata>");
+            std::string_view MetaTag = "<metadata>") : InputFile{FullFileName}, dataTag{DataTag},
+                metaTag{MetaTag}
+        {
+            separateFileData();
+        }
     };
 }
 
