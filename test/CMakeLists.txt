@@ -9,7 +9,6 @@ function(new_test testname interiorDirectory)
     add_executable(test${testname}Functions ${interiorDirectory}/test${testname}Functions.cpp)
 
     if (coverage)
-        target_compile_options(test${testname}Functions --coverage)
         target_link_libraries(test${testname}Functions gtest utilities-api --coverage)
     else()
         target_link_libraries(test${testname}Functions gtest utilities-api)

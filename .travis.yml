@@ -2,13 +2,13 @@
 language: cpp
 os:
   - linux
-  - osx
+  # - osx
 compiler:
   - clang
   - gcc
-osx_image:
-  - xcode11.2
-  - xcode10.1
+# osx_image:
+#   - xcode11.2
+#   - xcode10.1
 dist: bionic
 arch:
   - arm64
@@ -19,11 +19,11 @@ notifications:
 
 
 ### Installation procedure ###
-addons:
-  homebrew:
-    packages:
-      - pyenv
-    update: true
+# addons:
+#   homebrew:
+#     packages:
+#       - pyenv
+#     update: true
 
 before_install:
   - pip install --user cpp-coveralls
