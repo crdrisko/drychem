@@ -21,7 +21,7 @@ notifications:
 ### Installation procedure ###
 script:
   - mkdir build && cd build
-  - cmake ../. -Dcpp_units_tests=ON
+  - cmake ../. -Dbuild_all_tests=ON
   - make && sudo make install
   - cd test
   - ctest
