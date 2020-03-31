@@ -8,7 +8,7 @@ enable_testing()
 function(new_test testname interiorDirectory)
     add_executable(test${testname}Functions ${interiorDirectory}/test${testname}Functions.cpp)
 
-    target_link_libraries(test${testname}Functions gtest)
+    target_link_libraries(test${testname}Functions ${GTEST_LIBRARIES})
 
     gtest_discover_tests(test${testname}Functions
                          WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${interiorDirectory})
