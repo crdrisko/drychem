@@ -1,44 +1,47 @@
 # C++ Units
 
-## Release: Version 0.0.1 (Pre-Release)
-
-### Build Status
-
 [![Build Status](https://travis-ci.com/crdrisko/cpp-units.svg?branch=master)](https://travis-ci.com/crdrisko/cpp-units)
 
-- NOTE: Until Version 1.0.0 is released, the project's interface is subject to change at any time without warning.
+Welcome to the CPP-Units project! This project is a unit converter written in C++ designed to be extendable with a number of interfaces. Currently, the public API of the project is in the development stage, but I hope to add a command line interface (CLI), graphical user interface (GUI), and web application very soon. Each of these interfaces will serve to help my software development skills by focusing on a singular project I can continue to enhance as I learn more.
+
+<!--More detailed documentation for using cpp-units can be found in the [`docs/primer.md`](https://github.com/crdrisko/cpp-units/tree/master/docs/primer.md) file.-->
+
+## Features
+
+- A compile-time, header-only physical quantity library.
+- Compile-time user defined literals for clean code that takes away nothing from overall performance.
+- Advanced mathematical functions (including many of the `<cmath>` header functions) that act on the physical quantities themselves without explicit conversion into a more compatible type.
+- A unit conversion API for many of the physical quantities in the library.
 
 ## Platforms
 
-The C++ Units project has been built and tested on a number of operating systems, computer architectures, and compiler combinations.
+The CPP-Units project has been built and tested on a number of operating systems, computer architectures, and compiler combinations.
 
 - Mac OS X
-
 - Linux
+- Windows Subsystem for Linux (WSL)
+
+**Coming Soon:**
+
+- Windows
+- Cygwin
 
 ## Requirements
 
-The C++ Units project requires
-
-- [CMake](https://cmake.org): Version 3.10.0 or higher.
+The CPP-Units project was designed to have as few external dependencies as possible so it could be easily built and used by other projects. The project requires:
 
 - A C++17-standard-compliant compiler with support for the Standard Library.
 
-- [Utilities-API](https://github.com/crdrisko/utilities-api): used for a number of the utilities found throughout the various projects and scripts. More information about the API can be found in the repository's README. The procedure outlined in the `ci/install-utilities-api.sh` script can be followed to install the repository where desired.
+- [Utilities-API](https://github.com/crdrisko/utilities-api) was used for a number of the utilities found throughout the project. More information about the API can be found in the repository's README.
 
-Optional:
+- [GoogleTest](https://github.com/google/googletest) was used for the testing all the source code in the project. Building and running all these tests is optional and more information can be found in the testing section of [`docs/build.md`](https://github.com/crdrisko/cpp-units/tree/master/docs/build.md).
 
-- [GoogleTest](https://github.com/google/googletest) was used for the testing of all source code in the project (see the `test` directory). The `ci/install-gtest.sh` script in the utilities-api repository (see above) can be used to install GoogleTest where desired. Running all these tests is optional and can be turned on using the `-Dbuild_all_tests=ON` flag during the build.
+### Build Requirements
 
-## Installation
+- [CMake](https://cmake.org): Version 3.10.0 or higher. See the documentation in the [`docs/build.md`](https://github.com/crdrisko/cpp-units/tree/master/docs/build.md) file for specific instructions on installing the project.
 
-Installation of the C++ Units project is designed to be as easy as possible. Using CMake, the following commands can be run:
+## License
 
-```bash
-$ git clone https://github.com/crdrisko/cpp-units.git
-$ mkdir build && cd build
-$ cmake ../cpp-units/.
-$ make && [sudo] make install
-```
+Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 
-- NOTE: the default install directory is `/usr/local`.
+Licensed under the [MIT License](https://github.com/crdrisko/cpp-units/blob/master/LICENSE).

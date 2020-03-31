@@ -1,4 +1,4 @@
-### CPP-Units Build Matrix ###
+### Continuous Integration for CPP-Units ###
 language: cpp
 os:
   - linux
@@ -19,12 +19,8 @@ notifications:
 
 
 ### Installation procedure ###
-before_script:
-  - previousLocation=$( pwd )
-  - bash ci/install-utilities-api.sh
-  - cd $previousLocation
-  - mkdir build && cd build
 script:
+  - mkdir build && cd build
   - cmake ../. -Dbuild_all_tests=ON
   - make && sudo make install
   - cd test

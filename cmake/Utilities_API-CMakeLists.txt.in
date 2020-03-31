@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.10.0)
+
+project(utilities-api-download NONE)
+
+include(ExternalProject)
+
+ExternalProject_Add(utilities-api
+    GIT_REPOSITORY    https://github.com/crdrisko/utilities-api.git
+    GIT_TAG           master
+    SOURCE_DIR        "${CMAKE_CURRENT_BINARY_DIR}/utilities-api-src"
+    BINARY_DIR        "${CMAKE_CURRENT_BINARY_DIR}/utilities-api-build"
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND     ""
+    INSTALL_COMMAND   ""
+    TEST_COMMAND      "")

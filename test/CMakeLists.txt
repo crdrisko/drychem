@@ -14,10 +14,6 @@ function(new_test testname interiorDirectory)
                          WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${interiorDirectory})
 endfunction(new_test)
 
-## Locate GTest ##
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
-
 ## Create all tests ##
 new_test(AllConversion TestConversions)
 new_test(Math TestMath)

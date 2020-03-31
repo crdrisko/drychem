@@ -1,5 +1,5 @@
-if (UTILITIES_API_INCLUDE_DIR AND UTILITIES_API_LIBRARIES)
-    # in cache already or user-specified
+if (UTILITIES_API_INCLUDE_DIR)
+    ## In cache already or user-specified ##
     set(UTILITIES_API_FOUND TRUE)
 
 else()
@@ -13,18 +13,6 @@ else()
                         ~/include)
     endif()
 
-    if (NOT UTILITIES_API_LIBRARIES)
-        find_library(UTILITIES_API_LIBRARIES utilities-api
-                     PATHS /usr/lib
-                           /usr/local/lib
-                           ~/lib)
-
-        if (UTILITIES_API_LIBRARIES)
-            message(STATUS "Found Utilities-API: ${UTILITIES_API_LIBRARIES}")
-        endif()
-    endif()
-
-    if (UTILITIES_API_INCLUDE_DIR AND UTILITIES_API_LIBRARIES)
+    if (UTILITIES_API_INCLUDE_DIR)
         set(UTILITIES_API_FOUND TRUE)
-    endif()
 endif()
