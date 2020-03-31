@@ -2,20 +2,20 @@
 
 ## Table Of Contents
 
-- [Utilities-API Modules](#Utilities-API\ Modules)
+- [Utilities-API Modules](#Utilities-API-Modules)
 
   - [Errors](#Errors)
   - [Files](#Files)
   - [Math](#Math)
   - [Strings](#Strings)
 
-- [Bash Scripts and Programs](#Bash\ Scripts\ and\ Programs)
+- [Bash Scripts and Programs](#Bash-Scripts-and-Programs)
 
 ## Utilities-API Modules
 
 The C++ modules which make up the [public API](https://github.com/crdrisko/utilities-api/tree/master/include) of the repository are all organized in the same way, and by including the `module.hpp` file (which `#include`'s the internal files) features can be added to the module with no effect on the public API.
 
-```bash
+```C++
 include
 | -- module1.hpp
 | -- ...
