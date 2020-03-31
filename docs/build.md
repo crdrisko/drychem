@@ -15,11 +15,11 @@ By default, the project is installed in the `/usr/local` filesystem but can be c
 
 ## Testing
 
-With each utility module in the project (Errors, Math, etc.), I have strived to provide ~100% unit test coverage for all functions. These tests can be found in the [`root/test`](https://github.com/crdrisko/utilities-api/tree/master/test) directory but do not get built by default. To turn on the testing features of the repository, add the `build_all_tests` flag to the CMake instructions as shown in the code below.
+With each utility module in the project (Errors, Math, etc.), I have strived to provide ~100% unit test coverage for all functions. These tests can be found in the [`root/test`](https://github.com/crdrisko/utilities-api/tree/master/test) directory but do not get built by default. To turn on the testing features of the repository, add the `utils-api_build_tests` flag to the CMake instructions as shown in the code below.
 
 ```bash
 ## Same steps as before ...
-cmake ../utilities-api/. -Dbuild_all_tests=ON
+cmake ../utilities-api/. -Dutils-api_build_tests=ON
 make && [sudo] make install
 
 ## Testing occurs in a separate, dedicated directory

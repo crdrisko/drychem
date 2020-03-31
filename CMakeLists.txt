@@ -37,7 +37,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
 
 
 ### Installation ###
-install(DIRECTORY include/
+install(DIRECTORY include
         DESTINATION include)
 
 foreach (BASH_FILE ${BASH_FILES})
@@ -55,9 +55,9 @@ endforeach()
 
 
 ### Unit Testing ###
-option(build_all_tests "Build all unit tests in the test directory." OFF)
+option(utils-api_build_tests "Build all unit tests in the test directory." OFF)
 
-if (build_all_tests)
+if (utils-api_build_tests)
     ## Need to find googletest or build it from source ##
     find_package(GTest)
 
@@ -86,10 +86,10 @@ if (build_all_tests)
 
         set(GTEST_LIBRARIES gtest)
         set(GTEST_INCLUDE_DIRS "${gtest_SOURCE_DIR}/include")
-
     endif()
 
     include_directories(${GTEST_INCLUDE_DIRS})
     add_compile_options(-pthread)
+
     add_subdirectory(test)
 endif()
