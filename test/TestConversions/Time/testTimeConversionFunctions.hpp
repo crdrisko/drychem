@@ -10,7 +10,7 @@
 #define TESTTIMECONVERSIONFUNCTIONS_HPP
 
 #include "../testAssertions.hpp"
-#include "../../../include/physicalQuantities.hpp"
+#include "../../../include/cpp-units/physicalQuantities.hpp"
 
 TEST(testTimeConversionFunctions, conversionsOfTimeFrom_s)
 {

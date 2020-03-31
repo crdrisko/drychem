@@ -15,4 +15,5 @@ else()
 
     if (UTILITIES_API_INCLUDE_DIR)
         set(UTILITIES_API_FOUND TRUE)
+    endif()
 endif()

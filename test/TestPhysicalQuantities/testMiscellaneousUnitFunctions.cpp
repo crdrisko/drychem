@@ -14,7 +14,7 @@
 #include <gtest/gtest.h>
 #include <utils-api/errors.hpp>
 
-#include "../../include/physicalQuantities.hpp"
+#include "../../include/cpp-units/physicalQuantities.hpp"
 
 using namespace PhysicalQuantities;
 using namespace PhysicalQuantities::Literals;

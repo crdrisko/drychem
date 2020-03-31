@@ -16,5 +16,5 @@ endfunction(new_test)
 
 ## Create all tests ##
 new_test(AllConversion TestConversions)
-new_test(Math TestMath)
+new_test(Mathematical TestMathematics)
 new_test(MiscellaneousUnit TestPhysicalQuantities)

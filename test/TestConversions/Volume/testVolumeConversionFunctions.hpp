@@ -10,7 +10,7 @@
 #define TESTVOLUMECONVERSIONFUNCTIONS_HPP
 
 #include "../testAssertions.hpp"
-#include "../../../include/physicalQuantities.hpp"
+#include "../../../include/cpp-units/physicalQuantities.hpp"
 
 TEST(testVolumeConversionFunctions, conversionsOfVolumeFrom_m3)
 {

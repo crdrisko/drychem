@@ -19,7 +19,7 @@ With each module in the project (Conversions, Math, etc.), I have strived to pro
 
 ```bash
 ## Same steps as before ...
-cmake ../cpp-units/. -Dbuild_all_tests=ON
+cmake ../cpp-units/. -build_all_tests=ON
 make && [sudo] make install
 
 ## Testing occurs in a separate, dedicated directory

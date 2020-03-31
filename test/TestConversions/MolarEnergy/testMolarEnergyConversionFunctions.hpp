@@ -10,7 +10,7 @@
 #define TESTMOLARENERGYCONVERSIONFUNCTIONS_HPP
 
 #include "../testAssertions.hpp"
-#include "../../../include/physicalQuantities.hpp"
+#include "../../../include/cpp-units/physicalQuantities.hpp"
 
 TEST(testMolarEnergyConversionFunctions, conversionsOfEnergyFrom_J_mol)
 {

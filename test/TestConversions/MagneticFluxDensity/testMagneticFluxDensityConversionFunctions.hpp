@@ -10,7 +10,7 @@
 #define TESTMAGNETICFLUXDENSITYCONVERSIONFUNCTIONS_HPP
 
 #include "../testAssertions.hpp"
-#include "../../../include/physicalQuantities.hpp"
+#include "../../../include/cpp-units/physicalQuantities.hpp"
 
 TEST(testMagneticFluxDensityConversionFunctions, conversionsOfMagneticFluxDensityFrom_T)
 {

@@ -47,7 +47,7 @@ if (NOT ${UTILITIES_API_FOUND})
                      ${CMAKE_CURRENT_BINARY_DIR}/utilities-api-build
                      EXCLUDE_FROM_ALL)
 
-    set(UTILITIES_API_INCLUDE_DIR "${utilities-api_SOURCE_DIR}/include")
+    set(UTILITIES_API_INCLUDE_DIR "${Utilities-API_SOURCE_DIR}/include")
 endif()
 
 include_directories(${UTILITIES_API_INCLUDE_DIR})
@@ -55,7 +55,7 @@ include_directories(${UTILITIES_API_INCLUDE_DIR})
 
 ### Installation ###
 install(DIRECTORY include/
-        DESTINATION include/cpp-units)
+        DESTINATION include)
 
 
 ### Unit Testing ###

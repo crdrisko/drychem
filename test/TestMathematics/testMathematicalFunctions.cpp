@@ -1,7 +1,7 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for license information.
 //
-// Name: testMathFunctions.cpp - Version 1.0.0
+// Name: testMathematicalFunctions.cpp - Version 1.0.0
 // Author: crdrisko
 // Date: 03/04/2020-07:50:11
 // Description: Provides 100% unit test coverage over all mathematical functions for the PhysicalQuantities
@@ -11,7 +11,7 @@
 #include <gtest/gtest.h>
 #include <utils-api/math.hpp>
 
-#include "../../include/physicalQuantities.hpp"
+#include "../../include/cpp-units/physicalQuantities.hpp"
 
 using namespace PhysicalQuantities;
 using namespace PhysicalQuantities::Literals;
@@ -22,7 +22,7 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-TEST(testMathFunctions, exponentialOverloads)
+TEST(testMathematicalFunctions, exponentialOverloads)
 {
     Length length = 2.0_m;
 
@@ -30,7 +30,7 @@ TEST(testMathFunctions, exponentialOverloads)
         Utilities_API::Math::findAbsoluteError(7.38906, 6));
 }
 
-TEST(testMathFunctions, logarithmOverloads)
+TEST(testMathematicalFunctions, logarithmOverloads)
 {
     Length length = 2.0_m;
 
@@ -41,7 +41,7 @@ TEST(testMathFunctions, logarithmOverloads)
         Utilities_API::Math::findAbsoluteError(0.30103, 5));
 }
 
-TEST(testMathFunctions, trigonometricOverloads)
+TEST(testMathematicalFunctions, trigonometricOverloads)
 {
     Angle angle = 2.0_rad * Constants::pi;
 
@@ -50,7 +50,7 @@ TEST(testMathFunctions, trigonometricOverloads)
     ASSERT_NEAR(0.0, Math::tan(angle / 1.0_rad).getMagnitude(), Utilities_API::Math::findAbsoluteError(0.0, 9));
 }
 
-TEST(testMathFunctions, squareAndCubeRootOverloads)
+TEST(testMathematicalFunctions, squareAndCubeRootOverloads)
 {
     Length length = 64.0_m;
 
@@ -58,7 +58,7 @@ TEST(testMathFunctions, squareAndCubeRootOverloads)
     ASSERT_EQ(4.0, Math::cbrt(length / 1.0_m).getMagnitude());
 }
 
-TEST(testMathFunctions, absoluteValueOverload)
+TEST(testMathematicalFunctions, absoluteValueOverload)
 {
     Length positiveLength = 1.0_m;
     Length negativeLength = -1.0_m;
@@ -67,7 +67,7 @@ TEST(testMathFunctions, absoluteValueOverload)
     ASSERT_DOUBLE_EQ(1.0, Math::abs(negativeLength).getMagnitude());
 }
 
-TEST(testMathFunctions, powerOverload)
+TEST(testMathematicalFunctions, powerOverload)
 {
     Length length = 5.0_m;
 
@@ -78,7 +78,7 @@ TEST(testMathFunctions, powerOverload)
     ASSERT_DOUBLE_EQ(1.0, dimensionlessQuantity.getMagnitude());
 }
 
-TEST(testMathFunctions, specializationsOfPowWithAutomaticTypeDeduction)
+TEST(testMathematicalFunctions, specializationsOfPowWithAutomaticTypeDeduction)
 {
     Length length = 5.0_m;
 
@@ -89,7 +89,7 @@ TEST(testMathFunctions, specializationsOfPowWithAutomaticTypeDeduction)
     ASSERT_TRUE(Math::cube(length) == Math::pow<Volume>(length, 3));
 }
 
-TEST(testMathFunctions, calculateAverageOverload)
+TEST(testMathematicalFunctions, calculateAverageOverload)
 {
     std::vector<Length> lengths { 1.0_m, 2.0_m, 3.0_m, 4.0_m, 5.0_m };
 
@@ -98,7 +98,7 @@ TEST(testMathFunctions, calculateAverageOverload)
     ASSERT_EQ(3, averageLength.getMagnitude());
 }
 
-TEST(testMathFunctions, calculateStandardDeviationOverload)
+TEST(testMathematicalFunctions, calculateStandardDeviationOverload)
 {
     std::vector<Length> lengths { 1.0_m, 2.0_m, 3.0_m, 4.0_m, 5.0_m };
 
@@ -108,7 +108,7 @@ TEST(testMathFunctions, calculateStandardDeviationOverload)
         Utilities_API::Math::findAbsoluteError(1.5811388300842, 14));
 }
 
-TEST(testMathFunctions, centeredDifferenceMethodOverload)
+TEST(testMathematicalFunctions, centeredDifferenceMethodOverload)
 {
     std::vector<Length> lengthVectorForDerivative { 1.0_m, 2.0_m, 3.0_m, 4.0_m, 5.0_m };
     std::vector<Concentration> concentrationVector { 1.0_M, 2.0_M, 3.0_M, 4.0_M, 5.0_M };
@@ -125,7 +125,7 @@ TEST(testMathFunctions, centeredDifferenceMethodOverload)
     ASSERT_EQ(expectedDerivativeResults, actualDerivativeResults);
 }
 
-TEST(testMathFunctions, linearLeastSquaresFittingOverload)
+TEST(testMathematicalFunctions, linearLeastSquaresFittingOverload)
 {
     std::vector<Length> lengthVectorForFitting { 0.0_m, 1.0_m, 2.0_m, 3.0_m, 4.0_m, 5.0_m };
     std::vector<Concentration> concentrationVector { 2.0_M, 7.0_M, 3.0_M, 5.0_M, 6.0_M, 10.0_M };
@@ -138,7 +138,7 @@ TEST(testMathFunctions, linearLeastSquaresFittingOverload)
     ASSERT_NEAR(0.5314593, fittingParameters[2].getMagnitude(), Utilities_API::Math::findAbsoluteError(0.53146, 5));
 }
 
-TEST(testMathFunctions, cumulativeTrapzIntegrationOverload)
+TEST(testMathematicalFunctions, cumulativeTrapzIntegrationOverload)
 {
     std::vector<Length> lengthVectorForIntegration { 1.0_m, 2.0_m, 3.0_m, 4.0_m, 5.0_m };
     std::vector<ElectricField> eFieldVector { 1.0_V_m, 2.0_V_m, 3.0_V_m, 4.0_V_m, 5.0_V_m };

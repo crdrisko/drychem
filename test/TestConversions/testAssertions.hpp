@@ -15,7 +15,7 @@
 #include <gtest/gtest.h>
 #include <utils-api/math.hpp>
 
-#include "../../include/physicalQuantities.hpp"
+#include "../../include/cpp-units/physicalQuantities.hpp"
 
 template <typename PhysicalQuantity>
 class ConversionAssert

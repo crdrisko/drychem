@@ -10,7 +10,7 @@
 #define TESTSI_UNITPREFIXESCONVERSIONFUNCTIONS_HPP
 
 #include "../testAssertions.hpp"
-#include "../../../include/physicalQuantities.hpp"
+#include "../../../include/cpp-units/physicalQuantities.hpp"
 
 TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_yotta)
 {
