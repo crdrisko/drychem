@@ -1,6 +1,6 @@
 # C++ Units
 
-[![Build Status](https://travis-ci.com/crdrisko/cpp-units.svg?branch=master)](https://travis-ci.com/crdrisko/cpp-units)
+[![Build Status](https://travis-ci.com/crdrisko/cpp-units.svg?branch=master)](https://travis-ci.com/crdrisko/cpp-units) ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/crdrisko/cpp-units?include_prereleases)
 
 Welcome to the CPP-Units project! This project is a unit converter written in C++ designed to be extendable with a number of interfaces. Currently, the public API of the project is in the development stage, but I hope to add a command line interface (CLI), graphical user interface (GUI), and web application very soon. Each of these interfaces will serve to help my software development skills by focusing on a singular project I can continue to enhance as I learn more.
 
