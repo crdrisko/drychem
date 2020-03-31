@@ -12,8 +12,8 @@
 
 #include <gtest/gtest.h>
 
-#include "../../include/internal/Files/textFile.hpp"
-#include "../../include/internal/Files/markupFile.hpp"
+#include "../../include/utils-api/internal/Files/textFile.hpp"
+#include "../../include/utils-api/internal/Files/markupFile.hpp"
 
 using namespace Utilities_API::Files;
 
@@ -25,10 +25,10 @@ int main(int argc, char** argv)
 
 TEST(testFileFunctions, fileNameWithFullPathIsParsedCorrectly)
 {
-    FileName fullFileName {"../../include/internal/Files/fileComponents.hpp"};
+    FileName fullFileName {"../../include/utils-api/internal/Files/fileComponents.hpp"};
 
-    ASSERT_EQ("../../include/internal/Files", fullFileName.getRelativePathToFile());
-    ASSERT_EQ("../../include/internal/Files/fileComponents.hpp", fullFileName.getFullFileName());
+    ASSERT_EQ("../../include/utils-api/internal/Files", fullFileName.getRelativePathToFile());
+    ASSERT_EQ("../../include/utils-api/internal/Files/fileComponents.hpp", fullFileName.getFullFileName());
     ASSERT_EQ("fileComponents.hpp", fullFileName.getBaseFileName());
     ASSERT_EQ("hpp", fullFileName.getFileExtension());
 }

@@ -38,7 +38,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
 
 ### Installation ###
 install(DIRECTORY include/
-        DESTINATION include/utils-api)
+        DESTINATION include)
 
 foreach (BASH_FILE ${BASH_FILES})
     ## Remove bash extensions and make scripts executable ##
@@ -63,7 +63,7 @@ if (build_all_tests)
 
     if (NOT ${GTest_FOUND})
         ## Download and unpack googletest at configure time ##
-        configure_file(cmake/CMakeLists.txt.in googletest-download/CMakeLists.txt)
+        configure_file(cmake/GTest-CMakeLists.txt.in googletest-download/CMakeLists.txt)
 
         execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
                         RESULT_VARIABLE result

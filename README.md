@@ -42,6 +42,6 @@ The Utilities-API project was designed to have as few external dependencies as p
 
 ## License
 
-Copyright (c) Cody R. Drisko. All rights reserved.
+Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 
 Licensed under the [MIT License](https://github.com/crdrisko/utilities-api/blob/master/LICENSE).

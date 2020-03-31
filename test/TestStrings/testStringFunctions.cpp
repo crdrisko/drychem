@@ -11,7 +11,7 @@
 
 #include <gtest/gtest.h>
 
-#include "../../include/internal/Strings/stringUtilities.hpp"
+#include "../../include/utils-api/internal/Strings/stringUtilities.hpp"
 
 using namespace Utilities_API::Strings;
 

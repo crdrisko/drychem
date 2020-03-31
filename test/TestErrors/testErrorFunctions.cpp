@@ -11,7 +11,7 @@
 
 #include <gtest/gtest.h>
 
-#include "../../include/internal/Errors/errorUtilities.hpp"
+#include "../../include/utils-api/internal/Errors/errorUtilities.hpp"
 
 using namespace Utilities_API::Errors;
 

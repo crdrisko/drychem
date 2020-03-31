@@ -17,15 +17,16 @@ The C++ modules which make up the [public API](https://github.com/crdrisko/utili
 
 ```C++
 include
-| -- module1.hpp
-| -- ...
-|
-| -- internal
-     | -- Module1
-     |    | -- internalFile1.hpp
-     |    | -- ...
-     |
+| -- utils-api
+     | -- module1.hpp
      | -- ...
+     |
+     | -- internal
+          | -- Module1
+          |    | -- internalFile1.hpp
+          |    | -- ...
+          |
+          | -- ...
 ```
 
 ### Errors

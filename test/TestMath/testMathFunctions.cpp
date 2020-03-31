@@ -13,10 +13,10 @@
 
 #include <gtest/gtest.h>
 
-#include "../../include/internal/Math/advancedMath.hpp"
-#include "../../include/internal/Math/basicMath.hpp"
-#include "../../include/internal/Math/calculus.hpp"
-#include "../../include/internal/Math/statistics.hpp"
+#include "../../include/utils-api/internal/Math/advancedMath.hpp"
+#include "../../include/utils-api/internal/Math/basicMath.hpp"
+#include "../../include/utils-api/internal/Math/calculus.hpp"
+#include "../../include/utils-api/internal/Math/statistics.hpp"
 
 using namespace Utilities_API::Math;
 
