@@ -34,7 +34,7 @@ install(DIRECTORY include
 option(cpp-units_build_tests "Build all unit tests in the test directory." OFF)
 
 if (cpp-units_build_tests)
-    find_package(GTest REQUIRED)
+    find_package(GTest)
 
     if (NOT ${GTest_FOUND})
         ## If GTest isn't installed or can't be found, look in the external modules file ##
