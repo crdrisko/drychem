@@ -26,7 +26,7 @@ include_directories(${UTILITIES_API_INCLUDE_DIR})
 
 
 ### Installation ###
-install(DIRECTORY include
+install(DIRECTORY include/cpp-units
         DESTINATION include)
 
 
