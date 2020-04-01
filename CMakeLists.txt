@@ -41,7 +41,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 
 
 ### Installation ###
-install(DIRECTORY include
+install(DIRECTORY include/utils-api
         DESTINATION include)
 
 foreach (BASH_FILE ${BASH_FILES})
