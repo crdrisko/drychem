@@ -1,4 +1,4 @@
-### Top level cmake script for Utilities-API ###
+### Top Level CMake Script for Utilities-API ###
 cmake_minimum_required(VERSION 3.10.0)
 project(Utilities-API VERSION 1.0.0)
 
@@ -36,6 +36,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
     "Single directory for all executables.")
 
 
+### External Modules ###
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
+
+
 ### Installation ###
 install(DIRECTORY include
         DESTINATION include)
@@ -58,34 +62,11 @@ endforeach()
 option(utils-api_build_tests "Build all unit tests in the test directory." OFF)
 
 if (utils-api_build_tests)
-    ## Need to find googletest or build it from source ##
     find_package(GTest)
 
     if (NOT ${GTest_FOUND})
-        ## Download and unpack googletest at configure time ##
-        configure_file(cmake/GTest-CMakeLists.txt.in googletest-download/CMakeLists.txt)
-
-        execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
-                        RESULT_VARIABLE result
-                        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download)
-        if(result)
-            message(FATAL_ERROR "CMake step for googletest failed: ${result}")
-        endif()
-
-        execute_process(COMMAND ${CMAKE_COMMAND} --build .
-                        RESULT_VARIABLE result
-                        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download)
-        if(result)
-            message(FATAL_ERROR "Build step for googletest failed: ${result}")
-        endif()
-
-        ## Add googletest directly to our build ##
-        add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
-                         ${CMAKE_CURRENT_BINARY_DIR}/googletest-build
-                         EXCLUDE_FROM_ALL)
-
-        set(GTEST_LIBRARIES gtest)
-        set(GTEST_INCLUDE_DIRS "${gtest_SOURCE_DIR}/include")
+        ## If GTest isn't installed or can't be found, look in the external modules file ##
+        find_package(GoogleTest)
     endif()
 
     include_directories(${GTEST_INCLUDE_DIRS})
