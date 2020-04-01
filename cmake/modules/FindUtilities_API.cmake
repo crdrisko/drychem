@@ -20,7 +20,7 @@ else()
 
     else()
         ## Download and unpack utilities-api at configure time ##
-        configure_file(cmake/Utilities_API-CMakeLists.txt.in utilities-api-download/CMakeLists.txt)
+        configure_file(cmake/CMakeLists.txt.in utilities-api-download/CMakeLists.txt)
 
         execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
                         RESULT_VARIABLE result
@@ -42,5 +42,6 @@ else()
                          EXCLUDE_FROM_ALL)
 
         set(UTILITIES_API_INCLUDE_DIR "${Utilities-API_SOURCE_DIR}/include")
+        set(UTILITIES_API_FOUND TRUE)
     endif()
 endif()

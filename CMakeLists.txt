@@ -1,4 +1,4 @@
-### Top level cmake script for CPP-Units ###
+### Top Level CMake Script for CPP-Units ###
 cmake_minimum_required(VERSION 3.10.0)
 project(CPP-Units VERSION 1.0.0)
 
@@ -18,11 +18,10 @@ if (CMAKE_COMPILER_IS_GNUCXX)
 endif()
 
 
-### Libraries / Executables ###
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+### External Modules ###
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 
-## Need to find utilities-api or build it from source ##
-find_package(Utilities_API)
+find_package(Utilities_API REQUIRED)
 include_directories(${UTILITIES_API_INCLUDE_DIR})
 
 
@@ -36,34 +35,34 @@ option(cpp-units_build_tests "Build all unit tests in the test directory." OFF)
 
 if (cpp-units_build_tests)
     ## Need to find googletest or build it from source ##
-    find_package(GTest)
+    find_package(GTest REQUIRED)
 
-    if (NOT ${GTest_FOUND})
-        ## Download and unpack googletest at configure time ##
-        configure_file(cmake/GTest-CMakeLists.txt.in googletest-download/CMakeLists.txt)
+    # if (NOT ${GTest_FOUND})
+    #     ## Download and unpack googletest at configure time ##
+    #     configure_file(cmake/GTest-CMakeLists.txt.in googletest-download/CMakeLists.txt)
 
-        execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
-                        RESULT_VARIABLE result
-                        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download)
-        if(result)
-            message(FATAL_ERROR "CMake step for googletest failed: ${result}")
-        endif()
+    #     execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
+    #                     RESULT_VARIABLE result
+    #                     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download)
+    #     if(result)
+    #         message(FATAL_ERROR "CMake step for googletest failed: ${result}")
+    #     endif()
 
-        execute_process(COMMAND ${CMAKE_COMMAND} --build .
-                        RESULT_VARIABLE result
-                        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download)
-        if(result)
-            message(FATAL_ERROR "Build step for googletest failed: ${result}")
-        endif()
+    #     execute_process(COMMAND ${CMAKE_COMMAND} --build .
+    #                     RESULT_VARIABLE result
+    #                     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download)
+    #     if(result)
+    #         message(FATAL_ERROR "Build step for googletest failed: ${result}")
+    #     endif()
 
-        ## Add googletest directly to our build ##
-        add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
-                         ${CMAKE_CURRENT_BINARY_DIR}/googletest-build
-                         EXCLUDE_FROM_ALL)
+    #     ## Add googletest directly to our build ##
+    #     add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
+    #                      ${CMAKE_CURRENT_BINARY_DIR}/googletest-build
+    #                      EXCLUDE_FROM_ALL)
 
-        set(GTEST_LIBRARIES gtest)
-        set(GTEST_INCLUDE_DIRS "${gtest_SOURCE_DIR}/include")
-    endif()
+    #     set(GTEST_LIBRARIES gtest)
+    #     set(GTEST_INCLUDE_DIRS "${gtest_SOURCE_DIR}/include")
+    # endif()
 
     include_directories(${GTEST_INCLUDE_DIRS})
     add_compile_options(-pthread)
