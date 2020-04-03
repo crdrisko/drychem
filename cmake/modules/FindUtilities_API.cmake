@@ -20,34 +20,29 @@ else()
         set(UTILITIES_API_FOUND TRUE)
 
     else()
-        ## Ensure we haven't already downloaded the external projects ##
-        if (NOT DOWNLOADED_Utilities_API)
-            set(DOWNLOADED_Utilities_API TRUE)
+        ## Download and unpack utilities-api at configure time ##
+        configure_file(cmake/CMakeLists.txt.in utilities-api-download/CMakeLists.txt)
 
-            ## Download and unpack utilities-api at configure time ##
-            configure_file(cmake/CMakeLists.txt.in utilities-api-download/CMakeLists.txt)
-
-            execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
-                            RESULT_VARIABLE result
-                            WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/utilities-api-download)
-            if (result)
-                message(FATAL_ERROR "CMake step for utilities-api failed: ${result}")
-            endif()
-
-            execute_process(COMMAND ${CMAKE_COMMAND} --build .
-                            RESULT_VARIABLE result
-                            WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/utilities-api-download)
-            if (result)
-                message(FATAL_ERROR "Build step for utilities-api failed: ${result}")
-            endif()
-
-            ## Add utilities-api directly to our build ##
-            add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/utilities-api-src
-                            ${CMAKE_CURRENT_BINARY_DIR}/utilities-api-build
-                            EXCLUDE_FROM_ALL)
-
-            set(UTILITIES_API_INCLUDE_DIR "${Utilities-API_SOURCE_DIR}/include")
-            set(UTILITIES_API_FOUND TRUE)
+        execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
+                        RESULT_VARIABLE result
+                        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/utilities-api-download)
+        if (result)
+            message(FATAL_ERROR "CMake step for utilities-api failed: ${result}")
         endif()
+
+        execute_process(COMMAND ${CMAKE_COMMAND} --build .
+                        RESULT_VARIABLE result
+                        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/utilities-api-download)
+        if (result)
+            message(FATAL_ERROR "Build step for utilities-api failed: ${result}")
+        endif()
+
+        ## Add utilities-api directly to our build ##
+        add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/utilities-api-src
+                         ${CMAKE_CURRENT_BINARY_DIR}/utilities-api-build
+                         EXCLUDE_FROM_ALL)
+
+        set(UTILITIES_API_INCLUDE_DIR "${Utilities-API_SOURCE_DIR}/include")
+        set(UTILITIES_API_FOUND TRUE)
     endif()
 endif()
