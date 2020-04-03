@@ -1,5 +1,7 @@
 ### External Module File for GoogleTest ###
-if (NOT ${GTest_FOUND})
+if (NOT DOWNLOADED_GoogleTest)
+    set(DOWNLOADED_GoogleTest TRUE)
+
     ## Download and unpack googletest at configure time ##
     configure_file(cmake/CMakeLists.txt.in googletest-download/CMakeLists.txt)
 
