@@ -28,7 +28,7 @@ printHelpMessage()      #@ DESCRIPTION: Print the linkLogin program's help messa
     printf "profile=            ## Name of the profile to use in the new terminal window.\n"
     printf "fontsize=           ## Font size to use in the new terminal window.\n\n"
     printf "Run the following code to generate a properly formated configuration file:\n"
-    printf "  linkLogin -h | tail -n 10 | head -n 6 > TEST.config\n\n"
+    printf "  linkLogin -h | tail -n 11 | head -n 7 > TEST.config\n\n"
 }
 
 
