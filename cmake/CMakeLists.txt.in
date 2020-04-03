@@ -4,8 +4,8 @@ cmake_minimum_required(VERSION 3.10.0)
 include(ExternalProject)
 
 ## Ensure we haven't already downloaded the external projects ##
-if (NOT DOWNLOADED_Utilities-API)
-    set(DOWNLOADED_Utilities-API TRUE PARENT_SCOPE)
+if (NOT ${DOWNLOADED_Utilities_API})
+    set(DOWNLOADED_Utilities_API TRUE)
 
     project(utilities-api-download NONE)
 
@@ -21,8 +21,8 @@ if (NOT DOWNLOADED_Utilities-API)
 endif()
 
 
-if (NOT DOWNLOADED_GoogleTest)
-    set(DOWNLOADED_GoogleTest TRUE PARENT_SCOPE)   
+if (NOT ${DOWNLOADED_GoogleTest})
+    set(DOWNLOADED_GoogleTest TRUE)   
 
     project(googletest-download NONE)
 
