@@ -18,8 +18,43 @@ if (CMAKE_COMPILER_IS_GNUCXX)
 endif()
 
 
+### Functions ###
+function(externalDownload)
+    set(options)
+    set(one_value_keywords PROJECT
+                           REPOSITORY)
+    set(multi_value_keywords)
+
+    cmake_parse_arguments(EXTERN_ARGS "${options}" "${one_value_keywords}" "${multi_value_keywords}" ${ARGN})
+
+    ## Download and unpack project at configure time ##
+    configure_file(cmake/CMakeLists.txt.in ${EXTERN_ARGS_PROJECT}-download/CMakeLists.txt)
+
+    ## Configuration step ##
+    execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
+                    RESULT_VARIABLE result
+                    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${EXTERN_ARGS_PROJECT}-download)
+    if (result)
+        message(FATAL_ERROR "CMake step for ${EXTERN_ARGS_PROJECT} failed: ${result}")
+    endif()
+
+    ## Build Step ##
+    execute_process(COMMAND ${CMAKE_COMMAND} --build .
+                    RESULT_VARIABLE result
+                    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${EXTERN_ARGS_PROJECT}-download)
+    if (result)
+        message(FATAL_ERROR "Build step for ${EXTERN_ARGS_PROJECT} failed: ${result}")
+    endif()
+
+    ## Add project directly to our build ##
+    add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/${EXTERN_ARGS_PROJECT}-download/${EXTERN_ARGS_PROJECT}-src
+                     ${CMAKE_CURRENT_BINARY_DIR}/${EXTERN_ARGS_PROJECT}-download/${EXTERL_ARGS_PROJECT}-build
+                     EXCLUDE_FROM_ALL)
+endfunction()
+
+
 ### Files / Directories ###
-set(BASH_FILES
+set(SCRIPTS
     scripts/changeCase.sh
     scripts/compiler.sh
     scripts/errorHandling.sh
@@ -36,19 +71,15 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
     "Single directory for all executables.")
 
 
-### External Modules ###
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
-
-
 ### Installation ###
 install(DIRECTORY include/utils-api
         DESTINATION include)
 
-foreach (BASH_FILE ${BASH_FILES})
-    ## Remove bash extensions and make scripts executable ##
-    get_filename_component(filename "${BASH_FILE}" NAME_WE)
+foreach (SCRIPT ${SCRIPTS})
+    ## Remove extensions and make scripts executable ##
+    get_filename_component(filename "${SCRIPT}" NAME_WE)
 
-    configure_file(${BASH_FILE} "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${filename}" @ONLY)
+    configure_file(${SCRIPT} "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${filename}" @ONLY)
 
     install(FILES "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${filename}"
             DESTINATION bin
@@ -65,8 +96,12 @@ if (utils-api_build_tests)
     find_package(GTest)
 
     if (NOT ${GTest_FOUND})
-        ## If GTest isn't installed or can't be found, look in the external modules file ##
-        find_package(GoogleTest)
+        ## If GTest isn't installed or can't be found, download it from github ##
+        externalDownload(PROJECT googletest
+                         REPOSITORY "https://github.com/google/googletest.git")
+
+        set(GTEST_LIBRARIES gtest)
+        set(GTEST_INCLUDE_DIRS "${gtest_SOURCE_DIR}/include")
     endif()
 
     include_directories(${GTEST_INCLUDE_DIRS})
