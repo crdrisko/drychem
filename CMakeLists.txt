@@ -47,8 +47,8 @@ function(externalDownload)
     endif()
 
     ## Add project directly to our build ##
-    add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/${EXTERN_ARGS_PROJECT}-src
-                     ${CMAKE_CURRENT_BINARY_DIR}/${EXTERL_ARGS_PROJECT}-build
+    add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/${EXTERN_ARGS_PROJECT}-download/${EXTERN_ARGS_PROJECT}-src
+                     ${CMAKE_CURRENT_BINARY_DIR}/${EXTERN_ARGS_PROJECT}-download/${EXTERL_ARGS_PROJECT}-build
                      EXCLUDE_FROM_ALL)
 endfunction()
 
