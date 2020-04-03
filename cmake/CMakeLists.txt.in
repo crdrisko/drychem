@@ -5,7 +5,7 @@ include(ExternalProject)
 
 ## Ensure we haven't already downloaded the external projects ##
 if (NOT DOWNLOADED_Utilities-API)
-    set(DOWNLOADED_Utilities-API True)
+    set(DOWNLOADED_Utilities-API TRUE PARENT_SCOPE)
 
     project(utilities-api-download NONE)
 
@@ -22,7 +22,7 @@ endif()
 
 
 if (NOT DOWNLOADED_GoogleTest)
-    set(DOWNLOADED_GoogleTest True)   
+    set(DOWNLOADED_GoogleTest TRUE PARENT_SCOPE)   
 
     project(googletest-download NONE)
 
