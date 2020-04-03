@@ -20,12 +20,13 @@ printHelpMessage()      #@ DESCRIPTION: Print the linkLogin program's help messa
     printf "  name of the configuration file will be what you call to login to the specified\n"
     printf "  host. Example: If the filename is TEST.config, the command to log on to the\n"
     printf "  host contained in TEST.config would be TEST.\n\n"
-    printf "hostname=          ## REQUIRED: Domain/host name of the host machine.\n"
-    printf "username=          ## REQUIRED: Username of the profile on host machine.\n"
-    printf "port=              ## Port number of the host machine. Defaults to port 22.\n"
-    printf "hostchain=         ## Host to log on to prior to the desired ssh host.\n"
-    printf "fontsize=          ## Font size to use in the new terminal window.\n"
-    printf "profile=           ## Name of the profile to use in the new terminal window.\n\n"
+    printf "hostname=           ## REQUIRED: Domain/host name of the host machine.\n"
+    printf "username=           ## REQUIRED: Username of the profile on host machine.\n"
+    printf "port=               ## Port number of the host machine. Defaults to port 22.\n"
+    printf "hostchain=          ## Host to log on to prior to the desired ssh host.\n"
+    printf "openNewTerminal=    ## Whether or not to open new a new terminal window. Defaults to true.\n"
+    printf "profile=            ## Name of the profile to use in the new terminal window.\n"
+    printf "fontsize=           ## Font size to use in the new terminal window.\n\n"
     printf "Run the following code to generate a properly formated configuration file:\n"
     printf "  linkLogin -h | tail -n 10 | head -n 6 > TEST.config\n\n"
 }
@@ -49,7 +50,7 @@ do
     [ -n "$hostchain" ] && username="-J $hostchain ${username:?}"
 
     ## Options for the ssh login from terminal app on MacOS ##
-    if [[ $OSTYPE == darwin* ]]
+    if [[ $OSTYPE == darwin* ]] && [ ${openNewTerminal:-true} == true ]
     then
         printf -v sshScript "osascript -e 'tell app \"Terminal\"
           do script \"slogin %s@%s -p %s -Y\"
@@ -58,7 +59,7 @@ do
           end tell'" "${username:?}" ${hostname:?} ${port:-22} "${profile:-Pro}" ${fontsize:-11}
 
     ## Options for ssh login from gnome-terminal ##
-    elif which gnome-terminal &>/dev/null
+    elif which gnome-terminal &>/dev/null && [ ${openNewTerminal:-true} == true ]
     then
         printf -v sshScript "gnome-terminal --window-with-profile=%s -- slogin %s@%s -p %s -Y & disown"\
             ${profile:-Unnamed} ${username:?} ${hostname:?} ${port:-22}
@@ -68,8 +69,11 @@ do
         printf -v sshScript "slogin %s@%s -p %s" ${username:?} ${hostname:?} ${port:-22}
     fi
 
-    printf "#!/bin/bash\n%s" "$sshScript" > /usr/local/bin/${configurationFile%%.*}
-    chmod +x /usr/local/bin/${configurationFile%%.*}
+    installDirectory=@CMAKE_INSTALL_PREFIX@/bin
+    ! [ -d $installDirectory ] && printFatalErrorMessage 1 "Invalid installation directory."
 
-    unset hostname username port hostchain fontsize profile
+    printf "#!/bin/bash\n%s\n" "$sshScript" > $installDirectory/${configurationFile%%.*}
+    chmod +x $installDirectory/${configurationFile%%.*}
+
+    unset hostname username port hostchain openNewTerminal profile fontsize
 done

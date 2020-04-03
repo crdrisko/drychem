@@ -1,6 +1,6 @@
 # Utilities-API
 
-[![Build Status](https://travis-ci.com/crdrisko/utilities-api.svg?branch=master)](https://travis-ci.com/crdrisko/utilities-api) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/crdrisko/utilities-api)
+[![Build Status](https://travis-ci.com/crdrisko/utilities-api.svg?branch=master)](https://travis-ci.com/crdrisko/utilities-api) ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/crdrisko/utilities-api?include_prereleases)
 
 Welcome to the Utilities-API project! This project is a compilation of a number of unrelated programs and scripts I've written over the years, providing a single source of common utilities used in other repositories. The goal of this project is to strive for compliance with the "Don't Repeat Yourself" (DRY) principle of modern software development.
 

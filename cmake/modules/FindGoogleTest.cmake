@@ -1,3 +1,4 @@
+### External Module File for GoogleTest ###
 if (NOT ${GTest_FOUND})
     ## Download and unpack googletest at configure time ##
     configure_file(cmake/CMakeLists.txt.in googletest-download/CMakeLists.txt)
@@ -18,8 +19,8 @@ if (NOT ${GTest_FOUND})
 
     ## Add googletest directly to our build ##
     add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
-                        ${CMAKE_CURRENT_BINARY_DIR}/googletest-build
-                        EXCLUDE_FROM_ALL)
+                     ${CMAKE_CURRENT_BINARY_DIR}/googletest-build
+                     EXCLUDE_FROM_ALL)
 
     set(GTEST_LIBRARIES gtest)
     set(GTEST_INCLUDE_DIRS "${gtest_SOURCE_DIR}/include")

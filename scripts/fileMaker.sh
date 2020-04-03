@@ -25,10 +25,10 @@ generateCopyrightHeader()   #@ DESCRIPTION: Search for LICENSCE file and print c
 {                           #@ USAGE: generateCopyrightHeader
     previousDirectory="$PWD"
 
-    while ! [ -f "LICENSE" ] || ! [ -d .git ]
+    while ! [ -f "LICENSE" ]
     do
         cd ../
-        licenseDirectory=$PWD
+        licenseDirectory="$PWD"
 
         if [ "$licenseDirectory" == '/' ]
         then
@@ -40,7 +40,7 @@ generateCopyrightHeader()   #@ DESCRIPTION: Search for LICENSCE file and print c
 
     cd "$previousDirectory"
 
-    copyright=$( grep Copyright\ \(c\) "$licenseDirectory"/LICENSE )
+    copyright=$( grep Copyright\ \(c\) "${licenseDirectory:=\"$PWD\"}"/LICENSE )
     licenseType=$( head -n 1 "$licenseDirectory"/LICENSE )
 
     printf "%s %s. All rights reserved.\n" "$commentType" "$copyright"
@@ -67,8 +67,7 @@ do
                directory="${OPTARG%/*}"
            fi ;;
         c) copyright=1 ;;
-        v) verbose=1
-           verboseOption="-v" ;;
+        v) verbose=1 ;;
         h) printHelpMessage && printFatalErrorMessage 0 ;;
     esac
 done
@@ -164,7 +163,7 @@ printf "%s\n\
 %s Date: mm/dd/yyyy-hh:mm:ss\n\
 %s Description: \n\
 %s\n" "$firstLine" "$commentType" "${USER:-cdrisko}" "$commentType"\
-  "$commentType" "$additionalLines" >> $fileName
+  "$commentType" "$additionalLines" | sed 's/ *$//g' >> $fileName
 
 ## Modify the date template with current date-time ##
 modifyFiles -i $fileName -o "mm\/dd\/yyyy-hh:mm:ss" -n $(date '+%m\/%d\/%Y-%T') -f
