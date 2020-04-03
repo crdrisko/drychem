@@ -3,9 +3,9 @@ cmake_minimum_required(VERSION 3.10.0)
 
 include(ExternalProject)
 
-## Check if we haven't already downloaded the external project ##
+## Ensure we haven't already downloaded the external projects ##
 if (NOT DOWNLOADED_GoogleTest)
-    set(DOWNLOADED_GoogleTest True PARENT_SCOPE)
+    set(DOWNLOADED_GoogleTest True)
 
     project(googletest-download NONE)
 
