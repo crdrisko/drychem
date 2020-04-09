@@ -4,14 +4,14 @@
 // Name: testStringFunctions.cpp - Version 1.0.0
 // Author: cdrisko
 // Date: 01/31/2020-16:00:27
-// Description: Provides 100% unit test coverage over all string utility functions
+// Description: Provides ~100% unit test coverage over all string utility functions
 
 #include <string>
 #include <vector>
 
 #include <gtest/gtest.h>
 
-#include "../../include/utils-api/internal/Strings/stringUtilities.hpp"
+#include "../../include/utils-api/strings.hpp"
 
 using namespace Utilities_API::Strings;
 
@@ -21,31 +21,6 @@ int main(int argc, char** argv)
 {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
-}
-
-TEST(testStringFunctions, splitStringFunctionSplitsStringsCorrectly)
-{
-    std::vector<std::string> wordsInStringToSearch {splitString(stringToSearch)};
-
-    ASSERT_EQ("This", wordsInStringToSearch[0]);
-    ASSERT_EQ("is", wordsInStringToSearch[1]);
-    ASSERT_EQ("a", wordsInStringToSearch[2]);
-    ASSERT_EQ("test", wordsInStringToSearch[3]);
-    ASSERT_EQ("of", wordsInStringToSearch[4]);
-    ASSERT_EQ("the", wordsInStringToSearch[5]);
-    ASSERT_EQ("stringFinder", wordsInStringToSearch[6]);
-    ASSERT_EQ("function.", wordsInStringToSearch[7]);
-}
-
-TEST(testStringFunctions, splitStringOnlySplitsOnValueOfSeparators)
-{
-    std::vector<std::string> wordsInStringToSearch {splitString(stringToSearch)};
-
-    // Implementation Note: Will not split on '.' unless we tell it to
-    ASSERT_NE("function", wordsInStringToSearch[7]);
-
-    wordsInStringToSearch = splitString(stringToSearch, " .");
-    ASSERT_EQ("function", wordsInStringToSearch[7]);
 }
 
 TEST(testStringFunctions, stringFinderFindsIndividualWordsInLongerString)
@@ -72,4 +47,29 @@ TEST(testStringFunctions, stringFinderFunctionIsCaseSensitive)
     // Implementation Note: Case sensitive searches
     ASSERT_FALSE(stringFinder("this", stringToSearch));
     ASSERT_FALSE(stringFinder("THIS", stringToSearch));
+}
+
+TEST(testStringFunctions, splitStringFunctionSplitsStringsCorrectly)
+{
+    std::vector<std::string> wordsInStringToSearch {splitString(stringToSearch)};
+
+    ASSERT_EQ("This", wordsInStringToSearch[0]);
+    ASSERT_EQ("is", wordsInStringToSearch[1]);
+    ASSERT_EQ("a", wordsInStringToSearch[2]);
+    ASSERT_EQ("test", wordsInStringToSearch[3]);
+    ASSERT_EQ("of", wordsInStringToSearch[4]);
+    ASSERT_EQ("the", wordsInStringToSearch[5]);
+    ASSERT_EQ("stringFinder", wordsInStringToSearch[6]);
+    ASSERT_EQ("function.", wordsInStringToSearch[7]);
+}
+
+TEST(testStringFunctions, splitStringOnlySplitsOnValueOfSeparators)
+{
+    std::vector<std::string> wordsInStringToSearch {splitString(stringToSearch)};
+
+    // Implementation Note: Will not split on '.' unless we tell it to
+    ASSERT_NE("function", wordsInStringToSearch[7]);
+
+    wordsInStringToSearch = splitString(stringToSearch, " .");
+    ASSERT_EQ("function", wordsInStringToSearch[7]);
 }

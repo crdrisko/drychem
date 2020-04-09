@@ -4,7 +4,7 @@
 // Name: testMathFunctions.cpp - Version 1.0.0
 // Author: cdrisko
 // Date: 01/31/2020-15:58:59
-// Description: Provides 100% unit test coverage over all math utility functions
+// Description: Provides ~100% unit test coverage over all math utility functions
 
 #include <map>
 #include <memory>
@@ -13,10 +13,7 @@
 
 #include <gtest/gtest.h>
 
-#include "../../include/utils-api/internal/Math/advancedMath.hpp"
-#include "../../include/utils-api/internal/Math/basicMath.hpp"
-#include "../../include/utils-api/internal/Math/calculus.hpp"
-#include "../../include/utils-api/internal/Math/statistics.hpp"
+#include "../../include/utils-api/math.hpp"
 
 using namespace Utilities_API::Math;
 
@@ -62,57 +59,6 @@ TEST(testMathFunctions, withinRangeFunctionalityWorksForStrings)
     ASSERT_FALSE(withinRange<std::string>(stringValue, "This should be a longer string", "Hello"));
 }
 
-TEST(testMathFunctions, orderOfMagnitudeIsCalculatedCorrectly)
-{
-    ASSERT_EQ(-15, findOrderOfMagnitude(1e-15));
-    ASSERT_EQ(0, findOrderOfMagnitude(6.8));
-    ASSERT_EQ(1, findOrderOfMagnitude(50));
-    ASSERT_EQ(2, findOrderOfMagnitude(457));
-    ASSERT_EQ(3, findOrderOfMagnitude(1000));
-    ASSERT_EQ(18, findOrderOfMagnitude(1.7e18));
-}
-
-TEST(testMathFunctions, _355_over_113_isAnApproximationOfPi)
-{
-    ASSERT_NEAR(3.14159265, (355.0 / 113.0), findAbsoluteError(3.14159265, 7));
-}
-
-TEST(testMathFunctions, averageAndStandardDeviationOfAVector)
-{
-    std::vector<long double> x {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
-
-    ASSERT_EQ(5.5, calculateAverage(x));
-    ASSERT_NEAR(3.027650, calculateStandardDeviation(x), findAbsoluteError(3.027650, 7));
-}
-
-TEST(testMathFunctions, linearLeastSquaresFittingResultingInVector)
-{
-    std::vector<long double> x { 1.0,  2.0,  3.0,  4.0,  5.0,  6.0,  7.0,  8.0,  9.0, 10.0};
-    std::vector<long double> y { 2.0,  5.0,  3.0,  7.0,  8.0,  9.0, 12.0, 10.0, 15.0, 20.0};
-
-    AdvancedMathPtr mathematicalFunction { std::make_shared<LinearLeastSquaresFitting>(x, y) };
-
-    std::vector<long double> fittingResult { mathematicalFunction->doCalculation() };
-
-    ASSERT_NEAR(1.7152, fittingResult[0], findAbsoluteError(1.7152, 5));
-    ASSERT_NEAR(-0.33333, fittingResult[1], findAbsoluteError(-0.33333, 5));
-    ASSERT_NEAR(0.2139317, fittingResult[2], findAbsoluteError(0.2139317, 7));
-}
-
-TEST(testMathFunctions, linearLeastSquaresFittingResultingInMap)
-{
-    std::vector<long double> x { 1.0,  2.0,  3.0,  4.0,  5.0,  6.0,  7.0,  8.0,  9.0, 10.0};
-    std::vector<long double> y { 2.0,  5.0,  3.0,  7.0,  8.0,  9.0, 12.0, 10.0, 15.0, 20.0};
-
-    LinearLeastSquaresFittingPtr mathematicalFunction { std::make_shared<LinearLeastSquaresFitting>(x, y) };
-
-    std::map<std::string, long double> parameters { mathematicalFunction->mapFittingParametersToLabels() };
-
-    ASSERT_NEAR(1.7152, parameters["slope"], findAbsoluteError(1.7152, 5));
-    ASSERT_NEAR(-0.33333, parameters["intercept"], findAbsoluteError(-0.33333, 5));
-    ASSERT_NEAR(0.2139317, parameters["stdDev(slope)"], findAbsoluteError(0.2139317, 7));
-}
-
 TEST(testMathFunctions, linearInterpolationOf_y_along_x_gives_x)
 {
     std::vector<long double> x;
@@ -156,4 +102,76 @@ TEST(testMathFunctions, differentiationAndIntegrationWithAdvancedMath)
     mathematicalFunction = std::make_shared<CenteredDifferenceMethod>(x, expectedResult);
 
     ASSERT_EQ( centeredFDM2, mathematicalFunction->doCalculation() );
+}
+
+TEST(testMathFunctions, orderOfMagnitudeIsCalculatedCorrectly)
+{
+    ASSERT_EQ(-15, findOrderOfMagnitude(1e-15));
+    ASSERT_EQ(0, findOrderOfMagnitude(6.8));
+    ASSERT_EQ(1, findOrderOfMagnitude(50));
+    ASSERT_EQ(2, findOrderOfMagnitude(457));
+    ASSERT_EQ(3, findOrderOfMagnitude(1000));
+    ASSERT_EQ(18, findOrderOfMagnitude(1.7e18));
+}
+
+TEST(testMathFunctions, _355_over_113_isAnApproximationOfPi)
+{
+    ASSERT_NEAR(3.14159265, (355.0 / 113.0), findAbsoluteError(3.14159265, 7));
+}
+
+TEST(testMathFunctions, averageAndStandardDeviationOfAVector)
+{
+    std::vector<long double> x {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
+
+    ASSERT_EQ(5.5, calculateAverage(x));
+    ASSERT_NEAR(3.027650, calculateStandardDeviation(x), findAbsoluteError(3.027650, 7));
+}
+
+TEST(testMathFunctions, linearLeastSquaresFittingResultingInVector)
+{
+    std::vector<long double> x { 1.0,  2.0,  3.0,  4.0,  5.0,  6.0,  7.0,  8.0,  9.0, 10.0 };
+    std::vector<long double> y { 2.0,  5.0,  3.0,  7.0,  8.0,  9.0, 12.0, 10.0, 15.0, 20.0 };
+
+    AdvancedMathPtr mathematicalFunction { std::make_shared<LinearLeastSquaresFitting>(x, y) };
+
+    std::vector<long double> fittingResult { mathematicalFunction->doCalculation() };
+
+    ASSERT_NEAR(1.7152, fittingResult[0], findAbsoluteError(1.7152, 5));
+    ASSERT_NEAR(-0.33333, fittingResult[1], findAbsoluteError(-0.33333, 5));
+    ASSERT_NEAR(0.2139317, fittingResult[2], findAbsoluteError(0.2139317, 7));
+}
+
+TEST(testMathFunctions, linearLeastSquaresFittingResultingInMap)
+{
+    std::vector<long double> x { 1.0,  2.0,  3.0,  4.0,  5.0,  6.0,  7.0,  8.0,  9.0, 10.0 };
+    std::vector<long double> y { 2.0,  5.0,  3.0,  7.0,  8.0,  9.0, 12.0, 10.0, 15.0, 20.0 };
+
+    LinearLeastSquaresFitting mathematicalFunction {x, y};
+
+    std::map<std::string, long double> parameters
+        = mathematicalFunction.mapFittingParametersToLabels( mathematicalFunction.doCalculation() );
+
+    ASSERT_NEAR(1.7152, parameters["slope"], findAbsoluteError(1.7152, 5));
+    ASSERT_NEAR(-0.33333, parameters["intercept"], findAbsoluteError(-0.33333, 5));
+    ASSERT_NEAR(0.2139317, parameters["stdDev(slope)"], findAbsoluteError(0.2139317, 7));
+}
+
+TEST(testMathFunctions, vectorsOfUnequalSizesThrowAndCatchExceptions)
+{
+    std::vector<long double> x { 1.0,  2.0,  3.0,  4.0,  5.0,  6.0,  7.0,  8.0,  9.0, 10.0 };
+    std::vector<long double> y { 2.0,  5.0,  3.0,  7.0,  8.0,  9.0, 12.0, 10.0, 15.0 };
+
+    ASSERT_DEATH(
+    {
+        auto mathematicalFunction = std::make_shared<LinearLeastSquaresFitting>(x, y);
+    }, "Utilities-API Fatal Error:\n\tThe size of the x and y vectors must be equal.\n");
+
+
+    y.push_back(20.0);
+    LinearLeastSquaresFitting fittingMathematicalFunction {x, y};
+
+    ASSERT_DEATH(
+    {
+        auto fittingParameters = fittingMathematicalFunction.mapFittingParametersToLabels(x);
+    }, "Utilities-API Fatal Error:\n\tThe size of input vector must be equal to 3\n");
 }

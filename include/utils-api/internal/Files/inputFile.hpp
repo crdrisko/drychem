@@ -9,14 +9,15 @@
 #ifndef UTILITIES_API_INPUTFILE_HPP
 #define UTILITIES_API_INPUTFILE_HPP
 
+#include <fstream>
 #include <memory>
 #include <string>
 #include <string_view>
 #include <vector>
 
 #include "fileComponents.hpp"
-#include "../Errors/errorUtilities.hpp"
-#include "../Strings/stringUtilities.hpp"
+#include "../../errors.hpp"
+#include "../../strings.hpp"
 
 namespace Utilities_API::Files
 {
@@ -25,15 +26,14 @@ namespace Utilities_API::Files
     private:
         FileName fileName;
         FileContents fileContents;
-        Errors::ErrorMessagePtr errorMessage;
 
         std::vector< std::vector<std::string> > splitDataVector(const std::vector<std::string>& dataVector,
-            std::string separators = " \t\n")
+            const std::string& separators = " \t\n")
         {
             std::vector< std::vector<std::string> > superVector;
 
             for (const auto& vec : dataVector)
-                superVector.push_back(Strings::splitString(vec, separators));
+                superVector.push_back( Strings::splitString(vec, separators) );
 
             return superVector;
         }
@@ -42,30 +42,34 @@ namespace Utilities_API::Files
         std::vector<std::string> dataVector;
         std::vector<std::string> metaDataVector;
 
-    public:
         explicit InputFile(std::string_view FullFileName) : fileName{FullFileName}, fileContents{fileName}
         {
-            std::ifstream testFile { fileName.getFullFileName(), std::ifstream::in };
-
-            if (!testFile)
+            try
             {
-                errorMessage = std::make_shared<Errors::FatalErrorMessage>("Utilities-API", 2);
-                errorMessage->printErrorMessage("File name provided is not a valid file.");
+                std::ifstream testFile {fileName.getFullFileName(), std::ifstream::in};
+
+                if (!testFile)
+                    throw Errors::FileNotFoundException{"Utilities-API", FullFileName};
+            }
+            catch (const Errors::Exception& except)
+            {
+                except.handleErrorWithMessage();
             }
         }
 
+    public:
         virtual ~InputFile() = default;
         virtual void separateFileData() = 0;
 
         FileName getFileName() const { return fileName; }
         FileContents getFileContents() const { return fileContents; }
 
-        std::vector< std::vector<std::string> > getSuperDataVector(std::string separators = " \t\n")
+        std::vector< std::vector<std::string> > getSuperDataVector(const std::string& separators = " \t\n")
         {
             return splitDataVector(dataVector, separators);
         }
 
-        std::vector< std::vector<std::string> > getSuperMetaDataVector(std::string separators = " \t\n")
+        std::vector< std::vector<std::string> > getSuperMetaDataVector(const std::string& separators = " \t\n")
         {
             return splitDataVector(metaDataVector, separators);
         }

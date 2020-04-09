@@ -12,7 +12,7 @@
 #include <memory>
 #include <vector>
 
-#include "../Errors/errorUtilities.hpp"
+#include "../../errors.hpp"
 
 namespace Utilities_API::Math
 {
@@ -22,12 +22,18 @@ namespace Utilities_API::Math
         std::vector<long double> x;
         std::vector<long double> y;
 
-        Errors::ErrorMessagePtr errorMessage { std::make_shared<Errors::FatalErrorMessage>("Utilities-API", 1) };
-
         AdvancedMath(const std::vector<long double>& X, const std::vector<long double>& Y) : x{X}, y{Y}
         {
-            if ( x.size() != y.size() )
-                errorMessage->printErrorMessage("The vectors x and y must have the same number of elements.");
+            try
+            {
+                if ( x.size() != y.size() )
+                    throw Errors::InvalidInputException("Utilities-API",
+                        "The size of the x and y vectors must be equal.");
+            }
+            catch (const Errors::Exception& except)
+            {
+                except.handleErrorWithMessage();
+            }
         }
 
     public:

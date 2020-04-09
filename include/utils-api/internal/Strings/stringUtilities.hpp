@@ -20,6 +20,7 @@ namespace Utilities_API::Strings
         return (stringToSearch.find(stringToFind) != std::string::npos) ? true : false;
     }
 
+
     inline std::vector<std::string> splitString(const std::string& stringToSplit,
         const std::string& separators = " \t\n")
     {

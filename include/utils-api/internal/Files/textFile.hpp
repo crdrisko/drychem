@@ -14,7 +14,7 @@
 #include <vector>
 
 #include "inputFile.hpp"
-#include "../Strings/stringUtilities.hpp"
+#include "../../strings.hpp"
 
 namespace Utilities_API::Files
 {
@@ -45,13 +45,12 @@ namespace Utilities_API::Files
         }
 
     public:
-        TextFile(std::string_view FullFileName, std::string Comments = "#",
+        explicit TextFile(std::string_view FullFileName, std::string Comments = "#",
             const std::vector<std::string>& MetaDataKeywords = {"Null Selection"})
                 : InputFile{FullFileName}, comments{Comments}, metaDataKeywords{MetaDataKeywords}
         {
             separateFileData();
         }
-
     };
 }
 

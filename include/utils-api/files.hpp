@@ -5,7 +5,7 @@
 // Author: cdrisko
 // Date: 01/31/2020-15:31:31
 // Description: The public API for the Files section of the Utilities-API program.
-//   This header fileshould be included in all user programs using these utilities.
+//   This header file should be included in all user programs using these utilities.
 //
 // Note: The internal implementation details associated with this API should not be used in any
 //   user program as they are subject to change at any time without warning.
@@ -13,7 +13,9 @@
 #ifndef UTILITIES_API_FILES_HPP
 #define UTILITIES_API_FILES_HPP
 
-#include "internal/Files/textFile.hpp"
+#include "internal/Files/fileComponents.hpp"
+#include "internal/Files/inputFile.hpp"
 #include "internal/Files/markupFile.hpp"
+#include "internal/Files/textFile.hpp"
 
 #endif

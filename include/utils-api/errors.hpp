@@ -14,5 +14,11 @@
 #define UTILITIES_API_ERRORS_HPP
 
 #include "internal/Errors/errorUtilities.hpp"
+#include "internal/Errors/exceptionHandling.hpp"
+
+namespace Utilities_API::Errors
+{
+    enum class ErrorSeverity : bool { Warning = false, Fatal = true };
+}
 
 #endif

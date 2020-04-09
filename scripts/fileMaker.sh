@@ -84,7 +84,7 @@ case $fileName in
         printf -v firstLine "%s Name: %s - Version 1.0.0" "$commentType" "$fileName"
 
         printf -v additionalLines\
-            "\n#include <iostream>\n#include <vector>\n#include <string>\n\nint main()\n{\n\n}" ;;
+            "\n#include <iostream>\n#include <string>\n#include <vector>\n\nint main()\n{\n\n}" ;;
 
     *".hpp")
         upperCaseFileName=$(changeCase -u -w ${fileName%.*})

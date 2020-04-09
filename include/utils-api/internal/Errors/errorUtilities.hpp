@@ -20,15 +20,15 @@ namespace Utilities_API::Errors
     class ErrorMessage
     {
     private:
-        std::string projectName;
+        std::string programName;
 
     public:
-        explicit ErrorMessage(std::string_view ProjectName) noexcept : projectName{ProjectName} {}
+        explicit ErrorMessage(std::string_view ProgramName) : programName{ProgramName} {}
         virtual ~ErrorMessage() = default;
 
         virtual void printErrorMessage(std::string_view message) const
         {
-            std::cerr << projectName << ":\n\t" << message << std::endl;
+            std::cerr << programName << ":\n\t" << message << std::endl;
         }
     };
 
@@ -41,8 +41,8 @@ namespace Utilities_API::Errors
         int exitCode;
 
     public:
-        FatalErrorMessage(std::string_view ProjectName, int ExitCode) noexcept : ErrorMessage{ProjectName},
-            exitCode{ExitCode} {}
+        FatalErrorMessage(std::string_view ProgramName, int ExitCode)
+            : ErrorMessage{ProgramName}, exitCode{ExitCode} {}
 
         virtual void printErrorMessage(std::string_view message) const override
         {

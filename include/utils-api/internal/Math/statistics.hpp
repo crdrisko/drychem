@@ -17,6 +17,7 @@
 #include <vector>
 
 #include "advancedMath.hpp"
+#include "../../errors.hpp"
 
 namespace Utilities_API::Math
 {
@@ -62,12 +63,18 @@ namespace Utilities_API::Math
 
         virtual std::vector<long double> doCalculation() const override;
 
-        std::map<std::string, long double> mapFittingParametersToLabels() const
+        std::map<std::string, long double> mapFittingParametersToLabels(const std::vector<long double>& fittingResults) const
         {
-            const std::vector<long double>& fittingResults { this->doCalculation() };
-
-            if (fittingResults.size() != numberOfFittingParameters)
-                errorMessage->printErrorMessage("The size of input vector must be " + std::to_string(numberOfFittingParameters));
+            try
+            {
+                if (fittingResults.size() != numberOfFittingParameters)
+                    throw Errors::InvalidInputException{"Utilities-API",
+                        "The size of input vector must be equal to " + std::to_string(numberOfFittingParameters)};
+            }
+            catch(const Errors::Exception& except)
+            {
+                except.handleErrorWithMessage();
+            }
 
             std::map<std::string, long double> fitParameters;
 
@@ -78,8 +85,6 @@ namespace Utilities_API::Math
             return fitParameters;
         }
     };
-
-    using LinearLeastSquaresFittingPtr = std::shared_ptr<LinearLeastSquaresFitting>;
 
 
     inline std::vector<long double> LinearLeastSquaresFitting::doCalculation() const

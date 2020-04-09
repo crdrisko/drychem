@@ -4,7 +4,7 @@
 // Name: testFileFunctions.cpp - Version 1.0.0
 // Author: cdrisko
 // Date: 01/31/2020-15:56:44
-// Description: Provides 100% unit test coverage over all file utility functions
+// Description: Provides ~100% unit test coverage over all file utility functions
 
 #include <memory>
 #include <string>
@@ -12,8 +12,7 @@
 
 #include <gtest/gtest.h>
 
-#include "../../include/utils-api/internal/Files/textFile.hpp"
-#include "../../include/utils-api/internal/Files/markupFile.hpp"
+#include "../../include/utils-api/files.hpp"
 
 using namespace Utilities_API::Files;
 
@@ -27,8 +26,8 @@ TEST(testFileFunctions, fileNameWithFullPathIsParsedCorrectly)
 {
     FileName fullFileName {"../../include/utils-api/internal/Files/fileComponents.hpp"};
 
-    ASSERT_EQ("../../include/utils-api/internal/Files", fullFileName.getRelativePathToFile());
     ASSERT_EQ("../../include/utils-api/internal/Files/fileComponents.hpp", fullFileName.getFullFileName());
+    ASSERT_EQ("../../include/utils-api/internal/Files", fullFileName.getRelativePathToFile());
     ASSERT_EQ("fileComponents.hpp", fullFileName.getBaseFileName());
     ASSERT_EQ("hpp", fullFileName.getFileExtension());
 }
@@ -46,10 +45,12 @@ TEST(testFileFunctions, fileNameWithNoPathIsParsedCorrectly)
 TEST(testFileFunctions, fileContentParsingFunctionsCorrectlyRegardlessOfFileName)
 {
     std::vector<std::string> contentsOfFile
-        { "# This is a test file for use in testing the functionality of the file utility functions",
-          "# Default comments are denoted using a '#' symbol",
-          "// Other comments can be specified by the symbol used",
-          "Plain text is written without the hash" };
+    {
+        "# This is a test file for use in testing the functionality of the file utility functions",
+        "# Default comments are denoted using a '#' symbol",
+        "// Other comments can be specified by the symbol used",
+        "Plain text is written without the hash"
+    };
 
 
     FileName fileName {"test.txt"};
@@ -62,6 +63,27 @@ TEST(testFileFunctions, fileContentParsingFunctionsCorrectlyRegardlessOfFileName
     FileContents fileContentsWithPath {fileNameWithPath};
 
     ASSERT_EQ(contentsOfFile, fileContentsWithPath.getContentInFile());
+}
+
+TEST(testFileFunctions, filesThatDontExistThrowFatalExceptions)
+{
+    ASSERT_DEATH(
+    {
+        FileName fileNameThatDoesntExist {"test2.txt"};
+        FileContents fileContents {fileNameThatDoesntExist};
+    }, "Utilities-API Fatal Error:\n\tUnable to open file: test2.txt\n");
+
+
+    ASSERT_DEATH(
+    {
+        InputFilePtr defaultsTextFile { std::make_shared<TextFile>("test2.txt") };
+    }, "Utilities-API Fatal Error:\n\tUnable to open file: test2.txt\n");
+
+
+    ASSERT_DEATH(
+    {
+        InputFilePtr defaultsTextFile { std::make_shared<MarkupFile>("test2.inp") };
+    }, "Utilities-API Fatal Error:\n\tUnable to open file: test2.inp\n");
 }
 
 TEST(testFileFunctions, textFileOpensAndReadsSampleFileCorrectly)

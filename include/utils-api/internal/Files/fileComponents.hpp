@@ -14,7 +14,7 @@
 #include <string_view>
 #include <vector>
 
-#include "../Errors/errorUtilities.hpp"
+#include "../../errors.hpp"
 
 namespace Utilities_API::Files
 {
@@ -64,7 +64,6 @@ namespace Utilities_API::Files
     private:
         FileName fileName;
         std::vector<std::string> contentInFile;
-        Errors::ErrorMessagePtr errorMessage;
 
         void setContentInFile()
         {
@@ -82,20 +81,23 @@ namespace Utilities_API::Files
                         contentInFile.push_back(line);
             }
             else
-            {
-                errorMessage = std::make_shared<Errors::FatalErrorMessage>("Utilities-API", 1);
-
-                errorMessage->printErrorMessage("Unable to open file: " + baseFileName + ".");
-            }
+                throw Errors::FileNotFoundException{"Utilities-API", baseFileName};
         }
 
     public:
         explicit FileContents(const FileName& FileName) : fileName{FileName}
         {
-            setContentInFile();
+            try
+            {
+                setContentInFile();
+            }
+            catch (const Errors::Exception& except)
+            {
+                except.handleErrorWithMessage();
+            }
         }
 
-        std::vector<std::string> getContentInFile() { return contentInFile; }
+        std::vector<std::string> getContentInFile() const { return contentInFile; }
     };
 }
 

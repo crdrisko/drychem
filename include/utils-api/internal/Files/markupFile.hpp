@@ -14,7 +14,7 @@
 #include <vector>
 
 #include "inputFile.hpp"
-#include "../Strings/stringUtilities.hpp"
+#include "../../strings.hpp"
 
 namespace Utilities_API::Files
 {
@@ -30,27 +30,27 @@ namespace Utilities_API::Files
 
             for (size_t i {}; i < allDataVector.size(); ++i)
             {
-                if (Strings::stringFinder(metaTag, allDataVector[i]))
+                if ( Strings::stringFinder(metaTag, allDataVector[i]) )
                 {
                     std::string endMetaTag {metaTag};
                     endMetaTag.insert(1, "/");
 
                     for (size_t j {i + 1}; j < allDataVector.size(); ++j)
                     {
-                        if (Strings::stringFinder(endMetaTag, allDataVector[j]))
+                        if ( Strings::stringFinder(endMetaTag, allDataVector[j]) )
                             break;
                         else
                             metaDataVector.push_back(allDataVector[j]);
                     }
                 }
-                else if (Strings::stringFinder(dataTag, allDataVector[i]))
+                else if ( Strings::stringFinder(dataTag, allDataVector[i]) )
                 {
                     std::string endDataTag {dataTag};
                     endDataTag.insert(1, "/");
 
                     for (size_t j {i + 1}; j < allDataVector.size(); ++j)
                     {
-                        if (Strings::stringFinder(endDataTag, allDataVector[j]))
+                        if ( Strings::stringFinder(endDataTag, allDataVector[j]) )
                             break;
                         else
                             dataVector.push_back(allDataVector[j]);

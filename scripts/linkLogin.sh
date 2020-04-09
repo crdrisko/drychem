@@ -61,8 +61,10 @@ do
     ## Options for ssh login from gnome-terminal ##
     elif which gnome-terminal &>/dev/null && [ ${openNewTerminal:-true} == true ]
     then
-        printf -v sshScript "gnome-terminal --window-with-profile=%s -- slogin %s@%s -p %s -Y & disown"\
-            ${profile:-Unnamed} ${username:?} ${hostname:?} ${port:-22}
+        ! [ -z $profile ] && profile="--window-with-profile=$profile "
+
+        printf -v sshScript "gnome-terminal %s-- slogin %s@%s -p %s -Y & disown"\
+            "$profile" ${username:?} ${hostname:?} ${port:-22}
 
     ## Options for standard ssh login ##
     else
@@ -72,7 +74,7 @@ do
     installDirectory=@CMAKE_INSTALL_PREFIX@/bin
     ! [ -d $installDirectory ] && printFatalErrorMessage 1 "Invalid installation directory."
 
-    printf "#!/bin/bash\n%s\n" "$sshScript" > $installDirectory/${configurationFile%%.*}
+    printf '#!/bin/bash\n%s\n' "$sshScript" > $installDirectory/${configurationFile%%.*}
     chmod +x $installDirectory/${configurationFile%%.*}
 
     unset hostname username port hostchain openNewTerminal profile fontsize

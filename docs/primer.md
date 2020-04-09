@@ -11,9 +11,9 @@
 
 - [Bash Scripts and Programs](#Bash-Scripts-and-Programs)
 
-## Utilities-API Modules
+## Utilities-API C++ Modules
 
-The C++ modules which make up the [public API](https://github.com/crdrisko/utilities-api/tree/master/include) of the repository are all organized in the same way, and by including the `module.hpp` file (which `#include`'s the internal files) features can be added to the module with no effect on the public API.
+The C++ modules which make up the [public API](https://github.com/crdrisko/utilities-api/tree/master/include) of this repository are all organized in the same way, and by including the `module.hpp` file (which `#include`'s the internal files) features can be added without changing the interface of the module. The following tree diagram shows how a sample module (Module 1), would be organized in the API:
 
 ```C++
 include
@@ -31,7 +31,9 @@ include
 
 ### Errors
 
-The error module of the Utilities-API project consists of functions and classes dedicated to error and exception handling. Since these types of events occur in virtually every type of project imaginable, it has proved useful collecting these functions in a single place.
+The error module of the Utilities-API project consists of functions and classes dedicated to error and exception handling. Since these types of events occur in virtually every project imaginable, it has proved useful collecting these functions in a single place.
+
+**Getting Started:**
 
 The following lines of code can be included in any user project to provide access to the errors module:
 
@@ -41,14 +43,72 @@ The following lines of code can be included in any user project to provide acces
 using namespace Utilities_API::Errors;
 ```
 
-For examples of how to use the error handling classes and functions, refer to the [testing](https://github.com/crdrisko/utilities-api/tree/master/test/TestErrors/testErrorFunctions.cpp) files, which provide a comprehensive overview of the module's usage.
+**Exception Handling:**
+
+This module provides an exception handling class: `Utilities_API::Errors::Exception` which derives from `std::exception`. Some other commonly used exceptions can also be found, all of which derive from the Exception class. Because these exceptions derive from `std::exception` (either directly or indirectly), they can be caught by statements like the following:
+
+```C++
+catch (const std::exception& e)
+{
+    std::cerr << e.what() << std::endl;
+}
+```
+
+However, by defining an additional catch block **prior** to this standard block (see below), we can utilize the information stored in the new Exception object to print out more information than is otherwise provided by a call to `what()`. This information includes the name of the program where the exception originated, the severity of the error in question, and of course, the error message itself.
+
+The Exception class delegates its error handling to the dedicated ErrorMessage classes by calling the `handleErrorWithMessage()` function. Depending on the level of error severity (Warning or Fatal) associated with the exception, the error will be handled accordingly.
+
+**Error Handling:**
+
+In the way of error handling, the Utilities-API project defines two types of error classes: Fatal and Non-Fatal. The `FatalErrorMessage` class derives from the non-fatal version, `ErrorMessage` and the two utilize polymorphism to determine how the error should be handled. Polymorphic calls to the `printErrorMessage()` function will, as the name suggests, print the supplied error message. By design, fatal errors will cause program termination by envoking `std::exit()`.
+
+*NOTE:* The use of the ErrorMessage classes descibed here is no longer the recommended method for handling errors. The exception classes described above provide an easy-to-use interface to these underlying error message classes, while providing the same functionality.
+
+**Working Example:**
+
+As a working example, consider the following code snipet which demonstrates how to both throw and catch a `Utilities_API::Errors::Exception`:
+
+```C++
+#include <iostream>
+#include <exception>
+
+#include <utils-api/errors.hpp>
+
+using namespace Utilities_API::Errors;
+
+int main()
+{
+    for (int i {}; i <= 10; ++i)
+    {
+        try
+        {
+            if (i == 4)
+                throw Exception {"Utilities-API", "Loop reached: i = 4", ErrorSeverity::Warning};
+
+            std::cout << i << std::endl;
+        }
+        catch (const Exception& except)
+        {
+            except.handleErrorWithMessage();
+        }
+        catch (const std::exception& except)
+        {
+            std::cerr << except.what() << std::endl;
+        }
+    }
+}
+```
+
+For more examples of how to use the error module, refer to the [testing](https://github.com/crdrisko/utilities-api/tree/master/test/TestErrors/testErrorFunctions.cpp) files, which provide a comprehensive overview of the module's usage.
 
 ### Files
 
-The file module consists of a class dedicated to handling input files of various types. By splitting files into metadata and data blocks based on comments or specific tags (see below), parsing an input file becomes easy, and access to the underlying data is readily accessible in a `std::vector<std::string>` container. The currently supported file types are:
+The file module consists of a class dedicated to handling input files of various types. By splitting files into metadata and data blocks based on comments or specific tags (see below), parsing an input file becomes easy, and access to the underlying data is readily accessible in a `std::vector< std::vector<std::string> >` container. The currently supported file types are:
 
 - Plain text files
 - Markup files
+
+**Getting Started:**
 
 The following lines of code can be included in any user project to provide access to the files module:
 
@@ -69,6 +129,8 @@ The math library consists of a number of advanced mathematical functions and cla
 - Numerical integration
 - Numerical differentiation
 
+**Getting Started:**
+
 The following lines of code can be included in any user project to provide access to the math module:
 
 ```C++
@@ -82,6 +144,8 @@ For examples of how to use the advanced mathematical classes and functions, refe
 ### Strings
 
 The strings module consists of a few functions relating to the parsing of `std::string` containers or wrappers for Standard Library functions that enhance readability of the code.
+
+**Getting Started:**
 
 The following lines of code can be included in any user project to provide access to the strings module:
 
