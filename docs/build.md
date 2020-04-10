@@ -1,4 +1,4 @@
-# Build and Installing Utilities-API
+# Building and Installing Utilities-API
 
 ## Installation
 

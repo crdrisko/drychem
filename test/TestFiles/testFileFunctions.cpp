@@ -22,7 +22,7 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-TEST(testFileFunctions, fileNameWithFullPathIsParsedCorrectly)
+GTEST_TEST(testFileFunctions, fileNameWithFullPathIsParsedCorrectly)
 {
     FileName fullFileName {"../../include/utils-api/internal/Files/fileComponents.hpp"};
 
@@ -32,7 +32,7 @@ TEST(testFileFunctions, fileNameWithFullPathIsParsedCorrectly)
     ASSERT_EQ("hpp", fullFileName.getFileExtension());
 }
 
-TEST(testFileFunctions, fileNameWithNoPathIsParsedCorrectly)
+GTEST_TEST(testFileFunctions, fileNameWithNoPathIsParsedCorrectly)
 {
     FileName fileName {"testFileFunctions.cpp"};
 
@@ -42,7 +42,7 @@ TEST(testFileFunctions, fileNameWithNoPathIsParsedCorrectly)
     ASSERT_EQ("cpp", fileName.getFileExtension());
 }
 
-TEST(testFileFunctions, fileContentParsingFunctionsCorrectlyRegardlessOfFileName)
+GTEST_TEST(testFileFunctions, fileContentParsingFunctionsCorrectlyRegardlessOfFileName)
 {
     std::vector<std::string> contentsOfFile
     {
@@ -65,7 +65,7 @@ TEST(testFileFunctions, fileContentParsingFunctionsCorrectlyRegardlessOfFileName
     ASSERT_EQ(contentsOfFile, fileContentsWithPath.getContentInFile());
 }
 
-TEST(testFileFunctions, filesThatDontExistThrowFatalExceptions)
+GTEST_TEST(testFileFunctions, filesThatDontExistThrowFatalExceptions)
 {
     ASSERT_DEATH(
     {
@@ -86,7 +86,7 @@ TEST(testFileFunctions, filesThatDontExistThrowFatalExceptions)
     }, "Utilities-API Fatal Error:\n\tUnable to open file: test2.inp\n");
 }
 
-TEST(testFileFunctions, textFileOpensAndReadsSampleFileCorrectly)
+GTEST_TEST(testFileFunctions, textFileOpensAndReadsSampleFileCorrectly)
 {
     std::vector<std::string> line1 { {"#"}, {"This"}, {"is"}, {"a"}, {"test"}, {"file"}, {"for"},
                                      {"use"}, {"in"}, {"testing"}, {"the"}, {"functionality"},
@@ -133,7 +133,7 @@ TEST(testFileFunctions, textFileOpensAndReadsSampleFileCorrectly)
     ASSERT_EQ(selectMetaDataResults, selectMetaTextFile->getSuperMetaDataVector());
 }
 
-TEST(testFileFunctions, markupFileOpensAndReadsSampleFileCorrectly)
+GTEST_TEST(testFileFunctions, markupFileOpensAndReadsSampleFileCorrectly)
 {
     std::vector<std::string> dataTag { {"This"}, {"is"}, {"the"}, {"data"}, {"within"}, {"the"},
                                        {"data"}, {"tag"} };

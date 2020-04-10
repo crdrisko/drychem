@@ -23,7 +23,7 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-TEST(testStringFunctions, stringFinderFindsIndividualWordsInLongerString)
+GTEST_TEST(testStringFunctions, stringFinderFindsIndividualWordsInLongerString)
 {
     ASSERT_TRUE(stringFinder("This", stringToSearch));
     ASSERT_TRUE(stringFinder("is", stringToSearch));
@@ -35,21 +35,21 @@ TEST(testStringFunctions, stringFinderFindsIndividualWordsInLongerString)
     ASSERT_TRUE(stringFinder("function", stringToSearch));
 }
 
-TEST(testStringFunctions, stringFinderFindsPartialWordsInLongerString)
+GTEST_TEST(testStringFunctions, stringFinderFindsPartialWordsInLongerString)
 {
     // Implementation Note: Finds partial words within the string it's searching for
     ASSERT_TRUE(stringFinder("fun", stringToSearch));
     ASSERT_TRUE(stringFinder("string", stringToSearch));
 }
 
-TEST(testStringFunctions, stringFinderFunctionIsCaseSensitive)
+GTEST_TEST(testStringFunctions, stringFinderFunctionIsCaseSensitive)
 {
     // Implementation Note: Case sensitive searches
     ASSERT_FALSE(stringFinder("this", stringToSearch));
     ASSERT_FALSE(stringFinder("THIS", stringToSearch));
 }
 
-TEST(testStringFunctions, splitStringFunctionSplitsStringsCorrectly)
+GTEST_TEST(testStringFunctions, splitStringFunctionSplitsStringsCorrectly)
 {
     std::vector<std::string> wordsInStringToSearch {splitString(stringToSearch)};
 
@@ -63,7 +63,7 @@ TEST(testStringFunctions, splitStringFunctionSplitsStringsCorrectly)
     ASSERT_EQ("function.", wordsInStringToSearch[7]);
 }
 
-TEST(testStringFunctions, splitStringOnlySplitsOnValueOfSeparators)
+GTEST_TEST(testStringFunctions, splitStringOnlySplitsOnValueOfSeparators)
 {
     std::vector<std::string> wordsInStringToSearch {splitString(stringToSearch)};
 

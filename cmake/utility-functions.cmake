@@ -46,7 +46,7 @@ function(newTest)
     add_executable(test${TEST_ARGS_TESTNAME}Functions
                    ${TEST_ARGS_INTERIOR_DIRECTORY}/test${TEST_ARGS_TESTNAME}Functions.cpp)
 
-    target_link_libraries(test${TEST_ARGS_TESTNAME}Functions ${GTEST_LIBRARIES})
+    target_link_libraries(test${TEST_ARGS_TESTNAME}Functions ${GTEST_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
     gtest_discover_tests(test${TEST_ARGS_TESTNAME}Functions
                          WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${TEST_ARGS_INTERIOR_DIRECTORY})

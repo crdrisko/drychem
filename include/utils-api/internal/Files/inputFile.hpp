@@ -42,20 +42,7 @@ namespace Utilities_API::Files
         std::vector<std::string> dataVector;
         std::vector<std::string> metaDataVector;
 
-        explicit InputFile(std::string_view FullFileName) : fileName{FullFileName}, fileContents{fileName}
-        {
-            try
-            {
-                std::ifstream testFile {fileName.getFullFileName(), std::ifstream::in};
-
-                if (!testFile)
-                    throw Errors::FileNotFoundException{"Utilities-API", FullFileName};
-            }
-            catch (const Errors::Exception& except)
-            {
-                except.handleErrorWithMessage();
-            }
-        }
+        explicit InputFile(std::string_view FullFileName) : fileName{FullFileName}, fileContents{fileName} {}
 
     public:
         virtual ~InputFile() = default;

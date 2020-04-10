@@ -23,7 +23,7 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-TEST(testMathFunctions, withinRangeFunctionalityWorksForIntegers)
+GTEST_TEST(testMathFunctions, withinRangeFunctionalityWorksForIntegers)
 {
     int integerValue {10};
 
@@ -37,7 +37,7 @@ TEST(testMathFunctions, withinRangeFunctionalityWorksForIntegers)
     ASSERT_FALSE(failingRangeTestIntegers);
 }
 
-TEST(testMathFunctions, withinRangeFunctionalityWorksForDoubles)
+GTEST_TEST(testMathFunctions, withinRangeFunctionalityWorksForDoubles)
 {
     double doubleValue {42.67};
 
@@ -51,7 +51,7 @@ TEST(testMathFunctions, withinRangeFunctionalityWorksForDoubles)
     ASSERT_FALSE(failingRangeTestDoubles);
 }
 
-TEST(testMathFunctions, withinRangeFunctionalityWorksForStrings)
+GTEST_TEST(testMathFunctions, withinRangeFunctionalityWorksForStrings)
 {
     std::string stringValue {"Hello, World!"};
 
@@ -59,7 +59,7 @@ TEST(testMathFunctions, withinRangeFunctionalityWorksForStrings)
     ASSERT_FALSE(withinRange<std::string>(stringValue, "This should be a longer string", "Hello"));
 }
 
-TEST(testMathFunctions, linearInterpolationOf_y_along_x_gives_x)
+GTEST_TEST(testMathFunctions, linearInterpolationOf_y_along_x_gives_x)
 {
     std::vector<long double> x;
 
@@ -69,7 +69,7 @@ TEST(testMathFunctions, linearInterpolationOf_y_along_x_gives_x)
     ASSERT_EQ(x, linearlyInterpolate(x, 0.0L, 10.0L));
 }
 
-TEST(testMathFunctions, differentiationAndIntegrationWithAdvancedMath)
+GTEST_TEST(testMathFunctions, differentiationAndIntegrationWithAdvancedMath)
 {
     std::vector<long double> x;
     std::vector<long double> y;
@@ -104,7 +104,7 @@ TEST(testMathFunctions, differentiationAndIntegrationWithAdvancedMath)
     ASSERT_EQ( centeredFDM2, mathematicalFunction->doCalculation() );
 }
 
-TEST(testMathFunctions, orderOfMagnitudeIsCalculatedCorrectly)
+GTEST_TEST(testMathFunctions, orderOfMagnitudeIsCalculatedCorrectly)
 {
     ASSERT_EQ(-15, findOrderOfMagnitude(1e-15));
     ASSERT_EQ(0, findOrderOfMagnitude(6.8));
@@ -114,12 +114,12 @@ TEST(testMathFunctions, orderOfMagnitudeIsCalculatedCorrectly)
     ASSERT_EQ(18, findOrderOfMagnitude(1.7e18));
 }
 
-TEST(testMathFunctions, _355_over_113_isAnApproximationOfPi)
+GTEST_TEST(testMathFunctions, _355_over_113_isAnApproximationOfPi)
 {
     ASSERT_NEAR(3.14159265, (355.0 / 113.0), findAbsoluteError(3.14159265, 7));
 }
 
-TEST(testMathFunctions, averageAndStandardDeviationOfAVector)
+GTEST_TEST(testMathFunctions, averageAndStandardDeviationOfAVector)
 {
     std::vector<long double> x {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
 
@@ -127,7 +127,7 @@ TEST(testMathFunctions, averageAndStandardDeviationOfAVector)
     ASSERT_NEAR(3.027650, calculateStandardDeviation(x), findAbsoluteError(3.027650, 7));
 }
 
-TEST(testMathFunctions, linearLeastSquaresFittingResultingInVector)
+GTEST_TEST(testMathFunctions, linearLeastSquaresFittingResultingInVector)
 {
     std::vector<long double> x { 1.0,  2.0,  3.0,  4.0,  5.0,  6.0,  7.0,  8.0,  9.0, 10.0 };
     std::vector<long double> y { 2.0,  5.0,  3.0,  7.0,  8.0,  9.0, 12.0, 10.0, 15.0, 20.0 };
@@ -141,7 +141,7 @@ TEST(testMathFunctions, linearLeastSquaresFittingResultingInVector)
     ASSERT_NEAR(0.2139317, fittingResult[2], findAbsoluteError(0.2139317, 7));
 }
 
-TEST(testMathFunctions, linearLeastSquaresFittingResultingInMap)
+GTEST_TEST(testMathFunctions, linearLeastSquaresFittingResultingInMap)
 {
     std::vector<long double> x { 1.0,  2.0,  3.0,  4.0,  5.0,  6.0,  7.0,  8.0,  9.0, 10.0 };
     std::vector<long double> y { 2.0,  5.0,  3.0,  7.0,  8.0,  9.0, 12.0, 10.0, 15.0, 20.0 };
@@ -156,7 +156,7 @@ TEST(testMathFunctions, linearLeastSquaresFittingResultingInMap)
     ASSERT_NEAR(0.2139317, parameters["stdDev(slope)"], findAbsoluteError(0.2139317, 7));
 }
 
-TEST(testMathFunctions, vectorsOfUnequalSizesThrowAndCatchExceptions)
+GTEST_TEST(testMathFunctions, vectorsOfUnequalSizesThrowAndCatchExceptions)
 {
     std::vector<long double> x { 1.0,  2.0,  3.0,  4.0,  5.0,  6.0,  7.0,  8.0,  9.0, 10.0 };
     std::vector<long double> y { 2.0,  5.0,  3.0,  7.0,  8.0,  9.0, 12.0, 10.0, 15.0 };

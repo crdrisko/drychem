@@ -23,13 +23,13 @@ int main(int argc, char** argv)
     return RUN_ALL_TESTS();
 }
 
-TEST(testErrorFunctions, errorSeveritiesConvertToCorrectBooleanValues)
+GTEST_TEST(testErrorFunctions, errorSeveritiesConvertToCorrectBooleanValues)
 {
     ASSERT_FALSE( static_cast<bool>(ErrorSeverity::Warning) );
     ASSERT_TRUE( static_cast<bool>(ErrorSeverity::Fatal) );
 }
 
-TEST(testErrorFunctions, errorPrintsMessageToStandardError)
+GTEST_TEST(testErrorFunctions, errorPrintsMessageToStandardError)
 {
     testing::internal::CaptureStderr();
 
@@ -41,7 +41,7 @@ TEST(testErrorFunctions, errorPrintsMessageToStandardError)
     ASSERT_EQ(output, "Utilities-API:\n\tTesting the output of the non-fatal error message command.\n");
 }
 
-TEST(testErrorFunctions, fatalErrorCausesProgramTermination)
+GTEST_TEST(testErrorFunctions, fatalErrorCausesProgramTermination)
 {
     ASSERT_DEATH(
     {
@@ -51,7 +51,7 @@ TEST(testErrorFunctions, fatalErrorCausesProgramTermination)
     }, "Utilities-API:\n\tFatal Error, Program Terminated.\n");
 }
 
-TEST(testErrorFunctions, readabilityOfConstructorIsEnhancedWithErrorSeverities)
+GTEST_TEST(testErrorFunctions, readabilityOfConstructorIsEnhancedWithErrorSeverities)
 {
     Exception exceptFatal1 {"Utilities-API", "This would be the error message.", true};
     ASSERT_TRUE( exceptFatal1.isFatal() );
@@ -67,7 +67,7 @@ TEST(testErrorFunctions, readabilityOfConstructorIsEnhancedWithErrorSeverities)
     ASSERT_FALSE( exceptWarning2.isFatal() );
 }
 
-TEST(testErrorFunctions, derivedExceptionClassIsCaughtByParentClass)
+GTEST_TEST(testErrorFunctions, derivedExceptionClassIsCaughtByParentClass)
 {
     testing::internal::CaptureStderr();
 
@@ -97,7 +97,7 @@ TEST(testErrorFunctions, derivedExceptionClassIsCaughtByParentClass)
     ASSERT_EQ(actualOutput, expectedOutput1 + expectedOutput2);
 }
 
-TEST(testErrorFunctions, catchingFatalErrorMustResultInProgramTermination)
+GTEST_TEST(testErrorFunctions, catchingFatalErrorMustResultInProgramTermination)
 {
     ASSERT_DEATH(
     {
@@ -112,7 +112,7 @@ TEST(testErrorFunctions, catchingFatalErrorMustResultInProgramTermination)
     }, "Utilities-API Fatal Error:\n\tMust terminate program.\n");
 }
 
-TEST(testErrorFunctions, invalidInputExceptionResultsInProgramTermination)
+GTEST_TEST(testErrorFunctions, invalidInputExceptionResultsInProgramTermination)
 {
     InvalidInputException invalid_input {"Utilities-API"};
     ASSERT_TRUE( invalid_input.isFatal() );
@@ -130,7 +130,7 @@ TEST(testErrorFunctions, invalidInputExceptionResultsInProgramTermination)
     }, "Utilities-API Fatal Error:\n\tUser supplied input is invalid.\n");
 }
 
-TEST(testErrorFunctions, invalidInputExceptionPrintsNonDefaultMessage)
+GTEST_TEST(testErrorFunctions, invalidInputExceptionPrintsNonDefaultMessage)
 {
     ASSERT_DEATH(
     {
@@ -145,7 +145,7 @@ TEST(testErrorFunctions, invalidInputExceptionPrintsNonDefaultMessage)
     }, "Utilities-API Fatal Error:\n\tLet's throw a fatal error.\n");
 }
 
-TEST(testErrorFunctions, fileNotFoundExceptionResultsInProgramTermination)
+GTEST_TEST(testErrorFunctions, fileNotFoundExceptionResultsInProgramTermination)
 {
     FileNotFoundException file_not_found {"Utilities-API", "test.cpp"};
     ASSERT_TRUE( file_not_found.isFatal() );

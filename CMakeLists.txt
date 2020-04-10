@@ -3,6 +3,17 @@ cmake_minimum_required(VERSION 3.10.0)
 project(Utilities-API VERSION 1.1.0)
 
 
+### Options ###
+option(utils-api_build_tests "Build all unit tests in the test directory." OFF)
+option(utils-api_coverage "Turn on coverage options for use with lcov, gcov, and/or coveralls." OFF)
+
+if (utils-api_coverage)
+    set(utils-api_build_tests ON)
+    set(CMAKE_BUILD_TYPE "Debug")
+    set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} --coverage)
+endif()
+
+
 ### Compilation Options ###
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
@@ -59,10 +70,9 @@ endforeach()
 
 
 ### Unit Testing ###
-option(utils-api_build_tests "Build all unit tests in the test directory." OFF)
-
 if (utils-api_build_tests)
     find_package(GTest)
+    find_package(Threads)
 
     if (NOT ${GTest_FOUND})
         ## If googletest isn't installed or can't be found, download it from github ##
@@ -74,7 +84,6 @@ if (utils-api_build_tests)
     endif()
 
     include_directories(${GTEST_INCLUDE_DIRS})
-    set(CMAKE_CXX_FLAGS -pthread)
 
     add_subdirectory(test)
 endif()
