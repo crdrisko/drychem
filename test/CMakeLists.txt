@@ -6,6 +6,9 @@ enable_testing()
 
 
 ### Tests ###
+newTest(TESTNAME Container
+        INTERIOR_DIRECTORY TestContainers)
+
 newTest(TESTNAME Error
         INTERIOR_DIRECTORY TestErrors)
 

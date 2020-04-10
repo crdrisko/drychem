@@ -2,13 +2,13 @@
 language: cpp
 os:
   - linux
-  # - osx
+  - osx
 compiler:
-#  - clang
+  - clang
   - gcc
-# osx_image:
-#   - xcode11.2
-#   - xcode10.1
+osx_image:
+  - xcode11.2
+  - xcode10.1
 dist: bionic
 arch:
   - arm64
@@ -17,22 +17,37 @@ arch:
 notifications:
   email: false
 
-addons:
-  apt:
-    packages:
-      - python-pip
-      - lcov
 
-
-### Installation procedure ###
-install:
-  - if [ $TRAVIS_OS_NAME = linux ]; then pip install --user cpp-coveralls; fi
+### Standard Installation Procedure ###
 script:
   - mkdir build && cd build
-  - cmake ../. -Dutils-api_coverage=ON
+  - cmake ../. -Dutils-api_build_tests=ON
   - make && sudo make install
   - cd test
   - ctest
-  - lcov --directory . --capture --output-file coverage.info
-  - lcov --remove coverage.info '*gtest*' '*/test/*' '/usr/*' --output-file coverage.info
-  - coveralls -r ../../. --l coverage.info -n
+
+
+### Provide Code Coverage Reports ###
+matrix:
+  include:
+    - os: linux
+      dist: bionic
+      compiler: gcc
+      arch: amd64
+      addons:
+        apt:
+          packages:
+            - python-pip
+            - lcov
+          update: true
+      install:
+        - if [ $TRAVIS_OS_NAME = linux ]; then pip install --user cpp-coveralls; fi
+      script:
+        - mkdir build && cd build
+        - cmake ../. -Dutils-api_coverage=ON
+        - make && sudo make install
+        - cd test
+        - ctest
+        - lcov --directory . --capture --output-file coverage.info
+        - lcov --remove coverage.info '*gtest*' '*/test/*' '/usr/*' --output-file coverage.info
+        - coveralls -r ../../. --l coverage.info -n
