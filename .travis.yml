@@ -26,7 +26,7 @@ addons:
 
 ### Installation procedure ###
 install:
-  - if [ $TRAVIS_OS_NAME = linux ]; then sudo apt-get upgrade gcov pip install --user cpp-coveralls; fi
+  - if [ $TRAVIS_OS_NAME = linux ]; then pip install --user cpp-coveralls; fi
 script:
   - mkdir build && cd build
   - cmake ../. -Dutils-api_coverage=ON
