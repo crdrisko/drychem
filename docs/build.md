@@ -1,4 +1,4 @@
-# Build and Installing C++ Units
+# Building and Installing C++ Units
 
 ## Installation
 

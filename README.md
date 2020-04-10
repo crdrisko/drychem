@@ -4,7 +4,7 @@
 
 Welcome to the CPP-Units project! This project is a unit converter written in C++ designed to be extendable with a number of interfaces. Currently, the public API of the project is in the development stage, but I hope to add a command line interface (CLI), graphical user interface (GUI), and web application very soon. Each of these interfaces will serve to help my software development skills by focusing on a singular project I can continue to enhance as I learn more.
 
-<!--More detailed documentation for using cpp-units can be found in the [`docs/primer.md`](https://github.com/crdrisko/cpp-units/tree/master/docs/primer.md) file.-->
+More detailed documentation for using cpp-units can be found in the [`docs/primer.md`](https://github.com/crdrisko/cpp-units/tree/master/docs/primer.md) file.
 
 ## Features
 
