@@ -49,5 +49,5 @@ matrix:
         - cd test
         - ctest
         - lcov --directory . --capture --output-file coverage.info
-        - lcov --remove coverage.info '*gtest*' '*/test/*' '/usr/*' --output-file coverage.info
+        - lcov --remove coverage.info '*gtest*' '*/utils-api/*' '*/test/*' '/usr/*' --output-file coverage.info
         - coveralls -r ../../. --l coverage.info -n

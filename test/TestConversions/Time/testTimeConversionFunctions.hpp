@@ -4,15 +4,17 @@
 // Name: testTimeConversionFunctions.hpp - Version 1.0.0
 // Author: cdrisko
 // Date: 03/06/2020-11:34:29
-// Description: Provides 100% unit test coverage over all time conversion functions
+// Description: Provides ~100% unit test coverage over all time conversion functions
 
 #ifndef TESTTIMECONVERSIONFUNCTIONS_HPP
 #define TESTTIMECONVERSIONFUNCTIONS_HPP
 
+#include <utils-api/errors.hpp>
+
 #include "../testAssertions.hpp"
 #include "../../../include/cpp-units/physicalQuantities.hpp"
 
-TEST(testTimeConversionFunctions, conversionsOfTimeFrom_s)
+GTEST_TEST(testTimeConversionFunctions, conversionsOfTimeFrom_s)
 {
     assertThat<PhysicalQuantities::Time>("s", "s").isConvertedTo(1.0);
     assertThat<PhysicalQuantities::Time>("s", "min").isConvertedToAValueNear(0.01666666667, 10);
@@ -23,7 +25,7 @@ TEST(testTimeConversionFunctions, conversionsOfTimeFrom_s)
     assertThat<PhysicalQuantities::Time>("s", "years").isConvertedToAValueNear(3.170577045e-8, 10);
 }
 
-TEST(testTimeConversionFunctions, conversionsOfTimeFrom_min)
+GTEST_TEST(testTimeConversionFunctions, conversionsOfTimeFrom_min)
 {
     assertThat<PhysicalQuantities::Time>("min", "s").isConvertedTo(60.0);
     assertThat<PhysicalQuantities::Time>("min", "min").isConvertedTo(1.0);
@@ -34,7 +36,7 @@ TEST(testTimeConversionFunctions, conversionsOfTimeFrom_min)
     assertThat<PhysicalQuantities::Time>("min", "years").isConvertedToAValueNear(1.902346227e-6, 10);
 }
 
-TEST(testTimeConversionFunctions, conversionsOfTimeFrom_hr)
+GTEST_TEST(testTimeConversionFunctions, conversionsOfTimeFrom_hr)
 {
     assertThat<PhysicalQuantities::Time>("hr", "s").isConvertedTo(3600.0);
     assertThat<PhysicalQuantities::Time>("hr", "min").isConvertedTo(60.0);
@@ -45,7 +47,7 @@ TEST(testTimeConversionFunctions, conversionsOfTimeFrom_hr)
     assertThat<PhysicalQuantities::Time>("hr", "years").isConvertedToAValueNear(1.141407736e-4, 10);
 }
 
-TEST(testTimeConversionFunctions, conversionsOfTimeFrom_days)
+GTEST_TEST(testTimeConversionFunctions, conversionsOfTimeFrom_days)
 {
     assertThat<PhysicalQuantities::Time>("days", "s").isConvertedTo(8.64e4);
     assertThat<PhysicalQuantities::Time>("days", "min").isConvertedTo(1440.0);
@@ -56,7 +58,7 @@ TEST(testTimeConversionFunctions, conversionsOfTimeFrom_days)
     assertThat<PhysicalQuantities::Time>("days", "years").isConvertedToAValueNear(2.739378567e-3, 10);
 }
 
-TEST(testTimeConversionFunctions, conversionsOfTimeFrom_weeks)
+GTEST_TEST(testTimeConversionFunctions, conversionsOfTimeFrom_weeks)
 {
     assertThat<PhysicalQuantities::Time>("weeks", "s").isConvertedTo(6.048e5);
     assertThat<PhysicalQuantities::Time>("weeks", "min").isConvertedTo(1.008e4);
@@ -67,7 +69,7 @@ TEST(testTimeConversionFunctions, conversionsOfTimeFrom_weeks)
     assertThat<PhysicalQuantities::Time>("weeks", "years").isConvertedToAValueNear(0.01917564997, 10);
 }
 
-TEST(testTimeConversionFunctions, conversionsOfTimeFrom_months)
+GTEST_TEST(testTimeConversionFunctions, conversionsOfTimeFrom_months)
 {
     assertThat<PhysicalQuantities::Time>("months", "s").isConvertedTo(2.628e6);
     assertThat<PhysicalQuantities::Time>("months", "min").isConvertedTo(43'800.0);
@@ -78,7 +80,7 @@ TEST(testTimeConversionFunctions, conversionsOfTimeFrom_months)
     assertThat<PhysicalQuantities::Time>("months", "years").isConvertedToAValueNear(0.08332276474, 10);
 }
 
-TEST(testTimeConversionFunctions, conversionsOfTimeFrom_years)
+GTEST_TEST(testTimeConversionFunctions, conversionsOfTimeFrom_years)
 {
     assertThat<PhysicalQuantities::Time>("years", "s").isConvertedTo(3.154e7);
     assertThat<PhysicalQuantities::Time>("years", "min").isConvertedToAValueNear(5.256666667e5, 10);
@@ -87,6 +89,47 @@ TEST(testTimeConversionFunctions, conversionsOfTimeFrom_years)
     assertThat<PhysicalQuantities::Time>("years", "weeks").isConvertedToAValueNear(52.14947090, 10);
     assertThat<PhysicalQuantities::Time>("years", "months").isConvertedToAValueNear(12.00152207, 10);
     assertThat<PhysicalQuantities::Time>("years", "years").isConvertedTo(1.0);
+}
+
+GTEST_TEST(testTimeConversionFunctions, TimeWillThrowIfInvalidInputIsSupplied)
+{
+    PhysicalQuantities::Time value {1.0};
+
+    ASSERT_DEATH(
+    {
+        try
+        {
+            value.convertQuantity("yrs", "s");
+        }
+        catch(const Utilities_API::Errors::Exception& except)
+        {
+            except.handleErrorWithMessage();
+        }
+    }, "CPP-Units Fatal Error:\n\tyrs is not a valid unit.\n");
+
+    ASSERT_DEATH(
+    {
+        try
+        {
+            value.convertQuantity("years", "seconds");
+        }
+        catch(const Utilities_API::Errors::Exception& except)
+        {
+            except.handleErrorWithMessage();
+        }
+    }, "CPP-Units Fatal Error:\n\tseconds is not a valid unit.\n");
+
+    ASSERT_DEATH(
+    {
+        try
+        {
+            value.convertQuantity("years", "kcal_mol");
+        }
+        catch(const Utilities_API::Errors::Exception& except)
+        {
+            except.handleErrorWithMessage();
+        }
+    }, "CPP-Units Fatal Error:\n\tInitial and final units must be of the same type.\n");
 }
 
 #endif

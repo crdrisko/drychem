@@ -241,18 +241,18 @@ namespace PhysicalQuantities::Conversions
         long double internalShearingFactor {0.0};
         long double externalShearingFactor {0.0};
 
-        Utilities_API::Errors::ErrorMessagePtr errorMessage
-            = std::make_shared<Utilities_API::Errors::FatalErrorMessage>("CPP-Units", 1);
-
         // Sanitize User Input
         if ( conversionMap.count(initialUnits) != 1 )
-            errorMessage->printErrorMessage(initialUnits + " is not a valid unit.");
+            throw Utilities_API::Errors::InvalidInputException { "CPP-Units",
+                initialUnits + " is not a valid unit." };
 
         else if ( conversionMap.count(finalUnits) != 1 )
-            errorMessage->printErrorMessage(finalUnits + " is not a valid unit.");
+            throw Utilities_API::Errors::InvalidInputException { "CPP-Units",
+                finalUnits + " is not a valid unit." };
 
         else if ( conversionMap[initialUnits] != conversionMap[finalUnits] )
-            errorMessage->printErrorMessage("Initial and final units must be of the same type.");
+            throw Utilities_API::Errors::InvalidInputException { "CPP-Units",
+                "Initial and final units must be of the same type." };
 
         else if (initialUnits == finalUnits)
             return magnitude;

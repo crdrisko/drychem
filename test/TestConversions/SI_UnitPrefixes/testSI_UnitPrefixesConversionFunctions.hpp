@@ -4,15 +4,17 @@
 // Name: testSI_UnitPrefixesConversionFunctions.hpp - Version 1.0.0
 // Author: cdrisko
 // Date: 03/06/2020-11:34:29
-// Description: Provides 100% unit test coverage over all si unit prefix conversion functions
+// Description: Provides ~100% unit test coverage over all si unit prefix conversion functions
 
 #ifndef TESTSI_UNITPREFIXESCONVERSIONFUNCTIONS_HPP
 #define TESTSI_UNITPREFIXESCONVERSIONFUNCTIONS_HPP
 
+#include <utils-api/errors.hpp>
+
 #include "../testAssertions.hpp"
 #include "../../../include/cpp-units/physicalQuantities.hpp"
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_yotta)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_yotta)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("yotta", "yotta").isConvertedTo(1e0);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("yotta", "zetta").isConvertedTo(1e3);
@@ -37,7 +39,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_yo
     assertThat<PhysicalQuantities::DimensionlessQuantity>("yotta", "yocto").isConvertedTo(1e48);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_zetta)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_zetta)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("zetta", "yotta").isConvertedTo(1e-3);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("zetta", "zetta").isConvertedTo(1e0);
@@ -62,7 +64,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_ze
     assertThat<PhysicalQuantities::DimensionlessQuantity>("zetta", "yocto").isConvertedTo(1e45);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_exa)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_exa)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("exa", "yotta").isConvertedTo(1e-6);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("exa", "zetta").isConvertedTo(1e-3);
@@ -87,7 +89,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_ex
     assertThat<PhysicalQuantities::DimensionlessQuantity>("exa", "yocto").isConvertedTo(1e42);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_peta)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_peta)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("peta", "yotta").isConvertedTo(1e-9);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("peta", "zetta").isConvertedTo(1e-6);
@@ -112,7 +114,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_pe
     assertThat<PhysicalQuantities::DimensionlessQuantity>("peta", "yocto").isConvertedTo(1e39);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_tera)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_tera)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("tera", "yotta").isConvertedTo(1e-12);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("tera", "zetta").isConvertedTo(1e-9);
@@ -137,7 +139,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_te
     assertThat<PhysicalQuantities::DimensionlessQuantity>("tera", "yocto").isConvertedTo(1e36);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_giga)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_giga)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("giga", "yotta").isConvertedTo(1e-15);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("giga", "zetta").isConvertedTo(1e-12);
@@ -162,7 +164,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_gi
     assertThat<PhysicalQuantities::DimensionlessQuantity>("giga", "yocto").isConvertedTo(1e33);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_mega)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_mega)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("mega", "yotta").isConvertedTo(1e-18);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("mega", "zetta").isConvertedTo(1e-15);
@@ -187,7 +189,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_me
     assertThat<PhysicalQuantities::DimensionlessQuantity>("mega", "yocto").isConvertedTo(1e30);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_kilo)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_kilo)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("kilo", "yotta").isConvertedTo(1e-21);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("kilo", "zetta").isConvertedTo(1e-18);
@@ -212,7 +214,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_ki
     assertThat<PhysicalQuantities::DimensionlessQuantity>("kilo", "yocto").isConvertedTo(1e27);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_hecto)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_hecto)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("hecto", "yotta").isConvertedTo(1e-22);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("hecto", "zetta").isConvertedTo(1e-19);
@@ -237,7 +239,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_he
     assertThat<PhysicalQuantities::DimensionlessQuantity>("hecto", "yocto").isConvertedTo(1e26);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_deka)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_deka)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("deka", "yotta").isConvertedTo(1e-23);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("deka", "zetta").isConvertedTo(1e-20);
@@ -262,7 +264,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_de
     assertThat<PhysicalQuantities::DimensionlessQuantity>("deka", "yocto").isConvertedTo(1e25);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_base)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_base)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("base", "yotta").isConvertedTo(1e-24);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("base", "zetta").isConvertedTo(1e-21);
@@ -287,7 +289,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_ba
     assertThat<PhysicalQuantities::DimensionlessQuantity>("base", "yocto").isConvertedTo(1e24);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_deci)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_deci)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("deci", "yotta").isConvertedTo(1e-25);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("deci", "zetta").isConvertedTo(1e-22);
@@ -312,7 +314,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_de
     assertThat<PhysicalQuantities::DimensionlessQuantity>("deci", "yocto").isConvertedTo(1e23);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_centi)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_centi)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("centi", "yotta").isConvertedTo(1e-26);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("centi", "zetta").isConvertedTo(1e-23);
@@ -337,7 +339,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_ce
     assertThat<PhysicalQuantities::DimensionlessQuantity>("centi", "yocto").isConvertedTo(1e22);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_milli)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_milli)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("milli", "yotta").isConvertedTo(1e-27);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("milli", "zetta").isConvertedTo(1e-24);
@@ -362,7 +364,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_mi
     assertThat<PhysicalQuantities::DimensionlessQuantity>("milli", "yocto").isConvertedTo(1e21);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_micro)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_micro)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("micro", "yotta").isConvertedTo(1e-30);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("micro", "zetta").isConvertedTo(1e-27);
@@ -387,7 +389,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_mi
     assertThat<PhysicalQuantities::DimensionlessQuantity>("micro", "yocto").isConvertedTo(1e18);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_nano)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_nano)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("nano", "yotta").isConvertedTo(1e-33);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("nano", "zetta").isConvertedTo(1e-30);
@@ -412,7 +414,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_na
     assertThat<PhysicalQuantities::DimensionlessQuantity>("nano", "yocto").isConvertedTo(1e15);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_pico)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_pico)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("pico", "yotta").isConvertedTo(1e-36);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("pico", "zetta").isConvertedTo(1e-33);
@@ -437,7 +439,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_pi
     assertThat<PhysicalQuantities::DimensionlessQuantity>("pico", "yocto").isConvertedTo(1e12);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_femto)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_femto)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("femto", "yotta").isConvertedTo(1e-39);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("femto", "zetta").isConvertedTo(1e-36);
@@ -462,7 +464,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_fe
     assertThat<PhysicalQuantities::DimensionlessQuantity>("femto", "yocto").isConvertedTo(1e9);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_atto)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_atto)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("atto", "yotta").isConvertedTo(1e-42);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("atto", "zetta").isConvertedTo(1e-39);
@@ -487,7 +489,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_at
     assertThat<PhysicalQuantities::DimensionlessQuantity>("atto", "yocto").isConvertedTo(1e6);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_zepto)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_zepto)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("zepto", "yotta").isConvertedTo(1e-45);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("zepto", "zetta").isConvertedTo(1e-42);
@@ -512,7 +514,7 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_ze
     assertThat<PhysicalQuantities::DimensionlessQuantity>("zepto", "yocto").isConvertedTo(1e3);
 }
 
-TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_yocto)
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_yocto)
 {
     assertThat<PhysicalQuantities::DimensionlessQuantity>("yocto", "yotta").isConvertedTo(1e-48);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("yocto", "zetta").isConvertedTo(1e-45);
@@ -535,6 +537,47 @@ TEST(testSI_UnitPrefixesConversionFunctions, conversionsOfSI_UnitPrefixesFrom_yo
     assertThat<PhysicalQuantities::DimensionlessQuantity>("yocto", "atto").isConvertedTo(1e-6);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("yocto", "zepto").isConvertedTo(1e-3);
     assertThat<PhysicalQuantities::DimensionlessQuantity>("yocto", "yocto").isConvertedTo(1e0);
+}
+
+GTEST_TEST(testSI_UnitPrefixesConversionFunctions, SI_UnitPrefixesWillThrowIfInvalidInputIsSupplied)
+{
+    PhysicalQuantities::DimensionlessQuantity value {1.0};
+
+    ASSERT_DEATH(
+    {
+        try
+        {
+            value.convertQuantity("y", "femto");
+        }
+        catch(const Utilities_API::Errors::Exception& except)
+        {
+            except.handleErrorWithMessage();
+        }
+    }, "CPP-Units Fatal Error:\n\ty is not a valid unit.\n");
+
+    ASSERT_DEATH(
+    {
+        try
+        {
+            value.convertQuantity("yocto", "f");
+        }
+        catch(const Utilities_API::Errors::Exception& except)
+        {
+            except.handleErrorWithMessage();
+        }
+    }, "CPP-Units Fatal Error:\n\tf is not a valid unit.\n");
+
+    ASSERT_DEATH(
+    {
+        try
+        {
+            value.convertQuantity("yocto", "Ang");
+        }
+        catch(const Utilities_API::Errors::Exception& except)
+        {
+            except.handleErrorWithMessage();
+        }
+    }, "CPP-Units Fatal Error:\n\tInitial and final units must be of the same type.\n");
 }
 
 #endif

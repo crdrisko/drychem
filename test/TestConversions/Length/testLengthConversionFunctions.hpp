@@ -4,15 +4,17 @@
 // Name: testLengthConversionFunctions.hpp - Version 1.0.0
 // Author: cdrisko
 // Date: 03/06/2020-11:34:29
-// Description: Provides 100% unit test coverage over all length conversion functions
+// Description: Provides ~100% unit test coverage over all length conversion functions
 
 #ifndef TESTLENGTHCONVERSIONFUNCTIONS_HPP
 #define TESTLENGTHCONVERSIONFUNCTIONS_HPP
 
+#include <utils-api/errors.hpp>
+
 #include "../testAssertions.hpp"
 #include "../../../include/cpp-units/physicalQuantities.hpp"
 
-TEST(testLengthConversionFunctions, conversionsOfLengthFrom_m)
+GTEST_TEST(testLengthConversionFunctions, conversionsOfLengthFrom_m)
 {
     assertThat<PhysicalQuantities::Length>("m", "m").isConvertedTo(1.0);
     assertThat<PhysicalQuantities::Length>("m", "Ang").isConvertedTo(1e10);
@@ -22,7 +24,7 @@ TEST(testLengthConversionFunctions, conversionsOfLengthFrom_m)
     assertThat<PhysicalQuantities::Length>("m", "mil").isConvertedTo(6.213712e-4);
 }
 
-TEST(testLengthConversionFunctions, conversionsOfLengthFrom_Ang)
+GTEST_TEST(testLengthConversionFunctions, conversionsOfLengthFrom_Ang)
 {
     assertThat<PhysicalQuantities::Length>("Ang", "m").isConvertedTo(1e-10);
     assertThat<PhysicalQuantities::Length>("Ang", "Ang").isConvertedTo(1.0);
@@ -32,7 +34,7 @@ TEST(testLengthConversionFunctions, conversionsOfLengthFrom_Ang)
     assertThat<PhysicalQuantities::Length>("Ang", "mil").isConvertedToAValueNear(6.213712e-14, 7);
 }
 
-TEST(testLengthConversionFunctions, conversionsOfLengthFrom_in)
+GTEST_TEST(testLengthConversionFunctions, conversionsOfLengthFrom_in)
 {
     assertThat<PhysicalQuantities::Length>("in", "m").isConvertedToAValueNear(0.0254, 8);
     assertThat<PhysicalQuantities::Length>("in", "Ang").isConvertedToAValueNear(2.54e8, 8);
@@ -42,7 +44,7 @@ TEST(testLengthConversionFunctions, conversionsOfLengthFrom_in)
     assertThat<PhysicalQuantities::Length>("in", "mil").isConvertedToAValueNear(1.578283e-5, 7);
 }
 
-TEST(testLengthConversionFunctions, conversionsOfLengthFrom_ft)
+GTEST_TEST(testLengthConversionFunctions, conversionsOfLengthFrom_ft)
 {
     assertThat<PhysicalQuantities::Length>("ft", "m").isConvertedToAValueNear(0.3048, 7);
     assertThat<PhysicalQuantities::Length>("ft", "Ang").isConvertedToAValueNear(3.048e9, 7);
@@ -52,7 +54,7 @@ TEST(testLengthConversionFunctions, conversionsOfLengthFrom_ft)
     assertThat<PhysicalQuantities::Length>("ft", "mil").isConvertedToAValueNear(1.893939e-4, 7);
 }
 
-TEST(testLengthConversionFunctions, conversionsOfLengthFrom_yd)
+GTEST_TEST(testLengthConversionFunctions, conversionsOfLengthFrom_yd)
 {
     assertThat<PhysicalQuantities::Length>("yd", "m").isConvertedToAValueNear(0.9144002, 7);
     assertThat<PhysicalQuantities::Length>("yd", "Ang").isConvertedToAValueNear(9.144002e9, 7);
@@ -62,7 +64,7 @@ TEST(testLengthConversionFunctions, conversionsOfLengthFrom_yd)
     assertThat<PhysicalQuantities::Length>("yd", "mil").isConvertedToAValueNear(5.681820e-4, 7);
 }
 
-TEST(testLengthConversionFunctions, conversionsOfLengthFrom_mil)
+GTEST_TEST(testLengthConversionFunctions, conversionsOfLengthFrom_mil)
 {
     assertThat<PhysicalQuantities::Length>("mil", "m").isConvertedToAValueNear(1609.344, 7);
     assertThat<PhysicalQuantities::Length>("mil", "Ang").isConvertedToAValueNear(1.609344e13, 7);
@@ -70,6 +72,47 @@ TEST(testLengthConversionFunctions, conversionsOfLengthFrom_mil)
     assertThat<PhysicalQuantities::Length>("mil", "ft").isConvertedToAValueNear(5280.00, 7);
     assertThat<PhysicalQuantities::Length>("mil", "yd").isConvertedToAValueNear(1760.0, 7);
     assertThat<PhysicalQuantities::Length>("mil", "mil").isConvertedTo(1.0);
+}
+
+GTEST_TEST(testLengthConversionFunctions, lengthWillThrowIfInvalidInputIsSupplied)
+{
+    PhysicalQuantities::Length value {1.0};
+
+    ASSERT_DEATH(
+    {
+        try
+        {
+            value.convertQuantity("miles", "m");
+        }
+        catch(const Utilities_API::Errors::Exception& except)
+        {
+            except.handleErrorWithMessage();
+        }
+    }, "CPP-Units Fatal Error:\n\tmiles is not a valid unit.\n");
+
+    ASSERT_DEATH(
+    {
+        try
+        {
+            value.convertQuantity("mil", "meters");
+        }
+        catch(const Utilities_API::Errors::Exception& except)
+        {
+            except.handleErrorWithMessage();
+        }
+    }, "CPP-Units Fatal Error:\n\tmeters is not a valid unit.\n");
+
+    ASSERT_DEATH(
+    {
+        try
+        {
+            value.convertQuantity("mil", "mol");
+        }
+        catch(const Utilities_API::Errors::Exception& except)
+        {
+            except.handleErrorWithMessage();
+        }
+    }, "CPP-Units Fatal Error:\n\tInitial and final units must be of the same type.\n");
 }
 
 #endif
