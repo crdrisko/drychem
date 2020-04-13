@@ -12,7 +12,7 @@
 
 - [Bash Scripts and Programs](#Bash-Scripts-and-Programs)
 
-## C++ Modules and Librarie
+## C++ Modules and Libraries
 
 The C++ modules which make up the [public API](https://github.com/crdrisko/utilities-api/tree/master/include) of this repository are all organized in the same way, and by including the `module.hpp` file (which `#include`'s the internal files) features can be added without changing the interface of the module. The following tree diagram shows how a sample module (Module 1), would be organized in the API:
 
