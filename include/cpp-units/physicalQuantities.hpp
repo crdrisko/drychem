@@ -51,6 +51,7 @@ namespace PhysicalQuantities
     DeclareNewPhysicalQuantity(Velocity, _m_s, 1, 0, -1)
 
     DeclareNewPhysicalQuantity(Action, _Js, 2, 2, -2)
+    DeclareNewPhysicalQuantity(AngularVelocity, _m2_s, 2, 0, -1)
     DeclareNewPhysicalQuantity(Energy, _J, 2, 1, -2)
     DeclareNewPhysicalQuantity(Frequency, _Hz, 0, 0, -1)
     DeclareNewPhysicalQuantity(WaveNumber, _1_m, -1, 0, 0)
@@ -172,11 +173,6 @@ namespace PhysicalQuantities
         constexpr Action plancksConstant = 6.62607015e-34_Js;
         constexpr Velocity speedOfLight = 299'792'458.0_m_s;
     }
-
-
-    // Limit the scope of the preprocessing macros we used by undefining them here
-    #undef DeclareNewPhysicalQuantity
-    #undef DeclareAdditionalLiteral
 }
 
 #endif

@@ -16,6 +16,11 @@
 
 #include "../../include/cpp-units/physicalQuantities.hpp"
 
+namespace PhysicalQuantities
+{
+    DeclareNewPhysicalQuantity(LuminousIntensity, _cd, 0, 0, 0, 0, 0, 0, 1)
+}
+
 using namespace PhysicalQuantities;
 using namespace PhysicalQuantities::Literals;
 
@@ -23,6 +28,13 @@ int main(int argc, char** argv)
 {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
+}
+
+GTEST_TEST(testMiscellaneousUnitFunctions, weCanCreateOurOwnPhysicalQuantities)
+{
+    LuminousIntensity luminousIntensity = -5.6_cd;
+
+    ASSERT_DOUBLE_EQ(-5.6, luminousIntensity.getMagnitude());
 }
 
 GTEST_TEST(testMiscellaneousUnitFunctions, overloadedStreamOperatorPrintsMagnitudeToStandardOut)
