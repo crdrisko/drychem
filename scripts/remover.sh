@@ -1,8 +1,8 @@
 #!/bin/bash
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
-# Licensed under the MIT License. See the LICENSE file in the project root for license information.
+# Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: remover.sh - Version 1.0.0
+# Name: remover.sh - Version 1.0.1
 # Author: crdrisko
 # Date: 01/31/2020-14:45:40
 # Description: Remove all files containing the same fileName or extension
@@ -22,33 +22,33 @@ printHelpMessage()      #@ DESCRIPTION: Print the remover program's help message
     printf "EXAMPLE: remover -e -w txt\n\n"
 }
 
-rmStart()       #@ DESCRIPTION: Remove all files starting with $1
-{               #@ USAGE: rmStart word
+rmStart()               #@ DESCRIPTION: Remove all files starting with $1
+{                       #@ USAGE: rmStart word
     printf "CONFIRM: Delete all files starting with %s? (y/n) " "$1"
-    read -sn1
+    read -rsn1
     case $REPLY in
         y|Y) printf "Confirmed.\n"
-             for file in ${1?}*
+             for file in "${1?}"*
              do
-                 rm $file
+                 rm "$file"
              done ;;
-        n|N) printFatalErrorMessage 1 "Exiting." ;;
-          *) printFatalErrorMessage 2 "Not a valid option." ;;
+        n|N) printFatalErrorMessage 2 "Exiting." ;;
+          *) printFatalErrorMessage 3 "Not a valid option." ;;
     esac
 }
 
-rmEnd()         #@ DESCRIPTION: Remove all files ending with $1
-{               #@ USAGE: rmEnd word
+rmEnd()                 #@ DESCRIPTION: Remove all files ending with $1
+{                       #@ USAGE: rmEnd word
     printf "CONFIRM: Delete all files ending with %s? (y/n) " "$1"
-    read -sn1
+    read -rsn1
     case $REPLY in
         y|Y) printf "Confirmed.\n"
-             for file in *${1?}
+             for file in *"${1?}"
              do
-                 rm $file
+                 rm "$file"
              done ;;
-        n|N) printFatalErrorMessage 1 "Exiting." ;;
-          *) printFatalErrorMessage 2 "Not a valid option." ;;
+        n|N) printFatalErrorMessage 2 "Exiting." ;;
+          *) printFatalErrorMessage 3 "Not a valid option." ;;
     esac
 }
 
@@ -66,19 +66,20 @@ do
         w) word=$OPTARG ;;
         s) start=1 ;;
         e) end=1 ;;
-        v) verbose=1 ;;
+        v) export verbose=1 ;;
         h) printHelpMessage && printFatalErrorMessage 0 ;;
+        *) printFatalErrorMessage 1 "Invalid option flag passed to program." ;;
     esac
 done
 
 
 ### Main Code ###
-if [ $start -eq 1 ] && [ $end -eq 0 ]
+if [[ $start -eq 1 && $end -eq 0 ]]
 then
-    rmStart ${word:?Word must be set}
-elif [ $end -eq 1 ] && [ $start -eq 0 ]
+    rmStart "${word:?Word must be set}"
+elif [[ $end -eq 1 && $start -eq 0 ]]
 then
-    rmEnd ${word:?Word must be set}
+    rmEnd "${word:?Word must be set}"
 else
-    printFatalErrorMessage 3 "One and only one start/end option must be set.\n"
+    printFatalErrorMessage 4 "One and only one start/end option must be set.\n"
 fi

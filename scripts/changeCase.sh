@@ -1,8 +1,8 @@
 #!/bin/bash
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
-# Licensed under the MIT License. See the LICENSE file in the project root for license information.
+# Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: changeCase.sh - Version 1.0.0
+# Name: changeCase.sh - Version 1.0.2
 # Author: crdrisko
 # Date: 01/31/2020-14:45:49
 # Description: Script to change the case of an input string
@@ -23,12 +23,12 @@ printHelpMessage()      #@ DESCRIPTION: Print the changeCase program's help mess
     printf "EXAMPLE: changeCase -f -l -w LOWERCASE\n\n"
 }
 
-to_upper()		#@ DESCRIPTION: Convert the first letter of a word to uppercase
-{				#@ USAGE: to_upper sTRING
+to_upper()		        #@ DESCRIPTION: Convert the first letter of a word to uppercase
+{				        #@ USAGE: to_upper sTRING
     unset _UPR
     unset UPWORD
 
-    if [ ${BASH_VERSINFO[0]} -ge 4 ]
+    if [[ ${BASH_VERSINFO[0]} -ge 4 ]]
     then
         UPWORD=${1^}
     else
@@ -45,13 +45,13 @@ to_upper()		#@ DESCRIPTION: Convert the first letter of a word to uppercase
     fi
 }
 
-upword()		#@ DESCRIPTION: Convert the entire word to uppercase
-{				#@ USAGE: upword string
+upword()		        #@ DESCRIPTION: Convert the entire word to uppercase
+{				        #@ USAGE: upword string
     unset _UPWORD
     unset UPWORD
     local Word=$1
 
-    if [ ${BASH_VERSINFO[0]} -ge 4 ]
+    if [[ ${BASH_VERSINFO[0]} -ge 4 ]]
     then
         UPWORD=${Word^^}
     else
@@ -65,12 +65,12 @@ upword()		#@ DESCRIPTION: Convert the entire word to uppercase
     fi
 }
 
-to_lower()		#@ DESCRIPTION: Convert the first letter of a word to lowercase
-{				#@ USAGE: to_lower String
+to_lower()		        #@ DESCRIPTION: Convert the first letter of a word to lowercase
+{				        #@ USAGE: to_lower String
     unset _LWR
     unset LOWWORD
 
-    if [ ${BASH_VERSINFO[0]} -ge 4 ]
+    if [[ ${BASH_VERSINFO[0]} -ge 4 ]]
     then
         LOWWORD=${1,}
     else
@@ -87,13 +87,13 @@ to_lower()		#@ DESCRIPTION: Convert the first letter of a word to lowercase
     fi
 }
 
-lowword()		#@ DESCRIPTION: Convert the entire word to lowercase
-{				#@ USAGE: lowword STRING
+lowword()		        #@ DESCRIPTION: Convert the entire word to lowercase
+{				        #@ USAGE: lowword STRING
     unset _LOWWORD
     unset LOWWORD
     local Word=$1
 
-    if [ ${BASH_VERSINFO[0]} -ge 4 ]
+    if [[ ${BASH_VERSINFO[0]} -ge 4 ]]
     then
         LOWWORD=${Word,,}
     else
@@ -123,19 +123,20 @@ do
         u) upper=1 ;;
         l) lower=1 ;;
         f) first=1 ;;
-        v) verbose=1 ;;
+        v) export verbose=1 ;;
         h) printHelpMessage && printFatalErrorMessage 0 ;;
+        *) printFatalErrorMessage 1 "Invalid option flag passed to program." ;;
     esac
 done
 
 
 ### Main Code ###
-if [ $upper -eq 1 ] && [ $lower -eq 1 ]
+if [[ $upper -eq 1 && $lower -eq 1 ]]
 then
-    printFatalErrorMessage 1 "Only one of the options: -u or -l can be selected."
-elif [ $upper -eq 1 ] && [ $lower -eq 0 ]
+    printFatalErrorMessage 2 "Only one of the options: -u or -l can be selected."
+elif [[ $upper -eq 1 && $lower -eq 0 ]]
 then
-    if [ ${first:-0} -eq 1 ]
+    if [[ ${first:-0} -eq 1 ]]
     then
         to_upper "${word:?You must supply a word}"
     else
@@ -144,9 +145,9 @@ then
 
     printf "%s\n" "$UPWORD"
 
-elif [ $upper -eq 0 ] && [ $lower -eq 1 ]
+elif [[ $upper -eq 0 && $lower -eq 1 ]]
 then
-    if [ ${first:-0} -eq 1 ]
+    if [[ ${first:-0} -eq 1 ]]
     then
         to_lower "${word:?You must supply a word}"
     else
@@ -156,5 +157,5 @@ then
     printf "%s\n" "$LOWWORD"
 
 else
-    printFatalErrorMessage 2 "Either the upper or lower option must be selected."
+    printFatalErrorMessage 3 "Either the upper or lower option must be selected."
 fi

@@ -1,5 +1,5 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
-// Licensed under the MIT License. See the LICENSE file in the project root for license information.
+// Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: testStringFunctions.cpp - Version 1.0.0
 // Author: cdrisko
@@ -11,9 +11,9 @@
 
 #include <gtest/gtest.h>
 
-#include "../../include/utils-api/strings.hpp"
+#include "../../include/common-utils/strings.hpp"
 
-using namespace Utilities_API::Strings;
+using namespace CommonUtilities::Strings;
 
 std::string stringToSearch {"This is a test of the stringFinder function."};
 

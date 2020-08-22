@@ -1,7 +1,5 @@
-### Functions ###
-
-## Function to find and download external projects from Github ##
-function(externalDownload)
+### Function to find and download external projects from Github ###
+function(UtilsExternalDownload)
     set(options)
     set(one_value_keywords PROJECT
                            REPOSITORY)
@@ -10,7 +8,7 @@ function(externalDownload)
     cmake_parse_arguments(EXTERN_ARGS "${options}" "${one_value_keywords}" "${multi_value_keywords}" ${ARGN})
 
     ## Download and unpack project at configure time ##
-    configure_file(${Utilities-API_SOURCE_DIR}/cmake/CMakeLists.txt.in ${EXTERN_ARGS_PROJECT}-download/CMakeLists.txt)
+    configure_file(${CommonUtilities_SOURCE_DIR}/cmake/CMakeLists.txt.in ${EXTERN_ARGS_PROJECT}-download/CMakeLists.txt)
 
     ## Configuration step ##
     execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
@@ -34,8 +32,9 @@ function(externalDownload)
                      EXCLUDE_FROM_ALL)
 endfunction()
 
-## Function to create a new test from a predefined naming template ##
-function(newTest)
+
+### Function to create a new test from a predefined naming template ###
+function(UtilsNewTest)
     set(options)
     set(one_value_keywords TESTNAME
                            INTERIOR_DIRECTORY)

@@ -1,5 +1,5 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
-// Licensed under the MIT License. See the LICENSE file in the project root for license information.
+// Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: testFileFunctions.cpp - Version 1.0.0
 // Author: cdrisko
@@ -12,9 +12,9 @@
 
 #include <gtest/gtest.h>
 
-#include "../../include/utils-api/files.hpp"
+#include "../../include/common-utils/files.hpp"
 
-using namespace Utilities_API::Files;
+using namespace CommonUtilities::Files;
 
 int main(int argc, char** argv)
 {
@@ -24,10 +24,10 @@ int main(int argc, char** argv)
 
 GTEST_TEST(testFileFunctions, fileNameWithFullPathIsParsedCorrectly)
 {
-    FileName fullFileName {"../../include/utils-api/internal/Files/fileComponents.hpp"};
+    FileName fullFileName {"../../include/common-utils/internal/Files/fileComponents.hpp"};
 
-    ASSERT_EQ("../../include/utils-api/internal/Files/fileComponents.hpp", fullFileName.getFullFileName());
-    ASSERT_EQ("../../include/utils-api/internal/Files", fullFileName.getRelativePathToFile());
+    ASSERT_EQ("../../include/common-utils/internal/Files/fileComponents.hpp", fullFileName.getFullFileName());
+    ASSERT_EQ("../../include/common-utils/internal/Files", fullFileName.getRelativePathToFile());
     ASSERT_EQ("fileComponents.hpp", fullFileName.getBaseFileName());
     ASSERT_EQ("hpp", fullFileName.getFileExtension());
 }
@@ -71,19 +71,19 @@ GTEST_TEST(testFileFunctions, filesThatDontExistThrowFatalExceptions)
     {
         FileName fileNameThatDoesntExist {"test2.txt"};
         FileContents fileContents {fileNameThatDoesntExist};
-    }, "Utilities-API Fatal Error:\n\tUnable to open file: test2.txt\n");
+    }, "Common-Utilities Fatal Error:\n\tUnable to open file: test2.txt\n");
 
 
     ASSERT_DEATH(
     {
         InputFilePtr defaultsTextFile { std::make_shared<TextFile>("test2.txt") };
-    }, "Utilities-API Fatal Error:\n\tUnable to open file: test2.txt\n");
+    }, "Common-Utilities Fatal Error:\n\tUnable to open file: test2.txt\n");
 
 
     ASSERT_DEATH(
     {
         InputFilePtr defaultsTextFile { std::make_shared<MarkupFile>("test2.inp") };
-    }, "Utilities-API Fatal Error:\n\tUnable to open file: test2.inp\n");
+    }, "Common-Utilities Fatal Error:\n\tUnable to open file: test2.inp\n");
 }
 
 GTEST_TEST(testFileFunctions, textFileOpensAndReadsSampleFileCorrectly)

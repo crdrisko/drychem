@@ -4,19 +4,18 @@ include(GoogleTest)
 
 enable_testing()
 
+## Tests ##
+UtilsNewTest(TESTNAME Container
+             INTERIOR_DIRECTORY TestContainers)
 
-### Tests ###
-newTest(TESTNAME Container
-        INTERIOR_DIRECTORY TestContainers)
+UtilsNewTest(TESTNAME Error
+             INTERIOR_DIRECTORY TestErrors)
 
-newTest(TESTNAME Error
-        INTERIOR_DIRECTORY TestErrors)
+UtilsNewTest(TESTNAME File
+             INTERIOR_DIRECTORY TestFiles)
 
-newTest(TESTNAME File
-        INTERIOR_DIRECTORY TestFiles)
+UtilsNewTest(TESTNAME Math
+             INTERIOR_DIRECTORY TestMath)
 
-newTest(TESTNAME Math
-        INTERIOR_DIRECTORY TestMath)
-
-newTest(TESTNAME String
-        INTERIOR_DIRECTORY TestStrings)
+UtilsNewTest(TESTNAME String
+             INTERIOR_DIRECTORY TestStrings)

@@ -1,8 +1,8 @@
 #!/bin/bash
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
-# Licensed under the MIT License. See the LICENSE file in the project root for license information.
+# Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: compiler.sh - Version 1.0.0
+# Name: compiler.sh - Version 1.0.1
 # Author: crdrisko
 # Date: 01/31/2020-14:46:06
 # Description: Collects the .cpp files in a directory and compiles them using g++
@@ -25,8 +25,8 @@ printHelpMessage()      #@ DESCRIPTION: Print the compiler program's help messag
     printf "EXAMPLE: compiler -i ../example.cpp -o example.out -V 20\n\n"
 }
 
-validVersion()		#@ DESCRIPTION: Checks entered C++ version against released versions
-{					#@ USAGE: validVersion INT
+validVersion()		    #@ DESCRIPTION: Checks entered C++ version against released versions
+{					    #@ USAGE: validVersion INT
     case $1 in
         98) return 0 ;;  03) return 0 ;;  11) return 0 ;;
         14) return 0 ;;  17) return 0 ;;  20) return 0 ;;
@@ -35,16 +35,16 @@ validVersion()		#@ DESCRIPTION: Checks entered C++ version against released vers
     esac
 }
 
-compileAndRun()     #@ DESCRIPTION: Compile and run the given C++ source code
-{                   #@ USAGE: compileAndRun [ADDITIONAL_ARGUMENTS]
+compileAndRun()         #@ DESCRIPTION: Compile and run the given C++ source code
+{                       #@ USAGE: compileAndRun [ADDITIONAL_ARGUMENTS]
     additionalArguments+=( $1 )
 
     ## Eliminate possibility for failed compilation to still run old output file ##
-    [ -e $outputFile ] && rm $outputFile
+    [[ -e $outputFile ]] && rm "$outputFile"
 
-    g++ "${files[@]}" -o "$outputFile" ${libraries[@]} -std=c++"$version" "${additionalArguments[@]}"
+    g++ "${files[@]}" -o "$outputFile" "${libraries[@]}" -std=c++"$version" "${additionalArguments[@]}"
 
-    [ $run -eq 1 ] && ./"$outputFile"
+    [[ $run -eq 1 ]] && ./"$outputFile"
 }
 
 
@@ -63,14 +63,15 @@ do
         o) outputFile=$OPTARG ;;
         i) inputFiles+=( $OPTARG ) ;;
         l) libraries+=( "-l"$OPTARG ) ;;
-        V) if validVersion $OPTARG
+        V) if validVersion "$OPTARG"
            then
                version=$OPTARG
            fi ;;
         d) debug=1 ;;
         r) run=1 ;;
-        v) verbose=1 ;;
+        v) export verbose=1 ;;
         h) printHelpMessage && printFatalErrorMessage 0 ;;
+        *) printFatalErrorMessage 1 "Invalid option flag passed to program." ;;
     esac
 done
 
@@ -79,47 +80,49 @@ done
 declare -a files
 
 ## Proper output file specified ##
-[ ${outputFile:?An output file is required} ] && [ ${outputFile#*.} = out ] \
-    || printFatalErrorMessage 1 "Output file, $outputFile, is invalid."
-
-for file in *.cpp
-do
-    files+=( "$file" )                      ## All files in current working directory...
-done
-
-files+=( "${inputFiles[@]}" )               ## ...plus those indicated as input parameters
-
-## Threading option required for googletest on linux machines ##
-for library in ${libraries[@]}
-do
-    if [ ${library##*"-l"} = gtest ] && [[ $OSTYPE == linux* ]]
-    then
-        additionalArguments+=( -pthread )
-    fi
-done
-
-## Raspberry Pi's g++ compiler raises unnecessary warnings by default ##
-[ $OSTYPE = linux-gnueabihf ] && additionalArguments+=( -Wno-psabi )
-
-if [ $debug -eq 0 ]
+if [[ ${outputFile:?An output file is required} && ${outputFile#*.} = out ]]
 then
-    ## Normal compilation without debugging ##
-    [ $debug -eq 0 ] && compileAndRun && printFatalErrorMessage 0
-else
-    ## Debug mode - show input files used in compilation ##
-    set -x
-    compileAndRun -g
-    set +x
+    for file in *.cpp
+    do
+        files+=( "$file" )                      ## All files in current working directory...
+    done
 
-    read -sn1 -p "Continue with debugging (y/n)? "
-    case $REPLY in
-        y|Y) if [[ $OSTYPE == linux* ]]
-             then
-                 gdb "$outputFile"		    ## Debugger installed on linux
-             else
-                 lldb "$outputFile"		    ## Debugger installed on Mac
-             fi ;;
-        n|N) echo && printFatalErrorMessage 3 ;;
-          *) printFatalErrorMessage 4 "Sorry, that wasn't one of the options." ;;
-    esac
+    files+=( "${inputFiles[@]}" )               ## ...plus those indicated as input parameters
+
+    ## Threading option required for googletest on linux machines ##
+    for library in "${libraries[@]}"
+    do
+        if [[ ${library##*"-l"} = gtest && $OSTYPE == linux* ]]
+        then
+            additionalArguments+=( -pthread )
+        fi
+    done
+
+    ## Raspberry Pi's g++ compiler raises unnecessary warnings by default ##
+    [[ $OSTYPE = linux-gnueabihf ]] && additionalArguments+=( -Wno-psabi )
+
+    if [ $debug -eq 0 ]
+    then
+        ## Normal compilation without debugging ##
+        [ $debug -eq 0 ] && compileAndRun && exit
+    else
+        ## Debug mode - show input files used in compilation ##
+        set -x
+        compileAndRun -g
+        set +x
+
+        read -rsn1 -p "Continue with debugging (y/n)? "
+        case $REPLY in
+            y|Y) if [[ $OSTYPE == linux* ]]
+                 then
+                     gdb "$outputFile"		    ## Debugger installed on linux
+                 else
+                     lldb "$outputFile"		    ## Debugger installed on Mac
+                 fi ;;
+            n|N) echo && printFatalErrorMessage 2 ;;
+              *) printFatalErrorMessage 3 "Sorry, that wasn't one of the options." ;;
+        esac
+    fi
+else
+    printFatalErrorMessage 4 "Output file, $outputFile, is invalid."
 fi

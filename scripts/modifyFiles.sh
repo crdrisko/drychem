@@ -1,8 +1,8 @@
 #!/bin/bash
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
-# Licensed under the MIT License. See the LICENSE file in the project root for license information.
+# Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: modifyFiles.sh - Version 1.0.0
+# Name: modifyFiles.sh - Version 1.0.1
 # Author: crdrisko
 # Date: 01/31/2020-14:45:36
 # Description: Modify a file using a wrapper for sed
@@ -37,8 +37,9 @@ do
         o) oldString=$OPTARG ;;
         n) newString=$OPTARG ;;
         f) firstInstance=1 ;;
-        v) verbose=1 ;;
+        v) export verbose=1 ;;
         h) printHelpMessage && printFatalErrorMessage 0 ;;
+        *) printFatalErrorMessage 1 "Invalid option flag passed to program." ;;
     esac
 done
 
@@ -47,7 +48,7 @@ done
 if [ $firstInstance -eq 1 ]
 then
     sed -e "1s/${oldString?}/${newString?}/;t" -e "1,/${oldString?}/s//${newString?}/"\
-        ${fileName?} > tempFile && mv tempFile ${fileName?}
+        "${fileName?}" > tempFile && mv tempFile "${fileName?}"
 else
-    sed "s/${oldString?}/${newString?}/g" ${fileName?} > tempFile && mv tempFile ${fileName?}
+    sed "s/${oldString?}/${newString?}/g" "${fileName?}" > tempFile && mv tempFile "${fileName?}"
 fi

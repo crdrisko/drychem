@@ -1,5 +1,5 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
-// Licensed under the MIT License. See the LICENSE file in the project root for license information.
+// Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: testContainerFunctions.cpp - Version 1.0.0
 // Author: crdrisko
@@ -10,9 +10,9 @@
 
 #include <gtest/gtest.h>
 
-#include "../../include/utils-api/containers.hpp"
+#include "../../include/common-utils/containers.hpp"
 
-using namespace Utilities_API::Containers;
+using namespace CommonUtilities::Containers;
 
 int main(int argc, char** argv)
 {
@@ -24,20 +24,20 @@ GTEST_TEST(testContainerFunctions, differentConstructorsGiveInitializeObjectsAsE
 {
     Vector3D<long double> defaultInitialized {};
 
-    for (size_t i {}; i < 3; ++i)
+    for (std::size_t i {}; i < 3; ++i)
         ASSERT_EQ(0.0, defaultInitialized[i]);
 
 
     std::array<int, 3> sampleArray {1, 2, 3};
     Vector3D<int> arrayInitialized {sampleArray};
 
-    for (size_t i {}; i < 3; ++i)
+    for (std::size_t i {}; i < 3; ++i)
         ASSERT_EQ(sampleArray[i], arrayInitialized[i]);
 
 
     Vector3D<float> valuesInitialized {1.0, 3.0, 5.0};
 
-    for (size_t i {}; i < 3; ++i)
+    for (std::size_t i {}; i < 3; ++i)
         ASSERT_EQ(2 * sampleArray[i] - 1, valuesInitialized[i]);
 }
 
@@ -68,11 +68,11 @@ GTEST_TEST(testContainerFunctions, subscriptOperatorsThrowWhenIndexIsOutOfRange)
         {
             std::cout << sampleVector[3];
         }
-        catch(const Utilities_API::Errors::Exception& except)
+        catch(const CommonUtilities::Errors::Exception& except)
         {
             except.handleErrorWithMessage();
         }
-    }, "Utilities-API Fatal Error:\n\tVector3D index must be within 0 and 2.\n");
+    }, "Common-Utilities Fatal Error:\n\tVector3D index must be within 0 and 2.\n");
 
 
     ASSERT_DEATH(
@@ -81,11 +81,11 @@ GTEST_TEST(testContainerFunctions, subscriptOperatorsThrowWhenIndexIsOutOfRange)
         {
             sampleVector[3] = 2.0;
         }
-        catch(const Utilities_API::Errors::Exception& except)
+        catch(const CommonUtilities::Errors::Exception& except)
         {
             except.handleErrorWithMessage();
         }
-    }, "Utilities-API Fatal Error:\n\tVector3D index must be within 0 and 2.\n");
+    }, "Common-Utilities Fatal Error:\n\tVector3D index must be within 0 and 2.\n");
 }
 
 GTEST_TEST(testContainerFunctions, xyzOperatorsCanReturnAndSetTheInternalData)

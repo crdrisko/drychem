@@ -1,13 +1,13 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
-// Licensed under the MIT License. See the LICENSE file in the project root for license information.
+// Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: vector3D.hpp - Version 1.0.0
 // Author: crdrisko
 // Date: 04/07/2020-11:08:41
 // Description: A vector representing a physical quantity with x, y, and z components
 
-#ifndef UTILITIES_API_VECTOR3D_HPP
-#define UTILITIES_API_VECTOR3D_HPP
+#ifndef COMMON_UTILITIES_VECTOR3D_HPP
+#define COMMON_UTILITIES_VECTOR3D_HPP
 
 #include <array>
 #include <utility>
@@ -15,7 +15,7 @@
 #include "../../errors.hpp"
 #include "../../math.hpp"
 
-namespace Utilities_API::Containers
+namespace CommonUtilities::Containers
 {
     template <typename T>
     class Vector3D
@@ -32,7 +32,7 @@ namespace Utilities_API::Containers
         constexpr const T& operator[](unsigned int index) const
         {
             if ( !Math::withinRange<0, 2>(index) )
-                throw Errors::InvalidInputException{"Utilities-API",
+                throw Errors::InvalidInputException{"Common-Utilities",
                     "Vector3D index must be within 0 and 2."};
 
             return data[index];

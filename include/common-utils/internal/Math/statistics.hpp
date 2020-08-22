@@ -1,13 +1,13 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
-// Licensed under the MIT License. See the LICENSE file in the project root for license information.
+// Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: statistics.hpp - Version 1.0.0
 // Author: cdrisko
 // Date: 02/03/2020-08:22:29
 // Description: Common mathematical function definitions and prototypes relating to statistics
 
-#ifndef UTILITIES_API_STATISTICS_HPP
-#define UTILITIES_API_STATISTICS_HPP
+#ifndef COMMON_UTILITIES_STATISTICS_HPP
+#define COMMON_UTILITIES_STATISTICS_HPP
 
 #include <algorithm>
 #include <cmath>
@@ -19,7 +19,7 @@
 #include "advancedMath.hpp"
 #include "../../errors.hpp"
 
-namespace Utilities_API::Math
+namespace CommonUtilities::Math
 {
     inline int findOrderOfMagnitude(const long double& value)
     {
@@ -68,7 +68,7 @@ namespace Utilities_API::Math
             try
             {
                 if (fittingResults.size() != numberOfFittingParameters)
-                    throw Errors::InvalidInputException{"Utilities-API",
+                    throw Errors::InvalidInputException{"Common-Utilities",
                         "The size of input vector must be equal to " + std::to_string(numberOfFittingParameters)};
             }
             catch(const Errors::Exception& except)

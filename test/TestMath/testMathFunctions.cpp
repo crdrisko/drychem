@@ -1,5 +1,5 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
-// Licensed under the MIT License. See the LICENSE file in the project root for license information.
+// Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: testMathFunctions.cpp - Version 1.0.0
 // Author: cdrisko
@@ -13,9 +13,9 @@
 
 #include <gtest/gtest.h>
 
-#include "../../include/utils-api/math.hpp"
+#include "../../include/common-utils/math.hpp"
 
-using namespace Utilities_API::Math;
+using namespace CommonUtilities::Math;
 
 int main(int argc, char** argv)
 {
@@ -63,7 +63,7 @@ GTEST_TEST(testMathFunctions, linearInterpolationOf_y_along_x_gives_x)
 {
     std::vector<long double> x;
 
-    for (size_t i {}; i <= 10; ++i)
+    for (std::size_t i {}; i <= 10; ++i)
         x.push_back(i);
 
     ASSERT_EQ(x, linearlyInterpolate(x, 0.0L, 10.0L));
@@ -75,7 +75,7 @@ GTEST_TEST(testMathFunctions, differentiationAndIntegrationWithAdvancedMath)
     std::vector<long double> y;
     std::vector<long double> expectedResult;
 
-    for (size_t i {}; i <= 10; ++i)
+    for (std::size_t i {}; i <= 10; ++i)
     {
         x.push_back(i);
         expectedResult.push_back( (x[i] * x[i]) / 2 );
@@ -164,7 +164,7 @@ GTEST_TEST(testMathFunctions, vectorsOfUnequalSizesThrowAndCatchExceptions)
     ASSERT_DEATH(
     {
         auto mathematicalFunction = std::make_shared<LinearLeastSquaresFitting>(x, y);
-    }, "Utilities-API Fatal Error:\n\tThe size of the x and y vectors must be equal.\n");
+    }, "Common-Utilities Fatal Error:\n\tThe size of the x and y vectors must be equal.\n");
 
 
     y.push_back(20.0);
@@ -173,5 +173,5 @@ GTEST_TEST(testMathFunctions, vectorsOfUnequalSizesThrowAndCatchExceptions)
     ASSERT_DEATH(
     {
         auto fittingParameters = fittingMathematicalFunction.mapFittingParametersToLabels(x);
-    }, "Utilities-API Fatal Error:\n\tThe size of input vector must be equal to 3\n");
+    }, "Common-Utilities Fatal Error:\n\tThe size of input vector must be equal to 3\n");
 }

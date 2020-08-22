@@ -1,13 +1,13 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
-// Licensed under the MIT License. See the LICENSE file in the project root for license information.
+// Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: markupFile.hpp - Version 1.0.0
 // Author: cdrisko
 // Date: 01/31/2020-15:39:25
 // Description: Class definition of a file type containing html-like tags separating metadata from data
 
-#ifndef UTILITIES_API_MARKUPFILE_HPP
-#define UTILITIES_API_MARKUPFILE_HPP
+#ifndef COMMON_UTILITIES_MARKUPFILE_HPP
+#define COMMON_UTILITIES_MARKUPFILE_HPP
 
 #include <string>
 #include <string_view>
@@ -16,7 +16,7 @@
 #include "inputFile.hpp"
 #include "../../strings.hpp"
 
-namespace Utilities_API::Files
+namespace CommonUtilities::Files
 {
     class MarkupFile : public InputFile
     {
@@ -28,14 +28,14 @@ namespace Utilities_API::Files
         {
             std::vector<std::string> allDataVector { getFileContents().getContentInFile() };
 
-            for (size_t i {}; i < allDataVector.size(); ++i)
+            for (std::size_t i {}; i < allDataVector.size(); ++i)
             {
                 if ( Strings::stringFinder(metaTag, allDataVector[i]) )
                 {
                     std::string endMetaTag {metaTag};
                     endMetaTag.insert(1, "/");
 
-                    for (size_t j {i + 1}; j < allDataVector.size(); ++j)
+                    for (std::size_t j {i + 1}; j < allDataVector.size(); ++j)
                     {
                         if ( Strings::stringFinder(endMetaTag, allDataVector[j]) )
                             break;
@@ -48,7 +48,7 @@ namespace Utilities_API::Files
                     std::string endDataTag {dataTag};
                     endDataTag.insert(1, "/");
 
-                    for (size_t j {i + 1}; j < allDataVector.size(); ++j)
+                    for (std::size_t j {i + 1}; j < allDataVector.size(); ++j)
                     {
                         if ( Strings::stringFinder(endDataTag, allDataVector[j]) )
                             break;

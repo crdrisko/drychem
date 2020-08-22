@@ -1,4 +1,4 @@
-# Utilities-API Primer
+# Common-Utilities Primer
 
 ## Table Of Contents
 
@@ -14,11 +14,11 @@
 
 ## C++ Modules and Libraries
 
-The C++ modules which make up the [public API](https://github.com/crdrisko/utilities-api/tree/master/include) of this repository are all organized in the same way, and by including the `module.hpp` file (which `#include`'s the internal files) features can be added without changing the interface of the module. The following tree diagram shows how a sample module (Module 1), would be organized in the API:
+The C++ modules which make up the [public API](https://github.com/crdrisko/common-utilities/tree/master/include) of this repository are all organized in the same way, and by including the `module.hpp` file (which `#include`'s the internal files) features can be added without changing the interface of the module. The following tree diagram shows how a sample module (Module 1), would be organized in the API:
 
 ```C++
 include
-| -- utils-api
+| -- common-utils
      | -- module1.hpp
      | -- ...
      |
@@ -39,30 +39,30 @@ This module provides classes that wrap some of the standard library containers, 
 The following lines of code can be included in any user project to provide access to the containers module:
 
 ```C++
-#include <utils-api/containers.hpp>
+#include <common-utils/containers.hpp>
 
-using namespace Utilities_API::Containers;
+using namespace CommonUtilities::Containers;
 ```
 
-For more examples of how to use the containers module, refer to the [testing](https://github.com/crdrisko/utilities-api/tree/master/test/TestContainers/testContainerFunctions.cpp) files, which provide a comprehensive overview of the module's usage.
+For more examples of how to use the containers module, refer to the [testing](https://github.com/crdrisko/common-utilities/tree/master/test/TestContainers/testContainerFunctions.cpp) files, which provide a comprehensive overview of the module's usage.
 
 ### Errors
 
-The error module of the Utilities-API project consists of functions and classes dedicated to error and exception handling. Since these types of events occur in virtually every project imaginable, it has proved useful collecting these functions in a single place.
+The error module of the Common-Utilities project consists of functions and classes dedicated to error and exception handling. Since these types of events occur in virtually every project imaginable, it has proved useful collecting these functions in a single place.
 
 **Getting Started:**
 
 The following lines of code can be included in any user project to provide access to the errors module:
 
 ```C++
-#include <utils-api/errors.hpp>
+#include <common-utils/errors.hpp>
 
-using namespace Utilities_API::Errors;
+using namespace CommonUtilities::Errors;
 ```
 
 **Exception Handling:**
 
-This module provides an exception handling class: `Utilities_API::Errors::Exception` which derives from `std::exception`. Some other commonly used exceptions can also be found, all of which derive from the Exception class. Because these exceptions derive from `std::exception` (either directly or indirectly), they can be caught by statements like the following:
+This module provides an exception handling class: `CommonUtilities::Errors::Exception` which derives from `std::exception`. Some other commonly used exceptions can also be found, all of which derive from the Exception class. Because these exceptions derive from `std::exception` (either directly or indirectly), they can be caught by statements like the following:
 
 ```C++
 catch (const std::exception& e)
@@ -77,21 +77,21 @@ The Exception class delegates its error handling to the dedicated ErrorMessage c
 
 **Error Handling:**
 
-In the way of error handling, the Utilities-API project defines two types of error classes: Fatal and Non-Fatal. The `FatalErrorMessage` class derives from the non-fatal version, `ErrorMessage` and the two utilize polymorphism to determine how the error should be handled. Polymorphic calls to the `printErrorMessage()` function will, as the name suggests, print the supplied error message. By design, fatal errors will cause program termination by envoking `std::exit()`.
+In the way of error handling, the Common-Utilities project defines two types of error classes: Fatal and Non-Fatal. The `FatalErrorMessage` class derives from the non-fatal version, `ErrorMessage` and the two utilize polymorphism to determine how the error should be handled. Polymorphic calls to the `printErrorMessage()` function will, as the name suggests, print the supplied error message. By design, fatal errors will cause program termination by envoking `std::exit()`.
 
 *NOTE:* The use of the ErrorMessage classes descibed here is no longer the recommended method for handling errors. The exception classes described above provide an easy-to-use interface to these underlying error message classes, while providing the same functionality.
 
 **Working Example:**
 
-As a working example, consider the following code snipet which demonstrates how to both throw and catch a `Utilities_API::Errors::Exception`:
+As a working example, consider the following code snipet which demonstrates how to both throw and catch a `CommonUtilities::Errors::Exception`:
 
 ```C++
 #include <iostream>
 #include <exception>
 
-#include <utils-api/errors.hpp>
+#include <common-utils/errors.hpp>
 
-using namespace Utilities_API::Errors;
+using namespace CommonUtilities::Errors;
 
 int main()
 {
@@ -100,7 +100,7 @@ int main()
         try
         {
             if (i == 4)
-                throw Exception {"Utilities-API", "Loop reached: i = 4", ErrorSeverity::Warning};
+                throw Exception {"Common-Utilities", "Loop reached: i = 4", ErrorSeverity::Warning};
 
             std::cout << i << std::endl;
         }
@@ -116,7 +116,7 @@ int main()
 }
 ```
 
-For more examples of how to use the error module, refer to the [testing](https://github.com/crdrisko/utilities-api/tree/master/test/TestErrors/testErrorFunctions.cpp) files, which provide a comprehensive overview of the module's usage.
+For more examples of how to use the error module, refer to the [testing](https://github.com/crdrisko/common-utilities/tree/master/test/TestErrors/testErrorFunctions.cpp) files, which provide a comprehensive overview of the module's usage.
 
 ### Files
 
@@ -130,12 +130,12 @@ The file module consists of a class dedicated to handling input files of various
 The following lines of code can be included in any user project to provide access to the files module:
 
 ```C++
-#include <utils-api/files.hpp>
+#include <common-utils/files.hpp>
 
-using namespace Utilities_API::Files;
+using namespace CommonUtilities::Files;
 ```
 
-For examples of how to use the file handling classes and functions, refer to the [testing](https://github.com/crdrisko/utilities-api/tree/master/test/TestFiles/testFileFunctions.cpp) files, which provide a comprehensive overview of the module's usage.
+For examples of how to use the file handling classes and functions, refer to the [testing](https://github.com/crdrisko/common-utilities/tree/master/test/TestFiles/testFileFunctions.cpp) files, which provide a comprehensive overview of the module's usage.
 
 ### Math
 
@@ -151,12 +151,12 @@ The math library consists of a number of advanced mathematical functions and cla
 The following lines of code can be included in any user project to provide access to the math module:
 
 ```C++
-#include <utils-api/math.hpp>
+#include <common-utils/math.hpp>
 
-using namespace Utilities_API::Math;
+using namespace CommonUtilities::Math;
 ```
 
-For examples of how to use the advanced mathematical classes and functions, refer to the [testing](https://github.com/crdrisko/utilities-api/tree/master/test/TestMath/testMathFunctions.cpp) files, which provide a comprehensive overview of the module's usage.
+For examples of how to use the advanced mathematical classes and functions, refer to the [testing](https://github.com/crdrisko/common-utilities/tree/master/test/TestMath/testMathFunctions.cpp) files, which provide a comprehensive overview of the module's usage.
 
 ### Strings
 
@@ -167,16 +167,16 @@ The strings module consists of a few functions relating to the parsing of `std::
 The following lines of code can be included in any user project to provide access to the strings module:
 
 ```C++
-#include <utils-api/strings.hpp>
+#include <common-utils/strings.hpp>
 
-using namespace Utilities_API::Strings;
+using namespace CommonUtilities::Strings;
 ```
 
-For examples of how to use the string parsing classes and functions, refer to the [testing](https://github.com/crdrisko/utilities-api/tree/master/test/TestStrings/testStringFunctions.cpp) files, which provide a comprehensive overview of the module's usage.
+For examples of how to use the string parsing classes and functions, refer to the [testing](https://github.com/crdrisko/common-utilities/tree/master/test/TestStrings/testStringFunctions.cpp) files, which provide a comprehensive overview of the module's usage.
 
 ## Bash Scripts and Programs
 
-Consisting of a number of bash scripts for mainly automating some of my most common tasks, the files located in the [`root/scripts`](https://github.com/crdrisko/utilities-api/tree/master/scripts) directory are scripts and programs that don't really belong in any other repository so they have been collected here.
+Consisting of a number of bash scripts for mainly automating some of my most common tasks, the files located in the [`root/scripts`](https://github.com/crdrisko/common-utilities/tree/master/scripts) directory are scripts and programs that don't really belong in any other repository so they have been collected here.
 
 For the programs that support command-line parsing arguments, the `-h` flag will print the help message associated with the program. Scripts like `errorHandling.sh`, `showArguments.sh`, and `showOptions.sh` are designed to either be incorporated in other bash programs or are so simple, no help option is needed.
 

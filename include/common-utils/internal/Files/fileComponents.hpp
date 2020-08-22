@@ -1,13 +1,13 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
-// Licensed under the MIT License. See the LICENSE file in the project root for license information.
+// Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: fileComponents.hpp - Version 1.0.0
 // Author: cdrisko
 // Date: 01/31/2020-15:39:15
 // Description: Classes representing the contents of a file and the file's name
 
-#ifndef UTILITIES_API_FILECOMPONENTS_HPP
-#define UTILITIES_API_FILECOMPONENTS_HPP
+#ifndef COMMON_UTILITIES_FILECOMPONENTS_HPP
+#define COMMON_UTILITIES_FILECOMPONENTS_HPP
 
 #include <fstream>
 #include <string>
@@ -16,7 +16,7 @@
 
 #include "../../errors.hpp"
 
-namespace Utilities_API::Files
+namespace CommonUtilities::Files
 {
     class FileName
     {
@@ -28,8 +28,8 @@ namespace Utilities_API::Files
 
         void splitFileName()
         {
-            size_t pathLocation { fullFileName.find_last_of("/") };
-            size_t extensionLocation { fullFileName.find_last_of(".") };
+            std::size_t pathLocation { fullFileName.find_last_of("/") };
+            std::size_t extensionLocation { fullFileName.find_last_of(".") };
 
             if (pathLocation == std::string::npos)
             {
@@ -81,7 +81,7 @@ namespace Utilities_API::Files
                         contentInFile.push_back(line);
             }
             else
-                throw Errors::FileNotFoundException{"Utilities-API", baseFileName};
+                throw Errors::FileNotFoundException{"Common-Utilities", baseFileName};
         }
 
     public:

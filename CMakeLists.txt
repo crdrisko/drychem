@@ -1,14 +1,14 @@
-### Top Level CMake Script for Utilities-API ###
+### Top Level CMake Script for Common-Utilities ###
 cmake_minimum_required(VERSION 3.10.0)
-project(Utilities-API VERSION 1.1.0)
+project(CommonUtilities VERSION 1.1.0)
 
 
 ### Options ###
-option(utils-api_build_tests "Build all unit tests in the test directory." OFF)
-option(utils-api_coverage "Turn on coverage options for use with lcov, gcov, and/or coveralls." OFF)
+option(utils_build_tests "Build all unit tests in the test directory." OFF)
+option(utils_coverage "Turn on coverage options for use with lcov, gcov, and/or coveralls." OFF)
 
-if (utils-api_coverage)
-    set(utils-api_build_tests ON)
+if (utils_coverage)
+    set(utils_build_tests ON)
     set(CMAKE_BUILD_TYPE "Debug")
     set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} --coverage)
 endif()
@@ -42,8 +42,8 @@ set(SCRIPTS
     scripts/linkLogin.sh
     scripts/modifyFiles.sh
     scripts/remover.sh
-    scripts/showArguments.sh
-    scripts/showOptions.sh)
+    scripts/showArgs.sh
+    scripts/showOpts.sh)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
     ${PROJECT_BINARY_DIR}/bin
@@ -52,7 +52,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
 
 
 ### Installation ###
-install(DIRECTORY include/utils-api
+install(DIRECTORY include/common-utils
         DESTINATION include)
 
 foreach (SCRIPT ${SCRIPTS})
@@ -70,14 +70,14 @@ endforeach()
 
 
 ### Unit Testing ###
-if (utils-api_build_tests)
+if (utils_build_tests)
     find_package(GTest)
     find_package(Threads)
 
     if (NOT ${GTest_FOUND})
         ## If googletest isn't installed or can't be found, download it from github ##
-        externalDownload(PROJECT googletest
-                         REPOSITORY "https://github.com/google/googletest.git")
+        UtilsExternalDownload(PROJECT googletest
+                              REPOSITORY "https://github.com/google/googletest.git")
 
         set(GTEST_LIBRARIES gtest)
         set(GTEST_INCLUDE_DIRS "${gtest_SOURCE_DIR}/include")

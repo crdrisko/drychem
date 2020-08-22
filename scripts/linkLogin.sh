@@ -1,8 +1,8 @@
 #!/bin/bash
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
-# Licensed under the MIT License. See the LICENSE file in the project root for license information.
+# Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: linkLogin.sh - Version 1.0.0
+# Name: linkLogin.sh - Version 1.0.1
 # Author: cdrisko
 # Date: 01/31/2020-14:45:27
 # Description: Create login scripts from the configuration files in the current working directory
@@ -33,12 +33,9 @@ printHelpMessage()      #@ DESCRIPTION: Print the linkLogin program's help messa
 
 
 ### Main Code ###
-if [ -n $1 ]
+if [[ -n $1 && ($1 == -h || $1 == --help) ]]
 then
-    if [[ $1 == -h ]] || [[ $1 == --help ]]
-    then
-        printHelpMessage && printFatalErrorMessage 0
-    fi
+    printHelpMessage && printFatalErrorMessage 0
 fi
 
 for configurationFile in *.config
@@ -47,35 +44,36 @@ do
     settings=( $( < "$configurationFile" ) )          ## Read configuration file into settings array
     eval "${settings[@]%%#*}"                         ## Evaluate the assignments in the configuration file
 
-    [ -n "$hostchain" ] && username="-J $hostchain ${username:?}"
+    [[ -n ${hostchain:=""} ]] && username="-J $hostchain ${username:?}"
 
     ## Options for the ssh login from terminal app on MacOS ##
-    if [[ $OSTYPE == darwin* ]] && [ ${openNewTerminal:-true} == true ]
+    if [[ $OSTYPE == darwin* && ${openNewTerminal:-true} == true ]]
     then
-        printf -v sshScript "osascript -e 'tell app \"Terminal\"
-          do script \"slogin %s@%s -p %s -Y\"
-          tell app \"Terminal\" to set current settings of first window to settings set \"%s\"
-          tell app \"Terminal\" to set font size of first window to %s
-          end tell'" "${username:?}" ${hostname:?} ${port:-22} "${profile:-Pro}" ${fontsize:-11}
+        printf -v sshScript "osascript -e 'tell application \"Terminal\"\
+        \n  do script \"\"\
+        \n  do script \"slogin %s@%s -p %s -Y\" in first window\
+        \n  tell application \"Terminal\" to set current settings of first window to settings set \"%s\"\
+        \n  tell application \"Terminal\" to set font size of first window to %s\
+        \nend tell'" "${username:?}" "${hostname:?}" "${port:-22}" "${profile:-Pro}" "${fontsize:-11}"
 
     ## Options for ssh login from gnome-terminal ##
-    elif which gnome-terminal &>/dev/null && [ ${openNewTerminal:-true} == true ]
+    elif which gnome-terminal &>/dev/null && [[ ${openNewTerminal:-true} == true ]]
     then
-        ! [ -z $profile ] && profile="--window-with-profile=$profile "
+        [[ -n $profile ]] && profile="--window-with-profile=$profile "
 
         printf -v sshScript "gnome-terminal %s-- slogin %s@%s -p %s -Y & disown"\
-            "$profile" ${username:?} ${hostname:?} ${port:-22}
+            "$profile" "${username:?}" "${hostname:?}" "${port:-22}"
 
     ## Options for standard ssh login ##
     else
-        printf -v sshScript "slogin %s@%s -p %s" ${username:?} ${hostname:?} ${port:-22}
+        printf -v sshScript "slogin %s@%s -p %s" "${username:?}" "${hostname:?}" "${port:-22}"
     fi
 
     installDirectory=@CMAKE_INSTALL_PREFIX@/bin
-    ! [ -d $installDirectory ] && printFatalErrorMessage 1 "Invalid installation directory."
+    ! [[ -d $installDirectory ]] && printFatalErrorMessage 1 "Invalid installation directory."
 
-    printf '#!/bin/bash\n%s\n' "$sshScript" > $installDirectory/${configurationFile%%.*}
-    chmod +x $installDirectory/${configurationFile%%.*}
+    printf '#!/bin/bash\n%s\n' "$sshScript" > "$installDirectory/${configurationFile%%.*}"
+    chmod +x "$installDirectory/${configurationFile%%.*}"
 
     unset hostname username port hostchain openNewTerminal profile fontsize
 done

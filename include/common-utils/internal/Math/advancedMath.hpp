@@ -1,20 +1,20 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
-// Licensed under the MIT License. See the LICENSE file in the project root for license information.
+// Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: advancedMath.hpp - Version 1.0.0
 // Author: cdrisko
 // Date: 03/09/2020-08:03:25
 // Description: An abstract interface for advanced mathematical function calls
 
-#ifndef UTILITIES_API_ADVANCEDMATH_HPP
-#define UTILITIES_API_ADVANCEDMATH_HPP
+#ifndef COMMON_UTILITIES_ADVANCEDMATH_HPP
+#define COMMON_UTILITIES_ADVANCEDMATH_HPP
 
 #include <memory>
 #include <vector>
 
 #include "../../errors.hpp"
 
-namespace Utilities_API::Math
+namespace CommonUtilities::Math
 {
     class AdvancedMath
     {
@@ -27,7 +27,7 @@ namespace Utilities_API::Math
             try
             {
                 if ( x.size() != y.size() )
-                    throw Errors::InvalidInputException("Utilities-API",
+                    throw Errors::InvalidInputException("Common-Utilities",
                         "The size of the x and y vectors must be equal.");
             }
             catch (const Errors::Exception& except)

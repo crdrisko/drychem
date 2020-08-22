@@ -1,13 +1,13 @@
-# Building and Installing Utilities-API
+# Building and Installing Common-Utilities
 
 ## Installation
 
 Using [CMake](https://cmake.org), the following commands can be run to install the repository:
 
 ```bash
-git clone https://github.com/crdrisko/utilities-api.git
+git clone https://github.com/crdrisko/common-utilities.git
 mkdir build && cd build
-cmake ../utilities-api/.
+cmake ../common-utilities/.
 make && [sudo] make install
 ```
 
@@ -15,14 +15,14 @@ By default, the project is installed in the `/usr/local` filesystem but can be c
 
 ## Testing
 
-With each utility module in the project (Errors, Math, etc.), I have strived to provide ~100% unit test coverage for all functions. These tests can be found in the [`root/test`](https://github.com/crdrisko/utilities-api/tree/master/test) directory but do not get built by default. To turn on the testing features of the repository, add the `utils-api_build_tests` flag to the CMake instructions as shown in the code below.
+With each utility module in the project (Errors, Math, etc.), I have strived to provide ~100% unit test coverage for all functions. These tests can be found in the [`root/test`](https://github.com/crdrisko/common-utilities/tree/master/test) directory but do not get built by default. To turn on the testing features of the repository, add the `utils_build_tests` flag to the CMake instructions as shown in the code below.
 
 ```bash
-## Same steps as before ...
-cmake ../utilities-api/. -Dutils-api_build_tests=ON
+## Same steps as before ... ##
+cmake ../common-utilities/. -Dutils_build_tests=ON
 make && [sudo] make install
 
-## Testing occurs in a separate, dedicated directory
+## Testing occurs in a separate, dedicated directory ##
 cd test
 ctest --output-on-failure
 cd ../

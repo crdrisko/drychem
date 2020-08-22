@@ -1,13 +1,13 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
-// Licensed under the MIT License. See the LICENSE file in the project root for license information.
+// Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: exceptionHandling.hpp - Version 1.0.0
 // Author: crdrisko
 // Date: 04/07/2020-11:09:24
 // Description: Defines a specialized exception handling classes designed around the error utilities
 
-#ifndef UTILITIES_API_EXCEPTIONHANDLING_HPP
-#define UTILITIES_API_EXCEPTIONHANDLING_HPP
+#ifndef COMMON_UTILITIES_EXCEPTIONHANDLING_HPP
+#define COMMON_UTILITIES_EXCEPTIONHANDLING_HPP
 
 #include <exception>
 #include <memory>
@@ -16,7 +16,7 @@
 
 #include "errorUtilities.hpp"
 
-namespace Utilities_API::Errors
+namespace CommonUtilities::Errors
 {
     // Forward declare ErrorSeverity, the preferred method of Exception instantiation
     enum class ErrorSeverity : bool;

@@ -1,17 +1,17 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
-// Licensed under the MIT License. See the LICENSE file in the project root for license information.
+// Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: basicMath.hpp - Version 1.0.0
 // Author: cdrisko
 // Date: 01/31/2020-15:42:41
 // Description: Common mathematical function definitions and prototypes
 
-#ifndef UTILITIES_API_BASICMATH_HPP
-#define UTILITIES_API_BASICMATH_HPP
+#ifndef COMMON_UTILITIES_BASICMATH_HPP
+#define COMMON_UTILITIES_BASICMATH_HPP
 
 #include <vector>
 
-namespace Utilities_API::Math
+namespace CommonUtilities::Math
 {
     template<typename T>
     constexpr bool withinRange(const T& value, const T& min, const T& max)

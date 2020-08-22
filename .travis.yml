@@ -1,4 +1,4 @@
-###  Utilities-API Build Matrix ###
+### Common-Utilities Build Matrix ###
 language: cpp
 os:
   - linux
@@ -7,9 +7,9 @@ compiler:
   - clang
   - gcc
 osx_image:
-  - xcode11.2
-  - xcode10.1
-dist: bionic
+  - xcode12
+  - xcode10
+dist: focal
 arch:
   - arm64
   - amd64
@@ -21,7 +21,7 @@ notifications:
 ### Standard Installation Procedure ###
 script:
   - mkdir build && cd build
-  - cmake ../. -Dutils-api_build_tests=ON
+  - cmake ../. -Dutils_build_tests=ON
   - make && sudo make install
   - cd test
   - ctest
@@ -44,7 +44,7 @@ matrix:
         - if [ $TRAVIS_OS_NAME = linux ]; then pip install --user cpp-coveralls; fi
       script:
         - mkdir build && cd build
-        - cmake ../. -Dutils-api_coverage=ON
+        - cmake ../. -Dutils_coverage=ON
         - make && sudo make install
         - cd test
         - ctest

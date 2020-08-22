@@ -1,19 +1,19 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
-// Licensed under the MIT License. See the LICENSE file in the project root for license information.
+// Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: calculus.hpp - Version 1.0.0
 // Author: cdrisko
 // Date: 02/03/2020-08:22:39
 // Description: Common mathematical function definitions and prototypes relating to calculus
 
-#ifndef UTILITIES_API_CALCULUS_HPP
-#define UTILITIES_API_CALCULUS_HPP
+#ifndef COMMON_UTILITIES_CALCULUS_HPP
+#define COMMON_UTILITIES_CALCULUS_HPP
 
 #include <vector>
 
 #include "advancedMath.hpp"
 
-namespace Utilities_API::Math
+namespace CommonUtilities::Math
 {
     class CenteredDifferenceMethod : public AdvancedMath
     {
@@ -22,7 +22,7 @@ namespace Utilities_API::Math
         {
             std::vector<long double> dy_dx;
 
-            for (size_t i {}; i < y.size() - 1; ++i)
+            for (std::size_t i {}; i < y.size() - 1; ++i)
                 dy_dx.push_back((y[i + 1] - y[i]) / (x[i + 1] - x[i]));
 
             return dy_dx;
@@ -32,7 +32,7 @@ namespace Utilities_API::Math
         {
             std::vector<long double> dy_dx;
 
-            for (size_t i {1}; i < y.size(); ++i)
+            for (std::size_t i {1}; i < y.size(); ++i)
                 dy_dx.push_back((y[i] - y[i - 1]) / (x[i] - x[i - 1]));
 
             return dy_dx;
@@ -51,7 +51,7 @@ namespace Utilities_API::Math
             forward.push_back(backward.back());
             backward.insert(backward.begin(), forward.front());
 
-            for (size_t i {}; i < y.size(); ++i)
+            for (std::size_t i {}; i < y.size(); ++i)
                 result.push_back( (forward[i] + backward[i]) / 2 );
 
             return result;
@@ -62,7 +62,7 @@ namespace Utilities_API::Math
     class CumulativeTrapzIntegration : public AdvancedMath
     {
     private:
-        size_t referenceIndex;
+        std::size_t referenceIndex;
 
         long double trapz(long double x1, long double x2, long double y1, long double y2) const
         {
@@ -71,13 +71,13 @@ namespace Utilities_API::Math
 
     public:
         CumulativeTrapzIntegration(const std::vector<long double>& X, const std::vector<long double>& Y,
-            size_t ReferenceIndex = 0) : AdvancedMath{X, Y}, referenceIndex{ReferenceIndex} {}
+            std::size_t ReferenceIndex = 0) : AdvancedMath{X, Y}, referenceIndex{ReferenceIndex} {}
 
         virtual std::vector<long double> doCalculation() const override
         {
             std::vector<long double> y_cumulative;
 
-            for (size_t i {}; i < y.size() - 1; ++i)
+            for (std::size_t i {}; i < y.size() - 1; ++i)
             {
                 if (i == referenceIndex)
                     y_cumulative.push_back(0);
