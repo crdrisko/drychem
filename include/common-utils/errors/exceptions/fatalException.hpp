@@ -35,7 +35,7 @@ namespace CommonUtilities::Errors
         }
 
         // Delegate our exception handling to the error handling classes
-        constexpr void handleErrorWithMessage() const
+        void handleErrorWithMessage() const
         {
             printFatalErrorMessage(errorMessage.programName, errorMessage.message);
         }
