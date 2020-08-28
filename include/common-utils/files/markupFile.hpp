@@ -14,7 +14,7 @@
 #include <vector>
 
 #include "inputFile.hpp"
-#include "../../strings.hpp"
+#include "../strings.hpp"
 
 namespace CommonUtilities::Files
 {

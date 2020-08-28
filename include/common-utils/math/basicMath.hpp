@@ -13,6 +13,10 @@
 
 namespace CommonUtilities::Math
 {
+    constexpr bool isOdd(int i) { return ((i + 1) % 2) == 0; }
+    constexpr bool isEven(int i) { return (i % 2) == 0; }
+
+
     template<typename T>
     constexpr bool withinRange(const T& value, const T& min, const T& max)
     {

@@ -3,8 +3,6 @@
 ## Table Of Contents
 
 - [C++ Modules and Libraries](#C++-Modules-and-Libraries)
-
-  - [Containers](#Containers)
   - [Errors](#Errors)
   - [Files](#Files)
   - [Math](#Math)
@@ -14,45 +12,28 @@
 
 ## C++ Modules and Libraries
 
-The C++ modules which make up the [public API](https://github.com/crdrisko/common-utilities/tree/master/include) of this repository are all organized in the same way, and by including the `module.hpp` file (which `#include`'s the internal files) features can be added without changing the interface of the module. The following tree diagram shows how a sample module (Module 1), would be organized in the API:
+The C++ libraries which make up the [public API](https://github.com/crdrisko/common-utilities/tree/master/include) of this repository are all organized in the same way, and by including the `library.hpp` file (which `#include`'s the internal files) features can be added without changing the interface of the library. The following tree diagram shows how a sample library (Library1), would be organized in the API:
 
 ```C++
 include
 | -- common-utils
-     | -- module1.hpp
+     | -- library1.hpp
      | -- ...
      |
-     | -- internal
-          | -- Module1
+     | -- library1
           |    | -- internalFile1.hpp
           |    | -- ...
           |
           | -- ...
 ```
 
-### Containers
-
-This module provides classes that wrap some of the standard library containers, such as `std::array`, `std::vector`, etc. providing a limited interface responsible for ease-of-use in other programs. For example, the `Vector3D` class template wraps a `std::array` with three elements to simulate a vector in physics or mathematics with x, y, and z components.
-
-**Getting Started:**
-
-The following lines of code can be included in any user project to provide access to the containers module:
-
-```C++
-#include <common-utils/containers.hpp>
-
-using namespace CommonUtilities::Containers;
-```
-
-For more examples of how to use the containers module, refer to the [testing](https://github.com/crdrisko/common-utilities/tree/master/test/TestContainers/testContainerFunctions.cpp) files, which provide a comprehensive overview of the module's usage.
-
 ### Errors
 
-The error module of the Common-Utilities project consists of functions and classes dedicated to error and exception handling. Since these types of events occur in virtually every project imaginable, it has proved useful collecting these functions in a single place.
+The error handling library of the Common-Utilities project consists of functions and classes dedicated to error and exception handling. Since these types of events occur in virtually every project imaginable, it has proved useful collecting these functions in a single place.
 
 **Getting Started:**
 
-The following lines of code can be included in any user project to provide access to the errors module:
+The following lines of code can be included in any user project to provide access to the errors library:
 
 ```C++
 #include <common-utils/errors.hpp>
@@ -62,7 +43,7 @@ using namespace CommonUtilities::Errors;
 
 **Exception Handling:**
 
-This module provides an exception handling class: `CommonUtilities::Errors::Exception` which derives from `std::exception`. Some other commonly used exceptions can also be found, all of which derive from the Exception class. Because these exceptions derive from `std::exception` (either directly or indirectly), they can be caught by statements like the following:
+This library provides an exception handling class: `CommonUtilities::Errors::FatalException` which derives from `std::exception`. Some other commonly used exceptions can also be found, all of which derive from this FatalException class. Because these exceptions derive from `std::exception` (either directly or indirectly), they can be caught by statements like the following:
 
 ```C++
 catch (const std::exception& e)
@@ -71,52 +52,69 @@ catch (const std::exception& e)
 }
 ```
 
-However, by defining an additional catch block **prior** to this standard block (see below), we can utilize the information stored in the new Exception object to print out more information than is otherwise provided by a call to `what()`. This information includes the name of the program where the exception originated, the severity of the error in question, and of course, the error message itself.
+However, if we throw an additional `FatalException` in this catch block (see below), we can customize the error messages and handle the exception based on whether it is fatal or not. The information we throw via our `FatalException` constructor includes the name of the program where the exception originated, and of course, the error message itself.
 
-The Exception class delegates its error handling to the dedicated ErrorMessage classes by calling the `handleErrorWithMessage()` function. Depending on the level of error severity (Warning or Fatal) associated with the exception, the error will be handled accordingly.
+The `FatalException` class delegates its error handling to a separate utility function (discussed next) when the user invokes `handleErrorWithMessage()`. Because this exception type is deemed fatal, a verbose error message will be printed and `std::exit()` will be called.
 
-**Error Handling:**
+**Error Handling Utilities:**
 
-In the way of error handling, the Common-Utilities project defines two types of error classes: Fatal and Non-Fatal. The `FatalErrorMessage` class derives from the non-fatal version, `ErrorMessage` and the two utilize polymorphism to determine how the error should be handled. Polymorphic calls to the `printErrorMessage()` function will, as the name suggests, print the supplied error message. By design, fatal errors will cause program termination by envoking `std::exit()`.
-
-*NOTE:* The use of the ErrorMessage classes descibed here is no longer the recommended method for handling errors. The exception classes described above provide an easy-to-use interface to these underlying error message classes, while providing the same functionality.
+In the way of error handling, the Common-Utilities project defines two types of error severity: Warning and Fatal. These designations are defined as an enum class, `ErrorSeverity` and are used to template the main function responsible for handling errors. Some type traits are provided as well which allow for compile-time determination of the level of severity our functions are dealing with. Some convenience type aliases and lambda functions are also defined to enhance code readability.
 
 **Working Example:**
 
-As a working example, consider the following code snipet which demonstrates how to both throw and catch a `CommonUtilities::Errors::Exception`:
+As a working example, consider the following code snippet which demonstrates how to both throw and catch a `CommonUtilities::Errors::FatalException`:
 
 ```C++
-#include <iostream>
 #include <exception>
+#include <iostream>
+#include <string>
 
 #include <common-utils/errors.hpp>
 
-using namespace CommonUtilities::Errors;
+using namespace CommonUtilities;
+
+void printCounter(int i);
 
 int main()
 {
-    for (int i {}; i <= 10; ++i)
+    try
     {
         try
         {
-            if (i == 4)
-                throw Exception {"Common-Utilities", "Loop reached: i = 4", ErrorSeverity::Warning};
+            for (int count {}; count <= 10; ++count)
+            {
+                printCounter(count);
+            }
 
-            std::cout << i << std::endl;
-        }
-        catch (const Exception& except)
-        {
-            except.handleErrorWithMessage();
         }
         catch (const std::exception& except)
         {
-            std::cerr << except.what() << std::endl;
+            Errors::ErrorMessage error;
+            error.programName = "Common-Utilities";
+            error.message = "Exception message: " + std::string{except.what()};
+
+            throw Errors::FatalException(error);
         }
     }
+    catch (const Errors::FatalException& except)
+    {
+        except.handleErrorWithMessage();
+    }
+}
+
+void printCounter(int count)
+{
+    if (count == 8)
+        Errors::printErrorMessage("Common-Utilities", "The loop counter reached 8, careful it doesn't get to 9.");
+
+    else if (count == 9)
+        throw Errors::InvalidInputException("Common-Utilities", "The loop counter reached 9.");
+
+    std::cout << count << std::endl;
 }
 ```
 
-For more examples of how to use the error module, refer to the [testing](https://github.com/crdrisko/common-utilities/tree/master/test/TestErrors/testErrorFunctions.cpp) files, which provide a comprehensive overview of the module's usage.
+For more examples of how to use the library, refer to the [testing](https://github.com/crdrisko/common-utilities/tree/master/test/TestErrors) files, which provide a comprehensive overview of the library's usage.
 
 ### Files
 
@@ -158,6 +156,22 @@ using namespace CommonUtilities::Math;
 
 For examples of how to use the advanced mathematical classes and functions, refer to the [testing](https://github.com/crdrisko/common-utilities/tree/master/test/TestMath/testMathFunctions.cpp) files, which provide a comprehensive overview of the module's usage.
 
+#### Containers
+
+This module provides classes that wrap some of the standard library containers, such as `std::array`, `std::vector`, etc. providing a limited interface responsible for ease-of-use in other programs. For example, the `Vector3D` class template wraps a `std::array` with three elements to simulate a vector in physics or mathematics with x, y, and z components.
+
+**Getting Started:**
+
+The following lines of code can be included in any user project to provide access to the containers module:
+
+```C++
+#include <common-utils/containers.hpp>
+
+using namespace CommonUtilities::Containers;
+```
+
+For more examples of how to use the containers module, refer to the [testing](https://github.com/crdrisko/common-utilities/tree/master/test/TestContainers/testContainerFunctions.cpp) files, which provide a comprehensive overview of the module's usage.
+
 ### Strings
 
 The strings module consists of a few functions relating to the parsing of `std::string` containers or wrappers for Standard Library functions that enhance readability of the code.
@@ -176,9 +190,9 @@ For examples of how to use the string parsing classes and functions, refer to th
 
 ## Bash Scripts and Programs
 
-Consisting of a number of bash scripts for mainly automating some of my most common tasks, the files located in the [`root/scripts`](https://github.com/crdrisko/common-utilities/tree/master/scripts) directory are scripts and programs that don't really belong in any other repository so they have been collected here.
+Consisting of a number of bash scripts for mainly automating some of my most common tasks, the files located in the [`root/scripts`](https://github.com/crdrisko/common-utilities/tree/master/scripts) directory are scripts and programs that don't really belong in any other repository, so they have been collected here.
 
-For the programs that support command-line parsing arguments, the `-h` flag will print the help message associated with the program. Scripts like `errorHandling.sh`, `showArguments.sh`, and `showOptions.sh` are designed to either be incorporated in other bash programs or are so simple, no help option is needed.
+For the programs that support command-line argument parsing, the `-h` flag will print the help message associated with the program. Scripts like `errorHandling.sh`, `showArgs.sh`, and `showOpts.sh` are designed to either be incorporated in other bash programs or are so simple, no help option is needed.
 
 When the repository is installed, all shell scripts will be installed without the `.sh` extension and will be made executable. If the `${CMAKE_INSTALL_PREFIX}/bin` directory is in the system's path, these programs can be called as follows:
 

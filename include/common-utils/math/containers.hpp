@@ -13,6 +13,6 @@
 #ifndef COMMON_UTILITIES_CONTAINERS_HPP
 #define COMMON_UTILITIES_CONTAINERS_HPP
 
-#include "internal/Containers/vector3D.hpp"
+#include "containers/vector3D.hpp"
 
 #endif

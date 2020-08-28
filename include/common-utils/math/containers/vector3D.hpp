@@ -15,7 +15,7 @@
 #include "../../errors.hpp"
 #include "../../math.hpp"
 
-namespace CommonUtilities::Containers
+namespace CommonUtilities::Math::Containers
 {
     template <typename T>
     class Vector3D

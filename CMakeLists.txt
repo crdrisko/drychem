@@ -1,6 +1,6 @@
 ### Top Level CMake Script for Common-Utilities ###
 cmake_minimum_required(VERSION 3.10.0)
-project(CommonUtilities VERSION 1.1.0)
+project(CommonUtilities VERSION 2.0.0)
 
 
 ### Options ###

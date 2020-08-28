@@ -15,6 +15,10 @@
 
 namespace CommonUtilities::Strings
 {
+    /* String comparisons - optional whitespace, case-sensitive, letters only, etc. 
+        https://en.cppreference.com/w/cpp/string/char_traits */
+
+
     constexpr bool stringFinder(std::string_view stringToFind, std::string_view stringToSearch)
     {
         return (stringToSearch.find(stringToFind) != std::string::npos) ? true : false;

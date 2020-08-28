@@ -12,7 +12,7 @@
 #include <memory>
 #include <vector>
 
-#include "../../errors.hpp"
+#include "../errors.hpp"
 
 namespace CommonUtilities::Math
 {
@@ -30,7 +30,7 @@ namespace CommonUtilities::Math
                     throw Errors::InvalidInputException("Common-Utilities",
                         "The size of the x and y vectors must be equal.");
             }
-            catch (const Errors::Exception& except)
+            catch (const Errors::FatalException& except)
             {
                 except.handleErrorWithMessage();
             }

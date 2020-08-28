@@ -71,19 +71,19 @@ GTEST_TEST(testFileFunctions, filesThatDontExistThrowFatalExceptions)
     {
         FileName fileNameThatDoesntExist {"test2.txt"};
         FileContents fileContents {fileNameThatDoesntExist};
-    }, "Common-Utilities Fatal Error:\n\tUnable to open file: test2.txt\n");
+    }, "Common-Utilities Fatal Error:\n\tUnable to open file: test2.txt.\n");
 
 
     ASSERT_DEATH(
     {
         InputFilePtr defaultsTextFile { std::make_shared<TextFile>("test2.txt") };
-    }, "Common-Utilities Fatal Error:\n\tUnable to open file: test2.txt\n");
+    }, "Common-Utilities Fatal Error:\n\tUnable to open file: test2.txt.\n");
 
 
     ASSERT_DEATH(
     {
         InputFilePtr defaultsTextFile { std::make_shared<MarkupFile>("test2.inp") };
-    }, "Common-Utilities Fatal Error:\n\tUnable to open file: test2.inp\n");
+    }, "Common-Utilities Fatal Error:\n\tUnable to open file: test2.inp.\n");
 }
 
 GTEST_TEST(testFileFunctions, textFileOpensAndReadsSampleFileCorrectly)

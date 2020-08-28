@@ -14,7 +14,7 @@
 #include <string_view>
 #include <vector>
 
-#include "../../errors.hpp"
+#include "../errors.hpp"
 
 namespace CommonUtilities::Files
 {
@@ -91,7 +91,7 @@ namespace CommonUtilities::Files
             {
                 setContentInFile();
             }
-            catch (const Errors::Exception& except)
+            catch (const Errors::FatalException& except)
             {
                 except.handleErrorWithMessage();
             }

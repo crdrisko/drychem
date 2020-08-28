@@ -13,6 +13,6 @@
 #ifndef COMMON_UTILITIES_STRINGS_HPP
 #define COMMON_UTILITIES_STRINGS_HPP
 
-#include "internal/Strings/stringUtilities.hpp"
+#include "strings/stringUtilities.hpp"
 
 #endif

@@ -5,17 +5,14 @@ include(GoogleTest)
 enable_testing()
 
 ## Tests ##
-UtilsNewTest(TESTNAME Container
-             INTERIOR_DIRECTORY TestContainers)
-
-UtilsNewTest(TESTNAME Error
+UtilsNewTest(TESTNAME AllErrorFunctions
              INTERIOR_DIRECTORY TestErrors)
 
-UtilsNewTest(TESTNAME File
+UtilsNewTest(TESTNAME FileFunctions
              INTERIOR_DIRECTORY TestFiles)
 
-UtilsNewTest(TESTNAME Math
+UtilsNewTest(TESTNAME MathFunctions
              INTERIOR_DIRECTORY TestMath)
 
-UtilsNewTest(TESTNAME String
+UtilsNewTest(TESTNAME StringFunctions
              INTERIOR_DIRECTORY TestStrings)

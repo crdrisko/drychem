@@ -1,24 +1,21 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: testContainerFunctions.cpp - Version 1.0.0
+// Name: testContainerFunctions.hpp - Version 1.0.0
 // Author: crdrisko
 // Date: 04/09/2020-21:56:59
 // Description: Provides ~100% unit test coverage over all container utility functions
+
+#ifndef TESTCONTAINERFUNCTIONS_HPP
+#define TESTCONTAINERFUNCTIONS_HPP
 
 #include <array>
 
 #include <gtest/gtest.h>
 
-#include "../../include/common-utils/containers.hpp"
+#include "../../../include/common-utils/math/containers.hpp"
 
-using namespace CommonUtilities::Containers;
-
-int main(int argc, char** argv)
-{
-    testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
+using namespace CommonUtilities::Math::Containers;
 
 GTEST_TEST(testContainerFunctions, differentConstructorsGiveInitializeObjectsAsExpected)
 {
@@ -68,7 +65,7 @@ GTEST_TEST(testContainerFunctions, subscriptOperatorsThrowWhenIndexIsOutOfRange)
         {
             std::cout << sampleVector[3];
         }
-        catch(const CommonUtilities::Errors::Exception& except)
+        catch(const CommonUtilities::Errors::FatalException& except)
         {
             except.handleErrorWithMessage();
         }
@@ -81,7 +78,7 @@ GTEST_TEST(testContainerFunctions, subscriptOperatorsThrowWhenIndexIsOutOfRange)
         {
             sampleVector[3] = 2.0;
         }
-        catch(const CommonUtilities::Errors::Exception& except)
+        catch(const CommonUtilities::Errors::FatalException& except)
         {
             except.handleErrorWithMessage();
         }
@@ -108,3 +105,5 @@ GTEST_TEST(testContainerFunctions, xyzOperatorsCanReturnAndSetTheInternalData)
     ASSERT_EQ( coordinates[1], coordinates.y() );
     ASSERT_EQ( coordinates[2], coordinates.z() );
 }
+
+#endif

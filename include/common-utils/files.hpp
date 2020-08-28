@@ -13,9 +13,9 @@
 #ifndef COMMON_UTILITIES_FILES_HPP
 #define COMMON_UTILITIES_FILES_HPP
 
-#include "internal/Files/fileComponents.hpp"
-#include "internal/Files/inputFile.hpp"
-#include "internal/Files/markupFile.hpp"
-#include "internal/Files/textFile.hpp"
+#include "files/fileComponents.hpp"
+#include "files/inputFile.hpp"
+#include "files/markupFile.hpp"
+#include "files/textFile.hpp"
 
 #endif

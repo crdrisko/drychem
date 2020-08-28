@@ -17,26 +17,31 @@
 #include <vector>
 
 #include "advancedMath.hpp"
-#include "../../errors.hpp"
+#include "../errors.hpp"
 
 namespace CommonUtilities::Math
 {
-    inline int findOrderOfMagnitude(const long double& value)
+    template<typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
+    constexpr int findOrderOfMagnitude(T value) noexcept
     {
         return std::floor(std::log10(value));
     }
 
-    inline long double findAbsoluteError(const long double& expectedValue, const int& significantFigures)
+
+    template<typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
+    constexpr long double findAbsoluteError(T expectedValue, int significantFigures) noexcept
     {
         return std::pow(10, findOrderOfMagnitude(expectedValue) - (significantFigures - 1));
     }
 
+    
     template<typename T>
     inline T calculateAverage(const std::vector<T>& values)
     {
         return std::accumulate(values.begin(), values.end(), static_cast<T>(0)) / values.size();
     }
 
+    
     template<typename T>
     inline T calculateStandardDeviation(const std::vector<T>& values)
     {
@@ -71,7 +76,7 @@ namespace CommonUtilities::Math
                     throw Errors::InvalidInputException{"Common-Utilities",
                         "The size of input vector must be equal to " + std::to_string(numberOfFittingParameters)};
             }
-            catch(const Errors::Exception& except)
+            catch(const Errors::FatalException& except)
             {
                 except.handleErrorWithMessage();
             }
