@@ -16,8 +16,8 @@
 #include "errors/exceptions/fatalException.hpp"
 #include "errors/exceptions/fileNotFoundException.hpp"
 #include "errors/exceptions/invalidInputException.hpp"
+#include "errors/traits/isFatal.hpp"
 #include "errors/utils/errorHandling.hpp"
-#include "errors/utils/errorTraits.hpp"
 #include "errors/utils/errorTypes.hpp"
 
 #endif

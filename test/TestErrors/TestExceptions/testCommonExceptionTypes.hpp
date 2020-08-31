@@ -1,7 +1,7 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: testCommonExceptionTypes.hpp - Version 2.0.0
+// Name: testCommonExceptionTypes.hpp - Version 2.0.1
 // Author: crdrisko
 // Date: 08/27/2020-12:15:18
 // Description: Provides ~100% unit test coverage over all specialty exception handling classes
@@ -58,6 +58,36 @@ GTEST_TEST(testErrorFunctions, invalidInputExceptionPrintsNonDefaultMessage)
             except.handleErrorWithMessage();
         }
     }, "Common-Utilities Fatal Error:\n\tLet's throw a fatal error.\n");
+}
+
+GTEST_TEST(testErrorFunctions, catchSpecializedExceptionsWithSpecializations)
+{
+    InvalidInputException exception1 {"Common-Utilities", "Let's throw a fatal error."};
+    FileNotFoundException exception2 {"Common-Utilities", "test.cpp"};
+
+    ASSERT_DEATH(
+    {
+        try
+        {
+            throw exception1;
+        }
+        catch (const InvalidInputException& except)
+        {
+            except.handleErrorWithMessage();
+        }
+    }, "Common-Utilities Fatal Error:\n\tLet's throw a fatal error.\n");
+
+    ASSERT_DEATH(
+    {
+        try
+        {
+            throw exception2;
+        }
+        catch (const FileNotFoundException& except)
+        {
+            except.handleErrorWithMessage();
+        }
+    }, "Common-Utilities Fatal Error:\n\tUnable to open file: test.cpp.\n");
 }
 
 #endif

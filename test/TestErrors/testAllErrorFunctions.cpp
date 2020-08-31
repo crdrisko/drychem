@@ -10,8 +10,8 @@
 
 #include "TestExceptions/testCommonExceptionTypes.hpp"
 #include "TestExceptions/testExceptionHandling.hpp"
+#include "TestTraits/testErrorTraits.hpp"
 #include "TestUtilities/testErrorHandling.hpp"
-#include "TestUtilities/testErrorTraits.hpp"
 #include "TestUtilities/testErrorTypes.hpp"
 
 int main(int argc, char** argv)

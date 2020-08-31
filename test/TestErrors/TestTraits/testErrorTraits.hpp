@@ -1,7 +1,7 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: testErrorTraits.hpp - Version 2.0.0
+// Name: testErrorTraits.hpp - Version 2.0.1
 // Author: crdrisko
 // Date: 08/26/2020-14:36:00
 // Description: Provides ~100% unit test coverage over all type traits associated with error and exception handling
@@ -13,7 +13,7 @@
 
 #include "../../../include/common-utils/errors.hpp"
 
-using namespace CommonUtilities::Errors::Traits;
+using namespace CommonUtilities::Errors;
 
 GTEST_TEST(testErrorTraits, isFatal_IsFalseWhenTemplateParameterIsWarning)
 {
