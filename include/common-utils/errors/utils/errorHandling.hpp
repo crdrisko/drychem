@@ -31,9 +31,9 @@ namespace CommonUtilities::Errors
     }
 
     // A convenience function for printing a error message for a fatal error
-    constexpr auto printFatalErrorMessage = [](std::string_view programName, std::string_view message) {
-        return printErrorMessage<ErrorSeverity::Fatal>(programName, message);
-    };
+    constexpr auto printFatalErrorMessage 
+        = [](std::string_view programName, std::string_view message) 
+            -> void { printErrorMessage<ErrorSeverity::Fatal>(programName, message); };
 }
 
 #endif
