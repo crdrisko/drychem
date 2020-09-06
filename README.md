@@ -41,6 +41,10 @@ The Common-Utilities project was designed to have as few external dependencies a
 
 - [CMake](https://cmake.org): Version 3.10.0 or higher. See the documentation in the [`docs/BUILD.md`](https://github.com/crdrisko/common-utilities/blob/master/docs/BUILD.md) file for specific instructions on installing the project.
 
+## Contributing
+
+Please read CONTRIBUTING.md for details on how you can become a contributor and the process for submitting pull requests to us.
+
 ## License
 
 Copyright (c) 2020 Cody R. Drisko. All rights reserved.
