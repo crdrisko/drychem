@@ -4,7 +4,7 @@
 
 Welcome to the Common-Utilities project! This project is a compilation of a number of unrelated programs and scripts I've written over the years, providing a single source of utilities used in other repositories. The goal of this project is to strive for compliance with the "Don't Repeat Yourself" (DRY) principle of modern software development.
 
-More detailed documentation for using the common-utilities can be found in the [`docs/primer.md`](https://github.com/crdrisko/common-utilities/tree/master/docs/primer.md) file.
+More detailed documentation for using the common-utilities can be found in the [`docs/PRIMER.md`](https://github.com/crdrisko/common-utilities/blob/master/docs/PRIMER.md) file.
 
 ## Features
 
@@ -35,11 +35,11 @@ The Common-Utilities project was designed to have as few external dependencies a
 
 - The Bourne Again SHell (bash) is required to use of any of the scripts. While other versions of bash may work, the lowest version of bash I have tested these scripts on is 3.2. Many, if not all, shell scripts in this repository are *not* compliant with the POSIX shell.
 
-- [GoogleTest](https://github.com/google/googletest) was used for the testing all the source code in the project. Building and running all these tests is optional and more information can be found in the testing section of [`docs/build.md`](https://github.com/crdrisko/common-utilities/tree/master/docs/build.md).
+- [GoogleTest](https://github.com/google/googletest) was used for the testing all the source code in the project. Building and running all these tests is optional and more information can be found in the testing section of [`docs/BUILD.md`](https://github.com/crdrisko/common-utilities/blob/master/docs/BUILD.md).
 
 ### Build Requirements
 
-- [CMake](https://cmake.org): Version 3.10.0 or higher. See the documentation in the [`docs/build.md`](https://github.com/crdrisko/common-utilities/tree/master/docs/build.md) file for specific instructions on installing the project.
+- [CMake](https://cmake.org): Version 3.10.0 or higher. See the documentation in the [`docs/BUILD.md`](https://github.com/crdrisko/common-utilities/blob/master/docs/BUILD.md) file for specific instructions on installing the project.
 
 ## License
 
