@@ -124,7 +124,7 @@ Often, multiple iterations or discussions will be needed to responding to feedba
 
 ## Contributor License Agreement
 
-Before we can review and accept a pull request from you, you'll need to sign a Contributor License Agreement (CLA). The CLA ensures that the community is free to use your contributions. Signing the CLA is a manual process, and you need to do it for each pull request made. This is done by checking the boxes in the [Pull Request Readiness Checklist of a Pull Request](https://github.com/crdrisko/common-utilities/blob/master/docs/PULL_REQUEST_TEMPLATE.md#Pull-Request-Readiness-Checklist).
+Before we can review and accept a pull request from you, you'll need to sign a Contributor License Agreement (CLA). The CLA ensures that the community is free to use your contributions. Signing the CLA is a manual process, and you need to do it for each pull request made. This is done by checking the boxes in the [Pull Request Readiness Checklist of a Pull Request](https://github.com/crdrisko/common-utilities/blob/master/docs/PULL_REQUEST_TEMPLATE.md).
 
 ### IMPORTANT
 

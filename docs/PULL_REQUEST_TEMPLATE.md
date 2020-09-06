@@ -22,7 +22,7 @@ Ex:
 
 ## Code style and formatting
 
-Attempt to match the surrounding code styling as much as possible. Check the [Contributors Style Guidelines section](https://github.com/cdrisko/common-utilities/blob/master/docs/CONTRIBUTING.md#Style-guidelines) for how to write your code. <!--and the [Contributors Code Formatting section](CONTRIBUTING.md#Code-formatting) for how to format your code.-->
+Attempt to match the surrounding code styling as much as possible. Check the [Contributors Style Guidelines section](https://github.com/crdrisko/common-utilities/blob/master/docs/CONTRIBUTING.md) for how to write your code. <!--and the [Contributors Code Formatting section](CONTRIBUTING.md#Code-formatting) for how to format your code.-->
 
 ### Closing Issues
 
@@ -42,13 +42,13 @@ Put `closes #XXXX` in your comment to auto-close the issue that your PR fixes (i
 
 Demonstrate the code is solid. Example: The exact commands you ran and their output, screenshots / videos if the pull request changes UI.
 
-*Make sure tests pass on all of the [relevant CI workflows](https://github.com/cdrisko/common-utilities/blob/master/.travis.yml).*
+*Make sure tests pass on all of the [relevant CI workflows](https://github.com/crdrisko/common-utilities/blob/master/.travis.yml).*
 
 ### Pull Request Readiness Checklist
 
-See details at [CONTRIBUTING.md](https://github.com/cdrisko/common-utilities/blob/master/docs/CONTRIBUTING.md).
+See details at [CONTRIBUTING.md](https://github.com/crdrisko/common-utilities/blob/master/docs/CONTRIBUTING.md).
 
-- [ ] I agree to contribute to the project under Common-Utilities' [MIT License](https://github.com/cdrisko/common-utilities/blob/master/LICENSE).
+- [ ] I agree to contribute to the project under Common-Utilities' [MIT License](https://github.com/crdrisko/common-utilities/blob/master/LICENSE).
 
 - [ ] To the best of my knowledge, the proposed patch is not based on a code under GPL or other license that is incompatible with Common-Utilities.
 

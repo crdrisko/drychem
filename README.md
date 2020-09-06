@@ -1,6 +1,6 @@
 # Common-Utilities
 
-[![Build Status](https://travis-ci.com/crdrisko/common-utilities.svg?branch=master)](https://travis-ci.com/crdrisko/common-utilities) [![Coverage Status](https://coveralls.io/repos/github/crdrisko/common-utilities/badge.svg?branch=master)](https://coveralls.io/github/crdrisko/common-utilities?branch=master) ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/crdrisko/common-utilities?include_prereleases)
+[![Build Status](https://travis-ci.com/crdrisko/common-utilities.svg?branch=master)](https://travis-ci.com/crdrisko/common-utilities) [![Coverage Status](https://coveralls.io/repos/github/crdrisko/common-utilities/badge.svg?branch=master)](https://coveralls.io/github/crdrisko/common-utilities?branch=master) [![Release](https://github.com/crdrisko/common-utilities/workflows/Release/badge.svg)](https://github.com/crdrisko/common-utilities/actions?query=workflow%3A%22Release%22) <!--![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/crdrisko/common-utilities?include_prereleases)-->
 
 Welcome to the Common-Utilities project! This project is a compilation of a number of unrelated programs and scripts I've written over the years, providing a single source of utilities used in other repositories. The goal of this project is to strive for compliance with the "Don't Repeat Yourself" (DRY) principle of modern software development.
 
