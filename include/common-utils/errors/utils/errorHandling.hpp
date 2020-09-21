@@ -1,7 +1,7 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: errorHandling.hpp - Version 2.0.1
+// Name: errorHandling.hpp - Version 2.0.0
 // Author: cdrisko
 // Date: 01/31/2020-15:38:03
 // Description: Utilities for printing error messages according to an error's severity
@@ -13,8 +13,8 @@
 #include <iostream>
 #include <string_view>
 
-#include "errorTypes.hpp"
-#include "../traits/isFatal.hpp"
+#include "errors/utils/errorTypes.hpp"
+#include "errors/traits/isFatal.hpp"
 
 namespace CommonUtilities::Errors
 {
@@ -31,8 +31,8 @@ namespace CommonUtilities::Errors
     }
 
     // A convenience function for printing a error message for a fatal error
-    constexpr auto printFatalErrorMessage 
-        = [](std::string_view programName, std::string_view message) 
+    constexpr auto printFatalErrorMessage
+        = [](std::string_view programName, std::string_view message)
             -> void { printErrorMessage<ErrorSeverity::Fatal>(programName, message); };
 }
 

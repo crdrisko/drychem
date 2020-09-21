@@ -22,7 +22,7 @@ Ex:
 
 ## Code style and formatting
 
-Attempt to match the surrounding code styling as much as possible. Check the [Contributors Style Guidelines section](https://github.com/crdrisko/common-utilities/blob/master/docs/CONTRIBUTING.md) for how to write your code. <!--and the [Contributors Code Formatting section](CONTRIBUTING.md#Code-formatting) for how to format your code.-->
+Attempt to match the surrounding code styling as much as possible. Check the [Contributors Style Guidelines section](https://github.com/crdrisko/common-utilities/blob/master/docs/CONTRIBUTING.md#Style-guidelines) for how to write your code. <!--and the [Contributors Code Formatting section](https://github.com/crdrisko/common-utilities/blob/master/docs/CONTRIBUTING.md#Code-formatting) for how to format your code.-->
 
 ### Closing Issues
 

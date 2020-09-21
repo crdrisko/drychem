@@ -6,14 +6,14 @@
 // Date: 08/26/2020-14:35:44
 // Description: Provides ~100% unit test coverage over all error handing functions
 
-#ifndef TESTERRORHANDLING_HPP
-#define TESTERRORHANDLING_HPP
+#ifndef COMMON_UTILITIES_TESTING_TESTERRORHANDLING_HPP
+#define COMMON_UTILITIES_TESTING_TESTERRORHANDLING_HPP
 
 #include <string>
 
 #include <gtest/gtest.h>
 
-#include "../../../include/common-utils/errors.hpp"
+#include "errors.hpp"
 
 using namespace CommonUtilities::Errors;
 

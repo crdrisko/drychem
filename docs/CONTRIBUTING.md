@@ -12,9 +12,9 @@ If you are looking for a good way to contribute to the project, please:
 
 ## Reporting issues and suggesting new features
 
-If you find that the project is not working properly, please file a report using the [Bug Report template](https://github.com/crdrisko/common-utilities/issues/new?assignees=&labels=bug&template=bug_report.md&title=[BUG]). Should the template provided not suit your needs, feel free to make a [Custom Bug Report](https://github.com/crdrisko/common-utilities/issues/new/choose), but please label it accordingly.
+If you find that the project is not working properly, please file a report using the [Bug Report template](https://github.com/crdrisko/common-utilities/issues/new?assignees=&labels=bug&template=bug_report.md&title=[BUG]). Should the template provided not suit your needs, feel free to make a [Custom Bug Report](https://github.com/crdrisko/common-utilities/issues/new?assignees=&labels=&template=custom.md&title=), but please label it accordingly.
 
-We are happy to hear your ideas for how to further improve Common-Utilities, ensuring it suits your needs. Check the [Issues](https://github.com/crdrisko/common-utilities/issues) and see if others have submitted similar feedback. You can upvote existing feedback (using the thumbs up reaction/by commenting) or [submit a new suggestion](https://github.com/crdrisko/common-utilities/labels/feature).
+We are happy to hear your ideas for how to further improve Common-Utilities, ensuring it suits your needs. Check the [Issues](https://github.com/crdrisko/common-utilities/issues) and see if others have submitted similar feedback. You can upvote existing feedback (using the thumbs up reaction/by commenting) or [submit a new suggestion](https://github.com/crdrisko/common-utilities/issues/new?assignees=&labels=&template=feature_request.md&title=).
 
 We always look at upvoted items in [Issues](https://github.com/crdrisko/common-utilities/issues) when we decide what to work on next. We read the comments and we look forward to hearing your input.
 

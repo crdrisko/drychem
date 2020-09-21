@@ -6,13 +6,16 @@ enable_testing()
 
 ## Tests ##
 UtilsNewTest(TESTNAME AllErrorFunctions
-             INTERIOR_DIRECTORY TestErrors)
+             INTERIOR_DIRECTORY errors)
 
-UtilsNewTest(TESTNAME FileFunctions
-             INTERIOR_DIRECTORY TestFiles)
+# UtilsNewTest(TESTNAME AllFileFunctions
+#              INTERIOR_DIRECTORY files)
 
-UtilsNewTest(TESTNAME MathFunctions
-             INTERIOR_DIRECTORY TestMath)
+# UtilsNewTest(TESTNAME AllMathFunctions
+#              INTERIOR_DIRECTORY math)
 
-UtilsNewTest(TESTNAME StringFunctions
-             INTERIOR_DIRECTORY TestStrings)
+# UtilsNewTest(TESTNAME AllOperationFunctions
+#              INTERIOR_DIRECTORY operations)
+
+# UtilsNewTest(TESTNAME AllStringFunctions
+#              INTERIOR_DIRECTORY strings)

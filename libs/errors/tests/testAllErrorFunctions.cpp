@@ -8,11 +8,11 @@
 
 #include <gtest/gtest.h>
 
-#include "TestExceptions/testCommonExceptionTypes.hpp"
-#include "TestExceptions/testExceptionHandling.hpp"
-#include "TestTraits/testErrorTraits.hpp"
-#include "TestUtilities/testErrorHandling.hpp"
-#include "TestUtilities/testErrorTypes.hpp"
+#include "testExceptions/testCommonExceptionTypes.hpp"
+#include "testExceptions/testExceptionHandling.hpp"
+#include "testTraits/testErrorTraits.hpp"
+#include "testUtilities/testErrorHandling.hpp"
+#include "testUtilities/testErrorTypes.hpp"
 
 int main(int argc, char** argv)
 {

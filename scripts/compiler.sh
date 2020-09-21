@@ -2,7 +2,7 @@
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 # Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: compiler.sh - Version 1.0.1
+# Name: compiler.sh - Version 1.0.2
 # Author: crdrisko
 # Date: 01/31/2020-14:46:06
 # Description: Collects the .cpp files in a directory and compiles them using g++
@@ -25,8 +25,8 @@ printHelpMessage()      #@ DESCRIPTION: Print the compiler program's help messag
     printf "EXAMPLE: compiler -i ../example.cpp -o example.out -V 20\n\n"
 }
 
-validVersion()		    #@ DESCRIPTION: Checks entered C++ version against released versions
-{					    #@ USAGE: validVersion INT
+validVersion()          #@ DESCRIPTION: Checks entered C++ version against released versions
+{                       #@ USAGE: validVersion INT
     case $1 in
         98) return 0 ;;  03) return 0 ;;  11) return 0 ;;
         14) return 0 ;;  17) return 0 ;;  20) return 0 ;;

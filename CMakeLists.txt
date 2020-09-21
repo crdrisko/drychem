@@ -50,6 +50,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
     CACHE PATH
     "Single directory for all executables.")
 
+include_directories(include/common-utils)
+
 
 ### Installation ###
 install(DIRECTORY include/common-utils
