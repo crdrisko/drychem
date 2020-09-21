@@ -1,7 +1,7 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: fatalException.hpp - Version 2.0.1
+// Name: fatalException.hpp - Version 2.0.0
 // Author: crdrisko
 // Date: 04/07/2020-11:09:24
 // Description: Defines a specialized exception handling class designed around the error utilities
@@ -11,8 +11,8 @@
 
 #include <exception>
 
-#include "../utils/errorHandling.hpp"
-#include "../utils/errorTypes.hpp"
+#include "errors/utils/errorHandling.hpp"
+#include "errors/utils/errorTypes.hpp"
 
 namespace CommonUtilities::Errors
 {
@@ -27,11 +27,9 @@ namespace CommonUtilities::Errors
     public:
         explicit FatalException(const ErrorMessage& Error) : error{Error}
         {
+            // This specific error is always fatal but needs to override the current exception that was thrown
             if ( error.programName.empty() || error.message.empty() )
-            {
-                // This specific error is always fatal but needs to override the current exception that was thrown
                 printFatalErrorMessage("Common-Utilities", "Program name and error message must be set.");
-            }
         }
 
         // Delegate our exception handling to the error handling classes

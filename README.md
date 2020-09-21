@@ -35,15 +35,17 @@ The Common-Utilities project was designed to have as few external dependencies a
 
 - The Bourne Again SHell (bash) is required to use of any of the scripts. While other versions of bash may work, the lowest version of bash I have tested these scripts on is 3.2. Many, if not all, shell scripts in this repository are *not* compliant with the POSIX shell.
 
-- [GoogleTest](https://github.com/google/googletest) was used for the testing all the source code in the project. Building and running all these tests is optional and more information can be found in the testing section of [`docs/BUILD.md`](https://github.com/crdrisko/common-utilities/blob/master/docs/BUILD.md).
-
 ### Build Requirements
 
 - [CMake](https://cmake.org): Version 3.10.0 or higher. See the documentation in the [`docs/BUILD.md`](https://github.com/crdrisko/common-utilities/blob/master/docs/BUILD.md) file for specific instructions on installing the project.
 
+### Test Requirements
+
+- [GoogleTest](https://github.com/google/googletest) was used for the testing all the source code in the project. Building and running all these tests is optional and more information can be found in the testing section of [`docs/BUILD.md`](https://github.com/crdrisko/common-utilities/blob/master/docs/BUILD.md).
+
 ## Contributing
 
-Please read CONTRIBUTING.md for details on how you can become a contributor and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/crdrisko/common-utilities/blob/master/docs/CONTRIBUTING.md) for details on how you can become a contributor and the process for submitting pull requests to us.
 
 ## License
 

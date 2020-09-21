@@ -2,7 +2,7 @@
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 # Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: changeCase.sh - Version 1.0.2
+# Name: changeCase.sh - Version 1.0.3
 # Author: crdrisko
 # Date: 01/31/2020-14:45:49
 # Description: Script to change the case of an input string
@@ -23,8 +23,8 @@ printHelpMessage()      #@ DESCRIPTION: Print the changeCase program's help mess
     printf "EXAMPLE: changeCase -f -l -w LOWERCASE\n\n"
 }
 
-to_upper()		        #@ DESCRIPTION: Convert the first letter of a word to uppercase
-{				        #@ USAGE: to_upper sTRING
+to_upper()              #@ DESCRIPTION: Convert the first letter of a word to uppercase
+{                       #@ USAGE: to_upper sTRING
     unset _UPR
     unset UPWORD
 
@@ -45,8 +45,8 @@ to_upper()		        #@ DESCRIPTION: Convert the first letter of a word to upperc
     fi
 }
 
-upword()		        #@ DESCRIPTION: Convert the entire word to uppercase
-{				        #@ USAGE: upword string
+upword()                #@ DESCRIPTION: Convert the entire word to uppercase
+{                       #@ USAGE: upword string
     unset _UPWORD
     unset UPWORD
     local Word=$1
@@ -65,8 +65,8 @@ upword()		        #@ DESCRIPTION: Convert the entire word to uppercase
     fi
 }
 
-to_lower()		        #@ DESCRIPTION: Convert the first letter of a word to lowercase
-{				        #@ USAGE: to_lower String
+to_lower()              #@ DESCRIPTION: Convert the first letter of a word to lowercase
+{                       #@ USAGE: to_lower String
     unset _LWR
     unset LOWWORD
 
@@ -87,8 +87,8 @@ to_lower()		        #@ DESCRIPTION: Convert the first letter of a word to lowerc
     fi
 }
 
-lowword()		        #@ DESCRIPTION: Convert the entire word to lowercase
-{				        #@ USAGE: lowword STRING
+lowword()               #@ DESCRIPTION: Convert the entire word to lowercase
+{                       #@ USAGE: lowword STRING
     unset _LOWWORD
     unset LOWWORD
     local Word=$1

@@ -23,8 +23,7 @@ script:
   - mkdir build && cd build
   - cmake ../. -Dutils_build_tests=ON
   - make && sudo make install
-  - cd test
-  - ctest
+  - ctest --output-on-failure
 
 
 ### Provide Code Coverage Reports ###
@@ -46,8 +45,7 @@ matrix:
         - mkdir build && cd build
         - cmake ../. -Dutils_coverage=ON
         - make && sudo make install
-        - cd test
-        - ctest
+        - ctest --output-on-failure
         - lcov --directory . --capture --output-file coverage.info
-        - lcov --remove coverage.info '*gtest*' '*/test/*' '/usr/*' --output-file coverage.info
+        - lcov --remove coverage.info '*gtest*' '*/test/*' '*/tests/*' '/usr/*' --output-file coverage.info
         - coveralls -r ../../. --l coverage.info -n

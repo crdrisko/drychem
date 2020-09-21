@@ -12,11 +12,13 @@ The libraries included in this repository include the following, and more inform
 
 - [Errors](https://github.com/crdrisko/common-utilities/blob/master/libs/errors/docs/errors.md)
 
-- [Files](https://github.com/crdrisko/common-utilities/blob/master/libs/files/docs/errors.md)
+- [Files](https://github.com/crdrisko/common-utilities/blob/master/libs/files/docs/files.md)
 
-- [Math](https://github.com/crdrisko/common-utilities/blob/master/libs/math/docs/errors.md)
+- [Math](https://github.com/crdrisko/common-utilities/blob/master/libs/math/docs/math.md)
 
-- [Strings](https://github.com/crdrisko/common-utilities/blob/master/libs/strings/docs/errors.md)
+- [Operations](https://github.com/crdrisko/common-utilities/blob/master/libs/operations/docs/operations.md)
+
+- [Strings](https://github.com/crdrisko/common-utilities/blob/master/libs/strings/docs/strings.md)
 
 The following tree diagram shows how a sample library, `library1`, would be organized in the API:
 
@@ -41,7 +43,7 @@ The following tree diagram shows how a sample library, `library1`, would be orga
             └── ...
 ```
 
-The `libs` directory contains information about the specific library, such as the documentation, example code samples, source code (if any), and unit tests. The `include/common-utils` is where the header files for the library are stored. Note that the `libraryName.hpp` file is the public API and should be included in a user's project. The files in the `libraryName` directory contain the internal implementation details and are subject to change without notice.
+The `libs` directory contains information about the specific library, such as the documentation, example code samples, source code (if any), and unit tests. The `include/common-utils` is where the header files for the library are stored. Note that the `libraryName.hpp` file serves as the public API of the library and should be `#include`'d in a user's project. The files in the `libraryName` directory contain the internal implementation details and are subject to change without notice.
 
 ## Bash Scripts
 

@@ -12,8 +12,8 @@
 #include <string>
 #include <string_view>
 
-#include "fatalException.hpp"
-#include "../utils/errorTypes.hpp"
+#include "errors/exceptions/fatalException.hpp"
+#include "errors/utils/errorTypes.hpp"
 
 namespace CommonUtilities::Errors
 {

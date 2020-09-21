@@ -6,8 +6,8 @@
 // Date: 08/27/2020-12:07:48
 // Description: Provides ~100% unit test coverage over all exception handing functions
 
-#ifndef TESTEXCEPTIONHANDLING_HPP
-#define TESTEXCEPTIONHANDLING_HPP
+#ifndef COMMON_UTILITIES_TESTING_TESTEXCEPTIONHANDLING_HPP
+#define COMMON_UTILITIES_TESTING_TESTEXCEPTIONHANDLING_HPP
 
 #include <exception>
 #include <iostream>
@@ -16,7 +16,7 @@
 
 #include <gtest/gtest.h>
 
-#include "../../../include/common-utils/errors.hpp"
+#include "errors.hpp"
 
 using namespace CommonUtilities::Errors;
 

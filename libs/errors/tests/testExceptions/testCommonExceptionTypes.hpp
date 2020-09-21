@@ -1,17 +1,17 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: testCommonExceptionTypes.hpp - Version 2.0.1
+// Name: testCommonExceptionTypes.hpp - Version 2.0.0
 // Author: crdrisko
 // Date: 08/27/2020-12:15:18
 // Description: Provides ~100% unit test coverage over all specialty exception handling classes
 
-#ifndef TESTCOMMONEXCEPTIONTYPES_HPP
-#define TESTCOMMONEXCEPTIONTYPES_HPP
+#ifndef COMMON_UTILITIES_TESTING_TESTCOMMONEXCEPTIONTYPES_HPP
+#define COMMON_UTILITIES_TESTING_TESTCOMMONEXCEPTIONTYPES_HPP
 
 #include <gtest/gtest.h>
 
-#include "../../../include/common-utils/errors.hpp"
+#include "errors.hpp"
 
 using namespace CommonUtilities::Errors;
 
@@ -45,7 +45,7 @@ GTEST_TEST(testCommonExceptionTypes, invalidInputExceptionResultsInProgramTermin
     }, "Common-Utilities Fatal Error:\n\tThe user-supplied input is invalid.\n");
 }
 
-GTEST_TEST(testErrorFunctions, invalidInputExceptionPrintsNonDefaultMessage)
+GTEST_TEST(testCommonExceptionTypes, invalidInputExceptionPrintsNonDefaultMessage)
 {
     ASSERT_DEATH(
     {
@@ -60,7 +60,7 @@ GTEST_TEST(testErrorFunctions, invalidInputExceptionPrintsNonDefaultMessage)
     }, "Common-Utilities Fatal Error:\n\tLet's throw a fatal error.\n");
 }
 
-GTEST_TEST(testErrorFunctions, catchSpecializedExceptionsWithSpecializations)
+GTEST_TEST(testCommonExceptionTypes, catchSpecializedExceptionsWithSpecializations)
 {
     InvalidInputException exception1 {"Common-Utilities", "Let's throw a fatal error."};
     FileNotFoundException exception2 {"Common-Utilities", "test.cpp"};

@@ -4,7 +4,8 @@ project(CommonUtilities VERSION 2.0.0)
 
 
 ### Options ###
-option(utils_build_tests "Build all unit tests in the test directory." OFF)
+option(utils_build_tests "Build all unit tests in the testing directories." OFF)
+option(utils_build_samples "Build all code samples in the samples directories." OFF)
 option(utils_coverage "Turn on coverage options for use with lcov, gcov, and/or coveralls." OFF)
 
 if (utils_coverage)
@@ -51,6 +52,19 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
     "Single directory for all executables.")
 
 
+### Libraries / Executables ###
+include_directories(include/common-utils)
+
+## Sample Programs ##
+if (utils_build_samples)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/samples)
+
+    add_executable(fibonacciExample libs/errors/samples/fibonacciExample.cpp)
+
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
+endif()
+
+
 ### Installation ###
 install(DIRECTORY include/common-utils
         DESTINATION include)
@@ -85,5 +99,14 @@ if (utils_build_tests)
 
     include_directories(${GTEST_INCLUDE_DIRS})
 
-    add_subdirectory(test)
+    include(CTest)
+    include(GoogleTest)
+
+    enable_testing()
+
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/tests)
+
+    add_subdirectory(tests)
+
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 endif()

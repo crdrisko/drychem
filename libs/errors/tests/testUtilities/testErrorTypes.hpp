@@ -6,12 +6,12 @@
 // Date: 08/26/2020-15:02:42
 // Description: Provides ~100% unit test coverage over all error types and associated functions
 
-#ifndef TESTERRORTYPES_HPP
-#define TESTERRORTYPES_HPP
+#ifndef COMMON_UTILITIES_TESTING_TESTERRORTYPES_HPP
+#define COMMON_UTILITIES_TESTING_TESTERRORTYPES_HPP
 
 #include <gtest/gtest.h>
 
-#include "../../../include/common-utils/errors.hpp"
+#include "errors.hpp"
 
 using namespace CommonUtilities::Errors;
 
