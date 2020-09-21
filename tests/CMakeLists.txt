@@ -1,10 +1,4 @@
-### Unit Testing ###
-include(CTest)
-include(GoogleTest)
-
-enable_testing()
-
-## Tests ##
+### Unit Tests ###
 UtilsNewTest(TESTNAME AllErrorFunctions
              INTERIOR_DIRECTORY errors)
 

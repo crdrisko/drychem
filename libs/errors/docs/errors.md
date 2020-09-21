@@ -36,3 +36,20 @@ The `printErrorMessage()` function template is a helper function for the `FatalE
 **Working Example:**
 
 For working examples of how to use the library, refer to the [testing](https://github.com/crdrisko/common-utilities/tree/master/libs/errors/tests) files or the [samples](https://github.com/crdrisko/common-utilities/tree/master/libs/errors/samples) directory, which together provide a comprehensive overview of the library's usage.
+
+To build and run the code samples for the error library, one should include the `utils_build_samples=ON` option to the CMake instructions. Similarly, to build and run the unit tests for the individual error functions, one should include the `utils_build_tests=ON` option, as shown in the code below:
+
+```bash
+cmake ../common-utilities/. -Dutils_build_samples=ON -Dutils_build_tests=ON
+make
+
+## Run error library samples ##
+cd bin/samples
+./fibonacciExample
+
+## Run error library unit tests ##
+cd ../tests
+./testAllErrorFunctions
+```
+
+*NOTE: the samples and tests will not be installed with the rest of the library. They exist only to extend the documentation and help the user navigate the library.*
