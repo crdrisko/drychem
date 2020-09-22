@@ -60,6 +60,10 @@ if (utils_build_samples)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/samples)
 
     add_executable(fibonacciExample libs/errors/samples/fibonacciExample.cpp)
+    # add_executable(* libs/files/samples/*.cpp)
+    # add_executable(* libs/math/samples/*.cpp)
+    # add_executable(* libs/strings/samples/*.cpp)
+    add_executable(comparableExample libs/utilities/samples/comparableExample.cpp)
 
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 endif()
@@ -106,7 +110,7 @@ if (utils_build_tests)
 
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/tests)
 
-    add_subdirectory(tests)
+    add_subdirectory(cmake/tests ${PROJECT_BINARY_DIR}/Testing)
 
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 endif()
