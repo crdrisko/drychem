@@ -8,8 +8,8 @@ UtilsNewTest(TESTNAME AllErrorFunctions
 # UtilsNewTest(TESTNAME AllMathFunctions
 #              INTERIOR_DIRECTORY math)
 
-# UtilsNewTest(TESTNAME AllOperationFunctions
-#              INTERIOR_DIRECTORY operations)
-
 # UtilsNewTest(TESTNAME AllStringFunctions
 #              INTERIOR_DIRECTORY strings)
+
+UtilsNewTest(TESTNAME AllUtilityFunctions
+             INTERIOR_DIRECTORY utilities)
