@@ -63,7 +63,7 @@ if (utils_build_samples)
     # add_executable(* libs/files/samples/*.cpp)
     # add_executable(* libs/math/samples/*.cpp)
     # add_executable(* libs/strings/samples/*.cpp)
-    # add_executable(* libs/utilities/samples/*.cpp)
+    add_executable(comparableExample libs/utilities/samples/comparableExample.cpp)
 
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 endif()
