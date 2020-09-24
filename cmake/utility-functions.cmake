@@ -1,7 +1,5 @@
-### Functions ###
-
-## Function to find and download external projects from Github ##
-function(externalDownload)
+### Function to find and download external projects from Github ###
+function(UnitsExternalDownload)
     set(options)
     set(one_value_keywords PROJECT
                            REPOSITORY)
@@ -34,8 +32,8 @@ function(externalDownload)
                      EXCLUDE_FROM_ALL)
 endfunction()
 
-## Function to create a new test from a predefined naming template ##
-function(newTest)
+### Function to create a new test from a predefined naming template ###
+function(UnitsNewTest)
     set(options)
     set(one_value_keywords TESTNAME
                            INTERIOR_DIRECTORY)
@@ -43,11 +41,11 @@ function(newTest)
 
     cmake_parse_arguments(TEST_ARGS "${options}" "${one_value_keywords}" "${multi_value_keywords}" ${ARGN})
 
-    add_executable(test${TEST_ARGS_TESTNAME}Functions
-                   ${TEST_ARGS_INTERIOR_DIRECTORY}/test${TEST_ARGS_TESTNAME}Functions.cpp)
+    add_executable(test${TEST_ARGS_TESTNAME}
+                   ${CPPUnits_SOURCE_DIR}/tests/${TEST_ARGS_INTERIOR_DIRECTORY}/test${TEST_ARGS_TESTNAME}.cpp)
 
-    target_link_libraries(test${TEST_ARGS_TESTNAME}Functions ${GTEST_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+    target_link_libraries(test${TEST_ARGS_TESTNAME} ${GTEST_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
-    gtest_discover_tests(test${TEST_ARGS_TESTNAME}Functions
-                         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${TEST_ARGS_INTERIOR_DIRECTORY})
+    gtest_discover_tests(test${TEST_ARGS_TESTNAME}
+                         WORKING_DIRECTORY ${CPPUnits_SOURCE_DIR}/tests/${TEST_ARGS_INTERIOR_DIRECTORY})
 endfunction()

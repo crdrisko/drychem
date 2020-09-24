@@ -1,11 +1,11 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
-// Licensed under the MIT License. See the LICENSE file in the project root for license information.
+// Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: physicalQuantities.hpp - Version 1.0.0
 // Author: crdrisko
 // Date: 03/04/2020-08:13:47
-// Description: The public API for the PhysicalQuantities section of the CPP-Units program. This
-//   header file should be included in all user programs using these utilities.
+// Description: The public API for the PhysicalQuantities section of the CPP-Units project.
+//   This header file should be included in all user programs using these utilities.
 //
 // Note: The internal implementation details associated with this API should not be used in any
 //   user program as they are subject to change at any time without warning.
@@ -13,149 +13,189 @@
 #ifndef CPP_UNITS_PHYSICALQUANTITIES_HPP
 #define CPP_UNITS_PHYSICALQUANTITIES_HPP
 
-#include "internal/conversions.hpp"
-#include "internal/math.hpp"
-#include "internal/physicalQuantity.hpp"
+// #include "conversions/conversions.hpp"
+// #include "math/math.hpp"
+// #include "math/basicMath.hpp"
+#include "types/dimensionality.hpp"
+#include "types/physicalQuantity.hpp"
 
 namespace PhysicalQuantities
 {
-    #define DeclareNewPhysicalQuantity(NAME, BASEUNIT, ...)                                         \
-        using NAME ##Dimensionality = Dimensionality<__VA_ARGS__>;                                  \
-        using NAME = PhysicalQuantity<NAME ##Dimensionality>;                                       \
-        namespace Literals                                                                          \
-        {                                                                                           \
-            constexpr NAME operator"" BASEUNIT(long double magnitude) { return NAME(magnitude); }   \
-        }
-
-    using DimensionlessQuantity = PhysicalQuantity< Dimensionality<> >;
+    using DimensionlessQuantity = PhysicalQuantity<Dimensionality<>>;
 
     // MKS Quantities
-    DeclareNewPhysicalQuantity(Angle, _rad, 0, 0, 0)
-    DeclareNewPhysicalQuantity(Area, _m2, 2, 0, 0)
-    DeclareNewPhysicalQuantity(Length, _m, 1, 0, 0)
-    DeclareNewPhysicalQuantity(Volume, _m3, 3, 0, 0)
-
-    DeclareNewPhysicalQuantity(Irradiance, _W_m2, 0, 1, -3)
-    DeclareNewPhysicalQuantity(MassDensity, _kg_m3, -3, 1, 0)
-    DeclareNewPhysicalQuantity(MomentumFlux, _kg_ms2, -1, 1, -2)
-    DeclareNewPhysicalQuantity(SpecificEnergy, _J_kg, 2, 0, -2)
-    DeclareNewPhysicalQuantity(SpecificVolume, _m3_kg, 3, -1, 0)
-
-    DeclareNewPhysicalQuantity(Acceleration, _m_s2, 1, 0, -2)
-    DeclareNewPhysicalQuantity(Force, _N, 1, 1, -2)
-    DeclareNewPhysicalQuantity(Mass, _kg, 0, 1, 0)
-    DeclareNewPhysicalQuantity(Momentum, _kgm_s, 1, 1, -1)
-    DeclareNewPhysicalQuantity(Power, _W, 2, 1, -3)
-    DeclareNewPhysicalQuantity(Pressure, _bar, -1, 1, -2)
-    DeclareNewPhysicalQuantity(Time, _s, 0, 0, 1)
-    DeclareNewPhysicalQuantity(Velocity, _m_s, 1, 0, -1)
-
-    DeclareNewPhysicalQuantity(Action, _Js, 2, 2, -2)
-    DeclareNewPhysicalQuantity(AngularVelocity, _m2_s, 2, 0, -1)
-    DeclareNewPhysicalQuantity(Energy, _J, 2, 1, -2)
-    DeclareNewPhysicalQuantity(Frequency, _Hz, 0, 0, -1)
-    DeclareNewPhysicalQuantity(WaveNumber, _1_m, -1, 0, 0)
+    using MassDensity           = PhysicalQuantity<Dimensionality<-3,  1,  0>>;
+    using WaveNumber            = PhysicalQuantity<Dimensionality<-1,  0,  0>>;
+    using MomentumFlux          = PhysicalQuantity<Dimensionality<-1,  1, -2>>;
+    using Pressure              = PhysicalQuantity<Dimensionality<-1,  1, -2>>;
+    using Frequency             = PhysicalQuantity<Dimensionality< 0,  0, -1>>;
+    using Angle                 = PhysicalQuantity<Dimensionality< 0,  0,  0>>;
+    using Time                  = PhysicalQuantity<Dimensionality< 0,  0,  1>>;
+    using Irradiance            = PhysicalQuantity<Dimensionality< 0,  1, -3>>;
+    using Mass                  = PhysicalQuantity<Dimensionality< 0,  1,  0>>;
+    using Acceleration          = PhysicalQuantity<Dimensionality< 1,  0, -2>>;
+    using Velocity              = PhysicalQuantity<Dimensionality< 1,  0, -1>>;
+    using Length                = PhysicalQuantity<Dimensionality< 1,  0,  0>>;
+    using Force                 = PhysicalQuantity<Dimensionality< 1,  1, -2>>;
+    using Momentum              = PhysicalQuantity<Dimensionality< 1,  1, -1>>;
+    using Action                = PhysicalQuantity<Dimensionality< 2,  2, -2>>;
+    using SpecificEnergy        = PhysicalQuantity<Dimensionality< 2,  0, -2>>;
+    using AngularVelocity       = PhysicalQuantity<Dimensionality< 2,  0, -1>>;
+    using Area                  = PhysicalQuantity<Dimensionality< 2,  0,  0>>;
+    using Power                 = PhysicalQuantity<Dimensionality< 2,  1, -3>>;
+    using Energy                = PhysicalQuantity<Dimensionality< 2,  1, -2>>;
+    using SpecificVolume        = PhysicalQuantity<Dimensionality< 3, -1,  0>>;
+    using Volume                = PhysicalQuantity<Dimensionality< 3,  0,  0>>;
 
     // Electromagnetic Quantities
-    DeclareNewPhysicalQuantity(Capacitance, _F, -2, -1, 4, 2)
-    DeclareNewPhysicalQuantity(CurrentDensity, _A_m2, -2, 0, 0, 1)
-    DeclareNewPhysicalQuantity(ElectricCharge, _e, 0, 0, 1, 1)
-    DeclareNewPhysicalQuantity(ElectricChargeDensity, _C_m3, -3, 0, 1, 1)
-    DeclareNewPhysicalQuantity(ElectricConductance, _S, -2, -1, 3, 2)
-    DeclareNewPhysicalQuantity(ElectricConductivity, _S_m, -3, -1, 3, 2)
-    DeclareNewPhysicalQuantity(ElectricCurrent, _A, 0, 0, 0, 1)
-    DeclareNewPhysicalQuantity(ElectricField, _V_m, 1, 1, -3, -1)
-    DeclareNewPhysicalQuantity(ElectricFluxDensity, _C_m2, -2, 0, 1, 1)
-    DeclareNewPhysicalQuantity(ElectricPotential, _V, 2, 1, -3, -1)
-    DeclareNewPhysicalQuantity(ElectricResistance, _Ohm, 2, 1, -3, -2)
-    DeclareNewPhysicalQuantity(Mobility, _m2_Vs, 0, -1, 2, 1)
-    DeclareNewPhysicalQuantity(Permittivity, _F_m, -3, -1, 4, 2)
-
-    DeclareNewPhysicalQuantity(Inductance, _H, 2, 1, -2, -2)
-    DeclareNewPhysicalQuantity(MagneticFieldStrength, _A_m, -1, 0, 0, 1)
-    DeclareNewPhysicalQuantity(MagneticFlux, _Wb, 2, 1, -2, -1)
-    DeclareNewPhysicalQuantity(MagneticFluxDensity, _T, 0, 1, -2, -1)
-    DeclareNewPhysicalQuantity(Permeability, _H_m, 1, 1, -2, -2)
-
-    // Molar Quantities
-    DeclareNewPhysicalQuantity(AmountOfSubstance, _mol, 0, 0, 0, 0, 0, 1)
-    DeclareNewPhysicalQuantity(Concentration, _M, -3, 0, 0, 0, 0, 1)
-    DeclareNewPhysicalQuantity(ConcentrationGradient, _M_m, -4, 0, 0, 0, 0, 1)
-    DeclareNewPhysicalQuantity(Faradays, _C_mol, 0, 0, 1, 1, 0, -1)
-    DeclareNewPhysicalQuantity(MolarConductivity, _Sm2_mol, 0, -1, 3, 2, 0, -1)
-    DeclareNewPhysicalQuantity(MolarEnergy, _J_mol, 2, 1, -2, 0, 0, -1)
-    DeclareNewPhysicalQuantity(MolarEnergyFlux, _kg_mols3, 0, 1, -3, 0, 0, -1)
-    DeclareNewPhysicalQuantity(MolarEntropy, _J_molK, 2, 1, -2, 0, -1, -1)
-    DeclareNewPhysicalQuantity(MolarMass, _g_mol, 0, 1, 0, 0, 0, -1)
+    using ElectricConductivity  = PhysicalQuantity<Dimensionality<-3, -1,  3,  2>>;
+    using Permittivity          = PhysicalQuantity<Dimensionality<-3, -1,  4,  2>>;
+    using ElectricChargeDensity = PhysicalQuantity<Dimensionality<-3,  0,  1,  1>>;
+    using ElectricConductance   = PhysicalQuantity<Dimensionality<-2, -1,  3,  2>>;
+    using Capacitance           = PhysicalQuantity<Dimensionality<-2, -1,  4,  2>>;
+    using CurrentDensity        = PhysicalQuantity<Dimensionality<-2,  0,  0,  1>>;
+    using ElectricFluxDensity   = PhysicalQuantity<Dimensionality<-2,  0,  1,  1>>;
+    using MagneticFieldStrength = PhysicalQuantity<Dimensionality<-1,  0,  0,  1>>;
+    using Mobility              = PhysicalQuantity<Dimensionality< 0, -1,  2,  1>>;
+    using ElectricCurrent       = PhysicalQuantity<Dimensionality< 0,  0,  0,  1>>;
+    using ElectricCharge        = PhysicalQuantity<Dimensionality< 0,  0,  1,  1>>;
+    using MagneticFluxDensity   = PhysicalQuantity<Dimensionality< 0,  1, -2, -1>>;
+    using ElectricField         = PhysicalQuantity<Dimensionality< 1,  1, -3, -1>>;
+    using Permeability          = PhysicalQuantity<Dimensionality< 1,  1, -2, -2>>;
+    using ElectricResistance    = PhysicalQuantity<Dimensionality< 2,  1, -3, -2>>;
+    using ElectricPotential     = PhysicalQuantity<Dimensionality< 2,  1, -3, -1>>;
+    using Inductance            = PhysicalQuantity<Dimensionality< 2,  1, -2, -2>>;
+    using MagneticFlux          = PhysicalQuantity<Dimensionality< 2,  1, -2, -1>>;
 
     // Thermal Quantities
-    DeclareNewPhysicalQuantity(Entropy, _J_K, 2, 1, -2, 0, -1)
-    DeclareNewPhysicalQuantity(SpecificEntropy, _J_kgK, 2, 0, -2, 0, -1)
-    DeclareNewPhysicalQuantity(Temperature, _K, 0, 0, 0, 0, 1)
-    DeclareNewPhysicalQuantity(ThermalConductivity, _W_mK, 1, 1, -3, 0, -1)
+    using Temperature           = PhysicalQuantity<Dimensionality< 0,  0,  0,  0,  1>>;
+    using ThermalConductivity   = PhysicalQuantity<Dimensionality< 1,  1, -3,  0, -1>>;
+    using SpecificEntropy       = PhysicalQuantity<Dimensionality< 2,  0, -2,  0, -1>>;
+    using Entropy               = PhysicalQuantity<Dimensionality< 2,  1, -2,  0, -1>>;
+
+    // Molar Quantities
+    using AmountOfSubstance     = PhysicalQuantity<Dimensionality< 0,  0,  0,  0,  0,  1>>;
+    using Concentration         = PhysicalQuantity<Dimensionality<-3,  0,  0,  0,  0,  1>>;
+    using ConcentrationGradient = PhysicalQuantity<Dimensionality<-4,  0,  0,  0,  0,  1>>;
+    using Faradays              = PhysicalQuantity<Dimensionality< 0,  0,  1,  1,  0, -1>>;
+    using MolarConductivity     = PhysicalQuantity<Dimensionality< 0, -1,  3,  2,  0, -1>>;
+    using MolarEnergy           = PhysicalQuantity<Dimensionality< 2,  1, -2,  0,  0, -1>>;
+    using MolarEnergyFlux       = PhysicalQuantity<Dimensionality< 0,  1, -3,  0,  0, -1>>;
+    using MolarEntropy          = PhysicalQuantity<Dimensionality< 2,  1, -2,  0, -1, -1>>;
+    using MolarMass             = PhysicalQuantity<Dimensionality< 0,  1,  0,  0,  0, -1>>;
+
+    // Luminous Quantities
+    using Illuminance           = PhysicalQuantity<Dimensionality<-2,  0,  0,  0,  0,  0,  1>>;
+    using LuminousIntensity     = PhysicalQuantity<Dimensionality< 0,  0,  0,  0,  0,  0,  1>>;
+    using Luminance             = PhysicalQuantity<Dimensionality< 2,  0,  0,  0,  0,  0,  1>>;
 
 
     namespace Literals
     {
-        #define DeclareAdditionalLiteral(NAME, UNIT)                                                \
-            constexpr NAME operator"" UNIT(long double magnitude) { return NAME(magnitude); }
+        // We need a better way to organize the unit literals than just a wall of possible units
+        constexpr auto operator"" _(long double magnitude) { return DimensionlessQuantity(magnitude); }
 
-        DeclareAdditionalLiteral(DimensionlessQuantity, _)
+        // User-Defined Literals for MKS Quantities
+        constexpr auto operator"" _m_s2(long double magnitude) { return Acceleration(magnitude); }
+        constexpr auto operator"" _Js(long double magnitude) { return Action(magnitude); }
+        constexpr auto operator"" _rad(long double magnitude) { return Angle(magnitude); }
+        constexpr auto operator"" _deg(long double magnitude) { return Angle(magnitude); }
+        constexpr auto operator"" _m2_s(long double magnitude) { return AngularVelocity(magnitude); }
+        constexpr auto operator"" _m2(long double magnitude) { return Area(magnitude); }
+        constexpr auto operator"" _Ang2(long double magnitude) { return Area(magnitude); }
+        constexpr auto operator"" _J(long double magnitude) { return Energy(magnitude); }
+        constexpr auto operator"" _eV(long double magnitude) { return Energy(magnitude); }
+        constexpr auto operator"" _Ha(long double magnitude) { return Energy(magnitude); }
+        constexpr auto operator"" _cal(long double magnitude) { return Energy(magnitude); }
+        constexpr auto operator"" _Cal(long double magnitude) { return Energy(magnitude); }
+        constexpr auto operator"" _N(long double magnitude) { return Force(magnitude); }
+        constexpr auto operator"" _Hz(long double magnitude) { return Frequency(magnitude); }
+        constexpr auto operator"" _W_m2(long double magnitude) { return Irradiance(magnitude); }
+        constexpr auto operator"" _m(long double magnitude) { return Length(magnitude); }
+        constexpr auto operator"" _Ang(long double magnitude) { return Length(magnitude); }
+        constexpr auto operator"" _in(long double magnitude) { return Length(magnitude); }
+        constexpr auto operator"" _ft(long double magnitude) { return Length(magnitude); }
+        constexpr auto operator"" _yd(long double magnitude) { return Length(magnitude); }
+        constexpr auto operator"" _mil(long double magnitude) { return Length(magnitude); }
+        constexpr auto operator"" _kg(long double magnitude) { return Mass(magnitude); }
+        constexpr auto operator"" _lbs(long double magnitude) { return Mass(magnitude); }
+        constexpr auto operator"" _kg_m3(long double magnitude) { return MassDensity(magnitude); }
+        constexpr auto operator"" _kgm_s(long double magnitude) { return Momentum(magnitude); }
+        constexpr auto operator"" _kg_ms2(long double magnitude) { return MomentumFlux(magnitude); }
+        constexpr auto operator"" _W(long double magnitude) { return Power(magnitude); }
+        constexpr auto operator"" _bar(long double magnitude) { return Pressure(magnitude); }
+        constexpr auto operator"" _Pa(long double magnitude) { return Pressure(magnitude); }
+        constexpr auto operator"" _atm(long double magnitude) { return Pressure(magnitude); }
+        constexpr auto operator"" _torr(long double magnitude) { return Pressure(magnitude); }
+        constexpr auto operator"" _psi(long double magnitude) { return Pressure(magnitude); }
+        constexpr auto operator"" _J_kg(long double magnitude) { return SpecificEnergy(magnitude); }
+        constexpr auto operator"" _m3_kg(long double magnitude) { return SpecificVolume(magnitude); }
+        constexpr auto operator"" _s(long double magnitude) { return Time(magnitude); }
+        constexpr auto operator"" _min(long double magnitude) { return Time(magnitude); }
+        constexpr auto operator"" _hr(long double magnitude) { return Time(magnitude); }
+        constexpr auto operator"" _days(long double magnitude) { return Time(magnitude); }
+        constexpr auto operator"" _weeks(long double magnitude) { return Time(magnitude); }
+        constexpr auto operator"" _months(long double magnitude) { return Time(magnitude); }
+        constexpr auto operator"" _years(long double magnitude) { return Time(magnitude); }
+        constexpr auto operator"" _m_s(long double magnitude) { return Velocity(magnitude); }
+        constexpr auto operator"" _m3(long double magnitude) { return Volume(magnitude); }
+        constexpr auto operator"" _Ang3(long double magnitude) { return Volume(magnitude); }
+        constexpr auto operator"" _L(long double magnitude) { return Volume(magnitude); }
+        constexpr auto operator"" _1_m(long double magnitude) { return WaveNumber(magnitude); }
 
-        // MKS Quantities
-        DeclareAdditionalLiteral(Angle, _deg)
+        // User-Defined Literals for Electromagnetic Quantities
+        constexpr auto operator"" _F(long double magnitude) { return Capacitance(magnitude); }
+        constexpr auto operator"" _A_m2(long double magnitude) { return CurrentDensity(magnitude); }
+        constexpr auto operator"" _e(long double magnitude) { return ElectricCharge(magnitude); }
+        constexpr auto operator"" _C(long double magnitude) { return ElectricCharge(magnitude); }
+        constexpr auto operator"" _C_m3(long double magnitude) { return ElectricChargeDensity(magnitude); }
+        constexpr auto operator"" _S(long double magnitude) { return ElectricConductance(magnitude); }
+        constexpr auto operator"" _S_m(long double magnitude) { return ElectricConductivity(magnitude); }
+        constexpr auto operator"" _A(long double magnitude) { return ElectricCurrent(magnitude); }
+        constexpr auto operator"" _V_m(long double magnitude) { return ElectricField(magnitude); }
+        constexpr auto operator"" _C_m2(long double magnitude) { return ElectricFluxDensity(magnitude); }
+        constexpr auto operator"" _V(long double magnitude) { return ElectricPotential(magnitude); }
+        constexpr auto operator"" _Ohm(long double magnitude) { return ElectricResistance(magnitude); }
+        constexpr auto operator"" _H(long double magnitude) { return Inductance(magnitude); }
+        constexpr auto operator"" _A_m(long double magnitude) { return MagneticFieldStrength(magnitude); }
+        constexpr auto operator"" _Wb(long double magnitude) { return MagneticFlux(magnitude); }
+        constexpr auto operator"" _T(long double magnitude) { return MagneticFluxDensity(magnitude); }
+        constexpr auto operator"" _G(long double magnitude) { return MagneticFluxDensity(magnitude); }
+        constexpr auto operator"" _gamma(long double magnitude) { return MagneticFluxDensity(magnitude); }
+        constexpr auto operator"" _Wb_m2(long double magnitude) { return MagneticFluxDensity(magnitude); }
+        constexpr auto operator"" _kg_As2(long double magnitude) { return MagneticFluxDensity(magnitude); }
+        constexpr auto operator"" _m2_Vs(long double magnitude) { return Mobility(magnitude); }
+        constexpr auto operator"" _H_m(long double magnitude) { return Permeability(magnitude); }
+        constexpr auto operator"" _F_m(long double magnitude) { return Permittivity(magnitude); }
 
-        DeclareAdditionalLiteral(Area, _Ang2)
+        // User-Defined Literals for Molar Quantities
+        constexpr auto operator"" _mol(long double magnitude) { return AmountOfSubstance(magnitude); }
+        constexpr auto operator"" _part(long double magnitude) { return AmountOfSubstance(magnitude); }
+        constexpr auto operator"" _M(long double magnitude) { return Concentration(magnitude); }
+        constexpr auto operator"" _M_m(long double magnitude) { return ConcentrationGradient(magnitude); }
+        constexpr auto operator"" _C_mol(long double magnitude) { return Faradays(magnitude); }
+        constexpr auto operator"" _Sm2_mol(long double magnitude) { return MolarConductivity(magnitude); }
+        constexpr auto operator"" _J_mol(long double magnitude) { return MolarEnergy(magnitude); }
+        constexpr auto operator"" _eV_mol(long double magnitude) { return MolarEnergy(magnitude); }
+        constexpr auto operator"" _kcal_mol(long double magnitude) { return MolarEnergy(magnitude); }
+        constexpr auto operator"" _kg_mols3(long double magnitude) { return MolarEnergyFlux(magnitude); }
+        constexpr auto operator"" _J_molK(long double magnitude) { return MolarEntropy(magnitude); }
+        constexpr auto operator"" _g_mol(long double magnitude) { return MolarMass(magnitude); }
+        constexpr auto operator"" _amu(long double magnitude) { return MolarMass(magnitude); }
 
-        DeclareAdditionalLiteral(Length, _Ang)
-        DeclareAdditionalLiteral(Length, _in)
-        DeclareAdditionalLiteral(Length, _ft)
-        DeclareAdditionalLiteral(Length, _yd)
-        DeclareAdditionalLiteral(Length, _mil)
+        // User-Defined Literals for Thermal Quantities
+        constexpr auto operator"" _J_K(long double magnitude) { return Entropy(magnitude); }
+        constexpr auto operator"" _eV_K(long double magnitude) { return Entropy(magnitude); }
+        constexpr auto operator"" _J_kgK(long double magnitude) { return SpecificEntropy(magnitude); }
+        constexpr auto operator"" _K(long double magnitude) { return Temperature(magnitude); }
+        constexpr auto operator"" _degC(long double magnitude) { return Temperature(magnitude); }
+        constexpr auto operator"" _degF(long double magnitude) { return Temperature(magnitude); }
+        constexpr auto operator"" _W_mK(long double magnitude) { return ThermalConductivity(magnitude); }
 
-        DeclareAdditionalLiteral(Volume, _Ang3)
-        DeclareAdditionalLiteral(Volume, _L)
-
-        DeclareAdditionalLiteral(Mass, _lbs)
-
-        DeclareAdditionalLiteral(Pressure, _Pa)
-        DeclareAdditionalLiteral(Pressure, _atm)
-        DeclareAdditionalLiteral(Pressure, _torr)
-        DeclareAdditionalLiteral(Pressure, _psi)
-
-        DeclareAdditionalLiteral(Time, _min)
-        DeclareAdditionalLiteral(Time, _hr)
-        DeclareAdditionalLiteral(Time, _days)
-        DeclareAdditionalLiteral(Time, _weeks)
-        DeclareAdditionalLiteral(Time, _months)
-        DeclareAdditionalLiteral(Time, _years)
-
-        DeclareAdditionalLiteral(Energy, _eV)
-        DeclareAdditionalLiteral(Energy, _Ha)
-        DeclareAdditionalLiteral(Energy, _cal)
-        DeclareAdditionalLiteral(Energy, _Cal)
-
-        // Electromagnetic Quantities
-        DeclareAdditionalLiteral(ElectricCharge, _C)
-
-        DeclareAdditionalLiteral(MagneticFluxDensity, _G)
-        DeclareAdditionalLiteral(MagneticFluxDensity, _gamma)
-        DeclareAdditionalLiteral(MagneticFluxDensity, _Wb_m2)
-        DeclareAdditionalLiteral(MagneticFluxDensity, _kg_As2)
-
-        // Molar Quantities
-        DeclareAdditionalLiteral(AmountOfSubstance, _part)
-
-        DeclareAdditionalLiteral(MolarEnergy, _eV_mol)
-        DeclareAdditionalLiteral(MolarEnergy, _kcal_mol)
-
-        DeclareAdditionalLiteral(MolarMass, _amu)
-
-        // Thermal Quantities
-        DeclareAdditionalLiteral(Entropy, _eV_K)
-
-        DeclareAdditionalLiteral(Temperature, _degC)
-        DeclareAdditionalLiteral(Temperature, _degF)
+        // User-Defined Literals for Luminous Quantities
+        constexpr auto operator"" _cd_m2(long double magnitude) { return Luminance(magnitude); }
+        constexpr auto operator"" _lx(long double magnitude) { return Illuminance(magnitude); }
+        constexpr auto operator"" _cd(long double magnitude) { return LuminousIntensity(magnitude); }
     }
 
 
@@ -164,14 +204,14 @@ namespace PhysicalQuantities
         using namespace Literals;
 
         constexpr DimensionlessQuantity avogadrosNumber = 6.02214076e23_;
-        constexpr Length bohrRadius = 5.29177210903e-11_m;
-        constexpr Entropy boltzmannConstant = 1.380649e-23_J_K;
-        constexpr ElectricCharge elementaryCharge = 1.602176634e-19_C;
-        constexpr Faradays faradaysConstant = (elementaryCharge * avogadrosNumber) / 1.0_mol;
-        constexpr Permittivity permittivityFreeSpace = 8.8541878128e-12_F_m;
+        constexpr Length                bohrRadius = 5.29177210903e-11_m;
+        constexpr Entropy               boltzmannConstant = 1.380649e-23_J_K;
+        constexpr ElectricCharge        elementaryCharge = 1.602176634e-19_C;
+        constexpr Faradays              faradaysConstant = (elementaryCharge * avogadrosNumber) / 1.0_mol;
+        constexpr Permittivity          permittivityFreeSpace = 8.8541878128e-12_F_m;
         constexpr DimensionlessQuantity pi = 3.14159265_;
-        constexpr Action plancksConstant = 6.62607015e-34_Js;
-        constexpr Velocity speedOfLight = 299'792'458.0_m_s;
+        constexpr Action                plancksConstant = 6.62607015e-34_Js;
+        constexpr Velocity              speedOfLight = 299'792'458.0_m_s;
     }
 }
 
