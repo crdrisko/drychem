@@ -47,7 +47,8 @@ if (NOT ${COMMON_UTILITIES_FOUND})
     set(COMMON_UTILITIES_FOUND True)
 endif()
 
-include_directories(${COMMON_UTILITIES_INCLUDE_DIR}/common-utils)
+## Include the outer directory for external use and the inner directory for internal use ##
+include_directories(${COMMON_UTILITIES_INCLUDE_DIR} ${COMMON_UTILITIES_INCLUDE_DIR}/common-utils)
 
 
 ### Libraries / Executables ###
