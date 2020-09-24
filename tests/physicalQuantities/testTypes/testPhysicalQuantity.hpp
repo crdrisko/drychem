@@ -76,7 +76,7 @@ GTEST_TEST(testPhysicalQuantity, stringConstructorCanThrowAnException)
         {
             except.handleErrorWithMessage();
         }
-    }, "CPP-Units Fatal Error:\n\tException message: stold: no conversion");
+    }, "CPP-Units Fatal Error:\n\tException message: stold");
 }
 
 #endif
