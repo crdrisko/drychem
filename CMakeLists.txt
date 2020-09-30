@@ -1,14 +1,15 @@
-### Top Level CMake Script for C++ Units ###
+### Top Level CMake Script for Common-Utilities ###
 cmake_minimum_required(VERSION 3.10.0)
-project(CPPUnits VERSION 1.0.0)
+project(CommonUtilities VERSION 2.0.0)
 
 
 ### Options ###
-option(units_build_tests "Build all unit tests in the testing directory." OFF)
-option(units_coverage "Turn on coverage options for use with lcov, gcov, and/or coveralls." OFF)
+option(utils_build_tests "Build all unit tests in the testing directories." OFF)
+option(utils_build_samples "Build all code samples in the samples directories." OFF)
+option(utils_coverage "Turn on coverage options for use with lcov, gcov, and/or coveralls." OFF)
 
-if (units_coverage)
-    set(units_build_tests ON)
+if (utils_coverage)
+    set(utils_build_tests ON)
     set(CMAKE_BUILD_TYPE "Debug")
     set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} --coverage)
 endif()
@@ -62,6 +63,61 @@ install(DIRECTORY include/cpp-units
 
 ### Unit Testing ###
 if (units_build_tests)
+### Files / Directories ###
+set(SCRIPTS
+    scripts/changeCase.sh
+    scripts/compiler.sh
+    scripts/errorHandling.sh
+    scripts/fileMaker.sh
+    scripts/linkLogin.sh
+    scripts/modifyFiles.sh
+    scripts/remover.sh
+    scripts/showArgs.sh
+    scripts/showOpts.sh)
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
+    ${PROJECT_BINARY_DIR}/bin
+    CACHE PATH
+    "Single directory for all executables.")
+
+
+### Libraries / Executables ###
+include_directories(include include/common-utils)
+
+## Sample Programs ##
+if (utils_build_samples)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/samples)
+
+    add_executable(fibonacciExample libs/errors/samples/fibonacciExample.cpp)
+    # add_executable(* libs/files/samples/*.cpp)
+    # add_executable(* libs/math/samples/*.cpp)
+    # add_executable(* libs/strings/samples/*.cpp)
+    add_executable(comparableExample libs/utilities/samples/comparableExample.cpp)
+
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
+endif()
+
+
+### Installation ###
+install(DIRECTORY include/common-utils
+        DESTINATION include)
+
+foreach (SCRIPT ${SCRIPTS})
+    ## Remove extensions and make scripts executable ##
+    get_filename_component(filename "${SCRIPT}" NAME_WE)
+
+    configure_file(${SCRIPT} "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${filename}" @ONLY)
+
+    install(FILES "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${filename}"
+            DESTINATION bin
+            PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+                        GROUP_READ             GROUP_EXECUTE
+                        WORLD_READ             WORLD_EXECUTE)
+endforeach()
+
+
+### Unit Testing ###
+if (utils_build_tests)
     find_package(GTest)
     find_package(Threads)
 

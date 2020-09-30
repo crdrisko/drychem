@@ -34,6 +34,9 @@ endfunction()
 
 ### Function to create a new test from a predefined naming template ###
 function(UnitsNewTest)
+
+### Function to create a new test from a predefined naming template ###
+function(UtilsNewTest)
     set(options)
     set(one_value_keywords TESTNAME
                            INTERIOR_DIRECTORY)
@@ -43,9 +46,11 @@ function(UnitsNewTest)
 
     add_executable(test${TEST_ARGS_TESTNAME}
                    ${CPPUnits_SOURCE_DIR}/tests/${TEST_ARGS_INTERIOR_DIRECTORY}/test${TEST_ARGS_TESTNAME}.cpp)
+                   ${CommonUtilities_SOURCE_DIR}/libs/${TEST_ARGS_INTERIOR_DIRECTORY}/tests/test${TEST_ARGS_TESTNAME}.cpp)
 
     target_link_libraries(test${TEST_ARGS_TESTNAME} ${GTEST_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
     gtest_discover_tests(test${TEST_ARGS_TESTNAME}
                          WORKING_DIRECTORY ${CPPUnits_SOURCE_DIR}/tests/${TEST_ARGS_INTERIOR_DIRECTORY})
+                         WORKING_DIRECTORY ${CommonUtilities_SOURCE_DIR}/libs/${TEST_ARGS_INTERIOR_DIRECTORY}/tests)
 endfunction()
