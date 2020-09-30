@@ -1,7 +1,7 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: fibonacciExample.cpp - Version 2.0.0
+// Name: fibonacciExample.cpp
 // Author: crdrisko
 // Date: 09/01/2020-12:36:23
 // Description: An example of how to throw, catch, and rethrow any std::exception-derived exceptions for helpful error handling
@@ -48,7 +48,6 @@ int main()
 
 void printNFibonacciNumbers(std::size_t n)
 {
-
     std::vector<std::size_t> fibonacciNumbers;
 
     // Don't want to overshoot our data type, based on std::numeric_limits<std::size_t>::max()

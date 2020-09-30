@@ -2,7 +2,7 @@
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 # Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: fileMaker.sh - Version 1.0.1
+# Name: fileMaker.sh - Version 1.0.2
 # Author: cdrisko
 # Date: 01/31/2020-14:45:20
 # Description: Creates new files based off simple, pre-defined templates
@@ -99,7 +99,7 @@ then
     ## Switch on file extension ##
     case $fileName in
         *".cpp")
-            printf -v firstLine "%s Name: %s - Version 1.0.0" "$commentType" "$fileName"
+            printf -v firstLine "%s Name: %s" "$commentType" "$fileName"
 
             printf -v additionalLines\
                 "\n#include <iostream>\n#include <string>\n#include <vector>\n\nint main()\n{\n\n}" ;;
@@ -107,20 +107,11 @@ then
         *".hpp")
             upperCaseFileName=$(changeCase -u -w "${fileName%.*}")
 
-            printf -v firstLine "%s Name: %s - Version 1.0.0" "$commentType" "$fileName"
+            printf -v firstLine "%s Name: %s" "$commentType" "$fileName"
 
             printf -v additionalLines\
                 "\n#ifndef %s_HPP\n#define %s_HPP\n\n// Place Code Here\n\n#endif"\
                 "$upperCaseFileName" "$upperCaseFileName" ;;
-
-        *".php")
-            chapterNumber="${PWD:$(( ${#PWD} - 2 )):2}"
-            printf "<?php\n" > "$fileName"
-
-            printf -v firstLine "%s Name: %s - Version 1.0.0" "$commentType" "$fileName"
-
-            printf -v additionalLines\
-                "// Website: http://localhost:80%s/%s\n?>" "$chapterNumber" "$fileName" ;;
 
         *".sh")
             commentType="#"

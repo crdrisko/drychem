@@ -10,15 +10,15 @@
 
 The libraries included in this repository include the following, and more information can be found in the specific libraries documentation:
 
-- [Errors](https://github.com/crdrisko/common-utilities/blob/master/libs/errors/docs/errors.md)
+- [Errors](../libs/errors/docs/errors.md)
 
-- [Files](https://github.com/crdrisko/common-utilities/blob/master/libs/files/docs/files.md)
+<!--- [Files](../libs/files/docs/files.md)
 
-- [Math](https://github.com/crdrisko/common-utilities/blob/master/libs/math/docs/math.md)
+- [Math](../libs/math/docs/math.md)
 
-- [Operations](https://github.com/crdrisko/common-utilities/blob/master/libs/operations/docs/operations.md)
+- [Strings](../libs/strings/docs/strings.md)-->
 
-- [Strings](https://github.com/crdrisko/common-utilities/blob/master/libs/strings/docs/strings.md)
+- [Utilities](../libs/utilities/docs/utilities.md)
 
 The following tree diagram shows how a sample library, `library1`, would be organized in the API:
 

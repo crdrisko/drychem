@@ -1,7 +1,7 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: comparisonOperators.hpp - Version 1.0.0
+// Name: comparisonOperators.hpp
 // Author: crdrisko
 // Date: 09/17/2020-12:36:17
 // Description: An alternative to std::rel_opts which doesn't inject the comparison operators into the global namespace

@@ -8,7 +8,7 @@ If you are looking for a good way to contribute to the project, please:
 
 - Look through the [issues that need help](https://github.com/crdrisko/common-utilities/labels/help%20wanted).
 
-- Take a look at a [Pull Request Template](https://github.com/crdrisko/common-utilities/blob/master/docs/PULL_REQUEST_TEMPLATE.md) to get yourself started.
+- Take a look at a [Pull Request Template](PULL_REQUEST_TEMPLATE.md) to get yourself started.
 
 ## Reporting issues and suggesting new features
 
@@ -30,7 +30,7 @@ We highly appreciate any contributions that help us improve the end product, wit
 
 - Create one pull request per issue, and ensure that the issue is linked in the pull request. You can follow the [Pull Request Template](PULL_REQUEST_TEMPLATE.md) for this.
 
-- Follow our coding and style <!--[Coding and Style](#style-guidelines)--> guidelines, and keep code changes as small as possible.
+- Follow our coding and style [Coding and Style](#style-guidelines) guidelines, and keep code changes as small as possible.
 
 - Include corresponding tests. The project strives for as close to 100% unit-test coverage as possible, so be sure your changes do the same.
 
@@ -51,7 +51,7 @@ We highly appreciate any contributions that help us improve the end product, wit
 
 ### Preparing your development environment
 
-To learn how to build the code and run tests, follow the instructions in [docs/BUILD.md](https://github.com/crdrisko/common-utilities/blob/master/docs/BUILD.md).
+To learn how to build the code and run tests, follow the instructions in [docs/BUILD.md](BUILD.md).
 
 ### Style guidelines
 
@@ -124,7 +124,7 @@ Often, multiple iterations or discussions will be needed to responding to feedba
 
 ## Contributor License Agreement
 
-Before we can review and accept a pull request from you, you'll need to sign a Contributor License Agreement (CLA). The CLA ensures that the community is free to use your contributions. Signing the CLA is a manual process, and you need to do it for each pull request made. This is done by checking the boxes in the [Pull Request Readiness Checklist of a Pull Request](https://github.com/crdrisko/common-utilities/blob/master/docs/PULL_REQUEST_TEMPLATE.md).
+Before we can review and accept a pull request from you, you'll need to sign a Contributor License Agreement (CLA). The CLA ensures that the community is free to use your contributions. Signing the CLA is a manual process, and you need to do it for each pull request made. This is done by checking the boxes in the [Pull Request Readiness Checklist of a Pull Request](PULL_REQUEST_TEMPLATE.md#Pull-Request-Readiness-Checklist).
 
 ### IMPORTANT
 

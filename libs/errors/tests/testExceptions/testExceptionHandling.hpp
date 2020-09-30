@@ -1,7 +1,7 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: testExceptionHandling.hpp - Version 2.0.0
+// Name: testExceptionHandling.hpp
 // Author: crdrisko
 // Date: 08/27/2020-12:07:48
 // Description: Provides ~100% unit test coverage over all exception handing functions
@@ -27,7 +27,6 @@ GTEST_TEST(testExceptionHandling, allComponentsOfAnErrorMessageMustBeNonEmpty)
         ErrorMessage error1 {};
 
         FatalException except1{error1};
-
     }, "Common-Utilities Fatal Error:\n\tProgram name and error message must be set.\n");
 
     ASSERT_DEATH(
@@ -36,7 +35,6 @@ GTEST_TEST(testExceptionHandling, allComponentsOfAnErrorMessageMustBeNonEmpty)
         error2.programName = "ProgramName";
 
         FatalException except2{error2};
-
     }, "Common-Utilities Fatal Error:\n\tProgram name and error message must be set.\n");
 
 
@@ -46,7 +44,6 @@ GTEST_TEST(testExceptionHandling, allComponentsOfAnErrorMessageMustBeNonEmpty)
         error3.message = "This message won't be seen until we add a program name";
 
         FatalException except3{error3};
-
     }, "Common-Utilities Fatal Error:\n\tProgram name and error message must be set.\n");
 }
 
@@ -87,7 +84,6 @@ GTEST_TEST(testExceptionHandling, fatalErrorsAreHandledByTerminating)
 
         FatalException exceptFatal {error};
         exceptFatal.handleErrorWithMessage();
-
     }, "Common-Utilities Fatal Error:\n\tThis would be the error message.\n");
 }
 

@@ -53,7 +53,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
 
 
 ### Libraries / Executables ###
-include_directories(include/common-utils)
+include_directories(include include/common-utils)
 
 ## Sample Programs ##
 if (utils_build_samples)

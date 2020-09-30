@@ -1,7 +1,7 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: testErrorHandling.hpp - Version 2.0.0
+// Name: testErrorHandling.hpp
 // Author: crdrisko
 // Date: 08/26/2020-14:35:44
 // Description: Provides ~100% unit test coverage over all error handing functions

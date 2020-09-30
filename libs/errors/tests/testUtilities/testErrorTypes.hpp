@@ -1,7 +1,7 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: testErrorTypes.hpp - Version 2.0.0
+// Name: testErrorTypes.hpp
 // Author: crdrisko
 // Date: 08/26/2020-15:02:42
 // Description: Provides ~100% unit test coverage over all error types and associated functions
@@ -35,7 +35,6 @@ GTEST_TEST(testErrorTypes, errorMessagesCanBeSetByIndividualValues)
 
     ASSERT_EQ("Common-Utilities", error.programName);
     ASSERT_EQ("This is the error message.", error.message);
-
 }
 
 GTEST_TEST(testErrorTypes, errorMessagesCanBeSetByConstructor)

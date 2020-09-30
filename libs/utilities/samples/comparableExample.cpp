@@ -1,7 +1,7 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: comparableExample.cpp - Version 1.0.0
+// Name: comparableExample.cpp
 // Author: crdrisko
 // Date: 09/22/2020-09:06:16
 // Description: An example of how to use the CompletelyComparable<> class template when comparing fruits

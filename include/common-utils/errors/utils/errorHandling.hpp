@@ -1,7 +1,7 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: errorHandling.hpp - Version 2.0.0
+// Name: errorHandling.hpp
 // Author: cdrisko
 // Date: 01/31/2020-15:38:03
 // Description: Utilities for printing error messages according to an error's severity

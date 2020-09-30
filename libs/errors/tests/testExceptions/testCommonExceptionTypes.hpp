@@ -1,7 +1,7 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: testCommonExceptionTypes.hpp - Version 2.0.0
+// Name: testCommonExceptionTypes.hpp
 // Author: crdrisko
 // Date: 08/27/2020-12:15:18
 // Description: Provides ~100% unit test coverage over all specialty exception handling classes

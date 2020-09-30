@@ -1,7 +1,7 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: testComparisonOperators.hpp - Version 1.0.0
+// Name: testComparisonOperators.hpp
 // Author: crdrisko
 // Date: 09/18/2020-09:01:46
 // Description: Provides ~100% unit test coverage over all comparison operators

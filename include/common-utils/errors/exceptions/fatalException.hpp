@@ -1,7 +1,7 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: fatalException.hpp - Version 2.0.0
+// Name: fatalException.hpp
 // Author: crdrisko
 // Date: 04/07/2020-11:09:24
 // Description: Defines a specialized exception handling class designed around the error utilities

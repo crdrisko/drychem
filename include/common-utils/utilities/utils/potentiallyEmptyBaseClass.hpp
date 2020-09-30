@@ -1,7 +1,7 @@
 // Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: potentiallyEmptyBaseClass.hpp - Version 1.0.0
+// Name: potentiallyEmptyBaseClass.hpp
 // Author: crdrisko
 // Date: 09/18/2020-08:53:09
 // Description: An empty base class to be used with other operators and/or operations

@@ -1,10 +1,10 @@
 # Common-Utilities
 
-[![Build Status](https://travis-ci.com/crdrisko/common-utilities.svg?branch=master)](https://travis-ci.com/crdrisko/common-utilities) [![Coverage Status](https://coveralls.io/repos/github/crdrisko/common-utilities/badge.svg?branch=master)](https://coveralls.io/github/crdrisko/common-utilities?branch=master) ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/crdrisko/common-utilities?include_prereleases)
+[![Build Status](https://travis-ci.com/crdrisko/common-utilities.svg?branch=master)](docs/QUICK_LINKS.md#Current-Build-Status) [![Coverage Status](https://coveralls.io/repos/github/crdrisko/common-utilities/badge.svg?branch=master)](docs/QUICK_LINKS.md#Code-Coverage) [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/crdrisko/common-utilities?include_prereleases)](https://github.com/crdrisko/common-utilities/releases)
 
 Welcome to the Common-Utilities project! This project is a compilation of a number of unrelated programs and scripts I've written over the years, providing a single source of utilities used in other repositories. The goal of this project is to strive for compliance with the "Don't Repeat Yourself" (DRY) principle of modern software development.
 
-More detailed documentation for using the common-utilities can be found in the [`docs/PRIMER.md`](https://github.com/crdrisko/common-utilities/blob/master/docs/PRIMER.md) file.
+More detailed documentation for using the common-utilities can be found in the [`PRIMER.md`](docs/PRIMER.md) file.
 
 ## Features
 
@@ -37,18 +37,18 @@ The Common-Utilities project was designed to have as few external dependencies a
 
 ### Build Requirements
 
-- [CMake](https://cmake.org): Version 3.10.0 or higher. See the documentation in the [`docs/BUILD.md`](https://github.com/crdrisko/common-utilities/blob/master/docs/BUILD.md) file for specific instructions on installing the project.
+- [CMake](https://cmake.org): Version 3.10.0 or higher. See the documentation in the [`BUILD.md`](docs/BUILD.md) file for specific instructions on installing the project.
 
 ### Test Requirements
 
-- [GoogleTest](https://github.com/google/googletest) was used for the testing all the source code in the project. Building and running all these tests is optional and more information can be found in the testing section of [`docs/BUILD.md`](https://github.com/crdrisko/common-utilities/blob/master/docs/BUILD.md).
+- [GoogleTest](https://github.com/google/googletest) was used for the testing all the source code in the project. Building and running all these tests is optional and more information can be found in the testing section of [`BUILD.md`](docs/BUILD.md#Testing).
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/crdrisko/common-utilities/blob/master/docs/CONTRIBUTING.md) for details on how you can become a contributor and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details on how you can become a contributor and the process for submitting pull requests to us.
 
 ## License
 
 Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 
-Licensed under the [MIT License](https://github.com/crdrisko/common-utilities/blob/master/LICENSE).
+Licensed under the [MIT License](LICENSE).

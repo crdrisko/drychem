@@ -1,5 +1,0 @@
-# This is a test file for use in testing the functionality of the file utility functions
-# Default comments are denoted using a '#' symbol
-// Other comments can be specified by the symbol used
-
-Plain text is written without the hash
