@@ -1,5 +1,4 @@
 # Building and Installing C++ Units
-# Building and Installing Common-Utilities
 
 ## Installation
 
@@ -9,9 +8,6 @@ Using [CMake](https://cmake.org), the following commands can be run to install t
 git clone https://github.com/crdrisko/cpp-units.git
 mkdir build && cd build
 cmake ../cpp-units/.
-git clone https://github.com/crdrisko/common-utilities.git
-mkdir build && cd build
-cmake ../common-utilities/.
 make && [sudo] make install
 ```
 
@@ -19,21 +15,15 @@ By default, the project is installed in the `/usr/local` filesystem but can be c
 
 ## Testing
 
-With each module in the project (Conversions, Math, etc.), I have strived to provide ~100% unit test coverage for all functions. These tests can be found in the `root/tests` directory but do not get built by default. To turn on the testing features of the repository, add the `units_build_tests` option to the CMake instructions as shown in the code below:
+With each library in the project, I have strived to provide ~100% unit test coverage for all functions. These tests can be found in the `root/common-utilities/libs/libraryName/tests` and `root/cpp-units/libs/libraryName/tests` directories but do not get built by default. To turn on the testing features of the repository, add either the `units_build_all`, `units_build_tests`, `utils_build_all`, or `utils_build_tests` option to the CMake instructions, depending on which tests and libraries you want to build. More information about the specific options can be found in the [`CMakeLists.txt`](../CMakeLists.txt) file.
 
 ```bash
 ## Same steps as before ... ##
-cmake ../cpp-units/. -Dunits_build_tests=ON
-With each library in the project (Errors, Math, etc.), I have strived to provide ~100% unit test coverage for all functions. These tests can be found in the `root/libs/libraryName/tests` directory but do not get built by default. To turn on the testing features of the repository, add the `utils_build_tests=ON` option to the CMake instructions as shown in the code below:
-
-```bash
-## Same steps as before ... ##
-cmake ../common-utilities/. -Dutils_build_tests=ON
+cmake ../cpp-units/. -Dunits_build_all=ON
 make && [sudo] make install
 
 ## Run the unit tests ##
 ctest --output-on-failure
 ```
 
-[GoogleTest](https://github.com/google/googletest), which is used as the unit test framework, will be installed as an external CMake project if the repository was not already found. The same is true for the [Common-Utilities](https://github.com/crdrisko/common-utilities) project.
-[GoogleTest](https://github.com/google/googletest), which is used as the unit test framework, will be installed as an external CMake project if the repository was not already found.
+[GoogleTest](https://github.com/google/googletest), which is used as the unit test framework, will be installed as an external CMake project if the repository can not be found.

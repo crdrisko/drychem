@@ -20,14 +20,11 @@ notifications:
 
 ### Standard Installation Procedure ###
 script:
-  - mkdir build-tests && cd build-tests
-  - cmake ../. -Dutils_build_tests=ON
+  - cmake --version
+  - mkdir build && cd build
+  - cmake ../. -Dunits_build_all=ON
   - make && sudo make install
   - ctest --output-on-failure
-  - cd ../
-  - mkdir build-samples && cd build-samples
-  - cmake ../. -Dutils_build_samples=ON
-  - make
   - cd bin/samples
   - for file in *; do ./$file || echo -n; done
 
@@ -48,8 +45,9 @@ matrix:
       install:
         - if [ $TRAVIS_OS_NAME = linux ]; then pip install --user cpp-coveralls; fi
       script:
+        - cmake --version
         - mkdir build && cd build
-        - cmake ../. -Dutils_coverage=ON
+        - cmake ../. -Dunits_build_coverage=ON
         - make && sudo make install
         - ctest --output-on-failure
         - lcov --directory . --capture --output-file coverage.info

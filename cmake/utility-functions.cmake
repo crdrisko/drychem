@@ -1,5 +1,5 @@
 ### Function to find and download external projects from Github ###
-function(UnitsExternalDownload)
+function(CppUnitsExternalDownload)
     set(options)
     set(one_value_keywords PROJECT
                            REPOSITORY)
@@ -8,7 +8,7 @@ function(UnitsExternalDownload)
     cmake_parse_arguments(EXTERN_ARGS "${options}" "${one_value_keywords}" "${multi_value_keywords}" ${ARGN})
 
     ## Download and unpack project at configure time ##
-    configure_file(${CPPUnits_SOURCE_DIR}/cmake/CMakeLists.txt.in ${EXTERN_ARGS_PROJECT}-download/CMakeLists.txt)
+    configure_file(${CppUnits_SOURCE_DIR}/cmake/CMakeLists.txt.in ${EXTERN_ARGS_PROJECT}-download/CMakeLists.txt)
 
     ## Configuration step ##
     execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
@@ -32,25 +32,22 @@ function(UnitsExternalDownload)
                      EXCLUDE_FROM_ALL)
 endfunction()
 
-### Function to create a new test from a predefined naming template ###
-function(UnitsNewTest)
 
 ### Function to create a new test from a predefined naming template ###
-function(UtilsNewTest)
+function(CppUnitsNewTest)
     set(options)
     set(one_value_keywords TESTNAME
+                           LIBRARY
                            INTERIOR_DIRECTORY)
     set(multi_value_keywords)
 
     cmake_parse_arguments(TEST_ARGS "${options}" "${one_value_keywords}" "${multi_value_keywords}" ${ARGN})
 
-    add_executable(test${TEST_ARGS_TESTNAME}
-                   ${CPPUnits_SOURCE_DIR}/tests/${TEST_ARGS_INTERIOR_DIRECTORY}/test${TEST_ARGS_TESTNAME}.cpp)
-                   ${CommonUtilities_SOURCE_DIR}/libs/${TEST_ARGS_INTERIOR_DIRECTORY}/tests/test${TEST_ARGS_TESTNAME}.cpp)
+    set(TESTPATH ${CppUnits_SOURCE_DIR}/${TEST_ARGS_LIBRARY}/libs/${TEST_ARGS_INTERIOR_DIRECTORY}/tests)
+
+    add_executable(test${TEST_ARGS_TESTNAME} ${TESTPATH}/test${TEST_ARGS_TESTNAME}.cpp)
 
     target_link_libraries(test${TEST_ARGS_TESTNAME} ${GTEST_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
-    gtest_discover_tests(test${TEST_ARGS_TESTNAME}
-                         WORKING_DIRECTORY ${CPPUnits_SOURCE_DIR}/tests/${TEST_ARGS_INTERIOR_DIRECTORY})
-                         WORKING_DIRECTORY ${CommonUtilities_SOURCE_DIR}/libs/${TEST_ARGS_INTERIOR_DIRECTORY}/tests)
+    gtest_discover_tests(test${TEST_ARGS_TESTNAME} WORKING_DIRECTORY ${TESTPATH})
 endfunction()

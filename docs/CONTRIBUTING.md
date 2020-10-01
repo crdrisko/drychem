@@ -8,7 +8,7 @@ If you are looking for a good way to contribute to the project, please:
 
 - Look through the [issues that need help](https://github.com/crdrisko/cpp-units/labels/help%20wanted).
 
-- Take a look at a [Pull Request Template](https://github.com/crdrisko/cpp-units/blob/master/docs/PULL_REQUEST_TEMPLATE.md) to get yourself started.
+- Take a look at a [Pull Request Template](PULL_REQUEST_TEMPLATE.md) to get yourself started.
 
 ## Reporting issues and suggesting new features
 
@@ -27,39 +27,8 @@ You can also check the [`help wanted`](https://github.com/crdrisko/cpp-units/lab
 ## Contributions we accept
 
 We highly appreciate any contributions that help us improve the end product, with a high emphasis being put on any bug fixes you can manage to create and direct improvements which address the top issues reported by C++ Units users. Some general guidelines:
-# Contributing to Common-Utilities
 
-The Common-Utilities team encourages community feedback and contributions. Thank you for your interest in making Common-Utilities better! There are several ways you can get involved.
-
-If you are looking for a good way to contribute to the project, please:
-
-- Have a look at the [available issue templates](https://github.com/crdrisko/common-utilities/issues/new/choose) and checkout the [examples of good first issues](https://github.com/crdrisko/common-utilities/contribute) (or [click here](https://github.com/crdrisko/common-utilities/labels/good%20first%20issue)).
-
-- Look through the [issues that need help](https://github.com/crdrisko/common-utilities/labels/help%20wanted).
-
-- Take a look at a [Pull Request Template](PULL_REQUEST_TEMPLATE.md) to get yourself started.
-
-## Reporting issues and suggesting new features
-
-If you find that the project is not working properly, please file a report using the [Bug Report template](https://github.com/crdrisko/common-utilities/issues/new?assignees=&labels=bug&template=bug_report.md&title=[BUG]). Should the template provided not suit your needs, feel free to make a [Custom Bug Report](https://github.com/crdrisko/common-utilities/issues/new?assignees=&labels=&template=custom.md&title=), but please label it accordingly.
-
-We are happy to hear your ideas for how to further improve Common-Utilities, ensuring it suits your needs. Check the [Issues](https://github.com/crdrisko/common-utilities/issues) and see if others have submitted similar feedback. You can upvote existing feedback (using the thumbs up reaction/by commenting) or [submit a new suggestion](https://github.com/crdrisko/common-utilities/issues/new?assignees=&labels=&template=feature_request.md&title=).
-
-We always look at upvoted items in [Issues](https://github.com/crdrisko/common-utilities/issues) when we decide what to work on next. We read the comments and we look forward to hearing your input.
-
-## Finding issues you can help with
-
-Looking for something to work on? Issues marked [`good first issue`](https://github.com/crdrisko/common-utilities/labels/good%20first%20issue) are a good place to start.
-
-You can also check the [`help wanted`](https://github.com/crdrisko/common-utilities/labels/help%20wanted) tag to find other issues to help with. If you're interested in working on a fix, leave a comment to let everyone know and to help avoid duplicated effort from others.
-
-## Contributions we accept
-
-We highly appreciate any contributions that help us improve the end product, with a high emphasis being put on any bug fixes you can manage to create and direct improvements which address the top issues reported by Common-Utilities users. Some general guidelines:
-
-- Create one pull request per issue, and ensure that the issue is linked in the pull request. You can follow the [Pull Request Template](PULL_REQUEST_TEMPLATE.md) for this.
-
-- Follow our coding and style [Coding and Style](#style-guidelines) guidelines, and keep code changes as small as possible.
+- Follow our coding and style [Coding and Style](#Style-guidelines) guidelines, and keep code changes as small as possible.
 
 - Include corresponding tests. The project strives for as close to 100% unit-test coverage as possible, so be sure your changes do the same.
 
@@ -74,7 +43,7 @@ We highly appreciate any contributions that help us improve the end product, wit
 - Do not merge directly into the master branch.
 
 > Submitting a pull request for an approved Issue is not a guarantee it will be approved.
-> The change must meet our high bar for code quality, architecture and performance.
+> The change must meet our high bar for code quality, architecture, and performance.
 
 ## Making changes to the code
 
@@ -150,11 +119,6 @@ To skip CI runs on a particular commit, include either `[skip ci]` or `[ci skip]
 After submitting a pull request, members of the team will review your code. We will assign the request to an appropriate reviewer (if applicable). Any member of the community may participate in the review, but at least one member of the project team will ultimately approve the request.
 
 Often, multiple iterations or discussions will be needed to responding to feedback from reviewers. Try looking at [past pull requests](https://github.com/crdrisko/cpp-units/pulls?q=is%3Apr+is%3Aclosed) to see what the experience might be like.
-
-## Contributor License Agreement
-
-Before we can review and accept a pull request from you, you'll need to sign a Contributor License Agreement (CLA). The CLA ensures that the community is free to use your contributions. Signing the CLA is a manual process, and you need to do it for each pull request made. This is done by checking the boxes in the [Pull Request Readiness Checklist of a Pull Request](https://github.com/crdrisko/cpp-units/blob/master/docs/PULL_REQUEST_TEMPLATE.md).
-Often, multiple iterations or discussions will be needed to responding to feedback from reviewers. Try looking at [past pull requests](https://github.com/crdrisko/common-utilities/pulls?q=is%3Apr+is%3Aclosed) to see what the experience might be like.
 
 ## Contributor License Agreement
 
