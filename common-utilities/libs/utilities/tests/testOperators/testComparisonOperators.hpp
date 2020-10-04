@@ -78,7 +78,7 @@ GTEST_TEST(testComparisonOperators, aClassThatInheritsFromEqualityComparableCanO
     ASSERT_TRUE(value1 != value3);
     ASSERT_FALSE(value1 != value2);
 
-    // ASSERT_TRUE(value1 < value3);                        // Error: no operator ">=" matches these operands
+    // ASSERT_TRUE(value1 < value3);                        // Error: no operator "<" matches these operands
 }
 
 GTEST_TEST(testComparisonOperators, aClassThatInheritsFromLessThanComparableCanOnlyCallInequalityComparisons)

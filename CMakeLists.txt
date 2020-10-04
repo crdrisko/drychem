@@ -1,5 +1,5 @@
 ### Top Level CMake Script for C++ Units ###
-cmake_minimum_required(VERSION 3.10.0)
+cmake_minimum_required(VERSION 3.15.0)
 project(CppUnits VERSION 1.0.0)
 
 
