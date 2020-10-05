@@ -4,7 +4,7 @@
 // Name: physicalQuantities.hpp - Version 1.0.0
 // Author: crdrisko
 // Date: 03/04/2020-08:13:47
-// Description: The public API for the PhysicalQuantities section of the CPP-Units project.
+// Description: The public API for the PhysicalQuantities section of the C++ Units project.
 //   This header file should be included in all user programs using these utilities.
 //
 // Note: The internal implementation details associated with this API should not be used in any

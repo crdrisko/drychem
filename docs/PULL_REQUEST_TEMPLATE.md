@@ -46,11 +46,11 @@ Demonstrate the code is solid. Example: The exact commands you ran and their out
 
 ### Pull Request Readiness Checklist
 
-See details at [CONTRIBUTING.md](CONTRIBUTING.md).
+See details at [CONTRIBUTING.md](https://github.com/crdrisko/cpp-units/blob/master/docs/CONTRIBUTING.md).
 
-- [ ] I agree to contribute to the project under Common-Utilities' [MIT License](../LICENSE).
+- [ ] I agree to contribute to the project under C++ Units' [MIT License](https://github.com/crdrisko/cpp-units/blob/master/LICENSE).
 
-- [ ] To the best of my knowledge, the proposed patch is not based on a code under GPL or other license that is incompatible with Common-Utilities.
+- [ ] To the best of my knowledge, the proposed patch is not based on a code under GPL or other license that is incompatible with C++ Units.
 
 - [ ] The PR is proposed to proper branch.
 
