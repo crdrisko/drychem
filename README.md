@@ -40,7 +40,7 @@ The C++ Units project was designed to have as few external dependencies as possi
 
 ### Build Requirements
 
-- [CMake](https://cmake.org): Version 3.15.0 or higher. See the documentation in the [`BUILD.md`](docs/BUILD.md) file for specific instructions on installing the project.
+- [CMake](https://cmake.org): Version 3.12.0 or higher. See the documentation in the [`BUILD.md`](docs/BUILD.md) file for specific instructions on installing the project.
 
 ### Test Requirements
 
