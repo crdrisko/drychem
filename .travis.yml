@@ -1,4 +1,4 @@
-### CPP-Units Build Matrix ###
+### C++ Units Build Matrix ###
 language: cpp
 os:
   - linux
@@ -7,9 +7,9 @@ compiler:
   - clang
   - gcc
 osx_image:
-  - xcode11.2
-  - xcode10.1
-dist: bionic
+  - xcode12
+  - xcode10
+dist: focal
 arch:
   - arm64
   - amd64
@@ -18,20 +18,21 @@ notifications:
   email: false
 
 
-### Installation procedure ###
+### Standard Installation Procedure ###
 script:
   - mkdir build && cd build
-  - cmake ../. -Dcpp-units_build_tests=ON
+  - cmake ../. -Dunits_build_all=ON
   - make && sudo make install
-  - cd test
-  - ctest
+  - ctest --output-on-failure
+  - cd bin/samples
+  - for file in *; do ./$file || echo -n; done
 
 
 ### Provide Code Coverage Reports ###
 matrix:
   include:
     - os: linux
-      dist: bionic
+      dist: focal
       compiler: gcc
       arch: amd64
       addons:
@@ -44,10 +45,10 @@ matrix:
         - if [ $TRAVIS_OS_NAME = linux ]; then pip install --user cpp-coveralls; fi
       script:
         - mkdir build && cd build
-        - cmake ../. -Dcpp-units_coverage=ON
+        - cmake ../. -Dunits_build_coverage=ON
         - make && sudo make install
-        - cd test
-        - ctest
+        - ctest --output-on-failure
         - lcov --directory . --capture --output-file coverage.info
-        - lcov --remove coverage.info '*gtest*' '*/utils-api/*' '*/test/*' '/usr/*' --output-file coverage.info
+        - lcov --remove coverage.info '*gtest*' '*/tests/*' '/usr/*' --output-file coverage.info
         - coveralls -r ../../. --l coverage.info -n
+        - bash <(curl -s https://codecov.io/bash)
