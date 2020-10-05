@@ -66,7 +66,7 @@ GTEST_TEST(testPhysicalQuantity, stringConstructorCanThrowAnException)
             catch (const std::exception& except)
             {
                 CommonUtilities::Errors::ErrorMessage error;
-                error.programName = "C++ Units";
+                error.programName = "CPP Units";
                 error.message = "Exception message: " + std::string{except.what()};
 
                 throw CommonUtilities::Errors::FatalException(error);
@@ -76,7 +76,7 @@ GTEST_TEST(testPhysicalQuantity, stringConstructorCanThrowAnException)
         {
             except.handleErrorWithMessage();
         }
-    }, "C++ Units Fatal Error:\n\tException message: stold");
+    }, "CPP Units Fatal Error:\n\tException message: stold");
 }
 
 #endif
