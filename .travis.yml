@@ -32,7 +32,7 @@ script:
 matrix:
   include:
     - os: linux
-      dist: focal
+      dist: bionic
       compiler: gcc
       arch: amd64
       addons:
