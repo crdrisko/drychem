@@ -24,8 +24,8 @@ GTEST_TEST(testStreamOperators, overloadedStreamOperatorPrintsMagnitudeToStandar
     testing::internal::CaptureStdout();
 
     Length length = 5.0_m;
-    Time time = 2.5_s;
-    Velocity vel = length / time;
+    Time time     = 2.5_s;
+    Velocity vel  = length / time;
 
     std::cout << length << " m / " << time << " s = " << vel << " m/s" << std::endl;
 

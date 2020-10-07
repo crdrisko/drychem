@@ -16,13 +16,17 @@
 namespace CommonUtilities::Errors
 {
     template<ErrorSeverity Severity>
-    struct IsFatalT : std::false_type {};
+    struct IsFatalT : std::false_type
+    {
+    };
 
     template<>
-    struct IsFatalT<ErrorSeverity::Fatal> : std::true_type {};
+    struct IsFatalT<ErrorSeverity::Fatal> : std::true_type
+    {
+    };
 
     template<ErrorSeverity Severity>
     constexpr bool isFatal = IsFatalT<Severity>::value;
-}
+}   // namespace CommonUtilities::Errors
 
 #endif

@@ -23,68 +23,73 @@ using namespace CommonUtilities::Errors;
 GTEST_TEST(testExceptionHandling, allComponentsOfAnErrorMessageMustBeNonEmpty)
 {
     ASSERT_DEATH(
-    {
-        ErrorMessage error1 {};
+        {
+            ErrorMessage error1 {};
 
-        FatalException except1{error1};
-    }, "Common-Utilities Fatal Error:\n\tProgram name and error message must be set.\n");
-
-    ASSERT_DEATH(
-    {
-        ErrorMessage error2 {};
-        error2.programName = "ProgramName";
-
-        FatalException except2{error2};
-    }, "Common-Utilities Fatal Error:\n\tProgram name and error message must be set.\n");
-
+            FatalException except1 {error1};
+        },
+        "Common-Utilities Fatal Error:\n\tProgram name and error message must be set.\n");
 
     ASSERT_DEATH(
-    {
-        ErrorMessage error3 {};
-        error3.message = "This message won't be seen until we add a program name";
+        {
+            ErrorMessage error2 {};
+            error2.programName = "ProgramName";
 
-        FatalException except3{error3};
-    }, "Common-Utilities Fatal Error:\n\tProgram name and error message must be set.\n");
+            FatalException except2 {error2};
+        },
+        "Common-Utilities Fatal Error:\n\tProgram name and error message must be set.\n");
+
+
+    ASSERT_DEATH(
+        {
+            ErrorMessage error3 {};
+            error3.message = "This message won't be seen until we add a program name";
+
+            FatalException except3 {error3};
+        },
+        "Common-Utilities Fatal Error:\n\tProgram name and error message must be set.\n");
 }
 
 GTEST_TEST(testExceptionHandling, thisIsHowWeShouldCatchAndHandleAllExceptions)
 {
     ASSERT_DEATH(
-    {
-        try
         {
             try
             {
-                throw std::bad_alloc();
-            }
-            catch (const std::exception& except)
-            {
-                // Toss the exception back up for program termination and a more verbose message
-                ErrorMessage error1;
-                error1.programName = "YourProgramName";
-                error1.message = "A verbose error message describing the problem: " + std::string{except.what()};
+                try
+                {
+                    throw std::bad_alloc();
+                }
+                catch (const std::exception& except)
+                {
+                    // Toss the exception back up for program termination and a more verbose message
+                    ErrorMessage error1;
+                    error1.programName = "YourProgramName";
+                    error1.message     = "A verbose error message describing the problem: " + std::string {except.what()};
 
-                throw FatalException(error1);
+                    throw FatalException(error1);
+                }
             }
-        }
-        catch (const FatalException& except)
-        {
-            except.handleErrorWithMessage();
-        }
-    }, "YourProgramName Fatal Error:\n\tA verbose error message describing the problem: std::bad_alloc\n");
+            catch (const FatalException& except)
+            {
+                except.handleErrorWithMessage();
+            }
+        },
+        "YourProgramName Fatal Error:\n\tA verbose error message describing the problem: std::bad_alloc\n");
 }
 
 GTEST_TEST(testExceptionHandling, fatalErrorsAreHandledByTerminating)
 {
     ASSERT_DEATH(
-    {
-        ErrorMessage error;
-        error.programName = "Common-Utilities";
-        error.message = "This would be the error message.";
+        {
+            ErrorMessage error;
+            error.programName = "Common-Utilities";
+            error.message     = "This would be the error message.";
 
-        FatalException exceptFatal {error};
-        exceptFatal.handleErrorWithMessage();
-    }, "Common-Utilities Fatal Error:\n\tThis would be the error message.\n");
+            FatalException exceptFatal {error};
+            exceptFatal.handleErrorWithMessage();
+        },
+        "Common-Utilities Fatal Error:\n\tThis would be the error message.\n");
 }
 
 GTEST_TEST(testExceptionHandling, derivedExceptionClassIsCaughtByParentClass)

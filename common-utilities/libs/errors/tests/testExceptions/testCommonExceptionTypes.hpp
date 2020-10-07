@@ -18,46 +18,49 @@ using namespace CommonUtilities::Errors;
 GTEST_TEST(testCommonExceptionTypes, fileNotFoundExceptionResultsInProgramTermination)
 {
     ASSERT_DEATH(
-    {
-        try
         {
-            throw FileNotFoundException("Common-Utilities", "test.cpp");
-        }
-        catch (const FatalException& except)
-        {
-            except.handleErrorWithMessage();
-        }
-    }, "Common-Utilities Fatal Error:\n\tUnable to open file: test.cpp.\n");
+            try
+            {
+                throw FileNotFoundException("Common-Utilities", "test.cpp");
+            }
+            catch (const FatalException& except)
+            {
+                except.handleErrorWithMessage();
+            }
+        },
+        "Common-Utilities Fatal Error:\n\tUnable to open file: test.cpp.\n");
 }
 
 GTEST_TEST(testCommonExceptionTypes, invalidInputExceptionResultsInProgramTermination)
 {
     ASSERT_DEATH(
-    {
-        try
         {
-            throw InvalidInputException("Common-Utilities");
-        }
-        catch (const FatalException& except)
-        {
-            except.handleErrorWithMessage();
-        }
-    }, "Common-Utilities Fatal Error:\n\tThe user-supplied input is invalid.\n");
+            try
+            {
+                throw InvalidInputException("Common-Utilities");
+            }
+            catch (const FatalException& except)
+            {
+                except.handleErrorWithMessage();
+            }
+        },
+        "Common-Utilities Fatal Error:\n\tThe user-supplied input is invalid.\n");
 }
 
 GTEST_TEST(testCommonExceptionTypes, invalidInputExceptionPrintsNonDefaultMessage)
 {
     ASSERT_DEATH(
-    {
-        try
         {
-            throw InvalidInputException("Common-Utilities", "Let's throw a fatal error.");
-        }
-        catch (const FatalException& except)
-        {
-            except.handleErrorWithMessage();
-        }
-    }, "Common-Utilities Fatal Error:\n\tLet's throw a fatal error.\n");
+            try
+            {
+                throw InvalidInputException("Common-Utilities", "Let's throw a fatal error.");
+            }
+            catch (const FatalException& except)
+            {
+                except.handleErrorWithMessage();
+            }
+        },
+        "Common-Utilities Fatal Error:\n\tLet's throw a fatal error.\n");
 }
 
 GTEST_TEST(testCommonExceptionTypes, catchSpecializedExceptionsWithSpecializations)
@@ -66,28 +69,30 @@ GTEST_TEST(testCommonExceptionTypes, catchSpecializedExceptionsWithSpecializatio
     FileNotFoundException exception2 {"Common-Utilities", "test.cpp"};
 
     ASSERT_DEATH(
-    {
-        try
         {
-            throw exception1;
-        }
-        catch (const InvalidInputException& except)
-        {
-            except.handleErrorWithMessage();
-        }
-    }, "Common-Utilities Fatal Error:\n\tLet's throw a fatal error.\n");
+            try
+            {
+                throw exception1;
+            }
+            catch (const InvalidInputException& except)
+            {
+                except.handleErrorWithMessage();
+            }
+        },
+        "Common-Utilities Fatal Error:\n\tLet's throw a fatal error.\n");
 
     ASSERT_DEATH(
-    {
-        try
         {
-            throw exception2;
-        }
-        catch (const FileNotFoundException& except)
-        {
-            except.handleErrorWithMessage();
-        }
-    }, "Common-Utilities Fatal Error:\n\tUnable to open file: test.cpp.\n");
+            try
+            {
+                throw exception2;
+            }
+            catch (const FileNotFoundException& except)
+            {
+                except.handleErrorWithMessage();
+            }
+        },
+        "Common-Utilities Fatal Error:\n\tUnable to open file: test.cpp.\n");
 }
 
 #endif

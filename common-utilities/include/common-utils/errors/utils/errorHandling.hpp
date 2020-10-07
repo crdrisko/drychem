@@ -13,15 +13,15 @@
 #include <iostream>
 #include <string_view>
 
-#include "errors/utils/errorTypes.hpp"
 #include "errors/traits/isFatal.hpp"
+#include "errors/utils/errorTypes.hpp"
 
 namespace CommonUtilities::Errors
 {
     template<ErrorSeverity Severity = ErrorSeverity::Warning>
     constexpr void printErrorMessage(std::string_view programName, std::string_view message)
     {
-        if constexpr(isFatal<Severity>)
+        if constexpr (isFatal<Severity>)
         {
             std::cerr << programName << " Fatal Error:\n\t" << message << std::endl;
             std::exit(1);
@@ -31,9 +31,9 @@ namespace CommonUtilities::Errors
     }
 
     // A convenience function for printing a error message for a fatal error
-    constexpr auto printFatalErrorMessage
-        = [](std::string_view programName, std::string_view message)
-            -> void { printErrorMessage<ErrorSeverity::Fatal>(programName, message); };
-}
+    constexpr auto printFatalErrorMessage = [](std::string_view programName, std::string_view message) -> void {
+        printErrorMessage<ErrorSeverity::Fatal>(programName, message);
+    };
+}   // namespace CommonUtilities::Errors
 
 #endif

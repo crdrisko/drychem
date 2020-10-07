@@ -21,8 +21,10 @@ namespace CommonUtilities::Errors
     public:
         explicit InvalidInputException(const std::string& ProgramName,
             const std::string& Message = "The user-supplied input is invalid.")
-                : FatalException{ ErrorMessage{ProgramName, Message} } {}
+                : FatalException {ErrorMessage {ProgramName, Message}}
+        {
+        }
     };
-}
+}   // namespace CommonUtilities::Errors
 
 #endif

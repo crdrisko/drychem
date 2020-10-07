@@ -22,7 +22,7 @@ namespace CommonUtilities::Utilities
         int value;
 
     public:
-        explicit SomewhatComparable1(int Value) noexcept : value{Value} {}
+        explicit SomewhatComparable1(int Value) noexcept : value {Value} {}
 
         friend bool operator==(const SomewhatComparable1& lhs, const SomewhatComparable1& rhs) noexcept
         {
@@ -36,7 +36,7 @@ namespace CommonUtilities::Utilities
         int value;
 
     public:
-        explicit SomewhatComparable2(int Value) noexcept : value{Value} {}
+        explicit SomewhatComparable2(int Value) noexcept : value {Value} {}
 
         friend bool operator<(const SomewhatComparable2& lhs, const SomewhatComparable2& rhs) noexcept
         {
@@ -50,19 +50,13 @@ namespace CommonUtilities::Utilities
         int value;
 
     public:
-        explicit Comparable(int Value) noexcept : value{Value} {}
+        explicit Comparable(int Value) noexcept : value {Value} {}
 
-        friend bool operator==(const Comparable& lhs, const Comparable& rhs) noexcept
-        {
-            return lhs.value == rhs.value;
-        }
+        friend bool operator==(const Comparable& lhs, const Comparable& rhs) noexcept { return lhs.value == rhs.value; }
 
-        friend bool operator<(const Comparable& lhs, const Comparable& rhs) noexcept
-        {
-            return lhs.value < rhs.value;
-        }
+        friend bool operator<(const Comparable& lhs, const Comparable& rhs) noexcept { return lhs.value < rhs.value; }
     };
-}
+}   // namespace CommonUtilities::Utilities
 
 using namespace CommonUtilities::Utilities;
 

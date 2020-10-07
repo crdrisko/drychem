@@ -35,7 +35,7 @@ int main()
         {
             ErrorMessage error;
             error.programName = "Common-Utilities";
-            error.message = "Exception message: " + std::string{except.what()};
+            error.message     = "Exception message: " + std::string {except.what()};
 
             throw FatalException(error);
         }

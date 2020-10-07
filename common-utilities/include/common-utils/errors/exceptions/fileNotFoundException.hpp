@@ -20,8 +20,10 @@ namespace CommonUtilities::Errors
     {
     public:
         FileNotFoundException(const std::string& ProgramName, const std::string& FileName)
-            : FatalException{ ErrorMessage{ProgramName, "Unable to open file: " + FileName + '.'} } {}
+            : FatalException {ErrorMessage {ProgramName, "Unable to open file: " + FileName + '.'}}
+        {
+        }
     };
-}
+}   // namespace CommonUtilities::Errors
 
 #endif

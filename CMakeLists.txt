@@ -10,6 +10,7 @@ option(utils_build_samples  "Builds common-utils library and corresponding code 
 
 option(exclude_units        "Builds common-utils library but ignores the cpp-units library." OFF)
 option(exclude_scripts      "Builds appropriate libraries while ignoring the scripts directory." OFF)
+option(format_codebase      "Builds appropriate libraries while also formatting the code." OFF)
 
 option(units_build_all      "Builds all libraries, unit tests, and code samples." OFF)
 option(units_build_tests    "Builds all libraries and unit tests." OFF)
@@ -17,6 +18,17 @@ option(units_build_samples  "Builds all libraries and code samples." OFF)
 option(units_build_coverage "Builds all libraries, unit tests, and enables coverage options." OFF)
 
 ## Set appropriate option flags and continue ##
+if (format_codebase)
+    ## Run clang-format on all code except the files passed as arguments with the '-i' flag ##
+    execute_process(COMMAND bash cmake/scripts/format-codebase.sh
+                                    -i common-utilities/include/common-utils/errors/exceptions/invalidInputException.hpp
+                                    -i cpp-units/include/cpp-units/types/physicalQuantity.hpp
+                                    -i cpp-units/include/cpp-units/physicalQuantities.hpp
+                                    -i common-utilities/libs/utilities/samples/comparableExample.cpp
+                    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+                    OUTPUT_QUIET)
+endif()
+
 if (units_build_coverage)
     set(units_build_tests ON)
     set(CMAKE_BUILD_TYPE "Debug")

@@ -196,7 +196,7 @@ namespace PhysicalQuantities
         constexpr auto operator"" _cd_m2(long double magnitude) { return Luminance(magnitude); }
         constexpr auto operator"" _lx(long double magnitude) { return Illuminance(magnitude); }
         constexpr auto operator"" _cd(long double magnitude) { return LuminousIntensity(magnitude); }
-    }
+    }   // namespace Literals
 
 
     namespace Constants
@@ -212,7 +212,7 @@ namespace PhysicalQuantities
         constexpr DimensionlessQuantity pi = 3.14159265_;
         constexpr Action                plancksConstant = 6.62607015e-34_Js;
         constexpr Velocity              speedOfLight = 299'792'458.0_m_s;
-    }
-}
+    }   // namespace Constants
+}   // namespace PhysicalQuantities
 
 #endif

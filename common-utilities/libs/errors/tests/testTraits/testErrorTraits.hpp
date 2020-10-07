@@ -17,14 +17,14 @@ using namespace CommonUtilities::Errors;
 
 GTEST_TEST(testErrorTraits, isFatal_IsFalseWhenTemplateParameterIsWarning)
 {
-    ASSERT_FALSE( IsFatalT<ErrorSeverity::Warning>::value );
-    ASSERT_FALSE( isFatal<ErrorSeverity::Warning> );
+    ASSERT_FALSE(IsFatalT<ErrorSeverity::Warning>::value);
+    ASSERT_FALSE(isFatal<ErrorSeverity::Warning>);
 }
 
 GTEST_TEST(testErrorTraits, isFatal_IsTrueWhenTemplateParameterIsFatal)
 {
-    ASSERT_TRUE( IsFatalT<ErrorSeverity::Fatal>::value );
-    ASSERT_TRUE( isFatal<ErrorSeverity::Fatal> );
+    ASSERT_TRUE(IsFatalT<ErrorSeverity::Fatal>::value);
+    ASSERT_TRUE(isFatal<ErrorSeverity::Fatal>);
 }
 
 #endif

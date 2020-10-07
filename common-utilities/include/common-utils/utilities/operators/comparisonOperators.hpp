@@ -26,13 +26,15 @@ namespace CommonUtilities::Utilities
     public:
         constexpr friend bool operator>(const Derived& x1, const Derived& x2) { return x2 < x1; }
         constexpr friend bool operator<=(const Derived& x1, const Derived& x2) { return !(x2 < x1); }
-        constexpr friend bool operator>=(const Derived& x1, const Derived& x2) { return !(x1 < x2);}
+        constexpr friend bool operator>=(const Derived& x1, const Derived& x2) { return !(x1 < x2); }
     };
 
     /* Note: if we were to inherit both EqualityComparable and LessThanComparable, we could be setting ourselves to
         inhibit the EBCO. This way, if we do inherit an empty base class, our compiler can capitalize on that. */
     template<typename Derived, typename Empty = PotentiallyEmptyBaseClass<Derived>>
-    class CompletelyComparable : public EqualityComparable<Derived, LessThanComparable<Derived, Empty>> {};
-}
+    class CompletelyComparable : public EqualityComparable<Derived, LessThanComparable<Derived, Empty>>
+    {
+    };
+}   // namespace CommonUtilities::Utilities
 
 #endif

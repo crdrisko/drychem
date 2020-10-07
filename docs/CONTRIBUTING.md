@@ -55,46 +55,21 @@ To learn how to build the code and run tests, follow the instructions in [docs/B
 
 Please attempt to match the style of surrounding code as much as possible. In new components, prefer the patterns described in the [C++ core guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines).
 
-<!--### Code formatting
+### Code formatting
+
+We have provided a [script](../cmake/scripts/format-codebase.sh) that runs `clang-format` on every specified file in the repository. As new files are added, you are expected to add those files to this script in the appropriate location and format the code according to the formatting specifications seen [here](../.clang-format).
+
+While `clang-format` is certainly a useful tool, there are some style options we prefer that don't actually have an appropriate option when running `clang-format`. In these edge cases we will decide whether the supplied formatting will go through or not. For examples of files where the formatting we use is different from what `clang-format` suggests, take a look at the [`CMakeLists.txt`](../CMakeLists.txt) file, specifically in the section using the `format_codebase` option.
 
 ***Run clang-format***
 
-Use the following commands from the project's root directory to run clang-format
-(must be installed on the host system).
-
-**1. Run the CMake target for `clang-format`:**
+Use the following commands during the build phase to run `clang-format`
+(must be installed on the host system):
 
 ```bash
-cmake --build build --target clang-format
+cd build
+cmake ../cpp-units/. -Dformat_codebase=ON
 ```
-
-**2. Using clang-format:**
-
-```bash
-# !!! clang-format does not run recursively in subdirectories !!!
-# for each .cpp file modified
-clang-format -i *.cpp
-
-# for each .h file modified
-clang-format -i *.h
-
-# for each .hpp file modified
-clang-format -i *.hpp
-```
-
-**3. Using TheLartians' Format.cmake:**
-
-```bash
-cmake -Htest -Bbuild/test
-
-# view changes
-cmake --build build/test --target format
-
-# apply changes
-cmake --build build/test --target fix-format
-```
-
-See [Format.cmake](https://github.com/TheLartians/Format.cmake) for more options.-->
 
 ### Testing
 
