@@ -17,8 +17,10 @@
 namespace CommonUtilities::Utilities
 {
     // The EBCO and CRTP used together for an empty class
-    class EmptyDerived : public PotentiallyEmptyBaseClass<EmptyDerived> {};
-}
+    class EmptyDerived : public PotentiallyEmptyBaseClass<EmptyDerived>
+    {
+    };
+}   // namespace CommonUtilities::Utilities
 
 using namespace CommonUtilities::Utilities;
 

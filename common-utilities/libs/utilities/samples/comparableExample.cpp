@@ -28,7 +28,7 @@ private:
 public:
     enum class Rankings { Worst, PrettyGood, Great, Best };
 
-    Fruit(std::string_view Name, Rankings Rank) noexcept : name{Name}, rank{ static_cast<int>(Rank) } {}
+    Fruit(std::string_view Name, Rankings Rank) noexcept : name {Name}, rank {static_cast<int>(Rank)} {}
 
     friend bool operator==(const Fruit& lhs, const Fruit& rhs) noexcept { return lhs.rank == rhs.rank; }
     friend bool operator<(const Fruit& lhs, const Fruit& rhs) noexcept { return lhs.rank < rhs.rank; }
@@ -64,7 +64,7 @@ void printFruitComparisons(const std::vector<Fruit>& commonFruits)
         std::string fruitPrefix;
         Fruit currentFruit = commonFruits[i];
 
-        switch ( std::tolower(currentFruit.getName()[0]) )
+        switch (std::tolower(currentFruit.getName()[0]))
         {
         case 'a': case 'e': case 'i': case 'o': case 'u':
             fruitPrefix = "an";

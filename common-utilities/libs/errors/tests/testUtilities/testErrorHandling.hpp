@@ -30,11 +30,8 @@ GTEST_TEST(testErrorHandling, errorPrintsMessageToStandardError)
 
 GTEST_TEST(testErrorHandling, fatalErrorCausesProgramTermination)
 {
-    ASSERT_DEATH(
-    {
-        printErrorMessage<ErrorSeverity::Fatal>("Common-Utilities",
-            "Fatal Error, Program Terminated.");
-    }, "Common-Utilities Fatal Error:\n\tFatal Error, Program Terminated.\n");
+    ASSERT_DEATH({ printErrorMessage<ErrorSeverity::Fatal>("Common-Utilities", "Fatal Error, Program Terminated."); },
+        "Common-Utilities Fatal Error:\n\tFatal Error, Program Terminated.\n");
 }
 
 GTEST_TEST(testErrorHandling, defaultTemplateParameterIsAWarning)
@@ -49,10 +46,8 @@ GTEST_TEST(testErrorHandling, defaultTemplateParameterIsAWarning)
 
 GTEST_TEST(testErrorHandling, aliasLambdaFunctionWorksForAFatalError)
 {
-    ASSERT_DEATH(
-    {
-        printFatalErrorMessage("Common-Utilities", "Fatal Error, Program Terminated.");
-    }, "Common-Utilities Fatal Error:\n\tFatal Error, Program Terminated.\n");
+    ASSERT_DEATH({ printFatalErrorMessage("Common-Utilities", "Fatal Error, Program Terminated."); },
+        "Common-Utilities Fatal Error:\n\tFatal Error, Program Terminated.\n");
 }
 
 #endif

@@ -49,34 +49,35 @@ GTEST_TEST(testPhysicalQuantity, physicalQuantitiesCanBeConstructedFromStrings)
     DimensionlessQuantity dimensionlessQuantity {"1e5"};
     ASSERT_DOUBLE_EQ(1e5, dimensionlessQuantity.getMagnitude());
 
-    Length length {"1e5_m"};                                    // Non-number part ignored - could be anything
+    Length length {"1e5_m"};   // Non-number part ignored - could be anything
     ASSERT_DOUBLE_EQ(1e5, length.getMagnitude());
 }
 
 GTEST_TEST(testPhysicalQuantity, stringConstructorCanThrowAnException)
 {
     ASSERT_DEATH(
-    {
-        try
         {
             try
             {
-                DimensionlessQuantity dimensionlessQuantity("Not a number");
-            }
-            catch (const std::exception& except)
-            {
-                CommonUtilities::Errors::ErrorMessage error;
-                error.programName = "CPP Units";
-                error.message = "Exception message: " + std::string{except.what()};
+                try
+                {
+                    DimensionlessQuantity dimensionlessQuantity("Not a number");
+                }
+                catch (const std::exception& except)
+                {
+                    CommonUtilities::Errors::ErrorMessage error;
+                    error.programName = "CPP Units";
+                    error.message     = "Exception message: " + std::string {except.what()};
 
-                throw CommonUtilities::Errors::FatalException(error);
+                    throw CommonUtilities::Errors::FatalException(error);
+                }
             }
-        }
-        catch (const CommonUtilities::Errors::FatalException& except)
-        {
-            except.handleErrorWithMessage();
-        }
-    }, "CPP Units Fatal Error:\n\tException message: stold");
+            catch (const CommonUtilities::Errors::FatalException& except)
+            {
+                except.handleErrorWithMessage();
+            }
+        },
+        "CPP Units Fatal Error:\n\tException message: stold");
 }
 
 #endif

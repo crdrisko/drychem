@@ -16,16 +16,16 @@ namespace PhysicalQuantities
     template<int L = 0, int M = 0, int T = 0, int I = 0, int Th = 0, int N = 0, int J = 0>
     struct Dimensionality
     {
-        static inline constexpr int Length = L;
-        static inline constexpr int Mass = M;
-        static inline constexpr int Time = T;
-        static inline constexpr int ElectricCurrent = I;
-        static inline constexpr int Temperature = Th;
+        static inline constexpr int Length            = L;
+        static inline constexpr int Mass              = M;
+        static inline constexpr int Time              = T;
+        static inline constexpr int ElectricCurrent   = I;
+        static inline constexpr int Temperature       = Th;
         static inline constexpr int AmountOfSubstance = N;
         static inline constexpr int LuminousIntensity = J;
 
         using Type = Dimensionality<Length, Mass, Time, ElectricCurrent, Temperature, AmountOfSubstance, LuminousIntensity>;
     };
-}
+}   // namespace PhysicalQuantities
 
 #endif

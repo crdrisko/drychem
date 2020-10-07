@@ -32,11 +32,11 @@ namespace PhysicalQuantities
         using DimensionalityType = typename BaseDimensionality::Type;
 
         constexpr PhysicalQuantity() noexcept = default;
-        constexpr explicit PhysicalQuantity(long double Magnitude) noexcept : magnitude{Magnitude} {}
+        constexpr explicit PhysicalQuantity(long double Magnitude) noexcept : magnitude {Magnitude} {}
 
         constexpr explicit PhysicalQuantity(std::string_view Magnitude)
         {
-            magnitude = std::stold( std::string{Magnitude} );                   // This particular conversion could throw
+            magnitude = std::stold(std::string {Magnitude});   // This particular conversion could throw
         }
 
         constexpr long double getMagnitude() const noexcept { return magnitude; }
@@ -142,13 +142,12 @@ namespace PhysicalQuantities
     constexpr auto operator*(const PhysicalQuantity<Dimensionality<L1, M1, T1, I1, Th1, N1, J1>>& lhs,
         const PhysicalQuantity<Dimensionality<L2, M2, T2, I2, Th2, N2, J2>>& rhs) noexcept
     {
-        return PhysicalQuantity<Dimensionality<L1 + L2, M1 + M2, T1 + T2, I1 + I2, Th1 + Th2,
-                N1 + N2, J1 + J2>>( lhs.getMagnitude() * rhs.getMagnitude() );
+        return PhysicalQuantity<Dimensionality<L1 + L2, M1 + M2, T1 + T2, I1 + I2, Th1 + Th2, N1 + N2, J1 + J2>>(
+            lhs.getMagnitude() * rhs.getMagnitude());
     }
 
     template<int L, int M, int T, int I, int Th, int N, int J>
-    constexpr auto operator*(long double lhs, const PhysicalQuantity<Dimensionality<L, M, T,
-        I, Th, N, J>>& rhs) noexcept
+    constexpr auto operator*(long double lhs, const PhysicalQuantity<Dimensionality<L, M, T, I, Th, N, J>>& rhs) noexcept
     {
         return PhysicalQuantity<Dimensionality<>>(lhs) * rhs;
     }
@@ -158,16 +157,15 @@ namespace PhysicalQuantities
     constexpr auto operator/(const PhysicalQuantity<Dimensionality<L1, M1, T1, I1, Th1, N1, J1>>& lhs,
         const PhysicalQuantity<Dimensionality<L2, M2, T2, I2, Th2, N2, J2>>& rhs) noexcept
     {
-        return PhysicalQuantity<Dimensionality<L1 - L2, M1 - M2, T1 - T2, I1 - I2, Th1 - Th2,
-                N1 - N2, J1 - J2>>( lhs.getMagnitude() / rhs.getMagnitude() );
+        return PhysicalQuantity<Dimensionality<L1 - L2, M1 - M2, T1 - T2, I1 - I2, Th1 - Th2, N1 - N2, J1 - J2>>(
+            lhs.getMagnitude() / rhs.getMagnitude());
     }
 
     template<int L, int M, int T, int I, int Th, int N, int J>
-    constexpr auto operator/(long double lhs, const PhysicalQuantity<Dimensionality<L, M, T,
-        I, Th, N, J>>& rhs) noexcept
+    constexpr auto operator/(long double lhs, const PhysicalQuantity<Dimensionality<L, M, T, I, Th, N, J>>& rhs) noexcept
     {
         return PhysicalQuantity<Dimensionality<>>(lhs) / rhs;
     }
-}
+}   // namespace PhysicalQuantities
 
 #endif

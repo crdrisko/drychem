@@ -26,6 +26,6 @@ namespace CommonUtilities::Errors
         std::string programName {};
         std::string message {};
     };
-}
+}   // namespace CommonUtilities::Errors
 
 #endif

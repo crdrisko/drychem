@@ -47,7 +47,7 @@ GTEST_TEST(testArithmeticOperators, unaryMinusOperatorNegatesMagnitude)
 
 GTEST_TEST(testArithmeticOperators, overloadedMultiplicationOperatorsActOnPhysicalQuantitiesAndNumericTypes)
 {
-    const Area area = 24.0_m2;
+    const Area area     = 24.0_m2;
     const Length length = 1.0_m;
 
     Volume volume = area * length;
@@ -75,7 +75,7 @@ GTEST_TEST(testArithmeticOperators, overloadedDivisionOperatorsActOnPhysicalQuan
     area /= 2.0_;
     // area /= 2.0_m2;                                      // Error: no operator "/=" matches these operands
 
-    Area newArea = area / 2;
+    Area newArea          = area / 2;
     WaveNumber wavenumber = 1.0 / length;
 
     ASSERT_DOUBLE_EQ(2.0, area.getMagnitude());

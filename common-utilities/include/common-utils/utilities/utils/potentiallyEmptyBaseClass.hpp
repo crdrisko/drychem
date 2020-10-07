@@ -15,7 +15,9 @@ namespace CommonUtilities::Utilities
         the class is SFINAE'd away, we don't want to be left holding the (non-empty) bag. Thus, we can make use
          of the Empty Base Class Optimization (EBCO) in all our operator classes to avoid these issues. */
     template<typename>
-    class PotentiallyEmptyBaseClass {};
-}
+    class PotentiallyEmptyBaseClass
+    {
+    };
+}   // namespace CommonUtilities::Utilities
 
 #endif
