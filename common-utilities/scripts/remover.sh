@@ -2,7 +2,7 @@
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 # Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: remover.sh - Version 1.0.1
+# Name: remover.sh - Version 1.1.0
 # Author: crdrisko
 # Date: 01/31/2020-14:45:40
 # Description: Remove all files containing the same fileName or extension
@@ -10,10 +10,11 @@
 
 ### Functions ###
 source errorHandling
+source typeParsing
 
 printHelpMessage()      #@ DESCRIPTION: Print the remover program's help message
 {                       #@ USAGE: printHelpMessage
-    printf "\nUSAGE: remover [-hvse] [-w word]\n\n"
+    printf "\nUSAGE: remover [-hvse] [-w STRING]\n\n"
     printf "  -h  Prints help information about the remover program.\n"
     printf "  -v  Verbose mode. Defaults to false/off.\n"
     printf "  -s  Indicates the word to remove is the filename.\n"
@@ -54,6 +55,8 @@ rmEnd()                 #@ DESCRIPTION: Remove all files ending with $1
 
 
 ### Initial Variables / Default Values ###
+declare end start verbose word
+
 start=0
 end=0
 verbose=0
@@ -63,7 +66,7 @@ verbose=0
 while getopts w:sevh opt
 do
     case $opt in
-        w) word=$OPTARG ;;
+        w) STRING word = "$OPTARG" ;;
         s) start=1 ;;
         e) end=1 ;;
         v) export verbose=1 ;;

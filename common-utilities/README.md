@@ -66,7 +66,7 @@ When the repository is installed, all shell scripts will be installed without th
 ```bash
 $ changeCase -h
 
-USAGE: changeCase [-hvulf] [-w word]
+USAGE: changeCase [-hvulf] [-w STRING]
 
   -h  Prints help information about the changeCase program.
   -v  Verbose mode. Defaults to false/off.

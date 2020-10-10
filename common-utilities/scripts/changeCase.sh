@@ -2,7 +2,7 @@
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 # Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: changeCase.sh - Version 1.0.3
+# Name: changeCase.sh - Version 1.1.0
 # Author: crdrisko
 # Date: 01/31/2020-14:45:49
 # Description: Script to change the case of an input string
@@ -10,10 +10,11 @@
 
 ### Functions ###
 source errorHandling
+source typeParsing
 
 printHelpMessage()      #@ DESCRIPTION: Print the changeCase program's help message
 {                       #@ USAGE: printHelpMessage
-    printf "\nUSAGE: changeCase [-hvulf] [-w word]\n\n"
+    printf "\nUSAGE: changeCase [-hvulf] [-w STRING]\n\n"
     printf "  -h  Prints help information about the changeCase program.\n"
     printf "  -v  Verbose mode. Defaults to false/off.\n"
     printf "  -u  Change word/letter to uppercase. Defaults to false/off.\n"
@@ -109,6 +110,8 @@ lowword()               #@ DESCRIPTION: Convert the entire word to lowercase
 
 
 ### Initial Variables / Default Values ###
+declare first lower upper verbose word
+
 upper=0
 lower=0
 first=0
@@ -116,13 +119,13 @@ verbose=0
 
 
 ### Runtime Configuration ###
-while getopts w:ulfvh opt
+while getopts w:fluvh opt
 do
     case $opt in
-        w) word=$OPTARG ;;
-        u) upper=1 ;;
-        l) lower=1 ;;
+        w) STRING word = "$OPTARG" ;;
         f) first=1 ;;
+        l) lower=1 ;;
+        u) upper=1 ;;
         v) export verbose=1 ;;
         h) printHelpMessage && printFatalErrorMessage 0 ;;
         *) printFatalErrorMessage 1 "Invalid option flag passed to program." ;;

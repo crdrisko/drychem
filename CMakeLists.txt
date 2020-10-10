@@ -84,13 +84,14 @@ if (NOT exclude_scripts)
     set(SCRIPTS
         common-utilities/scripts/changeCase.sh
         common-utilities/scripts/compiler.sh
-        common-utilities/scripts/errorHandling.sh
         common-utilities/scripts/fileMaker.sh
         common-utilities/scripts/linkLogin.sh
         common-utilities/scripts/modifyFiles.sh
         common-utilities/scripts/remover.sh
-        common-utilities/scripts/showArgs.sh
-        common-utilities/scripts/showOpts.sh)
+        common-utilities/scripts/utilities/errorHandling.sh
+        common-utilities/scripts/utilities/showArgs.sh
+        common-utilities/scripts/utilities/showOpts.sh
+        common-utilities/scripts/utilities/typeParsing.sh)
 endif()
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
