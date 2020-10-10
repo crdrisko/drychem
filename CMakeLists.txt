@@ -88,9 +88,9 @@ if (NOT exclude_scripts)
         common-utilities/scripts/linkLogin.sh
         common-utilities/scripts/modifyFiles.sh
         common-utilities/scripts/remover.sh
-        common-utilities/scripts/showArgs.sh
-        common-utilities/scripts/showOpts.sh
         common-utilities/scripts/utilities/errorHandling.sh
+        common-utilities/scripts/utilities/showArgs.sh
+        common-utilities/scripts/utilities/showOpts.sh
         common-utilities/scripts/utilities/typeParsing.sh)
 endif()
 
