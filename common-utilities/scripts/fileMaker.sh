@@ -2,7 +2,7 @@
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 # Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: fileMaker.sh - Version 1.0.2
+# Name: fileMaker.sh - Version 1.1.0
 # Author: cdrisko
 # Date: 01/31/2020-14:45:20
 # Description: Creates new files based off simple, pre-defined templates
@@ -10,14 +10,15 @@
 
 ### Functions ###
 source errorHandling
+source typeParsing
 
 printHelpMessage()          #@ DESCRIPTION: Print the fileMaker program's help message
 {                           #@ USAGE: printHelpMessage
-    printf "\nUSAGE: fileMaker [-hvc] [-i inputFile]\n\n"
+    printf "\nUSAGE: fileMaker [-hvc] [-i FILE]\n\n"
     printf "  -h  Prints help information about the fileMaker program.\n"
     printf "  -v  Verbose mode. Defaults to false/off.\n"
     printf "  -c  Print copyright header in source code. Defaults to false/off.\n\n"
-    printf "  -i  REQUIRED: Either a .cpp, .hpp, .php, .py, or .sh input file.\n\n"
+    printf "  -i  REQUIRED: Either a .cpp, .hpp, .py, or .sh input file.\n\n"
     printf "EXAMPLE: fileMaker -i exampleFile.cpp -c\n\n"
 }
 
@@ -66,21 +67,18 @@ generateCopyrightHeader()   #@ DESCRIPTION: Search for LICENSCE file and print c
 
 
 ### Initial Variables / Default Values ###
-verbose=0
-copyright=0
-directory="$PWD"
+declare commentType copyright directory fileName verbose
+
 commentType="//"
+copyright=0
+verbose=0
 
 
 ### Runtime Configuration ###
 while getopts i:cvh opt
 do
     case $opt in
-        i) fileName="${OPTARG##*/}"
-           if [ "$fileName" != "${OPTARG%/*}" ]
-           then
-               directory="${OPTARG%/*}"
-           fi ;;
+        i) FILE fileName directory = "${OPTARG}" ;;
         c) copyright=1 ;;
         v) export verbose=1 ;;
         h) printHelpMessage && printFatalErrorMessage 0 ;;
@@ -122,9 +120,10 @@ then
             printf -v additionalLines\
                 "\n\n### Functions ###\
                 \nsource errorHandling\
+                \nsource typeParsing\
                 \n\nprintHelpMessage()      #@ DESCRIPTION: Print the %s program's help message\
                 \n{                       #@ USAGE: printHelpMessage\
-                \n    printf \"\\\nUSAGE: %s [-hv] [-r required] [-o optional]\\\n\\\n\"\
+                \n    printf \"\\\nUSAGE: %s [-hv] [-r STRING] [-o STRING]\\\n\\\n\"\
                 \n    printf \"  -h  Prints help information about the %s program.\\\n\"\
                 \n    printf \"  -v  Verbose mode. Defaults to false/off.\\\n\\\n\"\
                 \n    printf \"  -r  REQUIRED: Description of required input parameter.\\\n\"\
@@ -132,19 +131,20 @@ then
                 \n    printf \"EXAMPLE: %s -r required -v\\\n\\\n\"\
                 \n}\
                 \n\n\n### Initial Variables / Default Values ###\
-                \nverbose=0\
+                \ndeclare optionalArgument requiredArgument verbose\
+                \n\nverbose=0\
                 \n\n\n### Runtime Configuration ###\
                 \nwhile getopts r:o:vh opt\
                 \ndo\
                 \n    case \$opt in\
-                \n        r) requiredArgument=\$OPTARG ;;\
-                \n        o) optionalArgument=\$OPTARG ;;\
+                \n        r) STRING requiredArgument = \"\$OPTARG\" ;;\
+                \n        o) STRING optionalArgument = \"\$OPTARG\" ;;\
                 \n        v) export verbose=1 ;;\
                 \n        h) printHelpMessage && printFatalErrorMessage 0 ;;\
                 \n        *) printFatalErrorMessage 1 \"Invalid option flag passed to program.\" ;;\
                 \n    esac\
                 \ndone\
-                \n\n\n### Main Code ###\n" "${fileName%.*}" "${fileName%.*}" "${fileName%.*}" "${fileName%.*}" ;;
+                \n\n\n### Main Code ###" "${fileName%.*}" "${fileName%.*}" "${fileName%.*}" "${fileName%.*}" ;;
 
         *".py")
             commentType="#"

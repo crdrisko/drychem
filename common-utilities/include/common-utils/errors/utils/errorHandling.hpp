@@ -24,7 +24,7 @@ namespace CommonUtilities::Errors
         if constexpr (isFatal<Severity>)
         {
             std::cerr << programName << " Fatal Error:\n\t" << message << std::endl;
-            std::exit(1);
+            std::exit(EXIT_FAILURE);
         }
         else
             std::cerr << programName << " Warning:\n\t" << message << std::endl;

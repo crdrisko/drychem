@@ -2,7 +2,7 @@
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 # Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: modifyFiles.sh - Version 1.0.1
+# Name: modifyFiles.sh - Version 1.1.0
 # Author: crdrisko
 # Date: 01/31/2020-14:45:36
 # Description: Modify a file using a wrapper for sed
@@ -10,10 +10,11 @@
 
 ### Functions ###
 source errorHandling
+source typeParsing
 
 printHelpMessage()      #@ DESCRIPTION: Print the modifyFiles program's help message
 {                       #@ USAGE: printHelpMessage
-    printf "\nUSAGE: modifyFiles [-hvf] [-i fileName] [-o oldString] [-n newString]\n\n"
+    printf "\nUSAGE: modifyFiles [-hvf] [-i FILE] [-o STRING] [-n STRING]\n\n"
     printf "  -h  Prints help information about the modifyFiles program.\n"
     printf "  -v  Verbose mode. Defaults to false/off.\n"
     printf "  -f  Only replace the first instance of a word. Defaults to false/off.\n\n"
@@ -25,6 +26,8 @@ printHelpMessage()      #@ DESCRIPTION: Print the modifyFiles program's help mes
 
 
 ### Initial Variables / Default Values ###
+declare directory fileName firstInstance oldString newString verbose
+
 firstInstance=0
 verbose=0
 
@@ -33,9 +36,9 @@ verbose=0
 while getopts i:o:n:fvh opt
 do
     case $opt in
-        i) fileName=$OPTARG ;;
-        o) oldString=$OPTARG ;;
-        n) newString=$OPTARG ;;
+        i) FILE   fileName directory = "$OPTARG" ;;
+        o) STRING oldString          = "$OPTARG" ;;
+        n) STRING newString          = "$OPTARG" ;;
         f) firstInstance=1 ;;
         v) export verbose=1 ;;
         h) printHelpMessage && printFatalErrorMessage 0 ;;
@@ -45,10 +48,17 @@ done
 
 
 ### Main Code ###
-if [ $firstInstance -eq 1 ]
+if [[ -d "$directory" ]]
 then
-    sed -e "1s/${oldString?}/${newString?}/;t" -e "1,/${oldString?}/s//${newString?}/"\
-        "${fileName?}" > tempFile && mv tempFile "${fileName?}"
+    cd "$directory" || printFatalErrorMessage 2 "Could not change into required directory."
+
+    if [ $firstInstance -eq 1 ]
+    then
+        sed -e "1s/${oldString?}/${newString?}/;t" -e "1,/${oldString?}/s//${newString?}/"\
+            "${fileName?}" > tempFile && mv tempFile "${fileName?}"
+    else
+        sed "s/${oldString?}/${newString?}/g" "${fileName?}" > tempFile && mv tempFile "${fileName?}"
+    fi
 else
-    sed "s/${oldString?}/${newString?}/g" "${fileName?}" > tempFile && mv tempFile "${fileName?}"
+    printFatalErrorMessage 3 "Invalid directory."
 fi
