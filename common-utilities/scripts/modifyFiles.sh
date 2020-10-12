@@ -2,7 +2,7 @@
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 # Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: modifyFiles.sh - Version 1.1.0
+# Name: modifyFiles.sh - Version 1.2.0
 # Author: crdrisko
 # Date: 01/31/2020-14:45:36
 # Description: Modify a file using a wrapper for sed
@@ -26,7 +26,7 @@ printHelpMessage()      #@ DESCRIPTION: Print the modifyFiles program's help mes
 
 
 ### Initial Variables / Default Values ###
-declare directory fileName firstInstance oldString newString verbose
+declare firstInstance inputDir inputFile oldString newString verbose
 
 firstInstance=0
 verbose=0
@@ -36,9 +36,9 @@ verbose=0
 while getopts i:o:n:fvh opt
 do
     case $opt in
-        i) FILE   fileName directory = "$OPTARG" ;;
-        o) STRING oldString          = "$OPTARG" ;;
-        n) STRING newString          = "$OPTARG" ;;
+        i) FILE   input     = "$OPTARG" ;;                  ## Returns inputFile and inputDir variables
+        o) STRING oldString = "$OPTARG" ;;
+        n) STRING newString = "$OPTARG" ;;
         f) firstInstance=1 ;;
         v) export verbose=1 ;;
         h) printHelpMessage && printFatalErrorMessage 0 ;;
@@ -48,16 +48,16 @@ done
 
 
 ### Main Code ###
-if [[ -d "$directory" ]]
+if [[ -d "$inputDir" ]]
 then
-    cd "$directory" || printFatalErrorMessage 2 "Could not change into required directory."
+    cd "$inputDir" || printFatalErrorMessage 2 "Could not change into required directory."
 
     if [ $firstInstance -eq 1 ]
     then
         sed -e "1s/${oldString?}/${newString?}/;t" -e "1,/${oldString?}/s//${newString?}/"\
-            "${fileName?}" > tempFile && mv tempFile "${fileName?}"
+            "${inputFile?}" > tempFile && mv tempFile "${inputFile?}"
     else
-        sed "s/${oldString?}/${newString?}/g" "${fileName?}" > tempFile && mv tempFile "${fileName?}"
+        sed "s/${oldString?}/${newString?}/g" "${inputFile?}" > tempFile && mv tempFile "${inputFile?}"
     fi
 else
     printFatalErrorMessage 3 "Invalid directory."

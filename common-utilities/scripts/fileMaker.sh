@@ -2,7 +2,7 @@
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 # Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: fileMaker.sh - Version 1.1.0
+# Name: fileMaker.sh - Version 1.2.0
 # Author: cdrisko
 # Date: 01/31/2020-14:45:20
 # Description: Creates new files based off simple, pre-defined templates
@@ -67,7 +67,7 @@ generateCopyrightHeader()   #@ DESCRIPTION: Search for LICENSCE file and print c
 
 
 ### Initial Variables / Default Values ###
-declare commentType copyright directory fileName verbose
+declare commentType copyright inputDir inputFile verbose
 
 commentType="//"
 copyright=0
@@ -78,7 +78,7 @@ verbose=0
 while getopts i:cvh opt
 do
     case $opt in
-        i) FILE fileName directory = "${OPTARG}" ;;
+        i) FILE input = "${OPTARG}" ;;                      ## Returns inputFile and inputDir variables
         c) copyright=1 ;;
         v) export verbose=1 ;;
         h) printHelpMessage && printFatalErrorMessage 0 ;;
@@ -88,24 +88,24 @@ done
 
 
 ### Main Code ###
-if [[ -d "$directory" ]]
+if [[ -d "$inputDir" ]]
 then
-    cd "$directory" || printFatalErrorMessage 2 "Could not change into required directory."
+    cd "$inputDir" || printFatalErrorMessage 2 "Could not change into required directory."
 
-    [[ -e ${fileName:?Input file is required} ]] && printFatalErrorMessage 3 "Sorry that file already exists."
+    [[ -e ${inputFile:?Input file is required} ]] && printFatalErrorMessage 3 "Sorry that file already exists."
 
     ## Switch on file extension ##
-    case $fileName in
+    case $inputFile in
         *".cpp")
-            printf -v firstLine "%s Name: %s" "$commentType" "$fileName"
+            printf -v firstLine "%s Name: %s" "$commentType" "$inputFile"
 
             printf -v additionalLines\
                 "\n#include <iostream>\n#include <string>\n#include <vector>\n\nint main()\n{\n\n}" ;;
 
         *".hpp")
-            upperCaseFileName=$(changeCase -u -w "${fileName%.*}")
+            upperCaseFileName=$(changeCase -u -w "${inputFile%.*}")
 
-            printf -v firstLine "%s Name: %s" "$commentType" "$fileName"
+            printf -v firstLine "%s Name: %s" "$commentType" "$inputFile"
 
             printf -v additionalLines\
                 "\n#ifndef %s_HPP\n#define %s_HPP\n\n// Place Code Here\n\n#endif"\
@@ -113,9 +113,9 @@ then
 
         *".sh")
             commentType="#"
-            printf "#!/bin/bash\n" > "$fileName"
+            printf "#!/bin/bash\n" > "$inputFile"
 
-            printf -v firstLine "%s Name: %s - Version 1.0.0" "$commentType" "$fileName"
+            printf -v firstLine "%s Name: %s - Version 1.0.0" "$commentType" "$inputFile"
 
             printf -v additionalLines\
                 "\n\n### Functions ###\
@@ -144,13 +144,13 @@ then
                 \n        *) printFatalErrorMessage 1 \"Invalid option flag passed to program.\" ;;\
                 \n    esac\
                 \ndone\
-                \n\n\n### Main Code ###" "${fileName%.*}" "${fileName%.*}" "${fileName%.*}" "${fileName%.*}" ;;
+                \n\n\n### Main Code ###" "${inputFile%.*}" "${inputFile%.*}" "${inputFile%.*}" "${inputFile%.*}" ;;
 
         *".py")
             commentType="#"
-            printf "#!/usr/bin/env python3\n# -*- coding: utf-8 -*-\n" > "$fileName"
+            printf "#!/usr/bin/env python3\n# -*- coding: utf-8 -*-\n" > "$inputFile"
 
-            printf -v firstLine "%s Name: %s - Version 1.0.0" "$commentType" "$fileName"
+            printf -v firstLine "%s Name: %s - Version 1.0.0" "$commentType" "$inputFile"
 
             printf -v additionalLines\
                 "\nimport numpy as np\nimport matplotlib.pyplot as plt" ;;
@@ -159,17 +159,17 @@ then
     esac
 
     ## Append the standard template to file ##
-    [[ ${copyright:-0} -eq 1 ]] && generateCopyrightHeader >> "$fileName"
+    [[ ${copyright:-0} -eq 1 ]] && generateCopyrightHeader >> "$inputFile"
 
     printf "%s\
     \n%s Author: %s\
     \n%s Date: mm/dd/yyyy-hh:mm:ss\
     \n%s Description: \
     \n%s\n" "$firstLine" "$commentType" "${USER:-crdrisko}" "$commentType"\
-    "$commentType" "$additionalLines" | sed 's/ *$//g' >> "$fileName"
+    "$commentType" "$additionalLines" | sed 's/ *$//g' >> "$inputFile"
 
     ## Modify the date template with current date-time ##
-    modifyFiles -i "$fileName" -o "mm\/dd\/yyyy-hh:mm:ss" -n "$(date '+%m\/%d\/%Y-%T')" -f
+    modifyFiles -i "$inputFile" -o "mm\/dd\/yyyy-hh:mm:ss" -n "$(date '+%m\/%d\/%Y-%T')" -f
 else
     printFatalErrorMessage 5 "Invalid directory."
 fi

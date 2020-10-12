@@ -2,7 +2,7 @@
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 # Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: compiler.sh - Version 1.1.0
+# Name: compiler.sh - Version 1.2.0
 # Author: crdrisko
 # Date: 01/31/2020-14:46:06
 # Description: Collects the .cpp files in a directory and compiles them using g++
@@ -56,9 +56,9 @@ version=17
 while getopts o:i:V:rvh opt
 do
     case $opt in
-        o) FILE  outputFile outputDir = "$OPTARG" ;;
-        i) ARRAY inputFiles           = "$OPTARG" ;;
-        V) INT version                = "$OPTARG" ;;
+        o) FILE  output     = "$OPTARG" ;;                  ## Returns outputFile and outputDir variables
+        i) ARRAY inputFiles = "$OPTARG" ;;
+        V) INT   version    = "$OPTARG" ;;
         r) run=1 ;;
         v) export verbose=1 ;;
         h) printHelpMessage && printFatalErrorMessage 0 ;;

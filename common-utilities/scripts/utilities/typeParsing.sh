@@ -2,7 +2,7 @@
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 # Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: typeParsing.sh - Version 1.0.0
+# Name: typeParsing.sh - Version 1.1.0
 # Author: crdrisko
 # Date: 10/08/2020-09:43:53
 # Description: Type-parsing functions to be sourced where needed, enhancing bash's type safety
@@ -11,7 +11,7 @@
 ### Functions ###
 source errorHandling
 
-ARRAY()         #@ DESCRIPTION: Parse an command line option as a fileName and return the fileName and directory variables
+ARRAY()         #@ DESCRIPTION: Parse an command line option as an array and return the variable
 {               #@ USAGE: ARRAY VAR ['='] "$OPTARG"
     local __var=$1
 
@@ -24,13 +24,13 @@ ARRAY()         #@ DESCRIPTION: Parse an command line option as a fileName and r
 }
 
 FILE()          #@ DESCRIPTION: Parse an command line option as a fileName and return the fileName and directory variables
-{               #@ USAGE: FILE FILEVAR DIRVAR ['='] "$OPTARG"
-    local __filevar=$1
-    local __dirvar=$2
+{               #@ USAGE: FILE VARPREFIX ['='] "$OPTARG"
+    local __filevar=${1}File
+    local __dirvar=${1}Dir
 
-    case $3 in
-        '=') local __option="$4" ;;
-          *) local __option="$3" ;;
+    case $2 in
+        '=') local __option="$3" ;;
+          *) local __option="$2" ;;
     esac
 
     printf -v "$__filevar" "%s" "${__option##*/}"
