@@ -12,7 +12,7 @@
 
 ## Current Build Status
 
-- **Github Actions:** [![CMake](https://github.com/crdrisko/cpp-units/workflows/CMake/badge.svg)](https://github.com/crdrisko/cpp-units/actions?query=workflow%3ACMake)
+- **Github Actions:** [![cmake](https://github.com/crdrisko/cpp-units/workflows/cmake/badge.svg)](https://github.com/crdrisko/cpp-units/actions?query=workflow%3ACMake)
 - **Travis-CI:** [![Build Status](https://travis-ci.com/crdrisko/cpp-units.svg?branch=master)](https://travis-ci.com/crdrisko/cpp-units)
 
 ## General Repository Information
