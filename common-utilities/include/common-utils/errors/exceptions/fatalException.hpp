@@ -25,12 +25,7 @@ namespace CommonUtilities::Errors
         virtual const char* what() const noexcept override { return error.message.c_str(); }
 
     public:
-        explicit FatalException(const ErrorMessage& Error) : error {Error}
-        {
-            // This specific error is always fatal but needs to override the current exception that was thrown
-            if (error.programName.empty() || error.message.empty())
-                printFatalErrorMessage("Common-Utilities", "Program name and error message must be set.");
-        }
+        explicit FatalException(const ErrorMessage& Error) : error {Error} {}
 
         // Delegate our exception handling to the error handling classes
         void handleErrorWithMessage() const { printFatalErrorMessage(error.programName, error.message); }

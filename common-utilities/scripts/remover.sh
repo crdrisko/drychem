@@ -2,7 +2,7 @@
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 # Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: remover.sh - Version 1.1.0
+# Name: remover.sh - Version 1.1.1
 # Author: crdrisko
 # Date: 01/31/2020-14:45:40
 # Description: Remove all files containing the same fileName or extension
@@ -33,8 +33,8 @@ rmStart()               #@ DESCRIPTION: Remove all files starting with $1
              do
                  rm "$file"
              done ;;
-        n|N) printFatalErrorMessage 2 "Exiting." ;;
-          *) printFatalErrorMessage 3 "Not a valid option." ;;
+        n|N) printFatalErrorMessage 1 "Exiting." ;;
+          *) printFatalErrorMessage 2 "Not a valid option." ;;
     esac
 }
 
@@ -48,8 +48,8 @@ rmEnd()                 #@ DESCRIPTION: Remove all files ending with $1
              do
                  rm "$file"
              done ;;
-        n|N) printFatalErrorMessage 2 "Exiting." ;;
-          *) printFatalErrorMessage 3 "Not a valid option." ;;
+        n|N) printFatalErrorMessage 1 "Exiting." ;;
+          *) printFatalErrorMessage 2 "Not a valid option." ;;
     esac
 }
 
@@ -84,5 +84,5 @@ elif [[ $end -eq 1 && $start -eq 0 ]]
 then
     rmEnd "${word:?Word must be set}"
 else
-    printFatalErrorMessage 4 "One and only one start/end option must be set.\n"
+    printFatalErrorMessage 2 "One and only one start/end option must be set.\n"
 fi

@@ -20,36 +20,6 @@
 
 using namespace CommonUtilities::Errors;
 
-GTEST_TEST(testExceptionHandling, allComponentsOfAnErrorMessageMustBeNonEmpty)
-{
-    ASSERT_DEATH(
-        {
-            ErrorMessage error1 {};
-
-            FatalException except1 {error1};
-        },
-        "Common-Utilities Fatal Error:\n\tProgram name and error message must be set.\n");
-
-    ASSERT_DEATH(
-        {
-            ErrorMessage error2 {};
-            error2.programName = "ProgramName";
-
-            FatalException except2 {error2};
-        },
-        "Common-Utilities Fatal Error:\n\tProgram name and error message must be set.\n");
-
-
-    ASSERT_DEATH(
-        {
-            ErrorMessage error3 {};
-            error3.message = "This message won't be seen until we add a program name";
-
-            FatalException except3 {error3};
-        },
-        "Common-Utilities Fatal Error:\n\tProgram name and error message must be set.\n");
-}
-
 GTEST_TEST(testExceptionHandling, thisIsHowWeShouldCatchAndHandleAllExceptions)
 {
     ASSERT_DEATH(

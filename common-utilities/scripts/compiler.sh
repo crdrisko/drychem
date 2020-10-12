@@ -2,7 +2,7 @@
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 # Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: compiler.sh - Version 1.2.0
+# Name: compiler.sh - Version 1.2.1
 # Author: crdrisko
 # Date: 01/31/2020-14:46:06
 # Description: Collects the .cpp files in a directory and compiles them using g++
@@ -29,7 +29,7 @@ validateVersion()       #@ DESCRIPTION: Checks entered C++ version against relea
     case $1 in
         98) return 0 ;;  03) return 0 ;;  11) return 0 ;;
         14) return 0 ;;  17) return 0 ;;  20) return 0 ;;
-         *) printFatalErrorMessage 3 "Invalid C++ standard specified." ;;
+         *) printFatalErrorMessage 1 "Invalid C++ standard specified." ;;
     esac
 }
 
@@ -85,8 +85,8 @@ then
                 files+=( "${inputFiles[@]}" )               ## ...plus those indicated as input parameters
 
                 compileAndRun ;;
-            *) printFatalErrorMessage 4 "Output file, $outputFile, is invalid." ;;
+            *) printFatalErrorMessage 3 "Output file, $outputFile, is invalid." ;;
     esac
 else
-    printFatalErrorMessage 5 "Invalid directory."
+    printFatalErrorMessage 4 "Invalid directory."
 fi

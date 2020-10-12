@@ -2,7 +2,7 @@
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 # Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: fileMaker.sh - Version 1.2.0
+# Name: fileMaker.sh - Version 1.2.1
 # Author: cdrisko
 # Date: 01/31/2020-14:45:20
 # Description: Creates new files based off simple, pre-defined templates
@@ -35,7 +35,7 @@ generateCopyrightHeader()   #@ DESCRIPTION: Search for LICENSCE file and print c
         if [ "$licenseDirectory" == '/' ]
         then
             printNonFatalErrorMessage "LICENSE file not found."
-            cd "$previousDirectory" || printFatalErrorMessage 2 "Could not change into required directory."
+            cd "$previousDirectory" || printFatalErrorMessage 1 "Could not change into required directory."
             return
         fi
     done
