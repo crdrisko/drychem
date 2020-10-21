@@ -26,7 +26,7 @@ if (units_format_codebase)
                     OUTPUT_QUIET)
 endif()
 
-if (units_build_coverage)
+if (units_enable_coverage)
     set(units_build_tests ON)
     set(CMAKE_BUILD_TYPE "Debug")
     set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} --coverage)
