@@ -16,7 +16,7 @@
 #include "errors/traits/isFatal.hpp"
 #include "errors/utils/errorTypes.hpp"
 
-namespace CommonUtilities::Errors
+namespace CppUtils::Errors
 {
     template<ErrorSeverity Severity = ErrorSeverity::Warning>
     constexpr void printErrorMessage(std::string_view programName, std::string_view message)
@@ -31,9 +31,9 @@ namespace CommonUtilities::Errors
     }
 
     // A convenience function for printing a error message for a fatal error
-    constexpr auto printFatalErrorMessage 
-        = [](std::string_view programName, std::string_view message) 
-            -> void { printErrorMessage<ErrorSeverity::Fatal>(programName, message); };
-}   // namespace CommonUtilities::Errors
+    constexpr auto printFatalErrorMessage = [](std::string_view programName, std::string_view message) {
+        printErrorMessage<ErrorSeverity::Fatal>(programName, message);
+    };
+}   // namespace CppUtils::Errors
 
 #endif

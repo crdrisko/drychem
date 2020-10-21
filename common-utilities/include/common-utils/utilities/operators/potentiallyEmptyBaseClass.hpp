@@ -9,7 +9,7 @@
 #ifndef COMMON_UTILITIES_POTENTIALLYEMPTYBASECLASS_HPP
 #define COMMON_UTILITIES_POTENTIALLYEMPTYBASECLASS_HPP
 
-namespace CommonUtilities::Utilities
+namespace CppUtils::Operators
 {
     /* Note: If we happen to inherit one of our operator classes but the required conditions aren't satisfied, or
         the class is SFINAE'd away, we don't want to be left holding the (non-empty) bag. Thus, we can make use
@@ -18,6 +18,6 @@ namespace CommonUtilities::Utilities
     class PotentiallyEmptyBaseClass
     {
     };
-}   // namespace CommonUtilities::Utilities
+}   // namespace CppUtils::Operators
 
 #endif

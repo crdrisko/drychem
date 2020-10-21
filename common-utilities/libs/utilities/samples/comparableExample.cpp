@@ -17,9 +17,9 @@
 
 #include <common-utils/utilities.hpp>
 
-using namespace CommonUtilities::Utilities;
+using namespace CppUtils::Operators;
 
-class Fruit : private CompletelyComparable<Fruit>                   // Private inheritance for an 'implements a' relationship
+class Fruit : private CompletelyComparable<Fruit>   // Private inheritance for an 'implements a' relationship
 {
 private:
     std::string name;

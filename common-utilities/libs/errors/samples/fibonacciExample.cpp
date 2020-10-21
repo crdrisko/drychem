@@ -15,7 +15,7 @@
 
 #include <common-utils/errors.hpp>
 
-using namespace CommonUtilities::Errors;
+using namespace CppUtils::Errors;
 
 void printNFibonacciNumbers(std::size_t n);
 

@@ -15,7 +15,7 @@
 
 #include "errors.hpp"
 
-using namespace CommonUtilities::Errors;
+using namespace CppUtils::Errors;
 
 GTEST_TEST(testErrorHandling, errorPrintsMessageToStandardError)
 {

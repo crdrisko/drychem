@@ -12,7 +12,7 @@
 #include <string>
 #include <string_view>
 
-namespace CommonUtilities::Errors
+namespace CppUtils::Errors
 {
     enum class ErrorSeverity
     {
@@ -26,6 +26,6 @@ namespace CommonUtilities::Errors
         std::string programName {};
         std::string message {};
     };
-}   // namespace CommonUtilities::Errors
+}   // namespace CppUtils::Errors
 
 #endif

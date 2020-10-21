@@ -18,7 +18,7 @@
 #include "dimensionality.hpp"
 // #include "conversions/conversions.hpp"
 
-using CommonUtilities::Utilities::CompletelyComparable;
+using CppUtils::Operators::CompletelyComparable;
 
 namespace PhysicalQuantities
 {

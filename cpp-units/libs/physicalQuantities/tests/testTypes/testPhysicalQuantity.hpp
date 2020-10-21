@@ -65,14 +65,14 @@ GTEST_TEST(testPhysicalQuantity, stringConstructorCanThrowAnException)
                 }
                 catch (const std::exception& except)
                 {
-                    CommonUtilities::Errors::ErrorMessage error;
+                    CppUtils::Errors::ErrorMessage error;
                     error.programName = "CPP Units";
                     error.message     = "Exception message: " + std::string {except.what()};
 
-                    throw CommonUtilities::Errors::FatalException(error);
+                    throw CppUtils::Errors::FatalException(error);
                 }
             }
-            catch (const CommonUtilities::Errors::FatalException& except)
+            catch (const CppUtils::Errors::FatalException& except)
             {
                 except.handleErrorWithMessage();
             }

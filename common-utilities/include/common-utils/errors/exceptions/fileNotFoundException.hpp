@@ -14,7 +14,7 @@
 #include "errors/exceptions/fatalException.hpp"
 #include "errors/utils/errorTypes.hpp"
 
-namespace CommonUtilities::Errors
+namespace CppUtils::Errors
 {
     class FileNotFoundException : public FatalException
     {
@@ -24,6 +24,6 @@ namespace CommonUtilities::Errors
         {
         }
     };
-}   // namespace CommonUtilities::Errors
+}   // namespace CppUtils::Errors
 
 #endif

@@ -9,9 +9,9 @@
 #ifndef COMMON_UTILITIES_COMPARISONOPERATORS_HPP
 #define COMMON_UTILITIES_COMPARISONOPERATORS_HPP
 
-#include "utilities/utils/potentiallyEmptyBaseClass.hpp"
+#include "utilities/operators/potentiallyEmptyBaseClass.hpp"
 
-namespace CommonUtilities::Utilities
+namespace CppUtils::Operators
 {
     template<typename Derived, typename Empty = PotentiallyEmptyBaseClass<Derived>>
     class EqualityComparable : public Empty
@@ -35,6 +35,6 @@ namespace CommonUtilities::Utilities
     class CompletelyComparable : public EqualityComparable<Derived, LessThanComparable<Derived, Empty>>
     {
     };
-}   // namespace CommonUtilities::Utilities
+}   // namespace CppUtils::Operators
 
 #endif

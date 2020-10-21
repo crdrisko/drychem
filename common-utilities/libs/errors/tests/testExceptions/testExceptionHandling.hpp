@@ -18,7 +18,7 @@
 
 #include "errors.hpp"
 
-using namespace CommonUtilities::Errors;
+using namespace CppUtils::Errors;
 
 GTEST_TEST(testExceptionHandling, thisIsHowWeShouldCatchAndHandleAllExceptions)
 {

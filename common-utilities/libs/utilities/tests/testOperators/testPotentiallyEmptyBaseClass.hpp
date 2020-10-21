@@ -14,15 +14,15 @@
 #include "utilities.hpp"
 
 // Helper classes for testing
-namespace CommonUtilities::Utilities
+namespace CppUtils::Operators
 {
     // The EBCO and CRTP used together for an empty class
     class EmptyDerived : public PotentiallyEmptyBaseClass<EmptyDerived>
     {
     };
-}   // namespace CommonUtilities::Utilities
+}   // namespace CppUtils::Operators
 
-using namespace CommonUtilities::Utilities;
+using namespace CppUtils::Operators;
 
 GTEST_TEST(testPotentiallyEmptyBaseClass, anEmptyBaseClassHasANonZeroSize)
 {

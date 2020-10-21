@@ -17,14 +17,14 @@ The following lines of code can be included in any user project to provide acces
 ```C++
 #include <common-utils/errors.hpp>
 
-using namespace CommonUtilities::Errors;
+using namespace CppUtils::Errors;
 ```
 
 ## Features
 
 ### [Exception Handling](../../../include/common-utils/errors/exceptions)
 
-This library provides an exception handling class: `CommonUtilities::Errors::FatalException` which derives from `std::exception`. Some other commonly used exceptions can also be found, all of which derive from this `FatalException` class. Because these exceptions derive from `std::exception` (either directly or indirectly), they can be caught by statements like the following:
+This library provides an exception handling class: `CppUtils::Errors::FatalException` which derives from `std::exception`. Some other commonly used exceptions can also be found, all of which derive from this `FatalException` class. Because these exceptions derive from `std::exception` (either directly or indirectly), they can be caught by statements like the following:
 
 ```C++
 catch (const std::exception& e)

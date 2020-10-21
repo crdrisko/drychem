@@ -13,7 +13,7 @@
 
 #include "errors/utils/errorTypes.hpp"
 
-namespace CommonUtilities::Errors
+namespace CppUtils::Errors
 {
     template<ErrorSeverity Severity>
     struct IsFatalT : std::false_type
@@ -27,6 +27,6 @@ namespace CommonUtilities::Errors
 
     template<ErrorSeverity Severity>
     constexpr bool isFatal = IsFatalT<Severity>::value;
-}   // namespace CommonUtilities::Errors
+}   // namespace CppUtils::Errors
 
 #endif

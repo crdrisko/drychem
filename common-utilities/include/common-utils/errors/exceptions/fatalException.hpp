@@ -14,7 +14,7 @@
 #include "errors/utils/errorHandling.hpp"
 #include "errors/utils/errorTypes.hpp"
 
-namespace CommonUtilities::Errors
+namespace CppUtils::Errors
 {
     class FatalException : public std::exception
     {
@@ -30,6 +30,6 @@ namespace CommonUtilities::Errors
         // Delegate our exception handling to the error handling classes
         void handleErrorWithMessage() const { printFatalErrorMessage(error.programName, error.message); }
     };
-}   // namespace CommonUtilities::Errors
+}   // namespace CppUtils::Errors
 
 #endif
