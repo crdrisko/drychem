@@ -14,5 +14,6 @@
 #define COMMON_UTILITIES_MATH_HPP
 
 #include "math/traits/containerTraits.hpp"
+#include "math/utils/basicMath.hpp"
 
 #endif

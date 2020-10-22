@@ -8,9 +8,8 @@
 
 #include <gtest/gtest.h>
 
-// #include "testContainers/testContainerFunctions.hpp"
 #include "testTraits/testContainerTraits.hpp"
-// #include "testUtilities/testBasicMathFunctions.hpp"
+#include "testUtilities/testBasicMathFunctions.hpp"
 
 int main(int argc, char** argv)
 {
