@@ -19,7 +19,7 @@
 #include "types/dimensionality.hpp"
 #include "types/physicalQuantity.hpp"
 
-namespace PhysicalQuantities
+namespace CppUnits
 {
     using DimensionlessQuantity = PhysicalQuantity<Dimensionality<>>;
 
@@ -203,16 +203,16 @@ namespace PhysicalQuantities
     {
         using namespace Literals;
 
-        constexpr DimensionlessQuantity avogadrosNumber = 6.02214076e23_;
-        constexpr Length                bohrRadius = 5.29177210903e-11_m;
-        constexpr Entropy               boltzmannConstant = 1.380649e-23_J_K;
-        constexpr ElectricCharge        elementaryCharge = 1.602176634e-19_C;
-        constexpr Faradays              faradaysConstant = (elementaryCharge * avogadrosNumber) / 1.0_mol;
+        constexpr DimensionlessQuantity avogadrosNumber       = 6.02214076e23_;
+        constexpr Length                bohrRadius            = 5.29177210903e-11_m;
+        constexpr Entropy               boltzmannConstant     = 1.380649e-23_J_K;
+        constexpr ElectricCharge        elementaryCharge      = 1.602176634e-19_C;
+        constexpr Faradays              faradaysConstant      = (elementaryCharge * avogadrosNumber) / 1.0_mol;
         constexpr Permittivity          permittivityFreeSpace = 8.8541878128e-12_F_m;
-        constexpr DimensionlessQuantity pi = 3.14159265_;
-        constexpr Action                plancksConstant = 6.62607015e-34_Js;
-        constexpr Velocity              speedOfLight = 299'792'458.0_m_s;
+        constexpr DimensionlessQuantity pi                    = 3.14159265_;
+        constexpr Action                plancksConstant       = 6.62607015e-34_Js;
+        constexpr Velocity              speedOfLight          = 299'792'458.0_m_s;
     }   // namespace Constants
-}   // namespace PhysicalQuantities
+}   // namespace CppUnits
 
 #endif

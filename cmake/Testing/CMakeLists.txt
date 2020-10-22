@@ -22,9 +22,9 @@ if (utils_build_tests)
     #                 LIBRARY common-utilities
     #                 INTERIOR_DIRECTORY files)
 
-    # CppUnitsNewTest(TESTNAME AllMathFunctions
-    #                 LIBRARY common-utilities
-    #                 INTERIOR_DIRECTORY math)
+    CppUnitsNewTest(TESTNAME AllMathFunctions
+                    LIBRARY common-utilities
+                    INTERIOR_DIRECTORY math)
 
     # CppUnitsNewTest(TESTNAME AllStringFunctions
     #                 LIBRARY common-utilities

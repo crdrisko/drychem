@@ -15,12 +15,12 @@
 
 #include <common-utils/utilities.hpp>
 
-#include "dimensionality.hpp"
+#include "types/dimensionality.hpp"
 // #include "conversions/conversions.hpp"
 
 using CppUtils::Operators::CompletelyComparable;
 
-namespace PhysicalQuantities
+namespace CppUnits
 {
     template<typename BaseDimensionality>
     class PhysicalQuantity : private CompletelyComparable<PhysicalQuantity<BaseDimensionality>>

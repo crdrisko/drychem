@@ -52,8 +52,8 @@ void printNFibonacciNumbers(std::size_t n)
 
     // Don't want to overshoot our data type, based on std::numeric_limits<std::size_t>::max()
     if (std::size_t maxNAllowed {94}; n > maxNAllowed)
-        throw InvalidInputException("Common-Utilities",
-            "This value of n yields a fibonacci number too large for std::size_t to hold.");
+        throw FatalException(ErrorMessage {"Common-Utilities",
+            "This value of n yields a fibonacci number too large for std::size_t to hold."});
 
     for (std::size_t i {}; i < n; ++i)
     {

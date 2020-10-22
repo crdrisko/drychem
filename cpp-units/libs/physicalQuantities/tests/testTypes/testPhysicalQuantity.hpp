@@ -17,6 +17,8 @@
 
 #include "physicalQuantities.hpp"
 
+using namespace CppUnits;
+
 GTEST_TEST(testPhysicalQuantity, aPhysicalQuantityKnowsItsDimensionality)
 {
     using MolarEntropyDimensionality = Dimensionality<2, 1, -2, 0, -1, -1>;
@@ -38,6 +40,8 @@ GTEST_TEST(testPhysicalQuantity, defaultInitializerSetsPhysicalQuantitysMagnitud
 
 GTEST_TEST(testPhysicalQuantity, setterFunctionsCanTakeDoubleValuesAsInputParameters)
 {
+    using namespace CppUnits::Literals;
+
     Length len = 2.0_m;
     len.setMagnitude(1e5);
 
