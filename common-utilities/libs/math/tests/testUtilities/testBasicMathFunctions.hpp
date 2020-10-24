@@ -35,7 +35,7 @@ GTEST_TEST(testBasicMathFunctions, isEvenReturnCorrectBooleansForIntegralTypes)
 
     ASSERT_FALSE(isEven(3));
 
-    // ASSERT_TRUE(isEven(2.0));        // no instance of function template "CppUtils::Math::isEven" matches the argument list
+    // ASSERT_TRUE(isEven(2.0));        // no instance of function template matches the argument list
 }
 
 GTEST_TEST(testBasicMathFunctions, isOddReturnCorrectBooleansForIntegralTypes)
@@ -56,7 +56,7 @@ GTEST_TEST(testBasicMathFunctions, isOddReturnCorrectBooleansForIntegralTypes)
 
     ASSERT_FALSE(isOdd(2));
 
-    // ASSERT_TRUE(isOdd(3.0));        // no instance of function template "CppUtils::Math::isOdd" matches the argument list
+    // ASSERT_TRUE(isOdd(3.0));        // no instance of function template matches the argument list
 }
 
 GTEST_TEST(testBasicMathFunctions, withinRangeFunctionalityWorksForIntegers)

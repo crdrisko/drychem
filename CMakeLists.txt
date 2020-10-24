@@ -20,6 +20,7 @@ if (units_format_codebase)
     ## Run clang-format on all code except the files passed as arguments with the '-i' flag ##
     execute_process(COMMAND bash cmake/scripts/format-codebase.sh
                                     -i common-utilities/include/common-utils/errors/utils/errorHandling.hpp
+                                    -i common-utilities/include/common-utils/math/statistics/statistics.hpp
                                     -i cpp-units/include/cpp-units/types/physicalQuantity.hpp
                                     -i cpp-units/include/cpp-units/physicalQuantities.hpp
                                     -i common-utilities/libs/utilities/samples/comparableExample.cpp
