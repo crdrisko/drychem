@@ -15,7 +15,7 @@
 
 // #include "conversions/conversions.hpp"
 // #include "math/math.hpp"
-// #include "math/basicMath.hpp"
+#include "math/basicMath.hpp"
 #include "types/dimensionality.hpp"
 #include "types/physicalQuantity.hpp"
 
