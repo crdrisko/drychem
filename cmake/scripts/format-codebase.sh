@@ -2,7 +2,7 @@
 # Copyright (c) 2020 Cody R. Drisko. All rights reserved.
 # Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
-# Name: format-codebase.sh - Version 1.1.0
+# Name: format-codebase.sh - Version 1.2.0
 # Author: crdrisko
 # Date: 10/07/2020-07:20:58
 # Description: Use clang-format on all files in the repository with the option to ignore specified files
@@ -55,7 +55,15 @@ declare -a ignoreFiles
 while getopts i:h opt
 do
     case $opt in
-        i) ignoreFiles+=( "$PWD/$OPTARG" ) ;;
+        i) if [ "${OPTARG:$(( ${#OPTARG} - 1 )):1}" == '*' ]
+           then
+               for file in $PWD/$OPTARG
+               do
+                   ignoreFiles+=( "$file" )
+               done
+           else
+               ignoreFiles+=( "$PWD/$OPTARG" )
+           fi ;;
         h) printHelpMessage && exit 0 ;;
         *) printf "Invalid option flag passed to program.\n" && exit 1 ;;
     esac

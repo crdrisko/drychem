@@ -21,9 +21,10 @@ if (units_format_codebase)
     execute_process(COMMAND bash cmake/scripts/format-codebase.sh
                                     -i common-utilities/include/common-utils/errors/utils/errorHandling.hpp
                                     -i common-utilities/include/common-utils/math/statistics/statistics.hpp
+                                    -i common-utilities/include/common-utils/math/traits/containerTraits/*
+                                    -i common-utilities/libs/utilities/samples/comparableExample.cpp
                                     -i cpp-units/include/cpp-units/types/physicalQuantity.hpp
                                     -i cpp-units/include/cpp-units/physicalQuantities.hpp
-                                    -i common-utilities/libs/utilities/samples/comparableExample.cpp
                     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
                     OUTPUT_QUIET)
 endif()
@@ -108,7 +109,7 @@ set(LIBRARIES
 if (utils_build_samples)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/samples)
 
-    add_executable(fibonacciExample common-utilities/libs/errors/samples/fibonacciExample.cpp)                                 
+    add_executable(fibonacciExample common-utilities/libs/errors/samples/fibonacciExample.cpp)
     add_executable(comparableExample common-utilities/libs/utilities/samples/comparableExample.cpp)
 
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
