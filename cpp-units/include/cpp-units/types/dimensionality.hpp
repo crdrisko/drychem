@@ -26,6 +26,6 @@ namespace CppUnits
 
         using Type = Dimensionality<Length, Mass, Time, ElectricCurrent, Temperature, AmountOfSubstance, LuminousIntensity>;
     };
-}   // namespace PhysicalQuantities
+}   // namespace CppUnits
 
 #endif

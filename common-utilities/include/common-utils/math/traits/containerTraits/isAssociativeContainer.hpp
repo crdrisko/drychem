@@ -18,20 +18,15 @@ namespace CppUtils::Math
 {
     // Main template
     template<typename, typename = std::void_t<>>
-    struct IsAssociativeContainerT : std::false_type
-    {
-    };
+    struct IsAssociativeContainerT : std::false_type {};
 
     // Partial specialization (may be SFINAE'd away)
     template<typename T>
-    struct IsAssociativeContainerT<T,
-        std::void_t<typename T::key_type,
-            typename T::key_compare,
-            typename T::value_compare,
-            decltype(std::declval<T>().key_comp()),
-            decltype(std::declval<T>().value_comp())>> : IsContainerT<T>
-    {
-    };
+    struct IsAssociativeContainerT<T, std::void_t<typename T::key_type,
+                                                  typename T::key_compare,
+                                                  typename T::value_compare,
+                                                  decltype(std::declval<T>().key_comp()),
+                                                  decltype(std::declval<T>().value_comp())>> : IsContainerT<T> {};
 
     // Convenience variable template for ease-of-use
     template<typename T>

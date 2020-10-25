@@ -26,7 +26,7 @@ namespace CppUtils::Testing
 
 
     template<class F, class... TArgs>
-    constexpr auto timeAndInvoke(F&& f, TArgs&&... args)
+    constexpr decltype(auto) timeAndInvoke(F&& f, TArgs&&... args)
     {
         // Need to handle `void f(args...)` case differently from `auto f(args...)` case
         if constexpr (std::is_same_v<std::invoke_result_t<F, TArgs...>, void>)

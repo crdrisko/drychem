@@ -23,15 +23,12 @@ namespace CppUtils::Math
 
     // Partial specialization (may be SFINAE'd away)
     template<typename T>
-    struct IsUnorderedAssociativeContainerT<T,
-        std::void_t<typename T::key_type,
-            typename T::value_type,
-            typename T::hasher,
-            typename T::key_equal,
-            typename T::local_iterator,
-            typename T::const_local_iterator>> : IsContainerT<T>
-    {
-    };
+    struct IsUnorderedAssociativeContainerT<T, std::void_t<typename T::key_type,
+                                                           typename T::value_type,
+                                                           typename T::hasher,
+                                                           typename T::key_equal,
+                                                           typename T::local_iterator,
+                                                           typename T::const_local_iterator>> : IsContainerT<T> {};
 
     // Convenience variable template for ease-of-use
     template<typename T>

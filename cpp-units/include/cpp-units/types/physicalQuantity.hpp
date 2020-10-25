@@ -166,6 +166,6 @@ namespace CppUnits
     {
         return PhysicalQuantity<Dimensionality<>>(lhs) / rhs;
     }
-}   // namespace PhysicalQuantities
+}   // namespace CppUnits
 
 #endif

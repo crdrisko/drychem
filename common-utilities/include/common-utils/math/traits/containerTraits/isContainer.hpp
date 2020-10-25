@@ -16,28 +16,23 @@ namespace CppUtils::Math
 {
     // Main template
     template<typename, typename = std::void_t<>>
-    struct IsContainerT : std::false_type
-    {
-    };
+    struct IsContainerT : std::false_type {};
 
     // Partial specialization (may be SFINAE'd away)
     template<typename T>
-    struct IsContainerT<T,
-        std::void_t<typename T::value_type,
-            typename T::reference,
-            typename T::const_reference,
-            typename T::iterator,
-            typename T::const_iterator,
-            typename T::difference_type,
-            typename T::size_type,
-            decltype(std::declval<T>().begin()),
-            decltype(std::declval<T>().end()),
-            decltype(std::declval<T>().cbegin()),
-            decltype(std::declval<T>().cend()),
-            decltype(std::declval<T>().max_size()),
-            decltype(std::declval<T>().empty())>> : std::true_type
-    {
-    };
+    struct IsContainerT<T, std::void_t<typename T::value_type,
+                                       typename T::reference,
+                                       typename T::const_reference,
+                                       typename T::iterator,
+                                       typename T::const_iterator,
+                                       typename T::difference_type,
+                                       typename T::size_type,
+                                       decltype(std::declval<T>().begin()),
+                                       decltype(std::declval<T>().end()),
+                                       decltype(std::declval<T>().cbegin()),
+                                       decltype(std::declval<T>().cend()),
+                                       decltype(std::declval<T>().max_size()),
+                                       decltype(std::declval<T>().empty())>> : std::true_type {};
 
     // Convenience variable template for ease-of-use
     template<typename T>

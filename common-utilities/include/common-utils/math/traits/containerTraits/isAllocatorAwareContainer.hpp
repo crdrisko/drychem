@@ -17,15 +17,11 @@ namespace CppUtils::Math
 {
     // Main template
     template<typename, typename = std::void_t<>>
-    struct IsAllocatorAwareContainerT : std::false_type
-    {
-    };
+    struct IsAllocatorAwareContainerT : std::false_type {};
 
     // Partial specialization (may be SFINAE'd away)
     template<typename T>
-    struct IsAllocatorAwareContainerT<T, std::void_t<typename T::allocator_type>> : IsContainerT<T>
-    {
-    };
+    struct IsAllocatorAwareContainerT<T, std::void_t<typename T::allocator_type>> : IsContainerT<T> {};
 
     // Convenience variable template for ease-of-use
     template<typename T>
