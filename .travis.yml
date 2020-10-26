@@ -8,7 +8,6 @@ compiler:
   - gcc
 osx_image:
   - xcode12
-  - xcode10
 dist: focal
 arch:
   - arm64
