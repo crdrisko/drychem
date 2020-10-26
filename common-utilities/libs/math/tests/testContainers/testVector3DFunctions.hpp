@@ -200,7 +200,7 @@ GTEST_TEST(testContainerFunctions, atFunctionOverloadsWillThrowWhenIndexIsOutOfR
                 except.handleErrorWithMessage();
             }
         },
-        "Common-Utilities Fatal Error:\n\tException message: array::at\n");
+        "Common-Utilities Fatal Error:\n\tException message: array::at");
 
     ASSERT_DEATH(
         {
@@ -224,7 +224,7 @@ GTEST_TEST(testContainerFunctions, atFunctionOverloadsWillThrowWhenIndexIsOutOfR
                 except.handleErrorWithMessage();
             }
         },
-        "Common-Utilities Fatal Error:\n\tException message: array::at\n");
+        "Common-Utilities Fatal Error:\n\tException message: array::at");
 }
 
 // Test iterators
