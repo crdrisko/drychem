@@ -13,6 +13,7 @@
 #ifndef COMMON_UTILITIES_MATH_HPP
 #define COMMON_UTILITIES_MATH_HPP
 
+#include "math/containers/vector3D.hpp"
 #include "math/statistics/statistics.hpp"
 #include "math/traits/containerTraits.hpp"
 #include "math/utils/basicMath.hpp"

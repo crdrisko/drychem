@@ -8,6 +8,7 @@
 
 #include <gtest/gtest.h>
 
+#include "testContainers/testVector3DFunctions.hpp"
 #include "testStatistics/testStatisticalFunctions.hpp"
 #include "testTraits/testContainerTraits.hpp"
 #include "testUtilities/testBasicMathFunctions.hpp"
