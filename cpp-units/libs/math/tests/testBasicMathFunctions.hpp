@@ -4,7 +4,7 @@
 // Name: testBasicMathFunctions.hpp
 // Author: crdrisko
 // Date: 08/25/2020-20:34:50
-// Description: Provides ~100% unit test coverage over all basic mathematical functions
+// Description: Provides ~100% unit test coverage over all basic mathematical functions in the CppUnits library
 
 #ifndef CPP_UNITS_TESTING_TESTBASICMATHFUNCTIONS_HPP
 #define CPP_UNITS_TESTING_TESTBASICMATHFUNCTIONS_HPP

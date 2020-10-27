@@ -9,9 +9,11 @@
 #include <gtest/gtest.h>
 
 #include "testContainers/testVector3DFunctions.hpp"
+#include "testStatistics/testLinearLeastSquaresFitting.hpp"
 #include "testStatistics/testStatisticalFunctions.hpp"
 #include "testTraits/testContainerTraits.hpp"
 #include "testUtilities/testBasicMathFunctions.hpp"
+#include "testUtilities/testMathExceptions.hpp"
 
 int main(int argc, char** argv)
 {
