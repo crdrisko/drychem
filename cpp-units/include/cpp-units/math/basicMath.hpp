@@ -11,6 +11,8 @@
 
 #include <cmath>
 
+#include <common-utils/math.hpp>
+
 #include "math/internal/powerImpl.hpp"
 #include "types/physicalQuantity.hpp"
 
@@ -50,8 +52,23 @@ namespace CppUnits::Math
             return Internal::InversePowImpl<Power, L, M, T, I, Th, N, J>::result(physicalQuantity);
     }
 
-    DECLARE_DIMENSIONLESS_CMATH_FUNCTION(sqrt)
-    DECLARE_DIMENSIONLESS_CMATH_FUNCTION(cbrt)
+    template<int L, int M, int T, int I, int Th, int N, int J,
+             typename = std::enable_if_t<(L % 2 == 0) && (M % 2 == 0) && (T % 2 == 0) && (I % 2 == 0) && (Th % 2 == 0)
+                                      && (N % 2 == 0) && (J % 2 == 0)>>
+    constexpr auto sqrt(const PhysicalQuantity<Dimensionality<L, M, T, I, Th, N, J>>& physicalQuantity) noexcept
+    {
+        using TReturn = PhysicalQuantity<Dimensionality<L / 2, M / 2, T / 2, I / 2, Th / 2, N / 2, J / 2>>;
+        return TReturn {std::sqrt(physicalQuantity.getMagnitude())};
+    }
+
+    template<int L, int M, int T, int I, int Th, int N, int J,
+             typename = std::enable_if_t<(L % 3 == 0) && (M % 3 == 0) && (T % 3 == 0) && (I % 3 == 0) && (Th % 3 == 0)
+                                      && (N % 3 == 0) && (J % 3 == 0)>>
+    constexpr auto cbrt(const PhysicalQuantity<Dimensionality<L, M, T, I, Th, N, J>>& physicalQuantity) noexcept
+    {
+        using TReturn = PhysicalQuantity<Dimensionality<L / 3, M / 3, T / 3, I / 3, Th / 3, N / 3, J / 3>>;
+        return TReturn {std::cbrt(physicalQuantity.getMagnitude())};
+    }
 
     // Trigonometric functions
     DECLARE_DIMENSIONLESS_CMATH_FUNCTION(sin)

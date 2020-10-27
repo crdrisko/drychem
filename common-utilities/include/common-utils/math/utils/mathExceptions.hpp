@@ -13,8 +13,9 @@
 
 namespace CppUtils::Math
 {
-    struct InputSizeMismatch : public Errors::FatalException
+    class InputSizeMismatch : public Errors::FatalException
     {
+    public:
         explicit InputSizeMismatch(const std::string& ProgramName)
             : Errors::FatalException {
                 Errors::ErrorMessage {ProgramName, "Input sizes for x and y containers must be the same."}}

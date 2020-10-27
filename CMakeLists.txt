@@ -23,6 +23,7 @@ if (units_format_codebase)
                                     -i common-utilities/include/common-utils/math/statistics/*
                                     -i common-utilities/include/common-utils/math/traits/containerTraits/*
                                     -i common-utilities/libs/utilities/samples/comparableExample.cpp
+                                    -i cpp-units/include/cpp-units/math/basicMath.hpp
                                     -i cpp-units/include/cpp-units/types/physicalQuantity.hpp
                                     -i cpp-units/include/cpp-units/physicalQuantities.hpp
                     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}

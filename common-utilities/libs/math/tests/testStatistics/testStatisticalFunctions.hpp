@@ -42,13 +42,13 @@ GTEST_TEST(testStatisticalFunctions, averageCalculationsWorkOnARangeOfValuesInAG
     ASSERT_EQ(3.0, calculateAverage(y.begin(), y.end() - 5));
 }
 
-GTEST_TEST(testStatisticalFunctions, standardDeviationCalculationsWorkOnARangeOfValuesInAGivenContainer)
+GTEST_TEST(testStatisticalFunctions, varianceCalculationsWorkOnARangeOfValuesInAGivenContainer)
 {
     std::vector<long double> x {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
     std::array<long double, 10> y {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
 
-    ASSERT_NEAR(3.027650, calculateStandardDeviation(x.begin(), x.end()), findAbsoluteError(3.027650, 7));
-    ASSERT_NEAR(2.449490, calculateStandardDeviation(y.begin() + 2, y.end()), findAbsoluteError(2.449490, 7));
+    ASSERT_NEAR(3.027650, std::sqrt(calculateVariance(x.begin(), x.end())), findAbsoluteError(3.027650, 7));
+    ASSERT_NEAR(2.449490, std::sqrt(calculateVariance(y.begin() + 2, y.end())), findAbsoluteError(2.449490, 7));
 }
 
 // GTEST_TEST(testStatisticalFunctions, certainStatisticalFunctionsOnlyWorkWithArithmeticTypes)

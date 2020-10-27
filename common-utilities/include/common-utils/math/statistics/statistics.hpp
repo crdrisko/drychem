@@ -42,18 +42,21 @@ namespace CppUtils::Math
 
     template<typename Iterator, typename T = typename std::iterator_traits<Iterator>::value_type,
              typename = std::enable_if_t<std::is_default_constructible_v<T>>>
-    constexpr T calculateStandardDeviation(Iterator x_begin, Iterator x_end)
+    constexpr decltype(auto) calculateVariance(Iterator x_begin, Iterator x_end)
     {
-        T init {};
+        using Txx = decltype(*x_begin * *x_begin);
+
+        std::ptrdiff_t x_size {x_end - x_begin};
+
+        const Txx init {};
         T average {calculateAverage(x_begin, x_end)};
 
-        std::vector<T> averageCorrectedValues(x_end - x_begin);
+        std::vector<Txx> averageCorrectedValues(x_size);
 
         std::transform(x_begin, x_end, averageCorrectedValues.begin(),
             [&](auto x) { return (x - average) * (x - average); });
 
-        T result = std::sqrt(
-            std::accumulate(averageCorrectedValues.begin(), averageCorrectedValues.end(), init) / (x_end - x_begin - 1));
+        Txx result = std::accumulate(averageCorrectedValues.begin(), averageCorrectedValues.end(), init) / (x_size - 1);
 
         return result;
     }
