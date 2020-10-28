@@ -8,6 +8,8 @@
 
 #include <gtest/gtest.h>
 
+#include "testCalculus/testDifferentiationMethods.hpp"
+#include "testCalculus/testIntegrationMethods.hpp"
 #include "testContainers/testVector3DFunctions.hpp"
 #include "testStatistics/testLinearLeastSquaresFitting.hpp"
 #include "testStatistics/testStatisticalFunctions.hpp"

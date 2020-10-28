@@ -8,7 +8,8 @@
 
 #include <gtest/gtest.h>
 
-#include "testBasicMathFunctions.hpp"
+#include "testMathFunctions/testAdvancedMathFunctions.hpp"
+#include "testMathFunctions/testBasicMathFunctions.hpp"
 
 int main(int argc, char** argv)
 {

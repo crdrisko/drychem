@@ -9,9 +9,7 @@
 #ifndef CPP_UNITS_TESTING_TESTBASICMATHFUNCTIONS_HPP
 #define CPP_UNITS_TESTING_TESTBASICMATHFUNCTIONS_HPP
 
-#include <array>
 #include <cmath>
-#include <vector>
 
 #include <common-utils/math.hpp>
 #include <gtest/gtest.h>
@@ -86,39 +84,6 @@ GTEST_TEST(testBasicMathFunctions, hyperbolicFunctionOverloadsAreEquivalentToThe
     ASSERT_DOUBLE_EQ(std::asinh(angle.getMagnitude()), Math::asinh(angle).getMagnitude());
     ASSERT_DOUBLE_EQ(std::acosh(angle.getMagnitude()), Math::acosh(angle).getMagnitude());
     ASSERT_DOUBLE_EQ(std::acosh(angle.getMagnitude()), Math::acosh(angle).getMagnitude());
-}
-
-GTEST_TEST(testBasicMathFunctions, weCanTakeTheAverageOfContainersOfPhysicalQuantities)
-{
-    std::vector<Length> x {1.0_m, 2.0_m, 3.0_m, 4.0_m, 5.0_m, 6.0_m, 7.0_m, 8.0_m, 9.0_m, 10.0_m};
-    std::array<Acceleration, 6> y {1.0_m_s2, 2.0_m_s2, 3.0_m_s2, 4.0_m_s2, 5.0_m_s2, 6.0_m_s2};
-
-    ASSERT_EQ(5.5_m, CppUtils::Math::calculateAverage(x.begin(), x.end()));
-    ASSERT_EQ(3.0_m_s2, CppUtils::Math::calculateAverage(y.begin(), y.end() - 1));
-}
-
-GTEST_TEST(testBasicMathFunctions, weCanTakeTheVarianceOfContainersOfPhysicalQuantities)
-{
-    std::vector<Length> x {1.0_m, 2.0_m, 3.0_m, 4.0_m, 5.0_m, 6.0_m, 7.0_m, 8.0_m, 9.0_m, 10.0_m};
-    std::array<Acceleration, 6> y {1.0_m_s2, 2.0_m_s2, 3.0_m_s2, 4.0_m_s2, 5.0_m_s2, 6.0_m_s2};
-
-    auto x_stdDev = Math::sqrt(CppUtils::Math::calculateVariance(x.begin(), x.end()));
-    auto y_stdDev = Math::sqrt(CppUtils::Math::calculateVariance(y.begin() + 2, y.end()));
-
-    ASSERT_NEAR(3.027650, x_stdDev.getMagnitude(), CppUtils::Math::findAbsoluteError(3.027650, 7));
-    ASSERT_NEAR(1.290994, y_stdDev.getMagnitude(), CppUtils::Math::findAbsoluteError(1.290994, 7));
-}
-
-GTEST_TEST(testBasicMathFunctions, weCanFitALineThroughAContainerOfPhysicalQuantities)
-{
-    std::vector<Length> x {1.0_m, 2.0_m, 3.0_m, 4.0_m, 5.0_m, 6.0_m, 7.0_m, 8.0_m, 9.0_m, 10.0_m};
-    std::vector<Concentration> y {2.0_M, 5.0_M, 3.0_M, 7.0_M, 8.0_M, 9.0_M, 12.0_M, 10.0_M, 15.0_M, 20.0_M};
-
-    auto [slope, intercept, variance] = CppUtils::Math::linearLeastSquaresFitting(x.begin(), x.end(), y.begin(), y.end());
-
-    ASSERT_NEAR(1.7152, slope.getMagnitude(), CppUtils::Math::findAbsoluteError(1.7152, 5));
-    ASSERT_NEAR(-0.33333, intercept.getMagnitude(), CppUtils::Math::findAbsoluteError(-0.33333, 5));
-    ASSERT_NEAR(0.2139317, Math::sqrt(variance).getMagnitude(), CppUtils::Math::findAbsoluteError(0.2139317, 7));
 }
 
 #endif

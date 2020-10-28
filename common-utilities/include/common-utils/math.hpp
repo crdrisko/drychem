@@ -13,6 +13,8 @@
 #ifndef COMMON_UTILITIES_MATH_HPP
 #define COMMON_UTILITIES_MATH_HPP
 
+#include "math/calculus/differentiation.hpp"
+#include "math/calculus/integration.hpp"
 #include "math/containers/vector3D.hpp"
 #include "math/statistics/linearLeastSquaresFitting.hpp"
 #include "math/statistics/statistics.hpp"

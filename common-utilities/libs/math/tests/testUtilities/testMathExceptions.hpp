@@ -18,11 +18,13 @@ using namespace CppUtils::Math;
 
 GTEST_TEST(testMathExceptions, inputSizeMismatchIsAFatalExceptionAndCanTerminateWhenHandled)
 {
+    InputSizeMismatch exception1 {"Common-Utilities"};
+
     ASSERT_DEATH(
         {
             try
             {
-                throw InputSizeMismatch {"Common-Utilities"};
+                throw exception1;
             }
             catch (const InputSizeMismatch& except)
             {
