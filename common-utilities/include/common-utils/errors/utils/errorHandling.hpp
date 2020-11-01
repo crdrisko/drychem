@@ -19,9 +19,9 @@
 namespace CppUtils::Errors
 {
     template<ErrorSeverity Severity = ErrorSeverity::Warning>
-    constexpr void printErrorMessage(const ErrorMessage& error)
+    inline void printErrorMessage(const ErrorMessage& error)
     {
-        std::string_view message {};
+        std::string message {};
 
         if (error.fileName.empty() && error.lineNumber == 0ul)
             message = "\n\t" + error.message;
@@ -38,8 +38,7 @@ namespace CppUtils::Errors
     }
 
     // A convenience function for printing an error message when the error is fatal
-    constexpr auto printFatalErrorMessage
-        = [](const ErrorMessage& error) { printErrorMessage<ErrorSeverity::Fatal>(error); };
+    inline auto printFatalErrorMessage = [](const ErrorMessage& error) { printErrorMessage<ErrorSeverity::Fatal>(error); };
 }   // namespace CppUtils::Errors
 
 #endif
