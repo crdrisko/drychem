@@ -81,7 +81,7 @@ GTEST_TEST(testIntegrationMethods, passingTwoDifferentlySizedContainersResultsIn
                 except.handleErrorWithMessage();
             }
         },
-        "Common-Utilities Fatal Error: [(]integration.hpp: 37[)]\n\tInput sizes for x and y containers must be the same.\n");
+        "Common-Utilities Fatal Error: [(]integration.hpp: *[0-9]*[)]\n\tInput sizes for x and y containers must be the same.\n");
 }
 
 #endif

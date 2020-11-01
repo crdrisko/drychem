@@ -31,7 +31,7 @@ GTEST_TEST(testMathExceptions, inputSizeMismatchIsAFatalExceptionAndCanTerminate
                 except.handleErrorWithMessage();
             }
         },
-        "Common-Utilities Fatal Error: [(]testMathExceptions.hpp: 21[)]\n\tInput sizes for x and y containers must be the same.\n");
+        "Common-Utilities Fatal Error: [(]testMathExceptions.hpp: *[0-9]*[)]\n\tInput sizes for x and y containers must be the same.\n");
 }
 
 GTEST_TEST(testMathExceptions, derivedExceptionsCanBeCaughtByBaseFatalException)
@@ -47,7 +47,7 @@ GTEST_TEST(testMathExceptions, derivedExceptionsCanBeCaughtByBaseFatalException)
                 except.handleErrorWithMessage();
             }
         },
-        "Common-Utilities Fatal Error: [(]testMathExceptions.hpp: 43[)]\n\tInput sizes for x and y containers must be the same.\n");
+        "Common-Utilities Fatal Error: [(]testMathExceptions.hpp: *[0-9]*[)]\n\tInput sizes for x and y containers must be the same.\n");
 }
 
 #endif

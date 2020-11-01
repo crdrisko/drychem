@@ -73,7 +73,7 @@ GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAFatalException)
                 except.handleErrorWithMessage();
             }
         },
-        "YourProgramName Fatal Error:\n\tAn exception was thrown from [(]testExceptionHandling.hpp: 59[)]\n\tLocation message.\n");
+        "YourProgramName Fatal Error:\n\tAn exception was thrown from [(]testExceptionHandling.hpp: *[0-9]*[)]\n\tLocation message.\n");
 }
 
 GTEST_TEST(testExceptionHandling, fatalErrorsAreHandledByTerminating)
@@ -89,7 +89,7 @@ GTEST_TEST(testExceptionHandling, fatalErrorsAreHandledByTerminating)
             FatalException exceptFatal {error};
             exceptFatal.handleErrorWithMessage();
         },
-        "Common-Utilities Fatal Error: [(]testExceptionHandling.hpp: 87[)]\n\tThis would be the error message.\n");
+        "Common-Utilities Fatal Error: [(]testExceptionHandling.hpp: *[0-9]*[)]\n\tThis would be the error message.\n");
 }
 
 GTEST_TEST(testExceptionHandling, derivedExceptionClassIsCaughtByParentClass)
