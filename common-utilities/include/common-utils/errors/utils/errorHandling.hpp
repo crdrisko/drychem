@@ -19,21 +19,27 @@
 namespace CppUtils::Errors
 {
     template<ErrorSeverity Severity = ErrorSeverity::Warning>
-    constexpr void printErrorMessage(std::string_view programName, std::string_view message)
+    constexpr void printErrorMessage(const ErrorMessage& error)
     {
-        if constexpr (isFatal<Severity>)
+        std::string_view message {};
+
+        if (error.fileName.empty() && error.lineNumber == 0ul)
+            message = "\n\t" + error.message;
+        else
+            message = ' ' + error.message;
+
+        if constexpr (is_fatal_v<Severity>)
         {
-            std::cerr << programName << " Fatal Error:\n\t" << message << std::endl;
+            std::cerr << error.programName << " Fatal Error:" << message << std::endl;
             std::exit(EXIT_FAILURE);
         }
         else
-            std::cerr << programName << " Warning:\n\t" << message << std::endl;
+            std::cerr << error.programName << " Warning:" << message << std::endl;
     }
 
-    // A convenience function for printing a error message for a fatal error
+    // A convenience function for printing an error message when the error is fatal
     constexpr auto printFatalErrorMessage
-        = [](std::string_view programName, std::string_view message)
-            -> void { printErrorMessage<ErrorSeverity::Fatal>(programName, message); };
+        = [](const ErrorMessage& error) { printErrorMessage<ErrorSeverity::Fatal>(error); };
 }   // namespace CppUtils::Errors
 
 #endif

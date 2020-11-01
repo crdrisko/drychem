@@ -21,8 +21,8 @@ GTEST_TEST(testErrorHandling, errorPrintsMessageToStandardError)
 {
     testing::internal::CaptureStderr();
 
-    printErrorMessage<ErrorSeverity::Warning>("Common-Utilities",
-        "Testing the output of the non-fatal error message command.");
+    printErrorMessage<ErrorSeverity::Warning>(
+        ErrorMessage {"Common-Utilities", "Testing the output of the non-fatal error message command."});
 
     std::string output = testing::internal::GetCapturedStderr();
     ASSERT_EQ(output, "Common-Utilities Warning:\n\tTesting the output of the non-fatal error message command.\n");
@@ -30,7 +30,10 @@ GTEST_TEST(testErrorHandling, errorPrintsMessageToStandardError)
 
 GTEST_TEST(testErrorHandling, fatalErrorCausesProgramTermination)
 {
-    ASSERT_DEATH({ printErrorMessage<ErrorSeverity::Fatal>("Common-Utilities", "Fatal Error, Program Terminated."); },
+    ASSERT_DEATH(
+        {
+            printErrorMessage<ErrorSeverity::Fatal>(ErrorMessage {"Common-Utilities", "Fatal Error, Program Terminated."});
+        },
         "Common-Utilities Fatal Error:\n\tFatal Error, Program Terminated.\n");
 }
 
@@ -38,7 +41,7 @@ GTEST_TEST(testErrorHandling, defaultTemplateParameterIsAWarning)
 {
     testing::internal::CaptureStderr();
 
-    printErrorMessage("Common-Utilities", "Testing the output of the non-fatal error message command.");
+    printErrorMessage(ErrorMessage {"Common-Utilities", "Testing the output of the non-fatal error message command."});
 
     std::string output = testing::internal::GetCapturedStderr();
     ASSERT_EQ(output, "Common-Utilities Warning:\n\tTesting the output of the non-fatal error message command.\n");
@@ -46,7 +49,10 @@ GTEST_TEST(testErrorHandling, defaultTemplateParameterIsAWarning)
 
 GTEST_TEST(testErrorHandling, aliasLambdaFunctionWorksForAFatalError)
 {
-    ASSERT_DEATH({ printFatalErrorMessage("Common-Utilities", "Fatal Error, Program Terminated."); },
+    ASSERT_DEATH(
+        {
+            printFatalErrorMessage(ErrorMessage {"Common-Utilities", "Fatal Error, Program Terminated."});
+        },
         "Common-Utilities Fatal Error:\n\tFatal Error, Program Terminated.\n");
 }
 

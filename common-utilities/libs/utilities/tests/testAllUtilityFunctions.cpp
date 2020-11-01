@@ -8,9 +8,6 @@
 
 #include <gtest/gtest.h>
 
-// #include "testNetworking/testTCPClient.hpp"
-// #include "testNetworking/testTCPServer.hpp"
-// #include "testNetworking/testTCPSocket.hpp"
 #include "testOperators/testComparisonOperators.hpp"
 #include "testOperators/testPotentiallyEmptyBaseClass.hpp"
 #include "testTesting/testPerformanceTesting.hpp"

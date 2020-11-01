@@ -55,13 +55,13 @@ GTEST_TEST(testContainerFunctions, memberTypesForAnExampleVector3DTypeAreCorrect
 
 GTEST_TEST(testContainerFunctions, vector3DIsClassifiedLikeAStdArrayAndAContainerAdapter)
 {
-    ASSERT_FALSE((IsAllocatorAwareContainer<Vector3D<int>>));
-    ASSERT_FALSE((IsAssociativeContainer<Vector3D<int>>));
-    ASSERT_TRUE((IsContainer<Vector3D<int>>));
-    ASSERT_TRUE((IsContainerAdapter<Vector3D<int>>));
-    ASSERT_FALSE((IsReversibleContainer<Vector3D<int>>));
-    ASSERT_TRUE((IsSequenceContainer<Vector3D<int>>));
-    ASSERT_FALSE((IsUnorderedAssociativeContainer<Vector3D<int>>));
+    ASSERT_FALSE((is_allocator_aware_container_v<Vector3D<int>>));
+    ASSERT_FALSE((is_associative_container_v<Vector3D<int>>));
+    ASSERT_TRUE((is_container_v<Vector3D<int>>));
+    ASSERT_TRUE((is_container_adapter_v<Vector3D<int>>));
+    ASSERT_FALSE((is_reversible_container_v<Vector3D<int>>));
+    ASSERT_TRUE((is_sequence_container_v<Vector3D<int>>));
+    ASSERT_FALSE((is_unordered_associative_container_v<Vector3D<int>>));
 }
 
 // Test constructors

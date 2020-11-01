@@ -20,10 +20,10 @@ The libraries included in this project include the following, and more informati
 
 - [Errors](libs/errors/docs/errors.md)
 
+- [Math](libs/math/docs/math.md)
+
 <!--
 - [Files](libs/files/docs/files.md)
-
-- [Math](libs/math/docs/math.md)
 
 - [Strings](libs/strings/docs/strings.md)
 -->
@@ -46,8 +46,6 @@ The following tree diagram shows how a sample library, `library1`, would be orga
         │   └── ...
         ├── samples
         │   └── ...
-        ├── src (optional)
-        │   └── ...
         └── tests
             ├── testAllLibrary1Functions.cpp
             └── ...
@@ -57,9 +55,9 @@ The `libs` directory contains information about the specific library, such as th
 
 ## Bash Scripts
 
-Consisting of a number of bash scripts for mainly automating some of my most common tasks, the files located in the [`root/common-utilities/scripts`](https://github.com/crdrisko/cpp-units/blob/master/common-utilities/scripts) directory are simple scripts and programs that don't really belong in any other repository, so they have been collected here.
+Consisting of a number of bash scripts for mainly automating some of my most common tasks, the files located in the [`root/common-utilities/scripts`](scripts) directory are simple scripts and programs that don't really belong in any other repository, so they have been collected here.
 
-For the programs that support command-line argument parsing, the `-h` flag will print the help message associated with the program. Scripts like `errorHandling.sh`, `showArgs.sh`, and `showOpts.sh` are designed to either be incorporated in other bash programs or are so simple, no help option is needed.
+For the programs that support command-line argument parsing, the `-h` flag will print the help message associated with the program. Scripts like `errorHandling.sh`, `showOpts.sh`, and `typeParsing.sh` are designed to either be incorporated in other bash programs or are so simple, no help option is needed.
 
 When the repository is installed, all shell scripts will be installed without the `.sh` extension and will be made executable. If the `${CMAKE_INSTALL_PREFIX}/bin` directory is in the system's path, these programs can be called as follows:
 

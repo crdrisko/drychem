@@ -132,7 +132,7 @@ GTEST_TEST(testDifferentiationMethods, passingTwoDifferentlySizedContainersResul
                 except.handleErrorWithMessage();
             }
         },
-        "Common-Utilities Fatal Error:\n\tInput sizes for x and y containers must be the same.\n");
+        "Common-Utilities Fatal Error: [(]differentiation.hpp: 33[)]\n\tInput sizes for x and y containers must be the same.\n");
 
     ASSERT_DEATH(
         {
@@ -145,7 +145,7 @@ GTEST_TEST(testDifferentiationMethods, passingTwoDifferentlySizedContainersResul
                 except.handleErrorWithMessage();
             }
         },
-        "Common-Utilities Fatal Error:\n\tInput sizes for x and y containers must be the same.\n");
+        "Common-Utilities Fatal Error: [(]differentiation.hpp: 62[)]\n\tInput sizes for x and y containers must be the same.\n");
 
     ASSERT_DEATH(
         {
@@ -158,7 +158,7 @@ GTEST_TEST(testDifferentiationMethods, passingTwoDifferentlySizedContainersResul
                 except.handleErrorWithMessage();
             }
         },
-        "Common-Utilities Fatal Error:\n\tInput sizes for x and y containers must be the same.\n");
+        "Common-Utilities Fatal Error: [(]differentiation.hpp: 92[)]\n\tInput sizes for x and y containers must be the same.\n");
 }
 
 #endif

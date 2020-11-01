@@ -9,8 +9,8 @@
 #ifndef COMMON_UTILITIES_ERRORTYPES_HPP
 #define COMMON_UTILITIES_ERRORTYPES_HPP
 
+#include <cstddef>
 #include <string>
-#include <string_view>
 
 namespace CppUtils::Errors
 {
@@ -25,6 +25,8 @@ namespace CppUtils::Errors
     {
         std::string programName {};
         std::string message {};
+        std::string fileName {};
+        std::size_t lineNumber {};
     };
 }   // namespace CppUtils::Errors
 

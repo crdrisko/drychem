@@ -29,7 +29,7 @@ namespace CppUtils::Testing
     constexpr decltype(auto) timeAndInvoke(F&& f, TArgs&&... args)
     {
         // Need to handle `void f(args...)` case differently from `auto f(args...)` case
-        if constexpr (std::is_same_v<std::invoke_result_t<F, TArgs...>, void>)
+        if constexpr (std::is_void_v<std::invoke_result_t<F, TArgs...>>)
         {
             auto start = std::chrono::high_resolution_clock::now();
             std::invoke(std::forward<F>(f), std::forward<TArgs>(args)...);

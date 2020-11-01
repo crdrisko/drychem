@@ -18,7 +18,7 @@ using namespace CppUtils::Math;
 
 GTEST_TEST(testMathExceptions, inputSizeMismatchIsAFatalExceptionAndCanTerminateWhenHandled)
 {
-    InputSizeMismatch exception1 {"Common-Utilities"};
+    InputSizeMismatch exception1 {"Common-Utilities", __FILE__, __LINE__};
 
     ASSERT_DEATH(
         {
@@ -31,7 +31,7 @@ GTEST_TEST(testMathExceptions, inputSizeMismatchIsAFatalExceptionAndCanTerminate
                 except.handleErrorWithMessage();
             }
         },
-        "Common-Utilities Fatal Error:\n\tInput sizes for x and y containers must be the same.\n");
+        "Common-Utilities Fatal Error: [(]testMathExceptions.hpp: 21[)]\n\tInput sizes for x and y containers must be the same.\n");
 }
 
 GTEST_TEST(testMathExceptions, derivedExceptionsCanBeCaughtByBaseFatalException)
@@ -40,14 +40,14 @@ GTEST_TEST(testMathExceptions, derivedExceptionsCanBeCaughtByBaseFatalException)
         {
             try
             {
-                throw InputSizeMismatch {"Common-Utilities"};
+                throw InputSizeMismatch("Common-Utilities", __FILE__, __LINE__);
             }
             catch (const CppUtils::Errors::FatalException& except)
             {
                 except.handleErrorWithMessage();
             }
         },
-        "Common-Utilities Fatal Error:\n\tInput sizes for x and y containers must be the same.\n");
+        "Common-Utilities Fatal Error: [(]testMathExceptions.hpp: 43[)]\n\tInput sizes for x and y containers must be the same.\n");
 }
 
 #endif

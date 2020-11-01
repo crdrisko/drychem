@@ -22,7 +22,7 @@ namespace CppUtils::Math
     template<typename IteratorX, typename IteratorY = IteratorX,
              typename Tx = typename std::iterator_traits<IteratorX>::value_type,
              typename Ty = typename std::iterator_traits<IteratorY>::value_type,
-             typename = std::enable_if_t<std::is_default_constructible_v<Tx> && std::is_default_constructible_v<Ty>>>
+             typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<Tx>, std::is_default_constructible<Ty>>>>
     constexpr decltype(auto) forwardDifferenceMethod(IteratorX x_begin, IteratorX x_end, IteratorY y_begin, IteratorY y_end)
     {
         using Ty_x = decltype(*y_begin / *x_begin);
@@ -30,7 +30,7 @@ namespace CppUtils::Math
         std::ptrdiff_t x_size {x_end - x_begin}, y_size {y_end - y_begin};
 
         if (x_size != y_size)
-            throw InputSizeMismatch {"Common-Utilities"};
+            throw InputSizeMismatch {"Common-Utilities", __FILE__, __LINE__};
 
         std::vector<Ty_x> dy_dx;
 
@@ -51,7 +51,7 @@ namespace CppUtils::Math
     template<typename IteratorX, typename IteratorY = IteratorX,
              typename Tx = typename std::iterator_traits<IteratorX>::value_type,
              typename Ty = typename std::iterator_traits<IteratorY>::value_type,
-             typename = std::enable_if_t<std::is_default_constructible_v<Tx> && std::is_default_constructible_v<Ty>>>
+             typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<Tx>, std::is_default_constructible<Ty>>>>
     constexpr decltype(auto) backwardsDifferenceMethod(IteratorX x_begin, IteratorX x_end, IteratorY y_begin, IteratorY y_end)
     {
         using Ty_x = decltype(*y_begin / *x_begin);
@@ -59,7 +59,7 @@ namespace CppUtils::Math
         std::ptrdiff_t x_size {x_end - x_begin}, y_size {y_end - y_begin};
 
         if (x_size != y_size)
-            throw InputSizeMismatch {"Common-Utilities"};
+            throw InputSizeMismatch {"Common-Utilities", __FILE__, __LINE__};
 
         std::vector<Ty_x> dy_dx;
 
@@ -80,7 +80,7 @@ namespace CppUtils::Math
     template<typename IteratorX, typename IteratorY = IteratorX,
              typename Tx = typename std::iterator_traits<IteratorX>::value_type,
              typename Ty = typename std::iterator_traits<IteratorY>::value_type,
-             typename = std::enable_if_t<std::is_default_constructible_v<Tx> && std::is_default_constructible_v<Ty>>>
+             typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<Tx>, std::is_default_constructible<Ty>>>>
     constexpr decltype(auto) centeredDifferenceMethod(IteratorX x_begin, IteratorX x_end, IteratorY y_begin, IteratorY y_end,
         bool correctBoundaries = true)
     {
@@ -89,7 +89,7 @@ namespace CppUtils::Math
         std::ptrdiff_t x_size {x_end - x_begin}, y_size {y_end - y_begin};
 
         if (x_size != y_size)
-            throw InputSizeMismatch {"Common-Utilities"};
+            throw InputSizeMismatch {"Common-Utilities", __FILE__, __LINE__};
 
         std::vector<Ty_x> dy_dx(x_size - 2);
         std::vector<Ty_x> forward  = forwardDifferenceMethod(x_begin, x_end, y_begin, y_end);

@@ -19,7 +19,7 @@ option(units_format_codebase "Builds appropriate libraries while also formatting
 if (units_format_codebase)
     ## Run clang-format on all code except the files passed as arguments with the '-i' flag ##
     execute_process(COMMAND bash cmake/scripts/format-codebase.sh
-                                    -i common-utilities/include/common-utils/errors/utils/errorHandling.hpp
+                                    -i common-utilities/include/common-utils/math/calculus/*
                                     -i common-utilities/include/common-utils/math/statistics/*
                                     -i common-utilities/include/common-utils/math/traits/containerTraits/*
                                     -i common-utilities/libs/utilities/samples/comparableExample.cpp
@@ -87,9 +87,7 @@ if (NOT exclude_scripts)
         common-utilities/scripts/fileMaker.sh
         common-utilities/scripts/linkLogin.sh
         common-utilities/scripts/modifyFiles.sh
-        common-utilities/scripts/remover.sh
         common-utilities/scripts/utilities/errorHandling.sh
-        common-utilities/scripts/utilities/showArgs.sh
         common-utilities/scripts/utilities/showOpts.sh
         common-utilities/scripts/utilities/typeParsing.sh)
 endif()
@@ -111,6 +109,7 @@ if (utils_build_samples)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/samples)
 
     add_executable(fibonacciExample common-utilities/libs/errors/samples/fibonacciExample.cpp)
+    add_executable(finiteDifferencesExample common-utilities/libs/math/samples/finiteDifferencesExample.cpp)
     add_executable(comparableExample common-utilities/libs/utilities/samples/comparableExample.cpp)
 
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)

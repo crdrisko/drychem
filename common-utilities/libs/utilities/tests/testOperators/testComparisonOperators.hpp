@@ -53,7 +53,6 @@ namespace CppUtils::Operators
         explicit Comparable(int Value) noexcept : value {Value} {}
 
         friend bool operator==(const Comparable& lhs, const Comparable& rhs) noexcept { return lhs.value == rhs.value; }
-
         friend bool operator<(const Comparable& lhs, const Comparable& rhs) noexcept { return lhs.value < rhs.value; }
     };
 }   // namespace CppUtils::Operators

@@ -16,21 +16,21 @@ namespace CppUtils::Math
 {
     // Main template
     template<typename T, typename = std::void_t<>>
-    struct IsContainerAdapterT : std::false_type {};
+    struct is_container_adapter : std::false_type {};
 
     // Partial specialization (may be SFINAE'd away)
     template<typename T>
-    struct IsContainerAdapterT<T, std::void_t<typename T::container_type,
-                                              typename T::value_type,
-                                              typename T::size_type,
-                                              typename T::reference,
-                                              typename T::const_reference,
-                                              decltype(std::declval<T>().empty()),
-                                              decltype(std::declval<T>().size())>> : std::true_type {};
+    struct is_container_adapter<T, std::void_t<typename T::container_type,
+                                               typename T::value_type,
+                                               typename T::size_type,
+                                               typename T::reference,
+                                               typename T::const_reference,
+                                               decltype(std::declval<T>().empty()),
+                                               decltype(std::declval<T>().size())>> : std::true_type {};
 
     // Convenience variable template for ease-of-use
     template<typename T>
-    constexpr bool IsContainerAdapter = IsContainerAdapterT<T>::value;
+    constexpr bool is_container_adapter_v = is_container_adapter<T>::value;
 }   // namespace CppUtils::Math
 
 #endif

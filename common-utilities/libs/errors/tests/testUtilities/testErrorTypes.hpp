@@ -26,23 +26,29 @@ GTEST_TEST(testErrorTypes, errorSeveritiesConvertToCorrectValues)
 
 GTEST_TEST(testErrorTypes, errorMessagesCanBeSetByIndividualValues)
 {
-    ErrorMessage error {};
+    ErrorMessage err {};
 
-    ASSERT_TRUE(error.programName.empty() && error.message.empty());
+    ASSERT_TRUE(err.programName.empty() && err.message.empty() && err.fileName.empty() && err.lineNumber == 0ul);
 
-    error.programName = "Common-Utilities";
-    error.message     = "This is the error message.";
+    err.programName = "Common-Utilities";
+    err.message     = "This is the error message.";
+    err.fileName    = __FILE__;
+    err.lineNumber  = __LINE__;
 
-    ASSERT_EQ("Common-Utilities", error.programName);
-    ASSERT_EQ("This is the error message.", error.message);
+    ASSERT_EQ("Common-Utilities", err.programName);
+    ASSERT_EQ("This is the error message.", err.message);
+    ASSERT_EQ("testErrorTypes.hpp", err.fileName.substr(err.fileName.find_last_of('/') + 1, err.fileName.length()));
+    ASSERT_EQ(36ul, err.lineNumber);
 }
 
 GTEST_TEST(testErrorTypes, errorMessagesCanBeSetByConstructor)
 {
-    ErrorMessage error {"Common-Utilities", "This is the error message."};
+    ErrorMessage err {"Common-Utilities", "This is the error message.", __FILE__, __LINE__};
 
-    ASSERT_EQ("Common-Utilities", error.programName);
-    ASSERT_EQ("This is the error message.", error.message);
+    ASSERT_EQ("Common-Utilities", err.programName);
+    ASSERT_EQ("This is the error message.", err.message);
+    ASSERT_EQ("testErrorTypes.hpp", err.fileName.substr(err.fileName.find_last_of('/') + 1, err.fileName.length()));
+    ASSERT_EQ(46ul, err.lineNumber);
 }
 
 #endif

@@ -9,6 +9,9 @@
 #ifndef COMMON_UTILITIES_MATHEXCEPTIONS_HPP
 #define COMMON_UTILITIES_MATHEXCEPTIONS_HPP
 
+#include <cstddef>
+#include <string>
+
 #include "errors.hpp"
 
 namespace CppUtils::Math
@@ -16,9 +19,11 @@ namespace CppUtils::Math
     class InputSizeMismatch : public Errors::FatalException
     {
     public:
-        explicit InputSizeMismatch(const std::string& ProgramName)
-            : Errors::FatalException {
-                Errors::ErrorMessage {ProgramName, "Input sizes for x and y containers must be the same."}}
+        explicit InputSizeMismatch(const std::string& programName, const std::string& fileName, std::size_t lineNumber)
+            : Errors::FatalException {Errors::ErrorMessage {programName,
+                "Input sizes for x and y containers must be the same.",
+                fileName,
+                lineNumber}}
         {
         }
     };

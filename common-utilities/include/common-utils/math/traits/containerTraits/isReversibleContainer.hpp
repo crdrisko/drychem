@@ -18,20 +18,20 @@ namespace CppUtils::Math
 {
     // Main template
     template<typename, typename = std::void_t<>>
-    struct IsReversibleContainerT : std::false_type {};
+    struct is_reversible_container : std::false_type {};
 
     // Partial specialization (may be SFINAE'd away)
     template<typename T>
-    struct IsReversibleContainerT<T, std::void_t<typename T::reverse_iterator,
-                                                 typename T::const_reverse_iterator,
-                                                 decltype(std::declval<T>().rbegin()),
-                                                 decltype(std::declval<T>().rend()),
-                                                 decltype(std::declval<T>().crbegin()),
-                                                 decltype(std::declval<T>().crend())>> : IsContainerT<T> {};
+    struct is_reversible_container<T, std::void_t<typename T::reverse_iterator,
+                                                  typename T::const_reverse_iterator,
+                                                  decltype(std::declval<T>().rbegin()),
+                                                  decltype(std::declval<T>().rend()),
+                                                  decltype(std::declval<T>().crbegin()),
+                                                  decltype(std::declval<T>().crend())>> : is_container<T> {};
 
     // Convenience variable template for ease-of-use
     template<typename T>
-    constexpr bool IsReversibleContainer = IsReversibleContainerT<T>::value;
+    constexpr bool is_reversible_container_v = is_reversible_container<T>::value;
 }   // namespace CppUtils::Math
 
 #endif

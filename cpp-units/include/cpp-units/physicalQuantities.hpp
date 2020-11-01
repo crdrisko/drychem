@@ -13,8 +13,6 @@
 #ifndef CPP_UNITS_PHYSICALQUANTITIES_HPP
 #define CPP_UNITS_PHYSICALQUANTITIES_HPP
 
-// #include "conversions/conversions.hpp"
-// #include "math/math.hpp"
 #include "math/basicMath.hpp"
 #include "types/dimensionality.hpp"
 #include "types/physicalQuantity.hpp"

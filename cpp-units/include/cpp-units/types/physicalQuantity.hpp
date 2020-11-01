@@ -16,7 +16,6 @@
 #include <common-utils/utilities.hpp>
 
 #include "types/dimensionality.hpp"
-// #include "conversions/conversions.hpp"
 
 using CppUtils::Operators::CompletelyComparable;
 
@@ -126,15 +125,6 @@ namespace CppUnits
             stream << rhs.magnitude;
             return stream;
         }
-
-        // // Unit Conversions
-        // constexpr auto convertQuantity(const std::string& initialUnits, const std::string& finalUnits) const
-        // {
-        //     const Conversions::Conversion conversion {};
-
-        //     return PhysicalQuantity<BaseDimensionality>( conversion.convertQuantity(this->magnitude, initialUnits,
-        //         finalUnits) );
-        // }
     };
 
     template<int L1, int M1, int T1, int I1, int Th1, int N1, int J1,

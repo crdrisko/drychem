@@ -25,7 +25,7 @@ namespace CppUtils::Math
     template<typename IteratorX, typename IteratorY = IteratorX,
              typename Tx = typename std::iterator_traits<IteratorX>::value_type,
              typename Ty = typename std::iterator_traits<IteratorY>::value_type,
-             typename = std::enable_if_t<std::is_default_constructible_v<Tx> && std::is_default_constructible_v<Ty>>>
+             typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<Tx>, std::is_default_constructible<Ty>>>>
     constexpr auto cumulativeTrapzIntegration(IteratorX x_begin, IteratorX x_end, IteratorY y_begin, IteratorY y_end,
         std::optional<decltype(*x_begin * *y_begin)> initialValue = std::nullopt)
     {
@@ -34,7 +34,7 @@ namespace CppUtils::Math
         std::ptrdiff_t x_size {x_end - x_begin}, y_size {y_end - y_begin};
 
         if (x_size != y_size)
-            throw InputSizeMismatch {"Common-Utilities"};
+            throw InputSizeMismatch {"Common-Utilities", __FILE__, __LINE__};
 
         const Txy init {};
         std::vector<Txy> y_cumulative;
@@ -67,6 +67,5 @@ namespace CppUtils::Math
         return y_cumulative;
     }
 }   // namespace CppUtils::Math
-
 
 #endif

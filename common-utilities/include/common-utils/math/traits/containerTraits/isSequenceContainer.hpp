@@ -19,15 +19,16 @@ namespace CppUtils::Math
 {
     // Main template
     template<typename T>
-    struct IsSequenceContainerT : std::conditional_t<IsContainer<T>,
-                                    std::conditional_t<!IsAssociativeContainer<T>,
-                                        std::conditional_t<!IsUnorderedAssociativeContainer<T>, std::true_type, std::false_type>,
-                                    std::false_type>,
-                                  std::false_type> {};
+    struct is_sequence_container : std::conditional_t<is_container_v<T>,
+                                     std::conditional_t<!is_associative_container_v<T>,
+                                       std::conditional_t<!is_unordered_associative_container_v<T>, std::true_type,
+                                       std::false_type>,
+                                     std::false_type>,
+                                   std::false_type> {};
 
     // Convenience variable template for ease-of-use
     template<typename T>
-    constexpr bool IsSequenceContainer = IsSequenceContainerT<T>::value;
+    constexpr bool is_sequence_container_v = is_sequence_container<T>::value;
 }   // namespace CppUtils::Math
 
 #endif

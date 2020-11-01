@@ -17,22 +17,20 @@ namespace CppUtils::Math
 {
     // Main template
     template<typename, typename = std::void_t<>>
-    struct IsUnorderedAssociativeContainerT : std::false_type
-    {
-    };
+    struct is_unordered_associative_container : std::false_type {};
 
     // Partial specialization (may be SFINAE'd away)
     template<typename T>
-    struct IsUnorderedAssociativeContainerT<T, std::void_t<typename T::key_type,
-                                                           typename T::value_type,
-                                                           typename T::hasher,
-                                                           typename T::key_equal,
-                                                           typename T::local_iterator,
-                                                           typename T::const_local_iterator>> : IsContainerT<T> {};
+    struct is_unordered_associative_container<T, std::void_t<typename T::key_type,
+                                                             typename T::value_type,
+                                                             typename T::hasher,
+                                                             typename T::key_equal,
+                                                             typename T::local_iterator,
+                                                             typename T::const_local_iterator>> : is_container<T> {};
 
     // Convenience variable template for ease-of-use
     template<typename T>
-    constexpr bool IsUnorderedAssociativeContainer = IsUnorderedAssociativeContainerT<T>::value;
+    constexpr bool is_unordered_associative_container_v = is_unordered_associative_container<T>::value;
 }   // namespace CppUtils::Math
 
 #endif

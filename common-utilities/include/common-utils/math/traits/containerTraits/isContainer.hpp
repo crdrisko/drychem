@@ -16,11 +16,11 @@ namespace CppUtils::Math
 {
     // Main template
     template<typename, typename = std::void_t<>>
-    struct IsContainerT : std::false_type {};
+    struct is_container : std::false_type {};
 
     // Partial specialization (may be SFINAE'd away)
     template<typename T>
-    struct IsContainerT<T, std::void_t<typename T::value_type,
+    struct is_container<T, std::void_t<typename T::value_type,
                                        typename T::reference,
                                        typename T::const_reference,
                                        typename T::iterator,
@@ -36,7 +36,7 @@ namespace CppUtils::Math
 
     // Convenience variable template for ease-of-use
     template<typename T>
-    constexpr bool IsContainer = IsContainerT<T>::value;
+    constexpr bool is_container_v = is_container<T>::value;
 }   // namespace CppUtils::Math
 
 #endif

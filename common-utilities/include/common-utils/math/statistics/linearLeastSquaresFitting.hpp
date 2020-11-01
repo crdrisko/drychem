@@ -45,12 +45,12 @@ namespace CppUtils::Math
         using Txy    = decltype(*x_begin * *y_begin);
         using Tyy    = decltype(*y_begin * *y_begin);
         using Ty_x   = decltype(*y_begin / *x_begin);
-        using Tyy_xx = decltype((*y_begin * *y_begin) / (*x_begin * *x_begin));
+        using Tyy_xx = decltype(*y_begin * *y_begin / *x_begin / *x_begin);
 
         std::ptrdiff_t x_size {x_end - x_begin}, y_size {y_end - y_begin};
 
         if (x_size != y_size)
-            throw InputSizeMismatch {"Common-Utilities"};
+            throw InputSizeMismatch {"Common-Utilities", __FILE__, __LINE__};
 
         const Txx xx_init {};
         const Txy xy_init {};
@@ -73,7 +73,7 @@ namespace CppUtils::Math
         Ty_x slope   = slope_numerator / slope_denominator;
         Ty intercept = y_average - (slope * x_average);
 
-        /* Calculate the variance of the slope - don't use standard deviation here because for physical quantities
+        /* Calculate the variance of the slope - don't use standard deviation here, because for physical quantities
             std::sqrt() isn't overloaded properly */
         std::vector<Tyy> y_predicted(y_size);
 
