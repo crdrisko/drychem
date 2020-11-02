@@ -13,8 +13,8 @@
 
 #include "physicalQuantities.hpp"
 
-using namespace PhysicalQuantities;
-using namespace PhysicalQuantities::Literals;
+using namespace CppUnits;
+using namespace CppUnits::Literals;
 
 GTEST_TEST(testArithmeticOperators, overloadedAdditionOperatorsActOnlyOnPhysicalQuantities)
 {

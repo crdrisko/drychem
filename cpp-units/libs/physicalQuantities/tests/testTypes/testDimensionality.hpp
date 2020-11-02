@@ -13,6 +13,8 @@
 
 #include "physicalQuantities.hpp"
 
+using namespace CppUnits;
+
 GTEST_TEST(testDimensionality, aDimensionalityCanBeDecomposedIntoItsVariousComponents)
 {
     using MolarEntropyDimensionality = Dimensionality<2, 1, -2, 0, -1, -1>;

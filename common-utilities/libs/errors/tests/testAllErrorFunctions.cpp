@@ -8,7 +8,6 @@
 
 #include <gtest/gtest.h>
 
-#include "testExceptions/testCommonExceptionTypes.hpp"
 #include "testExceptions/testExceptionHandling.hpp"
 #include "testTraits/testErrorTraits.hpp"
 #include "testUtilities/testErrorHandling.hpp"

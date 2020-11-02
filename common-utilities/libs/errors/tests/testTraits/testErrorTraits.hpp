@@ -13,18 +13,18 @@
 
 #include "errors.hpp"
 
-using namespace CommonUtilities::Errors;
+using namespace CppUtils::Errors;
 
-GTEST_TEST(testErrorTraits, isFatal_IsFalseWhenTemplateParameterIsWarning)
+GTEST_TEST(testErrorTraits, isFatalIsFalseWhenTemplateParameterIsWarning)
 {
-    ASSERT_FALSE(IsFatalT<ErrorSeverity::Warning>::value);
-    ASSERT_FALSE(isFatal<ErrorSeverity::Warning>);
+    ASSERT_FALSE(is_fatal<ErrorSeverity::Warning>::value);
+    ASSERT_FALSE(is_fatal_v<ErrorSeverity::Warning>);
 }
 
-GTEST_TEST(testErrorTraits, isFatal_IsTrueWhenTemplateParameterIsFatal)
+GTEST_TEST(testErrorTraits, isFatalIsTrueWhenTemplateParameterIsFatal)
 {
-    ASSERT_TRUE(IsFatalT<ErrorSeverity::Fatal>::value);
-    ASSERT_TRUE(isFatal<ErrorSeverity::Fatal>);
+    ASSERT_TRUE(is_fatal<ErrorSeverity::Fatal>::value);
+    ASSERT_TRUE(is_fatal_v<ErrorSeverity::Fatal>);
 }
 
 #endif

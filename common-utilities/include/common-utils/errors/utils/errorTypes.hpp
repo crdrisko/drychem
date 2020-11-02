@@ -9,10 +9,10 @@
 #ifndef COMMON_UTILITIES_ERRORTYPES_HPP
 #define COMMON_UTILITIES_ERRORTYPES_HPP
 
+#include <cstddef>
 #include <string>
-#include <string_view>
 
-namespace CommonUtilities::Errors
+namespace CppUtils::Errors
 {
     enum class ErrorSeverity
     {
@@ -25,7 +25,9 @@ namespace CommonUtilities::Errors
     {
         std::string programName {};
         std::string message {};
+        std::string fileName {};
+        std::size_t lineNumber {};
     };
-}   // namespace CommonUtilities::Errors
+}   // namespace CppUtils::Errors
 
 #endif

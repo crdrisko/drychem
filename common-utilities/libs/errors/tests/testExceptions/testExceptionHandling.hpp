@@ -18,9 +18,9 @@
 
 #include "errors.hpp"
 
-using namespace CommonUtilities::Errors;
+using namespace CppUtils::Errors;
 
-GTEST_TEST(testExceptionHandling, thisIsHowWeShouldCatchAndHandleAllExceptions)
+GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAStdException)
 {
     ASSERT_DEATH(
         {
@@ -35,7 +35,7 @@ GTEST_TEST(testExceptionHandling, thisIsHowWeShouldCatchAndHandleAllExceptions)
                     // Toss the exception back up for program termination and a more verbose message
                     ErrorMessage error1;
                     error1.programName = "YourProgramName";
-                    error1.message     = "A verbose error message describing the problem: " + std::string {except.what()};
+                    error1.message     = "An exception was thrown from " + std::string {except.what()};
 
                     throw FatalException(error1);
                 }
@@ -45,7 +45,35 @@ GTEST_TEST(testExceptionHandling, thisIsHowWeShouldCatchAndHandleAllExceptions)
                 except.handleErrorWithMessage();
             }
         },
-        "YourProgramName Fatal Error:\n\tA verbose error message describing the problem: std::bad_alloc\n");
+        "YourProgramName Fatal Error:\n\tAn exception was thrown from std::bad_alloc\n");
+}
+
+GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAFatalException)
+{
+    ASSERT_DEATH(
+        {
+            try
+            {
+                try
+                {
+                    throw FatalException(ErrorMessage {"Common-Utilities", "Location message.", __FILE__, __LINE__});
+                }
+                catch (const std::exception& except)
+                {
+                    // Toss the exception back up for program termination and a more verbose message
+                    ErrorMessage error1;
+                    error1.programName = "YourProgramName";
+                    error1.message     = "An exception was thrown from " + std::string {except.what()};
+
+                    throw FatalException(error1);
+                }
+            }
+            catch (const FatalException& except)
+            {
+                except.handleErrorWithMessage();
+            }
+        },
+        "YourProgramName Fatal Error:\n\tAn exception was thrown from [(]testExceptionHandling.hpp: *[0-9]*[)]\n\tLocation message.\n");
 }
 
 GTEST_TEST(testExceptionHandling, fatalErrorsAreHandledByTerminating)
@@ -55,11 +83,13 @@ GTEST_TEST(testExceptionHandling, fatalErrorsAreHandledByTerminating)
             ErrorMessage error;
             error.programName = "Common-Utilities";
             error.message     = "This would be the error message.";
+            error.fileName    = __FILE__;
+            error.lineNumber  = __LINE__;
 
             FatalException exceptFatal {error};
             exceptFatal.handleErrorWithMessage();
         },
-        "Common-Utilities Fatal Error:\n\tThis would be the error message.\n");
+        "Common-Utilities Fatal Error: [(]testExceptionHandling.hpp: *[0-9]*[)]\n\tThis would be the error message.\n");
 }
 
 GTEST_TEST(testExceptionHandling, derivedExceptionClassIsCaughtByParentClass)
@@ -71,6 +101,8 @@ GTEST_TEST(testExceptionHandling, derivedExceptionClassIsCaughtByParentClass)
         ErrorMessage error {};
         error.programName = "Common-Utilities";
         error.message     = "Let's throw a non-fatal warning.";
+        error.fileName    = __FILE__;
+        error.lineNumber  = __LINE__;
 
         throw FatalException(error);
     }
@@ -81,7 +113,7 @@ GTEST_TEST(testExceptionHandling, derivedExceptionClassIsCaughtByParentClass)
 
     std::string actualOutput = testing::internal::GetCapturedStderr();
 
-    ASSERT_EQ(actualOutput, "Let's throw a non-fatal warning.\n");
+    ASSERT_EQ(actualOutput, "(testExceptionHandling.hpp: 105)\n\tLet's throw a non-fatal warning.\n");
 }
 
 #endif

@@ -14,7 +14,7 @@
 #include "utilities.hpp"
 
 // Helper classes for testing
-namespace CommonUtilities::Utilities
+namespace CppUtils::Operators
 {
     class SomewhatComparable1 : private EqualityComparable<SomewhatComparable1>
     {
@@ -53,12 +53,11 @@ namespace CommonUtilities::Utilities
         explicit Comparable(int Value) noexcept : value {Value} {}
 
         friend bool operator==(const Comparable& lhs, const Comparable& rhs) noexcept { return lhs.value == rhs.value; }
-
         friend bool operator<(const Comparable& lhs, const Comparable& rhs) noexcept { return lhs.value < rhs.value; }
     };
-}   // namespace CommonUtilities::Utilities
+}   // namespace CppUtils::Operators
 
-using namespace CommonUtilities::Utilities;
+using namespace CppUtils::Operators;
 
 GTEST_TEST(testComparisonOperators, aClassThatInheritsFromEqualityComparableCanOnlyCallEqualityComparisons)
 {

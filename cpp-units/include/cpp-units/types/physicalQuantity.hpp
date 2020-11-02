@@ -15,12 +15,11 @@
 
 #include <common-utils/utilities.hpp>
 
-#include "dimensionality.hpp"
-// #include "conversions/conversions.hpp"
+#include "types/dimensionality.hpp"
 
-using CommonUtilities::Utilities::CompletelyComparable;
+using CppUtils::Operators::CompletelyComparable;
 
-namespace PhysicalQuantities
+namespace CppUnits
 {
     template<typename BaseDimensionality>
     class PhysicalQuantity : private CompletelyComparable<PhysicalQuantity<BaseDimensionality>>
@@ -126,15 +125,6 @@ namespace PhysicalQuantities
             stream << rhs.magnitude;
             return stream;
         }
-
-        // // Unit Conversions
-        // constexpr auto convertQuantity(const std::string& initialUnits, const std::string& finalUnits) const
-        // {
-        //     const Conversions::Conversion conversion {};
-
-        //     return PhysicalQuantity<BaseDimensionality>( conversion.convertQuantity(this->magnitude, initialUnits,
-        //         finalUnits) );
-        // }
     };
 
     template<int L1, int M1, int T1, int I1, int Th1, int N1, int J1,
@@ -166,6 +156,6 @@ namespace PhysicalQuantities
     {
         return PhysicalQuantity<Dimensionality<>>(lhs) / rhs;
     }
-}   // namespace PhysicalQuantities
+}   // namespace CppUnits
 
 #endif

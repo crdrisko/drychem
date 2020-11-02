@@ -45,9 +45,9 @@ function(CppUnitsNewTest)
 
     set(TESTPATH ${CppUnits_SOURCE_DIR}/${TEST_ARGS_LIBRARY}/libs/${TEST_ARGS_INTERIOR_DIRECTORY}/tests)
 
-    add_executable(test${TEST_ARGS_TESTNAME} ${TESTPATH}/test${TEST_ARGS_TESTNAME}.cpp)
+    add_executable(${TEST_ARGS_LIBRARY}Test${TEST_ARGS_TESTNAME} ${TESTPATH}/test${TEST_ARGS_TESTNAME}.cpp)
 
-    target_link_libraries(test${TEST_ARGS_TESTNAME} ${GTEST_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+    target_link_libraries(${TEST_ARGS_LIBRARY}Test${TEST_ARGS_TESTNAME} ${GTEST_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
-    gtest_discover_tests(test${TEST_ARGS_TESTNAME} WORKING_DIRECTORY ${TESTPATH})
+    gtest_discover_tests(${TEST_ARGS_LIBRARY}Test${TEST_ARGS_TESTNAME} WORKING_DIRECTORY ${TESTPATH})
 endfunction()

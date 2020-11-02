@@ -15,7 +15,7 @@
 
 #include <common-utils/errors.hpp>
 
-using namespace CommonUtilities::Errors;
+using namespace CppUtils::Errors;
 
 void printNFibonacciNumbers(std::size_t n);
 
@@ -34,8 +34,8 @@ int main()
         catch (const std::exception& except)
         {
             ErrorMessage error;
-            error.programName = "Common-Utilities";
-            error.message     = "Exception message: " + std::string {except.what()};
+            error.programName = "\nCommon-Utilities";
+            error.message     = "An exception was thrown from " + std::string {except.what()};
 
             throw FatalException(error);
         }
@@ -52,8 +52,7 @@ void printNFibonacciNumbers(std::size_t n)
 
     // Don't want to overshoot our data type, based on std::numeric_limits<std::size_t>::max()
     if (std::size_t maxNAllowed {94}; n > maxNAllowed)
-        throw InvalidInputException("Common-Utilities",
-            "This value of n yields a fibonacci number too large for std::size_t to hold.");
+        throw FatalException {ErrorMessage {"Common-Utilities", "Overflow error for type std::size_t.", __FILE__, __LINE__}};
 
     for (std::size_t i {}; i < n; ++i)
     {

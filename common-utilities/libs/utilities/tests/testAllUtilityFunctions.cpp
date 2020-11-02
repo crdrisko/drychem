@@ -9,7 +9,8 @@
 #include <gtest/gtest.h>
 
 #include "testOperators/testComparisonOperators.hpp"
-#include "testUtilities/testPotentiallyEmptyBaseClass.hpp"
+#include "testOperators/testPotentiallyEmptyBaseClass.hpp"
+#include "testTesting/testPerformanceTesting.hpp"
 
 int main(int argc, char** argv)
 {

@@ -9,7 +9,7 @@
 #ifndef CPP_UNITS_DIMENSIONALITY_HPP
 #define CPP_UNITS_DIMENSIONALITY_HPP
 
-namespace PhysicalQuantities
+namespace CppUnits
 {
     /* When using static constant members instead of enumerations, we want to ensure any usage of the members is limited
         to a purely compile-time effect, so we'll explicitly use the inline keyword in conjuction with constexpr */
@@ -26,6 +26,6 @@ namespace PhysicalQuantities
 
         using Type = Dimensionality<Length, Mass, Time, ElectricCurrent, Temperature, AmountOfSubstance, LuminousIntensity>;
     };
-}   // namespace PhysicalQuantities
+}   // namespace CppUnits
 
 #endif

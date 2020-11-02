@@ -4,33 +4,33 @@ project(CppUnits VERSION 1.0.0)
 
 
 ### Options ###
-option(utils_build_all      "Builds common-utils library, corresponding unit tests, and corresponding code samples." OFF)
-option(utils_build_tests    "Builds common-utils library and corresponding unit tests." OFF)
-option(utils_build_samples  "Builds common-utils library and corresponding code samples." OFF)
+option(utils_build_all       "Builds common-utils library, corresponding unit tests, and corresponding code samples." OFF)
+option(utils_build_tests     "Builds common-utils library and corresponding unit tests." OFF)
+option(utils_build_samples   "Builds common-utils library and corresponding code samples." OFF)
+option(utils_exclude_scripts "Builds appropriate libraries while ignoring the scripts directory." OFF)
 
-option(exclude_units        "Builds common-utils library but ignores the cpp-units library." OFF)
-option(exclude_scripts      "Builds appropriate libraries while ignoring the scripts directory." OFF)
-option(format_codebase      "Builds appropriate libraries while also formatting the code." OFF)
-
-option(units_build_all      "Builds all libraries, unit tests, and code samples." OFF)
-option(units_build_tests    "Builds all libraries and unit tests." OFF)
-option(units_build_samples  "Builds all libraries and code samples." OFF)
-option(units_build_coverage "Builds all libraries, unit tests, and enables coverage options." OFF)
+option(units_build_all       "Builds all libraries, unit tests, and code samples." OFF)
+option(units_build_tests     "Builds all libraries and unit tests." OFF)
+option(units_build_samples   "Builds all libraries and code samples." OFF)
+option(units_enable_coverage "Builds all libraries, unit tests, and enables coverage options." OFF)
+option(units_format_codebase "Builds appropriate libraries while also formatting the code." OFF)
 
 ## Set appropriate option flags and continue ##
-if (format_codebase)
+if (units_format_codebase)
     ## Run clang-format on all code except the files passed as arguments with the '-i' flag ##
     execute_process(COMMAND bash cmake/scripts/format-codebase.sh
-                                    -i common-utilities/include/common-utils/errors/exceptions/invalidInputException.hpp
-                                    -i common-utilities/include/common-utils/errors/utils/errorHandling.hpp
+                                    -i common-utilities/include/common-utils/math/calculus/*
+                                    -i common-utilities/include/common-utils/math/statistics/*
+                                    -i common-utilities/include/common-utils/math/traits/containerTraits/*
+                                    -i common-utilities/libs/utilities/samples/comparableExample.cpp
+                                    -i cpp-units/include/cpp-units/math/basicMath.hpp
                                     -i cpp-units/include/cpp-units/types/physicalQuantity.hpp
                                     -i cpp-units/include/cpp-units/physicalQuantities.hpp
-                                    -i common-utilities/libs/utilities/samples/comparableExample.cpp
                     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
                     OUTPUT_QUIET)
 endif()
 
-if (units_build_coverage)
+if (units_enable_coverage)
     set(units_build_tests ON)
     set(CMAKE_BUILD_TYPE "Debug")
     set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} --coverage)
@@ -76,7 +76,7 @@ endif()
 
 
 ### Functions ###
-include(cmake/utility-functions.cmake)
+include(cmake/units-utility-functions.cmake)
 
 
 ### Files / Directories ###
@@ -87,9 +87,7 @@ if (NOT exclude_scripts)
         common-utilities/scripts/fileMaker.sh
         common-utilities/scripts/linkLogin.sh
         common-utilities/scripts/modifyFiles.sh
-        common-utilities/scripts/remover.sh
         common-utilities/scripts/utilities/errorHandling.sh
-        common-utilities/scripts/utilities/showArgs.sh
         common-utilities/scripts/utilities/showOpts.sh
         common-utilities/scripts/utilities/typeParsing.sh)
 endif()
@@ -111,9 +109,7 @@ if (utils_build_samples)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/samples)
 
     add_executable(fibonacciExample common-utilities/libs/errors/samples/fibonacciExample.cpp)
-    # add_executable(* common-utilities/libs/files/samples/*.cpp)
-    # add_executable(* common-utilities/libs/math/samples/*.cpp)
-    # add_executable(* common-utilities/libs/strings/samples/*.cpp)
+    add_executable(finiteDifferencesExample common-utilities/libs/math/samples/finiteDifferencesExample.cpp)
     add_executable(comparableExample common-utilities/libs/utilities/samples/comparableExample.cpp)
 
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
@@ -139,7 +135,7 @@ endif()
 install(DIRECTORY ${LIBRARIES}
         DESTINATION include)
 
-if (NOT exclude_scripts)
+if (NOT units_exclude_scripts)
     foreach (SCRIPT ${SCRIPTS})
         ## Remove extensions and make scripts executable ##
         get_filename_component(filename "${SCRIPT}" NAME_WE)
