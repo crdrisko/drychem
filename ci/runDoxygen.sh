@@ -19,7 +19,7 @@ git config user.email "travis@travis-ci.org"
 # go back to first commit
 git reset --hard "$( git rev-list --max-parents=0 --abbrev-commit HEAD )"
 
-doxygen "$TRAVIS_BUILD_DIR/doc/Doxyfile" 2>&1 | tee doxygen.log
+doxygen "$TRAVIS_BUILD_DIR/docs/Doxyfile" 2>&1 | tee doxygen.log
 
 [[ ! -d "html" || ! -f "html/index.html" ]] && exit 1
 

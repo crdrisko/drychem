@@ -54,7 +54,7 @@ matrix:
         - lcov --remove coverage.info '*gtest*' '*/tests/*' '/usr/*' --output-file coverage.info
         - coveralls -r ../../. --l coverage.info -n
         - bash <(curl -s https://codecov.io/bash)
-    
+
     ## Update the Documentation ##
     - stage: docs
       os: linux
@@ -62,9 +62,9 @@ matrix:
       addons:
         apt:
           packages:
-            - doxygen 
-            - doxygen-doc 
-            - doxygen-gui 
+            - doxygen
+            - doxygen-doc
+            - doxygen-gui
             - graphviz
       script:
         - if [[ "$TRAVIS_BRANCH" != "master" ]]; then travis_terminate 0; fi
