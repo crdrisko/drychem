@@ -29,10 +29,10 @@ script:
   - for file in *; do ./$file || echo -n; done
 
 
+### Additional Build Stages ###
 matrix:
   include:
-    ## Provide Code Coverage Reports ##
-    - stage: coverage
+    - stage: coverage   ## Provide code coverage reports
       os: linux
       dist: bionic
       compiler: gcc
@@ -55,8 +55,7 @@ matrix:
         - coveralls -r ../../. --l coverage.info -n
         - bash <(curl -s https://codecov.io/bash)
 
-    ## Update the Documentation ##
-    - stage: docs
+    - stage: docs       ## Update the documentation
       os: linux
       compiler: gcc
       addons:

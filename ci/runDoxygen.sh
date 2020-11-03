@@ -23,6 +23,6 @@ doxygen "$TRAVIS_BUILD_DIR/docs/Doxyfile" 2>&1 | tee doxygen.log
 
 [[ ! -d "html" || ! -f "html/index.html" ]] && exit 1
 
-git add --all
-git commit -m "Deploy code docs to GitHub Pages Travis build: ${TRAVIS_BUILD_NUMBER}"
-git push --force https://github.com/crdrisko/cpp-units.git > /dev/null 2>&1
+echo "Adding..." && git add --all
+echo "Commiting..." && git commit -m "Deploy code docs to GitHub Pages Travis build: ${TRAVIS_BUILD_NUMBER}"
+echo "Pushing..." && git push --force https://github.com/crdrisko/cpp-units.git > /dev/null 2>&1

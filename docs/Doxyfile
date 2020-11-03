@@ -8,7 +8,7 @@ PROJECT_NAME           = "C++ Units"
 PROJECT_NUMBER         = 1.0.0
 PROJECT_BRIEF          = "A compile-time, header-only physical quantity library and unit converter"
 PROJECT_LOGO           =
-OUTPUT_DIRECTORY       = 
+OUTPUT_DIRECTORY       = /home/travis/build/crdrisko/cpp-units
 CREATE_SUBDIRS         = NO
 ALLOW_UNICODE_NAMES    = NO
 OUTPUT_LANGUAGE        = English
@@ -36,7 +36,6 @@ JAVADOC_AUTOBRIEF      = NO
 JAVADOC_BANNER         = NO
 QT_AUTOBRIEF           = NO
 MULTILINE_CPP_IS_BRIEF = NO
-PYTHON_DOCSTRING       = YES
 INHERIT_DOCS           = YES
 SEPARATE_MEMBER_PAGES  = NO
 TAB_SIZE               = 4
@@ -61,7 +60,6 @@ INLINE_GROUPED_CLASSES = NO
 INLINE_SIMPLE_STRUCTS  = NO
 TYPEDEF_HIDES_STRUCT   = NO
 LOOKUP_CACHE_SIZE      = 0
-NUM_PROC_THREADS       = 1
 #---------------------------------------------------------------------------
 # Build related configuration options
 #---------------------------------------------------------------------------
@@ -117,7 +115,8 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 # Configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = README.md .
+INPUT                  = /home/travis/build/crdrisko/cpp-units/README.md \
+                         /home/travis/build/crdrisko/cpp-units
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.c \
                          *.cc \
@@ -246,7 +245,6 @@ GENERATE_TREEVIEW      = NO
 ENUM_VALUES_PER_LINE   = 4
 TREEVIEW_WIDTH         = 250
 EXT_LINKS_IN_WINDOW    = NO
-HTML_FORMULA_FORMAT    = png
 FORMULA_FONTSIZE       = 10
 FORMULA_TRANSPARENT    = YES
 FORMULA_MACROFILE      =
