@@ -21,6 +21,7 @@
 
 #include "errors.hpp"
 #include "math.hpp"
+#include "utilities.hpp"
 
 using namespace CppUtils::Math;
 
@@ -55,13 +56,13 @@ GTEST_TEST(testContainerFunctions, memberTypesForAnExampleVector3DTypeAreCorrect
 
 GTEST_TEST(testContainerFunctions, vector3DIsClassifiedLikeAStdArrayAndAContainerAdapter)
 {
-    ASSERT_FALSE((is_allocator_aware_container_v<Vector3D<int>>));
-    ASSERT_FALSE((is_associative_container_v<Vector3D<int>>));
-    ASSERT_TRUE((is_container_v<Vector3D<int>>));
-    ASSERT_TRUE((is_container_adapter_v<Vector3D<int>>));
-    ASSERT_FALSE((is_reversible_container_v<Vector3D<int>>));
-    ASSERT_TRUE((is_sequence_container_v<Vector3D<int>>));
-    ASSERT_FALSE((is_unordered_associative_container_v<Vector3D<int>>));
+    ASSERT_FALSE((CppUtils::Traits::is_allocator_aware_container_v<Vector3D<int>>));
+    ASSERT_FALSE((CppUtils::Traits::is_associative_container_v<Vector3D<int>>));
+    ASSERT_TRUE((CppUtils::Traits::is_container_v<Vector3D<int>>));
+    ASSERT_TRUE((CppUtils::Traits::is_container_adapter_v<Vector3D<int>>));
+    ASSERT_FALSE((CppUtils::Traits::is_reversible_container_v<Vector3D<int>>));
+    ASSERT_TRUE((CppUtils::Traits::is_sequence_container_v<Vector3D<int>>));
+    ASSERT_FALSE((CppUtils::Traits::is_unordered_associative_container_v<Vector3D<int>>));
 }
 
 // Test constructors
