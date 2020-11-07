@@ -13,8 +13,9 @@
 
 #include "utilities.hpp"
 
-// Helper classes for testing
-namespace CppUtils::Operators
+using namespace CppUtils::Operators;
+
+namespace CppUtils::Internal::Testing
 {
     class SomewhatComparable1 : private EqualityComparable<SomewhatComparable1>
     {
@@ -55,15 +56,14 @@ namespace CppUtils::Operators
         friend bool operator==(const Comparable& lhs, const Comparable& rhs) noexcept { return lhs.value == rhs.value; }
         friend bool operator<(const Comparable& lhs, const Comparable& rhs) noexcept { return lhs.value < rhs.value; }
     };
-}   // namespace CppUtils::Operators
+}   // namespace CppUtils::Internal::Testing
 
-using namespace CppUtils::Operators;
-
+//! \test Testing the \c CppUtils::Operators::EqualityComparable class
 GTEST_TEST(testComparisonOperators, aClassThatInheritsFromEqualityComparableCanOnlyCallEqualityComparisons)
 {
-    SomewhatComparable1 value1 {5};
-    SomewhatComparable1 value2 {5};
-    SomewhatComparable1 value3 {10};
+    CppUtils::Internal::Testing::SomewhatComparable1 value1 {5};
+    CppUtils::Internal::Testing::SomewhatComparable1 value2 {5};
+    CppUtils::Internal::Testing::SomewhatComparable1 value3 {10};
 
     ASSERT_TRUE(value1 == value2);
     ASSERT_FALSE(value1 == value3);
@@ -74,11 +74,12 @@ GTEST_TEST(testComparisonOperators, aClassThatInheritsFromEqualityComparableCanO
     // ASSERT_TRUE(value1 < value3);                        // Error: no operator "<" matches these operands
 }
 
+//! \test Testing the \c CppUtils::Operators::LessThanComparable class
 GTEST_TEST(testComparisonOperators, aClassThatInheritsFromLessThanComparableCanOnlyCallInequalityComparisons)
 {
-    SomewhatComparable2 value1 {5};
-    SomewhatComparable2 value2 {5};
-    SomewhatComparable2 value3 {10};
+    CppUtils::Internal::Testing::SomewhatComparable2 value1 {5};
+    CppUtils::Internal::Testing::SomewhatComparable2 value2 {5};
+    CppUtils::Internal::Testing::SomewhatComparable2 value3 {10};
 
     ASSERT_TRUE(value1 < value3);
     ASSERT_FALSE(value1 < value2);
@@ -95,11 +96,12 @@ GTEST_TEST(testComparisonOperators, aClassThatInheritsFromLessThanComparableCanO
     // ASSERT_TRUE(value1 == value2);                       // Error: no operator "==" matches these operands
 }
 
+//! \test Testing the \c CppUtils::Operators::CompletelyComparable class
 GTEST_TEST(testComparisonOperators, aClassThatInheritsFromCompletelyComparableCanCallAllComparisons)
 {
-    Comparable value1 {5};
-    Comparable value2 {5};
-    Comparable value3 {10};
+    CppUtils::Internal::Testing::Comparable value1 {5};
+    CppUtils::Internal::Testing::Comparable value2 {5};
+    CppUtils::Internal::Testing::Comparable value3 {10};
 
     ASSERT_TRUE(value1 == value2);
     ASSERT_FALSE(value1 == value3);

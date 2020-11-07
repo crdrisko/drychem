@@ -24,10 +24,11 @@
 
 #include <gtest/gtest.h>
 
-#include "math.hpp"
+#include "utilities.hpp"
 
-using namespace CppUtils::Math;
+using namespace CppUtils::Traits;
 
+//! \test Testing the \c CppUtils::Traits::is_allocator_aware_container type trait
 GTEST_TEST(testContainerTraits, allContainersButStdArrayAreAllocatorAwareContainers)
 {
     ASSERT_TRUE((is_allocator_aware_container<std::deque<int>>::value));
@@ -50,6 +51,7 @@ GTEST_TEST(testContainerTraits, allContainersButStdArrayAreAllocatorAwareContain
     ASSERT_FALSE((is_allocator_aware_container<std::stack<int>>::value));
 }
 
+//! \test Testing the \c CppUtils::Traits::is_associative_container type trait
 GTEST_TEST(testContainerTraits, onlyOrderedMapsAndSetsAreAssociativeContainers)
 {
     ASSERT_TRUE((is_associative_container<std::map<int, int>>::value));
@@ -72,6 +74,7 @@ GTEST_TEST(testContainerTraits, onlyOrderedMapsAndSetsAreAssociativeContainers)
     ASSERT_FALSE((is_associative_container<std::vector<int>>::value));
 }
 
+//! \test Testing the \c CppUtils::Traits::is_container type trait
 GTEST_TEST(testContainerTraits, allStdContainersAreContainers)
 {
     ASSERT_TRUE((is_container<std::array<int, 3>>::value));
@@ -94,6 +97,7 @@ GTEST_TEST(testContainerTraits, allStdContainersAreContainers)
     ASSERT_FALSE((is_container<std::stack<int>>::value));
 }
 
+//! \test Testing the \c CppUtils::Traits::is_container_adapter type trait
 GTEST_TEST(testContainerTraits, containerAdaptersRequireAWrappedContainerType)
 {
     ASSERT_TRUE((is_container_adapter<std::priority_queue<int>>::value));
@@ -116,6 +120,7 @@ GTEST_TEST(testContainerTraits, containerAdaptersRequireAWrappedContainerType)
     ASSERT_FALSE((is_container_adapter<std::vector<int>>::value));
 }
 
+//! \test Testing the \c CppUtils::Traits::is_reversible_container type trait
 GTEST_TEST(testContainerTraits, almostAllStandardContainersAreReversible)
 {
     ASSERT_TRUE((is_reversible_container<std::array<int, 3>>::value));
@@ -138,7 +143,8 @@ GTEST_TEST(testContainerTraits, almostAllStandardContainersAreReversible)
     ASSERT_FALSE((is_reversible_container<std::unordered_set<int>>::value));
 }
 
-GTEST_TEST(testContainerTraits, ifContainerIsntAssociativeOrUnorderedItsASequenceContainer)
+//! \test Testing the \c CppUtils::Traits::is_sequence_container type trait
+GTEST_TEST(testContainerTraits, ifContainerIsNotAssociativeOrUnorderedItsASequenceContainer)
 {
     ASSERT_TRUE((is_sequence_container<std::array<int, 3>>::value));
     ASSERT_TRUE((is_sequence_container<std::deque<int>>::value));
@@ -160,6 +166,7 @@ GTEST_TEST(testContainerTraits, ifContainerIsntAssociativeOrUnorderedItsASequenc
     ASSERT_FALSE((is_sequence_container<std::unordered_set<int>>::value));
 }
 
+//! \test Testing the \c CppUtils::Traits::is_unordered_associative_container type trait
 GTEST_TEST(testContainerTraits, unorderedMapsAndSetsAreTheOnlyUnorderedAssociativeContainers)
 {
     ASSERT_TRUE((is_unordered_associative_container<std::unordered_map<int, int>>::value));

@@ -11,6 +11,7 @@
 #include "testOperators/testComparisonOperators.hpp"
 #include "testOperators/testPotentiallyEmptyBaseClass.hpp"
 #include "testTesting/testPerformanceTesting.hpp"
+#include "testTraits/testContainerTraits.hpp"
 
 int main(int argc, char** argv)
 {

@@ -11,9 +11,6 @@ dist: focal
 arch:
   - arm64
   - amd64
-env:
-  global:
-    - secure: "oNItYXZpibpNlYIW5ZRPpc/6F7mjVI3H/+ZDuRMgoGeYhtfbzwcpItT4sp0nvPGkaOOEkz3drJJj9EHuNPqgovSqWJlrl86diY/ayzislXmEtYxDa7eShVFDEq1zXDFuMU9AqYUwUZNRljeEH5s8sZVkxFBPxcRS0Y96+eCdZLPDTwVEqEqmyjf1GCTWXtiY6Y/vyT0Z8QrfxfndqMFd/QYYLglp+BHxCP6aTCgiLDs8HeHsNRYM6Bgz/O0+5I48sKLXTXWIIe5Ikb8XdF9/gIxUnpDOkbfed5fUvEI52RJT0mZ7fVwq603ACR9q5Qp7iMWMOVrEexOAugtpmmU8bA903zxRxeYEA/Z+ukj+ihHTiDhrrrNdYYbHlYUOPpm4Y+BgmxaQQCI1nLl0cq7s6zRLRQR2f4lCa7wr+XfeWEo+6jGNWhzxCXGA7qS7ZQLXAno8xufO0HrQtjiWKtDLs2aPe9QOVcv3ziBolqVAu9MwfS0diHphRtEIWH5KNoD0KBKMn1bd903cZCb+5CgxD1Gs67FeVI0RGUJcYkGNGxU/MKi455uVZELuZMPx8J3dtYTSKsHjUruNpEnP6ovo4xYLb2UWhUjwbkjqpCBn/0U6OfKitMa28vLaFSl5Fs1YFmEIROnEZ0R1dmzUF3IeAI978J2/NMJHnvrPC5UOJfM="
 
 notifications:
   email: false
@@ -54,22 +51,3 @@ matrix:
         - lcov --remove coverage.info '*gtest*' '*/tests/*' '/usr/*' --output-file coverage.info
         - coveralls -r ../../. --l coverage.info -n
         - bash <(curl -s https://codecov.io/bash)
-
-    - stage: docs       ## Update the documentation
-      os: linux
-      compiler: gcc
-      addons:
-        apt:
-          packages:
-            - doxygen
-            - doxygen-doc
-            - doxygen-gui
-            - graphviz
-      script:
-        - if [[ "$TRAVIS_BRANCH" != "master" ]]; then travis_terminate 0; fi
-        - if [[ "$TRAVIS_PULL_REQUEST" = "true" ]]; then travis_terminate 0; fi
-        - cd $TRAVIS_BUILD_DIR
-        - openssl aes-256-cbc -k "$travis_key_password" -d -md sha256 -a -in ci/travis_key.enc -out travis_key
-        - chmod 600 travis_key
-        - printf "Host github.com\n  IdentityFile travis_key\n  LogLevel ERROR\n" >> ~/.ssh/config
-        - bash ci/runDoxygen.sh || travis_terminate 1

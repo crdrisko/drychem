@@ -61,21 +61,6 @@ using namespace CppUtils::Math;
 
 ---
 
-### Traits
-
-- [Container Traits:](../../../include/common-utils/math/traits/containerTraits.hpp)
-
-  The container traits folder consists of a number of predicate type traits that classify a given container according to the member functions and types it contains. Following the standard library's naming system, each of the type traits is in all lowercase, with underscores separating the individual words. A convinence variable template is provided to help shorten the use cases:
-
-  ```C++
-  Math::is_container<std::vector<int>>::value;  // yields true
-  Math::is_container_v<std::vector<int>>;       // yields true
-  ```
-
-  The testing module for this specific part of the library is probably more useful than any desciption I could write, so you can look at the example usage [here](../tests/testTraits/testContainerTraits.hpp).
-
----
-
 ### Math Utilities
 
 - [Basic Mathematical Functions:](../../../include/common-utils/math/utils/basicMath.hpp)

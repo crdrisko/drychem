@@ -12,13 +12,25 @@
 #include <type_traits>
 #include <utility>
 
-namespace CppUtils::Math
+namespace CppUtils::Traits
 {
-    // Main template
+    /*!
+     * A type trait to determine whether or not the supplied container is a container adapter.
+     *
+     * \tparam (unnamed) A placeholder parameter for the container we are checking
+     * \tparam (unnamed) A placeholder parameter that serves as our default state (i.e. false)
+     */
     template<typename T, typename = std::void_t<>>
-    struct is_container_adapter : std::false_type {};
+    struct is_container_adapter : std::false_type
+    {
+    };
 
-    // Partial specialization (may be SFINAE'd away)
+    /*!
+     * A partial specialization of our \c is_container_adapter type trait for when
+     *  the given container meets the requirements of a container adapter.
+     *
+     * \tparam T The container that may or may not meet the requirements of a container adapter
+     */
     template<typename T>
     struct is_container_adapter<T, std::void_t<typename T::container_type,
                                                typename T::value_type,
@@ -26,11 +38,13 @@ namespace CppUtils::Math
                                                typename T::reference,
                                                typename T::const_reference,
                                                decltype(std::declval<T>().empty()),
-                                               decltype(std::declval<T>().size())>> : std::true_type {};
+                                               decltype(std::declval<T>().size())>> : std::true_type
+    {
+    };
 
-    // Convenience variable template for ease-of-use
+    //! Convenience variable template for ease-of-use
     template<typename T>
     constexpr bool is_container_adapter_v = is_container_adapter<T>::value;
-}   // namespace CppUtils::Math
+}   // namespace CppUtils::Traits
 
 #endif

@@ -19,7 +19,13 @@
 
 using namespace CppUtils::Operators;
 
-class Fruit : private CompletelyComparable<Fruit>   // Private inheritance for an 'implements a' relationship
+/*!
+ * This is an example of how we might use the \c CppUtils::Operators::CompletelyComparable class template.
+ * 
+ * \note We can use private inheritance with our \c CompletelyComparable class for 
+ *       an 'implements a' relationship.
+ */
+class Fruit : private CompletelyComparable<Fruit>
 {
 private:
     std::string name;

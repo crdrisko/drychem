@@ -11,26 +11,40 @@
 
 #include <type_traits>
 
-#include "math/traits/containerTraits/isContainer.hpp"
+#include "utilities/traits/containerTraits/isContainer.hpp"
 
-namespace CppUtils::Math
+namespace CppUtils::Traits
 {
-    // Main template
+    /*!
+     * A type trait to determine whether or not the supplied container is an unordered associative container.
+     *
+     * \tparam (unnamed) A placeholder parameter for the container we are checking
+     * \tparam (unnamed) A placeholder parameter that serves as our default state (i.e. false)
+     */
     template<typename, typename = std::void_t<>>
-    struct is_unordered_associative_container : std::false_type {};
+    struct is_unordered_associative_container : std::false_type
+    {
+    };
 
-    // Partial specialization (may be SFINAE'd away)
+    /*!
+     * A partial specialization of our \c is_unordered_associative_container type trait for when
+     *  the given container meets the requirements of an unordered associative container.
+     *
+     * \tparam T The container that may or may not meet the requirements of an unordered associative container
+     */
     template<typename T>
     struct is_unordered_associative_container<T, std::void_t<typename T::key_type,
                                                              typename T::value_type,
                                                              typename T::hasher,
                                                              typename T::key_equal,
                                                              typename T::local_iterator,
-                                                             typename T::const_local_iterator>> : is_container<T> {};
+                                                             typename T::const_local_iterator>> : is_container<T>
+    {
+    };
 
-    // Convenience variable template for ease-of-use
+    //! Convenience variable template for ease-of-use
     template<typename T>
     constexpr bool is_unordered_associative_container_v = is_unordered_associative_container<T>::value;
-}   // namespace CppUtils::Math
+}   // namespace CppUtils::Traits
 
 #endif

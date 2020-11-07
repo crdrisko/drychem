@@ -13,28 +13,31 @@
 
 #include "utilities.hpp"
 
-// Helper classes for testing
-namespace CppUtils::Operators
+using namespace CppUtils::Operators;
+
+namespace CppUtils::Internal::Testing
 {
-    // The EBCO and CRTP used together for an empty class
+    //! The EBCO and CRTP used together for an empty class
     class EmptyDerived : public PotentiallyEmptyBaseClass<EmptyDerived>
     {
     };
-}   // namespace CppUtils::Operators
+}   // namespace CppUtils::Internal::Testing
 
-using namespace CppUtils::Operators;
-
+//! \test Testing the \c CppUtils::Operators::PotentiallyEmptyBaseClass
 GTEST_TEST(testPotentiallyEmptyBaseClass, anEmptyBaseClassHasANonZeroSize)
 {
     ASSERT_TRUE(sizeof(PotentiallyEmptyBaseClass<bool>) > 0);
 }
 
+//! \test Testing the EBCO on your compiler with the \c CppUtils::Operators::PotentiallyEmptyBaseClass
 GTEST_TEST(testPotentiallyEmptyBaseClass, ebcoCouldBeUsedToMinimizeTheSizeOfADerivedEmptyClass)
 {
-    ASSERT_TRUE(sizeof(PotentiallyEmptyBaseClass<EmptyDerived>) <= sizeof(EmptyDerived));
+    ASSERT_TRUE(sizeof(PotentiallyEmptyBaseClass<CppUtils::Internal::Testing::EmptyDerived>)
+                <= sizeof(CppUtils::Internal::Testing::EmptyDerived));
 
-    // The two should be equal if the compiler implements the EBCO, uncomment the following to find out for your compiler:
-    // ASSERT_TRUE(sizeof(PotentiallyEmptyBaseClass<EmptyDerived>) <= sizeof(EmptyDerived));
+    //! The two should be equal if the compiler implements the EBCO, uncomment the following to find out for your compiler:
+    // ASSERT_TRUE(sizeof(PotentiallyEmptyBaseClass<CppUtils::Internal::Testing::EmptyDerived>)
+    //             == sizeof(CppUtils::Internal::Testing::EmptyDerived));
 }
 
 #endif

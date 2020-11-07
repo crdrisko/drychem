@@ -11,24 +11,30 @@
 
 #include <type_traits>
 
-#include "math/traits/containerTraits/isAssociativeContainer.hpp"
-#include "math/traits/containerTraits/isContainer.hpp"
-#include "math/traits/containerTraits/isUnorderedAssociativeContainer.hpp"
+#include "utilities/traits/containerTraits/isAssociativeContainer.hpp"
+#include "utilities/traits/containerTraits/isContainer.hpp"
+#include "utilities/traits/containerTraits/isUnorderedAssociativeContainer.hpp"
 
-namespace CppUtils::Math
+namespace CppUtils::Traits
 {
-    // Main template
+    /*!
+     * A type trait to determine whether or not the supplied container is a sequence container.
+     *
+     * \tparam (unnamed) A placeholder parameter for the container we are checking
+     */
     template<typename T>
     struct is_sequence_container : std::conditional_t<is_container_v<T>,
                                      std::conditional_t<!is_associative_container_v<T>,
                                        std::conditional_t<!is_unordered_associative_container_v<T>, std::true_type,
                                        std::false_type>,
                                      std::false_type>,
-                                   std::false_type> {};
+                                   std::false_type>
+    {
+    };
 
-    // Convenience variable template for ease-of-use
+    //! Convenience variable template for ease-of-use
     template<typename T>
     constexpr bool is_sequence_container_v = is_sequence_container<T>::value;
-}   // namespace CppUtils::Math
+}   // namespace CppUtils::Traits
 
 #endif

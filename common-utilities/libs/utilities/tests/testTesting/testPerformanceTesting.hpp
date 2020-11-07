@@ -15,8 +15,9 @@
 
 #include "utilities.hpp"
 
-// Helper classes for testing
-namespace CppUtils::Testing
+using namespace CppUtils::Testing;
+
+namespace CppUtils::Internal::Testing
 {
     struct SumSquares
     {
@@ -67,65 +68,69 @@ namespace CppUtils::Testing
         for (std::size_t i {}; i < iter; ++i)
             result += i * i;
     }
-}   // namespace CppUtils::Testing
+}   // namespace CppUtils::Internal::Testing
 
-using namespace CppUtils::Testing;
-
+//! \test Testing the \c CppUtils::Testing::ReturnType structure without structured binding
 GTEST_TEST(testPerformanceTesting, timeAndInvokeReturnsAReturnTypeStruct)
 {
     std::size_t iterations {1'000'000UL};
 
-    ReturnType ret = timeAndInvoke(sumSquares, iterations);
+    ReturnType ret = timeAndInvoke(CppUtils::Internal::Testing::sumSquares, iterations);
 
     ASSERT_TRUE(ret.time >= 0);
     ASSERT_EQ(ret.result, 333'332'833'333'500'000ULL);
 }
 
+//! \test Testing the \c CppUtils::Testing::timeAndInvoke() function with a \c void input function
 GTEST_TEST(testPerformanceTesting, timeAndInvokeWithAVoidFunctionReturnsOnlyTheTime)
 {
     std::size_t iterations {1'000'000UL};
 
-    auto time = timeAndInvoke(voidSumSquares, iterations);
+    auto time = timeAndInvoke(CppUtils::Internal::Testing::voidSumSquares, iterations);
 
     ASSERT_TRUE(time >= 0);
 }
 
+//! \test Testing the \c CppUtils::Testing::timeAndInvoke() function with a functor
 GTEST_TEST(testPerformanceTesting, timeAndInvokeWithAFunctorReturnsResultAndTime)
 {
     std::size_t iterations {1'000'000UL};
 
-    auto [result, time] = timeAndInvoke(SumSquares(), iterations);
+    auto [result, time] = timeAndInvoke(CppUtils::Internal::Testing::SumSquares(), iterations);
 
     ASSERT_TRUE(time >= 0);
     ASSERT_EQ(result, 333'332'833'333'500'000ULL);
 }
 
+//! \test Testing the \c CppUtils::Testing::timeAndInvoke() function with a member function
 GTEST_TEST(testPerformanceTesting, timeAndInvokeWithAMemberFunctionReturnsResultAndTime)
 {
     std::size_t iterations {1'000'000UL};
-    MyClass myClass {iterations};
+    CppUtils::Internal::Testing::MyClass myClass {iterations};
 
-    auto [result, time] = timeAndInvoke(&MyClass::sumSquares, myClass);
+    auto [result, time] = timeAndInvoke(&CppUtils::Internal::Testing::MyClass::sumSquares, myClass);
 
     ASSERT_TRUE(time >= 0);
     ASSERT_EQ(result, 333'332'833'333'500'000ULL);
 }
 
+//! \test Testing the \c CppUtils::Testing::timeAndInvoke() function with a regular function
 GTEST_TEST(testPerformanceTesting, timeAndInvokeWithAPlainFunctionReturnsResultAndTime)
 {
     std::size_t iterations {1'000'000UL};
 
-    auto [result, time] = timeAndInvoke(sumSquares, iterations);
+    auto [result, time] = timeAndInvoke(CppUtils::Internal::Testing::sumSquares, iterations);
 
     ASSERT_TRUE(time >= 0);
     ASSERT_EQ(result, 333'332'833'333'500'000ULL);
 }
 
+//! \test Testing the \c CppUtils::Testing::timeAndInvoke() function with a lambda function
 GTEST_TEST(testPerformanceTesting, timeAndInvokeWithALambdaFunctionReturnsResultAndTime)
 {
     std::size_t iterations {1'000'000UL};
 
-    auto [result, time] = timeAndInvoke([=]() { return sumSquares(iterations); });
+    auto [result, time] = timeAndInvoke([=]() { return CppUtils::Internal::Testing::sumSquares(iterations); });
 
     ASSERT_TRUE(time >= 0);
     ASSERT_EQ(result, 333'332'833'333'500'000ULL);

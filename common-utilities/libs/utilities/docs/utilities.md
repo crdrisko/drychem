@@ -7,6 +7,7 @@ The utilities library consists of a number of miscellaneous functions and classe
 - [Getting Started](#Getting-Started)
 - [Features](#Features)
   - [Operators](#Operators)
+  - [Strings](#Strings)
   - [Testing](#Testing)
 - [Usage](#Usage)
 
@@ -51,6 +52,21 @@ The following lines of code can be included in any user project to provide acces
   ```
 
   In this example, the `result` variable now contains the value returned from `funcToCall(arg1, arg2, ..., argN)`, and the `time` variable contains the time (in microseconds) it took to invoke `funcToCall`.
+
+---
+
+### Traits
+
+- [Container Traits:](../../../include/common-utils/utilities/traits/containerTraits.hpp)
+
+  The container traits folder consists of a number of predicate type traits that classify a given container according to the member functions and types it contains. Following the standard library's naming system, each of the type traits is in all lowercase, with underscores separating the individual words. A convinence variable template is provided to help shorten the use cases:
+
+  ```C++
+  Traits::is_container<std::vector<int>>::value;  // yields true
+  Traits::is_container_v<std::vector<int>>;       // yields true
+  ```
+
+  The testing module for this specific part of the library is probably more useful than any desciption I could write, so you can look at the example usage [here](../tests/testTraits/testContainerTraits.hpp).
 
 ---
 
