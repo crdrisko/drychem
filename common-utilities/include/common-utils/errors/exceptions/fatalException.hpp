@@ -22,8 +22,6 @@ namespace CppUtils::Errors
      *  message and provides methods for handling the fatal errors it represents.
      * 
      * \note Here we make \c what() a private member function so users are forced to handle the exception
-     * 
-     * \example fibonacciExample.cpp
      */
     class FatalException : public std::exception
     {
@@ -43,6 +41,7 @@ namespace CppUtils::Errors
         //! Delegate our exception handling to the error handling classes
         void handleErrorWithMessage() const { printFatalErrorMessage(error); }
     };
+    //! \example fibonacciExample.cpp
 }   // namespace CppUtils::Errors
 
 #endif

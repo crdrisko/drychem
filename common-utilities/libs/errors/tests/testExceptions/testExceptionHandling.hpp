@@ -116,7 +116,7 @@ GTEST_TEST(testExceptionHandling, derivedExceptionClassIsCaughtByParentClass)
     }
 
     std::string actualOutput = testing::internal::GetCapturedStderr();
-    ASSERT_EQ(actualOutput, "(testExceptionHandling.hpp: 105)\n\tLet's throw a non-fatal warning.\n");
+    ASSERT_EQ(actualOutput, "(testExceptionHandling.hpp: 109)\n\tLet's throw a non-fatal warning.\n");
 }
 
 #endif

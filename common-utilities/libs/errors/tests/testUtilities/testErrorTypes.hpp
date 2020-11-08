@@ -40,7 +40,7 @@ GTEST_TEST(testErrorTypes, errorMessagesCanBeSetByIndividualValues)
     ASSERT_EQ("Common-Utilities", err.programName);
     ASSERT_EQ("This is the error message.", err.message);
     ASSERT_EQ("testErrorTypes.hpp", err.fileName.substr(err.fileName.find_last_of('/') + 1, err.fileName.length()));
-    ASSERT_EQ(36ul, err.lineNumber);
+    ASSERT_EQ(38ul, err.lineNumber);
 }
 
 //! \test Testing the \c CppUtils::Errors::ErrorMessage structure
@@ -51,7 +51,7 @@ GTEST_TEST(testErrorTypes, errorMessagesCanBeSetByConstructor)
     ASSERT_EQ("Common-Utilities", err.programName);
     ASSERT_EQ("This is the error message.", err.message);
     ASSERT_EQ("testErrorTypes.hpp", err.fileName.substr(err.fileName.find_last_of('/') + 1, err.fileName.length()));
-    ASSERT_EQ(46ul, err.lineNumber);
+    ASSERT_EQ(49ul, err.lineNumber);
 }
 
 #endif

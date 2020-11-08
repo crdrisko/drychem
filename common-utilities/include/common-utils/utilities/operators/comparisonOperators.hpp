@@ -47,8 +47,6 @@ namespace CppUtils::Operators
      *
      * \tparam Derived The class with the overloaded \c operator==() and \c operator<()'s
      * \tparam Empty   An empty base class, not really needed for the general user
-     * 
-     * \example comparableExample.cpp
      *
      * \note If we were to inherit both \c EqualityComparable and \c LessThanComparable, we could be setting ourselves to
      *  inhibit the EBCO. This way, if we do inherit an empty base class, our compiler can capitalize on that.
@@ -57,6 +55,7 @@ namespace CppUtils::Operators
     class CompletelyComparable : public EqualityComparable<Derived, LessThanComparable<Derived, Empty>>
     {
     };
+    //! \example comparableExample.cpp
 }   // namespace CppUtils::Operators
 
 #endif
