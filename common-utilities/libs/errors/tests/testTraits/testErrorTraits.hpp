@@ -15,12 +15,14 @@
 
 using namespace CppUtils::Errors;
 
+//! \test Testing the \c CppUtils::Errors::is_fatal type trait with a warning
 GTEST_TEST(testErrorTraits, isFatalIsFalseWhenTemplateParameterIsWarning)
 {
     ASSERT_FALSE(is_fatal<ErrorSeverity::Warning>::value);
     ASSERT_FALSE(is_fatal_v<ErrorSeverity::Warning>);
 }
 
+//! \test Testing the \c CppUtils::Errors::is_fatal type trait with a fatal error
 GTEST_TEST(testErrorTraits, isFatalIsTrueWhenTemplateParameterIsFatal)
 {
     ASSERT_TRUE(is_fatal<ErrorSeverity::Fatal>::value);

@@ -11,13 +11,21 @@
 
 #include <cstdlib>
 #include <iostream>
-#include <string_view>
+#include <string>
 
 #include "errors/traits/isFatal.hpp"
 #include "errors/utils/errorTypes.hpp"
 
 namespace CppUtils::Errors
 {
+    /*!
+     * A simple function to format and print an error message according to 1) the information 
+     *  provided, and 2) the severity of the given error.
+     * 
+     * \tparam Severity The severity of the error in question (defaults to a warning message)
+     * 
+     * \param error The error message and other information about the location of the error
+     */
     template<ErrorSeverity Severity = ErrorSeverity::Warning>
     inline void printErrorMessage(const ErrorMessage& error)
     {
@@ -37,7 +45,7 @@ namespace CppUtils::Errors
             std::cerr << error.programName << " Warning:" << message << std::endl;
     }
 
-    // A convenience function for printing an error message when the error is fatal
+    //! A convenience function for printing an error message when said error is fatal
     inline auto printFatalErrorMessage = [](const ErrorMessage& error) { printErrorMessage<ErrorSeverity::Fatal>(error); };
 }   // namespace CppUtils::Errors
 

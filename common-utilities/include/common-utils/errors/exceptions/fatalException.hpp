@@ -17,12 +17,19 @@
 
 namespace CppUtils::Errors
 {
+    /*!
+     * Our main exception class deriving from \c std::exception. This class formats the supplied error 
+     *  message and provides methods for handling the fatal errors it represents.
+     * 
+     * \note Here we make \c what() a private member function so users are forced to handle the exception
+     * 
+     * \example fibonacciExample.cpp
+     */
     class FatalException : public std::exception
     {
     private:
         ErrorMessage error {};
 
-        // Making what() a private member function so users are forced to handle the exception
         virtual const char* what() const noexcept override { return error.message.c_str(); }
 
     public:
@@ -33,7 +40,7 @@ namespace CppUtils::Errors
                                 + ": " + std::to_string(error.lineNumber) + ")\n\t" + error.message;
         }
 
-        // Delegate our exception handling to the error handling classes
+        //! Delegate our exception handling to the error handling classes
         void handleErrorWithMessage() const { printFatalErrorMessage(error); }
     };
 }   // namespace CppUtils::Errors

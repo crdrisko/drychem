@@ -20,6 +20,7 @@
 
 using namespace CppUtils::Errors;
 
+//! \test Testing the \c CppUtils::Errors::FatalException class when a standard exception is thrown
 GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAStdException)
 {
     ASSERT_DEATH(
@@ -48,6 +49,7 @@ GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAStdException)
         "YourProgramName Fatal Error:\n\tAn exception was thrown from std::bad_alloc\n");
 }
 
+//! \test Testing the \c CppUtils::Errors::FatalException class when a FatalException is thrown
 GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAFatalException)
 {
     ASSERT_DEATH(
@@ -76,6 +78,7 @@ GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAFatalException)
         "YourProgramName Fatal Error:\n\tAn exception was thrown from [(]testExceptionHandling.hpp: *[0-9]*[)]\n\tLocation message.\n");
 }
 
+//! \test Testing the \c CppUtils::Errors::FatalException class
 GTEST_TEST(testExceptionHandling, fatalErrorsAreHandledByTerminating)
 {
     ASSERT_DEATH(
@@ -92,6 +95,7 @@ GTEST_TEST(testExceptionHandling, fatalErrorsAreHandledByTerminating)
         "Common-Utilities Fatal Error: [(]testExceptionHandling.hpp: *[0-9]*[)]\n\tThis would be the error message.\n");
 }
 
+//! \test Testing the \c CppUtils::Errors::FatalException class
 GTEST_TEST(testExceptionHandling, derivedExceptionClassIsCaughtByParentClass)
 {
     testing::internal::CaptureStderr();
@@ -112,7 +116,6 @@ GTEST_TEST(testExceptionHandling, derivedExceptionClassIsCaughtByParentClass)
     }
 
     std::string actualOutput = testing::internal::GetCapturedStderr();
-
     ASSERT_EQ(actualOutput, "(testExceptionHandling.hpp: 105)\n\tLet's throw a non-fatal warning.\n");
 }
 

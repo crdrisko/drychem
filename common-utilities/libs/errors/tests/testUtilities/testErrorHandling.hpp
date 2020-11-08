@@ -17,6 +17,7 @@
 
 using namespace CppUtils::Errors;
 
+//! \test Testing the \c CppUtils::Errors::printErrorMessage function with a warning
 GTEST_TEST(testErrorHandling, errorPrintsMessageToStandardError)
 {
     testing::internal::CaptureStderr();
@@ -28,6 +29,7 @@ GTEST_TEST(testErrorHandling, errorPrintsMessageToStandardError)
     ASSERT_EQ(output, "Common-Utilities Warning:\n\tTesting the output of the non-fatal error message command.\n");
 }
 
+//! \test Testing the \c CppUtils::Errors::printErrorMessage function with a fatal error
 GTEST_TEST(testErrorHandling, fatalErrorCausesProgramTermination)
 {
     ASSERT_DEATH(
@@ -37,6 +39,7 @@ GTEST_TEST(testErrorHandling, fatalErrorCausesProgramTermination)
         "Common-Utilities Fatal Error:\n\tFatal Error, Program Terminated.\n");
 }
 
+//! \test Testing the \c CppUtils::Errors::printErrorMessage function's default state
 GTEST_TEST(testErrorHandling, defaultTemplateParameterIsAWarning)
 {
     testing::internal::CaptureStderr();
@@ -47,6 +50,7 @@ GTEST_TEST(testErrorHandling, defaultTemplateParameterIsAWarning)
     ASSERT_EQ(output, "Common-Utilities Warning:\n\tTesting the output of the non-fatal error message command.\n");
 }
 
+//! \test Testing the \c CppUtils::Errors::printFatalErrorMessage lambda function
 GTEST_TEST(testErrorHandling, aliasLambdaFunctionWorksForAFatalError)
 {
     ASSERT_DEATH(

@@ -15,6 +15,7 @@
 
 using namespace CppUtils::Errors;
 
+//! \test Testing the \c CppUtils::Errors::ErrorSeverity scoped enumeration
 GTEST_TEST(testErrorTypes, errorSeveritiesConvertToCorrectValues)
 {
     ASSERT_FALSE(static_cast<bool>(ErrorSeverity::Warning));
@@ -24,6 +25,7 @@ GTEST_TEST(testErrorTypes, errorSeveritiesConvertToCorrectValues)
     ASSERT_TRUE(static_cast<int>(ErrorSeverity::Fatal) == 1);
 }
 
+//! \test Testing the \c CppUtils::Errors::ErrorMessage structure
 GTEST_TEST(testErrorTypes, errorMessagesCanBeSetByIndividualValues)
 {
     ErrorMessage err {};
@@ -41,6 +43,7 @@ GTEST_TEST(testErrorTypes, errorMessagesCanBeSetByIndividualValues)
     ASSERT_EQ(36ul, err.lineNumber);
 }
 
+//! \test Testing the \c CppUtils::Errors::ErrorMessage structure
 GTEST_TEST(testErrorTypes, errorMessagesCanBeSetByConstructor)
 {
     ErrorMessage err {"Common-Utilities", "This is the error message.", __FILE__, __LINE__};
