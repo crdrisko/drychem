@@ -60,7 +60,7 @@ GTEST_TEST(testLinearLeastSquaresFitting, passingTwoDifferentlySizedContainersRe
                 except.handleErrorWithMessage();
             }
         },
-        "Common-Utilities Fatal Error: [(]linearLeastSquaresFitting.hpp: 53[)]\n\tInput sizes for x and y containers must be the same.\n");
+        "Common-Utilities Fatal Error: [(]linearLeastSquaresFitting.hpp: *[0-9]*[)]\n\tInput sizes for x and y containers must be the same.\n");
 }
 
 #endif
