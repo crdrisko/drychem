@@ -16,14 +16,16 @@
 
 namespace CppUtils::Math
 {
+    /*!
+     * An exception class used specifically for the math libraries when two (or more) input
+     *  containers have different sizes.
+     */
     class InputSizeMismatch : public Errors::FatalException
     {
     public:
         explicit InputSizeMismatch(const std::string& programName, const std::string& fileName, std::size_t lineNumber)
-            : Errors::FatalException {Errors::ErrorMessage {programName,
-                "Input sizes for x and y containers must be the same.",
-                fileName,
-                lineNumber}}
+            : Errors::FatalException {Errors::ErrorMessage {programName, "Input sizes for x and y containers must be the same.",
+                fileName, lineNumber}}
         {
         }
     };

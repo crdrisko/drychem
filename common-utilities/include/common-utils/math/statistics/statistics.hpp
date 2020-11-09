@@ -11,6 +11,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <cstddef>
 #include <iterator>
 #include <numeric>
 #include <type_traits>
@@ -18,18 +19,45 @@
 
 namespace CppUtils::Math
 {
+    /*!
+     * Finds the order of magnitude of a given arithmetic value.
+     *
+     * \tparam T The type of the parameter \c value, must be an arithmetic type
+     *
+     * \param value The value we are trying to find the order of magnitude of
+     */
     template<typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
     constexpr int findOrderOfMagnitude(T value) noexcept
     {
         return std::floor(std::log10(value));
     }
 
+
+    /*!
+     * Computes the absolute error in an expected value up to a certain amount of
+     *  know significant digits.
+     *
+     * \tparam T The type of the parameter \c expectedValue, must be an arithmetic type
+     *
+     * \param expectedValue      The value we want to know the absolute error of
+     * \param significantFigures The number of digits we know to be precise in \c expectedValue
+     */
     template<typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
-    constexpr long double findAbsoluteError(T expectedValue, int significantFigures) noexcept
+    constexpr long double findAbsoluteError(T expectedValue, std::size_t significantFigures) noexcept
     {
         return std::pow(10, findOrderOfMagnitude(expectedValue) - (significantFigures - 1));
     }
 
+
+    /*!
+     * Computes the average of a range of values specified by input iterators.
+     *
+     * \tparam Iterator The input iterator for the container we are iterating over
+     * \tparam T        The type of the value the iterator points to, must be default constructible
+     *
+     * \param x_begin The beginning of the range we are iterating over
+     * \param x_end   The end of the range we are iterating over
+     */
     template<typename Iterator, typename T = typename std::iterator_traits<Iterator>::value_type,
              typename = std::enable_if_t<std::is_default_constructible_v<T>>>
     constexpr T calculateAverage(Iterator x_begin, Iterator x_end)
@@ -40,6 +68,18 @@ namespace CppUtils::Math
         return result;
     }
 
+
+    /*!
+     * Computes the variance from a range of values specified by input iterators from the
+     *  following equation:
+     *      \f$ \sigma^2 = \frac{1}{N - 1} \displaystyle \sum_{i = 0}^{N} (x_i - \bar x)^2.\f$
+     *
+     * \tparam Iterator The input iterator for the container we are iterating over
+     * \tparam T        The type of the value the iterator points to, must be default constructible
+     *
+     * \param x_begin The beginning of the range we are iterating over
+     * \param x_end   The end of the range we are iterating over
+     */
     template<typename Iterator, typename T = typename std::iterator_traits<Iterator>::value_type,
              typename = std::enable_if_t<std::is_default_constructible_v<T>>>
     constexpr decltype(auto) calculateVariance(Iterator x_begin, Iterator x_end)

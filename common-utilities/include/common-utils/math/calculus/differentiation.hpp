@@ -19,11 +19,31 @@
 
 namespace CppUtils::Math
 {
+    /*!
+     * A function taking the derivative (by numerical methods) of a given function y with respect to x.
+     *  Each of the functions, x and y, are represeted by containers with an iterator interface. The
+     *  function computes the following:
+     *      \f$\frac{dy}{dx} \approx \frac{y_{n+1} - y_n}{x_{n+1} - x_n}.\f$
+     *
+     * \tparam IteratorX The type of iterator used for the x container
+     * \tparam IteratorY The type of iterator used for the y container (defaults to the type of IteratorX)
+     * \tparam Tx        The type of data in the x container, must be default constructible
+     * \tparam Ty        The type of data in the x container, must be default constructible
+     *
+     * \param x_begin The beginning of the range of x values to use
+     * \param x_end   The end of the range of x values to use
+     * \param y_begin The beginning of the range of y values to use
+     * \param y_end   The end of the range of y values to use
+     *
+     * \returns A vector with a size of one less than the input containers.
+     *
+     * \exception CppUtils::Math::InputSizeMismatch If the sizes of the two containers don't match, we will throw an exception
+     */
     template<typename IteratorX, typename IteratorY = IteratorX,
              typename Tx = typename std::iterator_traits<IteratorX>::value_type,
              typename Ty = typename std::iterator_traits<IteratorY>::value_type,
              typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<Tx>, std::is_default_constructible<Ty>>>>
-    constexpr decltype(auto) forwardDifferenceMethod(IteratorX x_begin, IteratorX x_end, IteratorY y_begin, IteratorY y_end)
+    constexpr auto forwardDifferenceMethod(IteratorX x_begin, IteratorX x_end, IteratorY y_begin, IteratorY y_end)
     {
         using Ty_x = decltype(*y_begin / *x_begin);
 
@@ -48,11 +68,44 @@ namespace CppUtils::Math
         return dy_dx;
     }
 
+    /*!
+     * \overload
+     */
+    template<typename ContainerX, typename ContainerY = ContainerX,
+             typename Tx = typename ContainerX::value_type,
+             typename Ty = typename ContainerY::value_type,
+             typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<Tx>, std::is_default_constructible<Ty>>>>
+    constexpr auto forwardDifferenceMethod(const ContainerX& x, const ContainerY& y)
+    {
+        return forwardDifferenceMethod(x.begin(), x.end(), y.begin(), y.end());
+    }
+
+
+    /*!
+     * A function taking the derivative (by numerical methods) of a given function y with respect to x.
+     *  Each of the functions, x and y, are represeted by containers with an iterator interface. The
+     *  function computes the following:
+     *      \f$\frac{dy}{dx} \approx \frac{y_n - y_{n-1}}{x_n - x_{n-1}}.\f$
+     *
+     * \tparam IteratorX The type of iterator used for the x container
+     * \tparam IteratorY The type of iterator used for the y container (defaults to the type of IteratorX)
+     * \tparam Tx        The type of data in the x container, must be default constructible
+     * \tparam Ty        The type of data in the x container, must be default constructible
+     *
+     * \param x_begin The beginning of the range of x values to use
+     * \param x_end   The end of the range of x values to use
+     * \param y_begin The beginning of the range of y values to use
+     * \param y_end   The end of the range of y values to use
+     *
+     * \returns A vector with a size of one less than the input containers.
+     *
+     * \exception CppUtils::Math::InputSizeMismatch If the sizes of the two containers don't match, we will throw an exception
+     */
     template<typename IteratorX, typename IteratorY = IteratorX,
              typename Tx = typename std::iterator_traits<IteratorX>::value_type,
              typename Ty = typename std::iterator_traits<IteratorY>::value_type,
              typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<Tx>, std::is_default_constructible<Ty>>>>
-    constexpr decltype(auto) backwardsDifferenceMethod(IteratorX x_begin, IteratorX x_end, IteratorY y_begin, IteratorY y_end)
+    constexpr auto backwardsDifferenceMethod(IteratorX x_begin, IteratorX x_end, IteratorY y_begin, IteratorY y_end)
     {
         using Ty_x = decltype(*y_begin / *x_begin);
 
@@ -77,11 +130,46 @@ namespace CppUtils::Math
         return dy_dx;
     }
 
+    /*!
+     * \overload
+     */
+    template<typename ContainerX, typename ContainerY = ContainerX,
+             typename Tx = typename ContainerX::value_type,
+             typename Ty = typename ContainerY::value_type,
+             typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<Tx>, std::is_default_constructible<Ty>>>>
+    constexpr auto backwardsDifferenceMethod(const ContainerX& x, const ContainerY& y)
+    {
+        return backwardsDifferenceMethod(x.begin(), x.end(), y.begin(), y.end());
+    }
+
+
+    /*!
+     * A function taking the derivative (by numerical methods) of a given function y with respect to x.
+     *  Each of the functions, x and y, are represeted by containers with an iterator interface. The
+     *  function computes the following:
+     *      \f$\frac{dy}{dx} \approx \frac{\frac{y_{n+1} - y_n}{x_{n+1} - x_n} + \frac{y_n - y_{n-1}}{x_n - x_{n-1}}}{2}.\f$
+     *
+     * \tparam IteratorX The type of iterator used for the x container
+     * \tparam IteratorY The type of iterator used for the y container (defaults to the type of IteratorX)
+     * \tparam Tx        The type of data in the x container, must be default constructible
+     * \tparam Ty        The type of data in the x container, must be default constructible
+     *
+     * \param x_begin           The beginning of the range of x values to use
+     * \param x_end             The end of the range of x values to use
+     * \param y_begin           The beginning of the range of y values to use
+     * \param y_end             The end of the range of y values to use
+     * \param correctBoundaries Approximates the derivative on the ends with the forward and backwards methods
+     *
+     * \returns A vector with the same size as that of the input containers, however if the \c correctBoundaries
+     *          flag is set to false, the size of the output will be two less than the input size.
+     *
+     * \exception CppUtils::Math::InputSizeMismatch If the sizes of the two containers don't match, we will throw an exception
+     */
     template<typename IteratorX, typename IteratorY = IteratorX,
              typename Tx = typename std::iterator_traits<IteratorX>::value_type,
              typename Ty = typename std::iterator_traits<IteratorY>::value_type,
              typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<Tx>, std::is_default_constructible<Ty>>>>
-    constexpr decltype(auto) centeredDifferenceMethod(IteratorX x_begin, IteratorX x_end, IteratorY y_begin, IteratorY y_end,
+    constexpr auto centeredDifferenceMethod(IteratorX x_begin, IteratorX x_end, IteratorY y_begin, IteratorY y_end,
         bool correctBoundaries = true)
     {
         using Ty_x = decltype(*y_begin / *x_begin);
@@ -113,6 +201,19 @@ namespace CppUtils::Math
         std::transform(forwardStart, forward.end(), dy_dx.begin(), [&](auto fwd) { return (fwd + *back++) / 2; });
 
         return dy_dx;
+    }
+    //! \example finiteDifferencesExample.cpp
+
+    /*!
+     * \overload
+     */
+    template<typename ContainerX, typename ContainerY = ContainerX,
+             typename Tx = typename ContainerX::value_type,
+             typename Ty = typename ContainerY::value_type,
+             typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<Tx>, std::is_default_constructible<Ty>>>>
+    constexpr auto centeredDifferenceMethod(const ContainerX& x, const ContainerY& y, bool correctBoundaries = true)
+    {
+        return centeredDifferenceMethod(x.begin(), x.end(), y.begin(), y.end(), correctBoundaries);
     }
 }   // namespace CppUtils::Math
 

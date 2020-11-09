@@ -17,6 +17,7 @@
 
 using namespace CppUtils::Math;
 
+//! \test Testing the \c linearLeastSquaresFitting<> function
 GTEST_TEST(testLinearLeastSquaresFitting, linearLeastSquaresFittingReturnsMultipleValuesInAStruct)
 {
     std::vector<long double> x {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
@@ -26,9 +27,10 @@ GTEST_TEST(testLinearLeastSquaresFitting, linearLeastSquaresFittingReturnsMultip
 
     ASSERT_NEAR(1.7152, result.slope, findAbsoluteError(1.7152, 5));
     ASSERT_NEAR(-0.33333, result.intercept, findAbsoluteError(-0.33333, 5));
-    // ASSERT_NEAR(0.2139317, result.stdDev_slope, findAbsoluteError(0.2139317, 7));
+    ASSERT_NEAR(0.2139317, std::sqrt(result.variance_slope), findAbsoluteError(0.2139317, 7));
 }
 
+//! \test Testing the \c linearLeastSquaresFitting<> function with structured binding
 GTEST_TEST(testLinearLeastSquaresFitting, linearLeastSquaresFittingCanReturnATypeCompatibleWithStructuredBinding)
 {
     std::vector<long double> x {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
@@ -41,6 +43,7 @@ GTEST_TEST(testLinearLeastSquaresFitting, linearLeastSquaresFittingCanReturnATyp
     ASSERT_NEAR(0.2139317, std::sqrt(variance), findAbsoluteError(0.2139317, 7));
 }
 
+//! \test Testing the \c linearLeastSquaresFitting<> function
 GTEST_TEST(testLinearLeastSquaresFitting, passingTwoDifferentlySizedContainersResultsInFatalException)
 {
     std::vector<long double> x {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};

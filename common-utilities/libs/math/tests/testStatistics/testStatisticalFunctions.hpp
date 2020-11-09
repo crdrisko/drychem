@@ -18,6 +18,7 @@
 
 using namespace CppUtils::Math;
 
+//! \test Testing the \c findOrderOfMagnitude() function
 GTEST_TEST(testStatisticalFunctions, orderOfMagnitudeIsCalculatedCorrectly)
 {
     ASSERT_EQ(-15, findOrderOfMagnitude(1e-15));
@@ -28,11 +29,13 @@ GTEST_TEST(testStatisticalFunctions, orderOfMagnitudeIsCalculatedCorrectly)
     ASSERT_EQ(18, findOrderOfMagnitude(1.7e18));
 }
 
+//! \test Testing the \c findAbsoluteError() function
 GTEST_TEST(testStatisticalFunctions, weCanEasilyApproximatePiToACetainDegreeOfAccurracy)
 {
     ASSERT_NEAR(3.14159265, (355.0 / 113.0), findAbsoluteError(3.14159265, 7));
 }
 
+//! \test Testing the \c calculateAverage() function
 GTEST_TEST(testStatisticalFunctions, averageCalculationsWorkOnARangeOfValuesInAGivenContainer)
 {
     std::vector<long double> x {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
@@ -42,6 +45,7 @@ GTEST_TEST(testStatisticalFunctions, averageCalculationsWorkOnARangeOfValuesInAG
     ASSERT_EQ(3.0, calculateAverage(y.begin(), y.end() - 5));
 }
 
+//! \test Testing the \c calculateVariance() function
 GTEST_TEST(testStatisticalFunctions, varianceCalculationsWorkOnARangeOfValuesInAGivenContainer)
 {
     std::vector<long double> x {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};

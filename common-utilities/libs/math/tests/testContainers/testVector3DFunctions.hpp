@@ -25,6 +25,7 @@
 
 using namespace CppUtils::Math;
 
+//! \test Testing the \c CppUtils::Math::Vector3D<> class template
 GTEST_TEST(testContainerFunctions, typeWithNoDefaultConstructorGivesACompileTimeError)
 {
     struct NoDefaultConstructor
@@ -37,7 +38,7 @@ GTEST_TEST(testContainerFunctions, typeWithNoDefaultConstructorGivesACompileTime
     GTEST_COMPILE_ASSERT_(test.size() == 3UL, "size() of Vector 3D should alwauys be 3.");
 }
 
-// Test member types
+//! \test Testing the \c CppUtils::Math::Vector3D<> member types
 GTEST_TEST(testContainerFunctions, memberTypesForAnExampleVector3DTypeAreCorrect)
 {
     // clang-format off
@@ -54,6 +55,7 @@ GTEST_TEST(testContainerFunctions, memberTypesForAnExampleVector3DTypeAreCorrect
     // clang-format on
 }
 
+//! \test Testing the \c CppUtils::Math::Vector3D<> container classifications
 GTEST_TEST(testContainerFunctions, vector3DIsClassifiedLikeAStdArrayAndAContainerAdapter)
 {
     ASSERT_FALSE((CppUtils::Traits::is_allocator_aware_container_v<Vector3D<int>>));
@@ -65,7 +67,7 @@ GTEST_TEST(testContainerFunctions, vector3DIsClassifiedLikeAStdArrayAndAContaine
     ASSERT_FALSE((CppUtils::Traits::is_unordered_associative_container_v<Vector3D<int>>));
 }
 
-// Test constructors
+//! \test Testing the \c CppUtils::Math::Vector3D<> constructors
 GTEST_TEST(testContainerFunctions, differentConstructorsGiveInitializeObjectsAsExpected)
 {
     std::array<int, 3> sampleArray {1, 2, 3};
@@ -82,7 +84,7 @@ GTEST_TEST(testContainerFunctions, differentConstructorsGiveInitializeObjectsAsE
     }
 }
 
-// Test comparison operators
+//! \test Testing the \c CppUtils::Math::Vector3D<> comparison operators
 GTEST_TEST(testContainerFunctions, overloadedComparsionOperatorsPerformElementwiseComparisons)
 {
     std::array<int, 3> valueArray {1, 2, 3};
@@ -111,7 +113,7 @@ GTEST_TEST(testContainerFunctions, overloadedComparsionOperatorsPerformElementwi
     ASSERT_FALSE(value2 >= value4);
 }
 
-// Test element access
+//! \test Testing the \c CppUtils::Math::Vector3D<> element access
 GTEST_TEST(testContainerFunctions, atFunctionOverloadsCanReturnAndSetTheInternalData)
 {
     Vector3D<long double> coordinates {1.0, -3.0, 5.0};
@@ -127,12 +129,9 @@ GTEST_TEST(testContainerFunctions, atFunctionOverloadsCanReturnAndSetTheInternal
     ASSERT_EQ(5.0, coordinates.at(0));
     ASSERT_EQ(1.0, coordinates.at(1));
     ASSERT_EQ(9.0, coordinates.at(2));
-
-    ASSERT_EQ(coordinates.x(), coordinates.at(0));
-    ASSERT_EQ(coordinates.y(), coordinates.at(1));
-    ASSERT_EQ(coordinates.z(), coordinates.at(2));
 }
 
+//! \test Testing the \c CppUtils::Math::Vector3D<> element access
 GTEST_TEST(testContainerFunctions, subscriptOperatorsCanReturnAndSetTheInternalData)
 {
     Vector3D<long double> coordinates {1.0, -3.0, 5.0};
@@ -148,33 +147,9 @@ GTEST_TEST(testContainerFunctions, subscriptOperatorsCanReturnAndSetTheInternalD
     ASSERT_EQ(5.0, coordinates[0]);
     ASSERT_EQ(1.0, coordinates[1]);
     ASSERT_EQ(9.0, coordinates[2]);
-
-    ASSERT_EQ(coordinates.at(0), coordinates[0]);
-    ASSERT_EQ(coordinates.at(1), coordinates[1]);
-    ASSERT_EQ(coordinates.at(2), coordinates[2]);
 }
 
-GTEST_TEST(testContainerFunctions, xyzFunctionOverloadsCanReturnAndSetTheInternalData)
-{
-    Vector3D<long double> coordinates {1.0, -3.0, 5.0};
-
-    ASSERT_EQ(1.0, coordinates.x());
-    ASSERT_EQ(-3.0, coordinates.y());
-    ASSERT_EQ(5.0, coordinates.z());
-
-    coordinates.x() += 4.0;
-    coordinates.y() += 4.0;
-    coordinates.z() += 4.0;
-
-    ASSERT_EQ(5.0, coordinates.x());
-    ASSERT_EQ(1.0, coordinates.y());
-    ASSERT_EQ(9.0, coordinates.z());
-
-    ASSERT_EQ(coordinates[0], coordinates.x());
-    ASSERT_EQ(coordinates[1], coordinates.y());
-    ASSERT_EQ(coordinates[2], coordinates.z());
-}
-
+//! \test Testing the \c CppUtils::Math::Vector3D<> element access
 GTEST_TEST(testContainerFunctions, atFunctionOverloadsWillThrowWhenIndexIsOutOfRange)
 {
     Vector3D<long double> sampleVector {};
@@ -228,7 +203,7 @@ GTEST_TEST(testContainerFunctions, atFunctionOverloadsWillThrowWhenIndexIsOutOfR
         "Common-Utilities Fatal Error:\n\tException message: array::at");
 }
 
-// Test iterators
+//! \test Testing the \c CppUtils::Math::Vector3D<> iterators
 GTEST_TEST(testContainerFunctions, aVector3DCanBeUsedInStdAlgorithms)
 {
     Vector3D<long double> vec {2.0l, 3.5l, 0.1l};
@@ -240,6 +215,7 @@ GTEST_TEST(testContainerFunctions, aVector3DCanBeUsedInStdAlgorithms)
     ASSERT_TRUE(std::is_sorted(vec.begin(), vec.end()));
 }
 
+//! \test Testing the \c CppUtils::Math::Vector3D<> iterators
 GTEST_TEST(testContainerFunctions, aVector3DCanBeUsedInRangeBasedForLoops)
 {
     testing::internal::CaptureStdout();
@@ -252,7 +228,7 @@ GTEST_TEST(testContainerFunctions, aVector3DCanBeUsedInRangeBasedForLoops)
     ASSERT_EQ(output, "2.2 3.3 1.1 \n");
 }
 
-// Test capacity
+//! \test Testing the \c CppUtils::Math::Vector3D<> capacity functions
 GTEST_TEST(testContainerFunctions, aVector3DIsNeverEmpty)
 {
     Vector3D<long> vec;
@@ -261,6 +237,7 @@ GTEST_TEST(testContainerFunctions, aVector3DIsNeverEmpty)
     ASSERT_FALSE(vec.empty());
 }
 
+//! \test Testing the \c CppUtils::Math::Vector3D<> capacity functions
 GTEST_TEST(testContainerFunctions, theSizeOfAVector3DIsAlways3)
 {
     Vector3D<long> vec;
@@ -268,6 +245,7 @@ GTEST_TEST(testContainerFunctions, theSizeOfAVector3DIsAlways3)
     ASSERT_EQ(vec.size(), 3UL);
 }
 
+//! \test Testing the \c CppUtils::Math::Vector3D<> capacity functions
 GTEST_TEST(testContainerFunctions, theMaxSizeOfAVector3DIsAlways3)
 {
     Vector3D<long> vec;
@@ -275,7 +253,7 @@ GTEST_TEST(testContainerFunctions, theMaxSizeOfAVector3DIsAlways3)
     ASSERT_EQ(vec.max_size(), 3UL);
 }
 
-// Test operations
+//! \test Testing the \c CppUtils::Math::Vector3D<> operations
 GTEST_TEST(testContainerFunctions, theFillMemberFunctionSetsAllElementsToTheSameValue)
 {
     Vector3D<long double> vec {1.0l, 2.0l, 3.0l};
@@ -291,6 +269,7 @@ GTEST_TEST(testContainerFunctions, theFillMemberFunctionSetsAllElementsToTheSame
         ASSERT_EQ(3.14l, elem);
 }
 
+//! \test Testing the \c CppUtils::Math::Vector3D<> operations
 GTEST_TEST(testContainerFunctions, theSwapMemberFunctionSwapsAllElementsOfTwoVector3Ds)
 {
     Vector3D<long double> vec1 {1.0l, 2.0l, 3.0l};
@@ -308,7 +287,7 @@ GTEST_TEST(testContainerFunctions, theSwapMemberFunctionSwapsAllElementsOfTwoVec
     }
 }
 
-// Test the tuple-like API with structured bindings
+//! \test Testing the \c CppUtils::Math::Vector3D<> tuple-like API with structured bindings
 GTEST_TEST(testContainerFunctions, ourTupleLikeAPIProvidesReadAccessToTheElementsViaStructuredBindings)
 {
     Vector3D<long double> vec {0.0l, 1.2l, 3.14l};
@@ -319,6 +298,7 @@ GTEST_TEST(testContainerFunctions, ourTupleLikeAPIProvidesReadAccessToTheElement
     ASSERT_EQ(z, vec[2]);
 }
 
+//! \test Testing the \c CppUtils::Math::Vector3D<> tuple-like API with structured bindings
 GTEST_TEST(testContainerFunctions, ourTupleLikeAPIProvidesReadAndWriteAccessToTheElementsViaStructuredBindings)
 {
     Vector3D<long double> vec {0.0l, 1.2l, 3.14l};

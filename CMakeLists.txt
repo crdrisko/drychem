@@ -19,9 +19,7 @@ option(units_format_codebase "Builds appropriate libraries while also formatting
 if (units_format_codebase)
     ## Run clang-format on all code except the files passed as arguments with the '-i' flag ##
     execute_process(COMMAND bash cmake/scripts/format-codebase.sh
-                                    -i common-utilities/include/common-utils/math/calculus/*
-                                    -i common-utilities/include/common-utils/math/statistics/*
-                                    -i common-utilities/include/common-utils/math/traits/containerTraits/*
+                                    -i common-utilities/include/common-utils/math/*
                                     -i common-utilities/libs/utilities/samples/comparableExample.cpp
                                     -i cpp-units/include/cpp-units/math/basicMath.hpp
                                     -i cpp-units/include/cpp-units/types/physicalQuantity.hpp

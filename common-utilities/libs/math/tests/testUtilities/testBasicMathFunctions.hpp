@@ -9,7 +9,9 @@
 #ifndef COMMON_UTILITIES_TESTING_TESTBASICMATHFUNCTIONS_HPP
 #define COMMON_UTILITIES_TESTING_TESTBASICMATHFUNCTIONS_HPP
 
+#include <cstddef>
 #include <string>
+#include <vector>
 
 #include <gtest/gtest.h>
 
@@ -17,6 +19,7 @@
 
 using namespace CppUtils::Math;
 
+//! \test Testing the \c CppUtils::Math::isEven() function
 GTEST_TEST(testBasicMathFunctions, isEvenReturnCorrectBooleansForIntegralTypes)
 {
     bool bValue {false};
@@ -38,6 +41,7 @@ GTEST_TEST(testBasicMathFunctions, isEvenReturnCorrectBooleansForIntegralTypes)
     // ASSERT_TRUE(isEven(2.0));        // no instance of function template matches the argument list
 }
 
+//! \test Testing the \c CppUtils::Math::isOdd() function
 GTEST_TEST(testBasicMathFunctions, isOddReturnCorrectBooleansForIntegralTypes)
 {
     bool bValue {true};
@@ -59,6 +63,7 @@ GTEST_TEST(testBasicMathFunctions, isOddReturnCorrectBooleansForIntegralTypes)
     // ASSERT_TRUE(isOdd(3.0));        // no instance of function template matches the argument list
 }
 
+//! \test Testing the \c CppUtils::Math::withinRange() function
 GTEST_TEST(testBasicMathFunctions, withinRangeFunctionalityWorksForIntegers)
 {
     int integerValue {10};
@@ -73,6 +78,7 @@ GTEST_TEST(testBasicMathFunctions, withinRangeFunctionalityWorksForIntegers)
     ASSERT_FALSE(failingRangeTestIntegers);
 }
 
+//! \test Testing the \c CppUtils::Math::withinRange() function
 GTEST_TEST(testBasicMathFunctions, withinRangeFunctionalityWorksForDoubles)
 {
     double doubleValue {42.67};
@@ -87,6 +93,7 @@ GTEST_TEST(testBasicMathFunctions, withinRangeFunctionalityWorksForDoubles)
     ASSERT_FALSE(failingRangeTestDoubles);
 }
 
+//! \test Testing the \c CppUtils::Math::withinRange() function
 GTEST_TEST(testBasicMathFunctions, withinRangeFunctionalityWorksForStrings)
 {
     std::string stringValue {"How are you?"};
@@ -95,6 +102,7 @@ GTEST_TEST(testBasicMathFunctions, withinRangeFunctionalityWorksForStrings)
     ASSERT_FALSE(withinRange<std::string>(stringValue, "Hello", "Goodbye"));
 }
 
+//! \test Testing the \c CppUtils::Math::linearlyInterpolate() function
 GTEST_TEST(testBasicMathFunctions, linearInterpolationOf_y_along_x_gives_x)
 {
     std::vector<long double> x;

@@ -30,7 +30,7 @@ using namespace CppUtils::Math;
 - [Differentiation:](../../../include/common-utils/math/calculus/differentiation.hpp)
 
   In the differentiation portion of the math library, three finite difference method (FDM) functions are provided for approximating the derivative of a given function. The methods implemented in this library are the forward difference method, the backwards difference method, and finally, the centered difference method. One thing to note when using either the forward or the backwards difference method is the output vector will have a size one less than the input container's sizes.
-  
+
   The centered difference method, which is effectively an average of the forward and backwards methods, will, by default, approximate the edge cases using the finite and backwards methods. These points will be less accurate than the middle elements of the returned vector, but serve to keep the size of the returned vector equal to those of the input containers. This can be turned off using the `correctBoundaries` flag.
 
   All FDM methods take four iterators, two from the first container and two from the second container. The first two represent the independent variable in the function, while the second two iterators represent the dependent variable. Put another way, we are differentiating the second two iterators with respect to the first two. The iterator interface allows us to 1) use any conforming container range we want, and 2) differentiate over a range other than just the full container. While the templated interface of the functions may look intimidating, all template parameters can be correctly deduced by the compiler without any specifications from the end user. The interfaces were designed this way to accomodate the `PhysicalQuantity` type in the CppUnits library without any change in how you would call the given function for a built-in type.
@@ -40,7 +40,7 @@ using namespace CppUtils::Math;
 - [Integration:](../../../include/common-utils/math/calculus/integration.hpp)
 
   The integration portion of the math library consists of one main function template, `cumulativeTrapzIntegration()`, and another helper function, `trapz()`, that our main function calls.
-  
+
   The interface of the `cumulativeTrapzIntegration()` function is nearly identical to those of the differentiation module, so consult that documentation for more information. Where the two methods differ is in the optional parameter: `initialValue`. By default, no value is specified for `initialValue`, and as such, the function returns a `std::vector<>` with one less element than the original container sizes. If a value is specified (note it should usually be a value of 0), this value becomes the first element of the returned container and all subsequent values depend on it. The returned container when an initial value is specified has the same size as the input containers.
 
   This function was based loosely off SciPy's `cumtrapz()` function, which you can read more about [here](https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.cumtrapz.html).
@@ -51,13 +51,19 @@ using namespace CppUtils::Math;
 
 - [Vector3D:](../../../include/common-utils/math/containers/vector3D.hpp)
 
+  The `Vector3D<>` class template is a wrapper for a `std::array<>` with three elements, corresponding to the x, y, and z directions you would find in a mathematical/physical vector. For the most part, it behaves like a `std::array<>` and can even support structured-bindings through the tuple-like API. This class lends itself well to calculations involving the physical quantities, and will eventually get arithmetic operation support, likely using expression templates.
+
 ---
 
 ### Statistics
 
 - [Linear Least Squares Fitting:](../../../include/common-utils/math/statistics/linearLeastSquaresFitting.hpp)
 
+  The `linearLeastSquaresFitting()` function calculates the linear regression of some input function using the least squares method. Because this comes with a lot of information (slope, intercept, variance of the slope), a specialized structure defines its return type. This structure is an aggregate so it can be used with structured binding, which is the preferred way to return the output of this function.
+
 - [General Statistical Functions:](../../../include/common-utils/math/statistics/statistics.hpp)
+
+  For the statistical functions offered in the math library, there are two functions who's purpose is to help calculate the error in certain calculations. These functions, `findOrderOfMagnitude()` and `findAbsoluteError()` are esspecially useful when using the googletest function `ASSERT_NEAR()`. Here, the function expects an absolute error measurement and rather than calculate that for each value by hand, the `findAbsoluteError()` function does it for you. We also have the `calculateAverage()` and `calculateVariance()` functions which as their name suggests, calculates the average and variance of a container specified by the input iterators.
 
 ---
 

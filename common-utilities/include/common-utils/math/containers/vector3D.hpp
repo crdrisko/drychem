@@ -18,11 +18,22 @@
 
 namespace CppUtils::Math
 {
+    /*!
+     * A container adapter class for a mathematical/physical vector with three dimensions: x, y, z. For the most
+     *  part, the functionality is delegated to the internal \c std::array<> and the type is defined using the 
+     *  tuple-like API so it can be used with structured bindings.
+     * 
+     * \tparam T The type of the value we are storing in the \c Vector3D, must be default constructible
+     * 
+     * \todo Add arithmetic operators (possibly using expression templates)
+     * \note The reverse iterators were not added to the interface because I didn't see a need for them
+     *       at the time. If they are needed, they should be simple to add back in.
+     */
     template<typename T, typename = std::enable_if_t<std::is_default_constructible_v<T>>>
     class Vector3D : private Operators::CompletelyComparable<Vector3D<T>>
     {
     public:
-        // Member types
+        //! Member types
         using value_type      = T;
         using size_type       = std::size_t;
         using difference_type = std::ptrdiff_t;
@@ -33,39 +44,30 @@ namespace CppUtils::Math
         using iterator        = T*;
         using const_iterator  = const T*;
 
-        // With this member type, we are now both a container and container adapter
+        //! With this member type, we are now both a container and container adapter
         using container_type = std::array<T, 3>;
 
     private:
         std::array<T, 3> data {};
 
     public:
-        // Constructors
+        //! Constructors
         constexpr Vector3D() noexcept = default;
         constexpr Vector3D(T X, T Y, T Z) noexcept : data {{X, Y, Z}} {}
         constexpr explicit Vector3D(const container_type& Data) noexcept : data {Data} {}
 
-        // Comparison operators - reuse the definitions from the internal array
+        //! Comparison operators - reuse the definitions from the internal array
         constexpr friend bool operator==(const Vector3D<T>& lhs, const Vector3D<T>& rhs) { return lhs.data == rhs.data; }
         constexpr friend bool operator<(const Vector3D<T>& lhs, const Vector3D<T>& rhs) { return lhs.data < rhs.data; }
 
-        // Element access - reuse the definitions from the internal array
-        constexpr reference at(size_type pos) { return data.at(pos); }               // Could throw: array::at
-        constexpr const_reference at(size_type pos) const { return data.at(pos); }   // Could throw: array::at
+        //! Element access - reuse the definitions from the internal array
+        constexpr reference at(size_type pos) { return data.at(pos); }               //! Could throw: array::at
+        constexpr const_reference at(size_type pos) const { return data.at(pos); }   //! Could throw: array::at
 
         constexpr reference operator[](size_type pos) noexcept { return data[pos]; }
         constexpr const_reference operator[](size_type pos) const noexcept { return data[pos]; }
 
-        constexpr reference x() noexcept { return data[0]; }
-        constexpr const_reference x() const noexcept { return data[0]; }
-
-        constexpr reference y() noexcept { return data[1]; }
-        constexpr const_reference y() const noexcept { return data[1]; }
-
-        constexpr reference z() noexcept { return data[2]; }
-        constexpr const_reference z() const noexcept { return data[2]; }
-
-        // Iterators - reuse the definitions from the internal array
+        //! Iterators - reuse the definitions from the internal array
         constexpr iterator begin() noexcept { return data.begin(); }
         constexpr const_iterator begin() const noexcept { return data.begin(); }
         constexpr const_iterator cbegin() const noexcept { return data.cbegin(); }
@@ -74,59 +76,67 @@ namespace CppUtils::Math
         constexpr const_iterator end() const noexcept { return data.end(); }
         constexpr const_iterator cend() const noexcept { return data.cend(); }
 
-        // Capacity - these are fixed due to our definition of the internal array
+        //! Capacity - these are fixed due to our definition of the internal array
         constexpr bool empty() const noexcept { return false; }
         constexpr size_type size() const noexcept { return 3; }
         constexpr size_type max_size() const noexcept { return 3; }
 
-        // Operations - reuse the definitions from the internal array
+        //! Operations - reuse the definitions from the internal array
         constexpr void fill(const_reference value) { data.fill(value); }
         constexpr void swap(Vector3D<T>& other) { data.swap(other.data); }
     };
 
-    // Specific getters for use in the tuple-like API, allows for the structured binding of a Vector3D
+    /*!
+     * Specific getters for use in the tuple-like API, allows for the structured binding of a \c Vector3D
+     */
     template<std::size_t Index, typename T>
     decltype(auto) get(Vector3D<T>& vec)
     {
         static_assert(Index < 3, "Index must be within 0 and 2, inclusive.");
 
         if constexpr (Index == 0)
-            return vec.x();
+            return vec[0];
         else if constexpr (Index == 1)
-            return vec.y();
+            return vec[1];
         else
-            return vec.z();
+            return vec[2];
     }
 
+    /*!
+     * \overload
+     */
     template<std::size_t Index, typename T>
     decltype(auto) get(const Vector3D<T>& vec)
     {
         static_assert(Index < 3, "Index must be within 0 and 2, inclusive.");
 
         if constexpr (Index == 0)
-            return vec.x();
+            return vec[0];
         else if constexpr (Index == 1)
-            return vec.y();
+            return vec[1];
         else
-            return vec.z();
+            return vec[2];
     }
 
+    /*!
+     * \overload
+     */
     template<std::size_t Index, typename T>
     decltype(auto) get(Vector3D<T>&& vec)
     {
         static_assert(Index < 3, "Index must be within 0 and 2, inclusive.");
 
         if constexpr (Index == 0)
-            return std::move(vec.x());
+            return std::move(vec[0]);
         else if constexpr (Index == 1)
-            return std::move(vec.y());
+            return std::move(vec[1]);
         else
-            return std::move(vec.z());
+            return std::move(vec[2]);
     }
 }   // namespace CppUtils::Math
 
 
-// Specializations of the remaining requirements for access to the tuple-like API
+//! Specializations of the remaining requirements for access to the tuple-like API
 template<typename T>
 struct std::tuple_size<CppUtils::Math::Vector3D<T>>
 {

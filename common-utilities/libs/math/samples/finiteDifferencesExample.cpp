@@ -19,6 +19,10 @@
 
 using namespace CppUtils;
 
+/*!
+ * This is an example of how we might use the \c CppUtils::Math::centeredDifferenceMethod() and
+ *  \c CppUtils::Math::cumulativeTrapzIntegration() functions.
+ */
 std::vector<double> differentiateThenIntegrate(const std::vector<double>& x, const std::vector<double>& y);
 std::vector<double> integrateThenDifferentiate(const std::vector<double>& x, const std::vector<double>& y);
 

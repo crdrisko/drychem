@@ -18,6 +18,7 @@
 
 using namespace CppUtils::Math;
 
+//! \test Testing the \c CppUtils::Math::forwardDifferenceMethod() function
 GTEST_TEST(testDifferentiationMethods, forwardDifferenceMethodReturnsAVectorWithASizeOneLessThanTheInputs)
 {
     std::vector<long double> x, y, expectedResult;
@@ -32,7 +33,7 @@ GTEST_TEST(testDifferentiationMethods, forwardDifferenceMethodReturnsAVectorWith
 
     // Actual: d/dx (x) = 1
     std::vector<long double> forwardFDM1(10, 1);
-    auto forwardResult1 = forwardDifferenceMethod(x.begin(), x.end(), y.begin(), y.end());
+    auto forwardResult1 = forwardDifferenceMethod(x, y);
 
     ASSERT_EQ(forwardFDM1, forwardResult1);
 
@@ -43,6 +44,7 @@ GTEST_TEST(testDifferentiationMethods, forwardDifferenceMethodReturnsAVectorWith
     ASSERT_EQ(forwardFDM2, forwardResult2);
 }
 
+//! \test Testing the \c CppUtils::Math::backwardsDifferenceMethod() function
 GTEST_TEST(testDifferentiationMethods, backwardsDifferenceMethodReturnsAVectorWithASizeOneLessThanTheInputs)
 {
     std::vector<long double> x, y, expectedResult;
@@ -57,7 +59,7 @@ GTEST_TEST(testDifferentiationMethods, backwardsDifferenceMethodReturnsAVectorWi
 
     // Actual: d/dx (x) = 1
     std::vector<long double> backwardsFDM1(10, 1);
-    auto backwardsResult1 = backwardsDifferenceMethod(x.begin(), x.end(), y.begin(), y.end());
+    auto backwardsResult1 = backwardsDifferenceMethod(x, y);
 
     ASSERT_EQ(backwardsFDM1, backwardsResult1);
 
@@ -68,6 +70,7 @@ GTEST_TEST(testDifferentiationMethods, backwardsDifferenceMethodReturnsAVectorWi
     ASSERT_EQ(backwardsFDM2, backwardsResult2);
 }
 
+//! \test Testing the \c CppUtils::Math::centeredDifferenceMethod() function
 GTEST_TEST(testDifferentiationMethods, defaultCenteredDifferenceMethodReturnsAVectorWithASizeEqualToThatOfTheInputs)
 {
     std::vector<long double> x, y, expectedResult;
@@ -81,7 +84,7 @@ GTEST_TEST(testDifferentiationMethods, defaultCenteredDifferenceMethodReturnsAVe
 
     // Actual: d/dx (x) = 1
     std::vector<long double> centeredFDM1(11, 1);
-    auto centeredResult1 = centeredDifferenceMethod(x.begin(), x.end(), y.begin(), y.end());
+    auto centeredResult1 = centeredDifferenceMethod(x, y);
 
     ASSERT_EQ(centeredFDM1, centeredResult1);
 
@@ -92,6 +95,7 @@ GTEST_TEST(testDifferentiationMethods, defaultCenteredDifferenceMethodReturnsAVe
     ASSERT_EQ(centeredFDM2, centeredResult2);
 }
 
+//! \test Testing the \c CppUtils::Math::centeredDifferenceMethod() function
 GTEST_TEST(testDifferentiationMethods, nonDefaultCenteredDifferenceMethodReturnsAVectorWithASizeTwoLessThanTheInputs)
 {
     std::vector<long double> x, y, expectedResult;
@@ -105,7 +109,7 @@ GTEST_TEST(testDifferentiationMethods, nonDefaultCenteredDifferenceMethodReturns
 
     // Actual: d/dx (x) = 1
     std::vector<long double> centeredFDM1(9, 1);
-    auto centeredResult1 = centeredDifferenceMethod(x.begin(), x.end(), y.begin(), y.end(), false);
+    auto centeredResult1 = centeredDifferenceMethod(x, y, false);
 
     ASSERT_EQ(centeredFDM1, centeredResult1);
 
@@ -116,6 +120,7 @@ GTEST_TEST(testDifferentiationMethods, nonDefaultCenteredDifferenceMethodReturns
     ASSERT_EQ(centeredFDM2, centeredResult2);
 }
 
+//! \test Testing all the finite difference functions
 GTEST_TEST(testDifferentiationMethods, passingTwoDifferentlySizedContainersResultsInFatalException)
 {
     std::vector<long double> x {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};

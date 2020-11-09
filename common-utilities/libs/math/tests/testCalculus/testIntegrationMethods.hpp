@@ -18,6 +18,7 @@
 
 using namespace CppUtils::Math;
 
+//! \test Testing the \c CppUtils::Math::trapz() function at compile time
 GTEST_TEST(testIntegrationMethods, theTrapzMethodCanBeUsedInCompileTimeCalculations)
 {
     const int x1 {0}, x2 {15}, y1 {0}, y2 {6};
@@ -25,6 +26,7 @@ GTEST_TEST(testIntegrationMethods, theTrapzMethodCanBeUsedInCompileTimeCalculati
     GTEST_COMPILE_ASSERT_(45 == trapz(x1, x2, y1, y2), "Trapz method failed.");
 }
 
+//! \test Testing the \c CppUtils::Math::trapz() function
 GTEST_TEST(testIntegrationMethods, theTrapzMethodCanAcceptMultipleTypes)
 {
     long double x1 {0.1}, x2 {22.5}, y1 {2.3}, y2 {6.0};
@@ -32,6 +34,7 @@ GTEST_TEST(testIntegrationMethods, theTrapzMethodCanAcceptMultipleTypes)
     ASSERT_DOUBLE_EQ(92.96, trapz(x1, x2, y1, y2));
 }
 
+//! \test Testing the first \c CppUtils::Math::cumulativeTrapzIntegration() function overload
 GTEST_TEST(testIntegrationMethods, theCumulativeTrapzMethodHasAnOptionalParameterWhichCanBeOverriden)
 {
     std::vector<long double> x, y, expectedResult;
@@ -65,6 +68,26 @@ GTEST_TEST(testIntegrationMethods, theCumulativeTrapzMethodHasAnOptionalParamete
     }
 }
 
+//! \test Testing the second \c CppUtils::Math::cumulativeTrapzIntegration() function overload
+GTEST_TEST(testIntegrationMethods, insteadOfUsingIteratorsWeCanJustPassFullContainers)
+{
+    std::vector<long double> x, y, expectedResult;
+
+    for (std::size_t i {}; i <= 10; ++i)
+    {
+        x.push_back(i);
+        y.push_back(i);
+
+        expectedResult.push_back((x[i] * x[i]) / 2);
+    }
+
+    // ∫x = 1/2 x^2
+    auto integrationResult = cumulativeTrapzIntegration(x, y, 0);
+
+    ASSERT_EQ(expectedResult, integrationResult);
+}
+
+//! \test Testing the \c CppUtils::Math::cumulativeTrapzIntegration() function
 GTEST_TEST(testIntegrationMethods, passingTwoDifferentlySizedContainersResultsInFatalException)
 {
     std::vector<long double> x {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};

@@ -21,11 +21,11 @@
 
 namespace CppUtils::Math
 {
-    // An aggregate structure that can be used as the return type of the linearLeastSquaresFitting<>() function template
+    //! An aggregate structure that can be used as the return type of the linearLeastSquaresFitting<>() function template
     template<typename T_slope, typename T_intercept = T_slope, typename T_variance  = T_slope,
-             typename = std::enable_if_t<std::is_default_constructible_v<T_slope>
-                                      && std::is_default_constructible_v<T_intercept>
-                                      && std::is_default_constructible_v<T_variance>>>
+             typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<T_slope>,
+                                                            std::is_default_constructible<T_intercept>,
+                                                            std::is_default_constructible<T_variance>>>>
     struct LinearLeastSquaresResult
     {
         T_slope slope {};
@@ -33,12 +33,34 @@ namespace CppUtils::Math
         T_variance variance_slope {};
     };
 
-    /* All these template parameters are necessary if we want to fit containers of physical quantities
-        as well as the built-in types */
+    /*!
+     * Calculates the linear regression of a given function y with respect to x. Each of the functions,
+     *  x and y, are represeted by containers with an iterator interface.
+     *
+     * \tparam IteratorX The type of iterator used for the x container
+     * \tparam IteratorY The type of iterator used for the y container (defaults to the type of IteratorX)
+     * \tparam Tx        The type of data in the x container, must be default constructible
+     * \tparam Ty        The type of data in the x container, must be default constructible
+     *
+     * \param x_begin The beginning of the range of x values to use
+     * \param x_end   The end of the range of x values to use
+     * \param y_begin The beginning of the range of y values to use
+     * \param y_end   The end of the range of y values to use
+     *
+     * \returns Three pieces of information which is contained in the specialized structure, \c LinearLeastSquaresResult.
+     *          However, rather than use this strucure directly, we can use structured bindings to return the slope,
+     *          intercept, and variance.
+     *
+     * \exception CppUtils::Math::InputSizeMismatch If the sizes of the two containers don't match, we will throw an exception
+     *
+     * \todo This is a complicated function and would probably lend itself well to a functor class
+     * \note We calculate the variance of the slope not the standard deviation, because for physical quantities
+     *       \c std::sqrt() isn't overloaded properly.
+     */
     template<typename IteratorX, typename IteratorY = IteratorX,
              typename Tx = typename std::iterator_traits<IteratorX>::value_type,
              typename Ty = typename std::iterator_traits<IteratorY>::value_type,
-             typename = std::enable_if_t<std::is_default_constructible_v<Tx> && std::is_default_constructible_v<Ty>>>
+             typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<Tx>, std::is_default_constructible<Ty>>>>
     constexpr decltype(auto) linearLeastSquaresFitting(IteratorX x_begin, IteratorX x_end, IteratorY y_begin, IteratorY y_end)
     {
         using Txx    = decltype(*x_begin * *x_begin);
@@ -73,8 +95,6 @@ namespace CppUtils::Math
         Ty_x slope   = slope_numerator / slope_denominator;
         Ty intercept = y_average - (slope * x_average);
 
-        /* Calculate the variance of the slope - don't use standard deviation here, because for physical quantities
-            std::sqrt() isn't overloaded properly */
         std::vector<Tyy> y_predicted(y_size);
 
         IteratorX x_iter = x_begin;
