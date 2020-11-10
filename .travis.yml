@@ -19,7 +19,7 @@ notifications:
 ### Standard Installation Procedure ###
 script:
   - mkdir build && cd build
-  - cmake ../. -Dunits_build_all=ON
+  - cmake ../. -Dchem_build_all=ON
   - make && sudo make install
   - ctest --output-on-failure
   - cd bin/samples
@@ -44,7 +44,7 @@ matrix:
         - if [ $TRAVIS_OS_NAME = linux ]; then pip install --user cpp-coveralls; fi
       script:
         - mkdir build && cd build
-        - cmake ../. -Dunits_enable_coverage=ON
+        - cmake ../. -Dchem_enable_coverage=ON
         - make && sudo make install
         - ctest --output-on-failure
         - lcov --directory . --capture --output-file coverage.info

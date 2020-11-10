@@ -15,11 +15,11 @@ By default, the project is installed in the `/usr/local` filesystem but can be c
 
 ## Testing
 
-With each library in the project, I have strived to provide ~100% unit test coverage for all functions. These tests can be found in the `root/common-utilities/libs/libraryName/tests` and `root/cpp-units/libs/libraryName/tests` directories but do not get built by default. To turn on the testing features of the repository, add either the `units_build_all`, `units_build_tests`, `utils_build_all`, or `utils_build_tests` option to the CMake instructions, depending on which tests and libraries you want to build. More information about the specific options can be found in the [`CMakeLists.txt`](../CMakeLists.txt) file.
+With each library in the project, I have strived to provide ~100% unit test coverage for all functions. These tests can be found in the `root/common-utilities/libs/libraryName/tests` and `root/cpp-units/libs/libraryName/tests` directories but do not get built by default. To turn on the testing features of the repository, add either the `chem_build_all`, `chem_build_tests`, `units_build_all`, `units_build_tests`, `utils_build_all`, or `utils_build_tests` option to the CMake instructions, depending on which tests and libraries you want to build. More information about the specific options can be found in the [`CMakeLists.txt`](../CMakeLists.txt) file.
 
 ```bash
 ## Same steps as before ... ##
-cmake ../drychem/. -Dunits_build_all=ON
+cmake ../drychem/. -Dchem_build_all=ON
 make && [sudo] make install
 
 ## Run the unit tests ##

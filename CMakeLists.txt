@@ -4,19 +4,23 @@ project(DryChem VERSION 1.0.0)
 
 
 ### Options ###
+option(chem_build_all       "Builds all libraries, unit tests, and code samples." OFF)
+option(chem_build_tests     "Builds all libraries and unit tests." OFF)
+option(chem_build_samples   "Builds all libraries and code samples." OFF)
+option(chem_enable_coverage "Builds all libraries, unit tests, and enables coverage options." OFF)
+option(chem_format_codebase "Builds appropriate libraries while also formatting the code." OFF)
+
+option(units_build_all       "Builds cpp-units library, corresponding unit tests, and corresponding code samples." OFF)
+option(units_build_tests     "Builds cpp-units library and corresponding unit tests." OFF)
+option(units_build_samples   "Builds cpp-units library and corresponding code samples." OFF)
+
 option(utils_build_all       "Builds common-utils library, corresponding unit tests, and corresponding code samples." OFF)
 option(utils_build_tests     "Builds common-utils library and corresponding unit tests." OFF)
 option(utils_build_samples   "Builds common-utils library and corresponding code samples." OFF)
 option(utils_exclude_scripts "Builds appropriate libraries while ignoring the scripts directory." OFF)
 
-option(units_build_all       "Builds all libraries, unit tests, and code samples." OFF)
-option(units_build_tests     "Builds all libraries and unit tests." OFF)
-option(units_build_samples   "Builds all libraries and code samples." OFF)
-option(units_enable_coverage "Builds all libraries, unit tests, and enables coverage options." OFF)
-option(units_format_codebase "Builds appropriate libraries while also formatting the code." OFF)
-
 ## Set appropriate option flags and continue ##
-if (units_format_codebase)
+if (chem_format_codebase)
     ## Run clang-format on all code except the files passed as arguments with the '-i' flag ##
     execute_process(COMMAND bash cmake/scripts/format-codebase.sh
                                     -i common-utilities/include/common-utils/math/*
@@ -28,31 +32,38 @@ if (units_format_codebase)
                     OUTPUT_QUIET)
 endif()
 
-if (units_enable_coverage)
-    set(units_build_tests ON)
+if (chem_enable_coverage)
+    set(chem_build_tests ON)
     set(CMAKE_BUILD_TYPE "Debug")
     set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} --coverage)
 endif()
 
-if (units_build_all)
+if (chem_build_all)
+    set(units_build_all ON)
     set(utils_build_all ON)
-    set(units_build_tests ON)
-    set(units_build_samples ON)
 endif()
 
-if (units_build_tests)
+if (chem_build_tests)
+    set(units_build_tests ON)
     set(utils_build_tests ON)
 endif()
 
-if (units_build_samples)
-    set(utils_build_samples ON)
+if (chem_build_samples)
+    set(units_build_samples ON)
+    set(utils_build_samples ON)  
+endif()
+
+if (units_build_all)
+    set(units_build_tests ON)
+    set(units_build_samples ON)
 endif()
 
 if (utils_build_all)
     set(utils_build_tests ON)
     set(utils_build_samples ON)
 
-    if (NOT units_build_all AND NOT units_build_tests AND NOT units_build_samples)
+    if (NOT chem_build_all AND NOT chem_build_tests AND NOT chem_build_samples
+        AND NOT units_build_all AND NOT units_build_tests AND NOT units_build_samples)
         set(exclude_units ON)
     endif()
 endif()
@@ -78,7 +89,7 @@ include(cmake/utility-functions.cmake)
 
 
 ### Files / Directories ###
-if (NOT exclude_scripts)
+if (NOT utils_exclude_scripts)
     set(SCRIPTS
         common-utilities/scripts/changeCase.sh
         common-utilities/scripts/compiler.sh
@@ -133,7 +144,7 @@ endif()
 install(DIRECTORY ${LIBRARIES}
         DESTINATION include)
 
-if (NOT units_exclude_scripts)
+if (NOT utils_exclude_scripts)
     foreach (SCRIPT ${SCRIPTS})
         ## Remove extensions and make scripts executable ##
         get_filename_component(filename "${SCRIPT}" NAME_WE)
