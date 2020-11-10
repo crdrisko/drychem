@@ -1,6 +1,6 @@
-### Top Level CMake Script for C++ Units ###
+### Top Level CMake Script for DryChem ###
 cmake_minimum_required(VERSION 3.12.0)
-project(CppUnits VERSION 1.0.0)
+project(DryChem VERSION 1.0.0)
 
 
 ### Options ###
@@ -66,7 +66,7 @@ if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Release")
 endif()
 
-add_compile_options(-Wall -Wextra -pedantic -Werror)
+add_compile_options(-Wall -Wextra -pedantic-errors -Werror)
 
 if (CMAKE_COMPILER_IS_GNUCXX)
     add_compile_options(-Wno-psabi)
@@ -74,7 +74,7 @@ endif()
 
 
 ### Functions ###
-include(cmake/units-utility-functions.cmake)
+include(cmake/utility-functions.cmake)
 
 
 ### Files / Directories ###
@@ -156,7 +156,7 @@ if (utils_build_tests OR units_build_tests)
 
     if (NOT ${GTest_FOUND})
         ## If googletest isn't installed or can't be found, download it from github ##
-        CppUnitsExternalDownload(PROJECT googletest
+        DryChemExternalDownload(PROJECT googletest
                                  REPOSITORY "https://github.com/google/googletest.git")
 
         set(GTEST_LIBRARIES gtest)

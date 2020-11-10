@@ -1,4 +1,4 @@
-### C++ Units Build Matrix ###
+### DryChem Build Matrix ###
 language: cpp
 os:
   - linux

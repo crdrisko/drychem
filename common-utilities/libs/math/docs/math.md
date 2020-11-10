@@ -100,4 +100,4 @@ cd ../tests
 ./testAllMathFunctions
 ```
 
-*NOTE: the samples and tests will not be installed with the rest of the library. They exist only to extend the documentation and help the user navigate the library.*
+*NOTE: The samples and tests will not be installed with the rest of the library. They exist only to extend the documentation and help the user navigate the library.*

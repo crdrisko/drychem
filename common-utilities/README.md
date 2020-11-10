@@ -1,6 +1,6 @@
 # Common-Utilities
 
-Welcome to the Common-Utilities project! This project is a compilation of a number of unrelated programs and scripts I've written over the years, providing a single source of utilities for their use in other repositories. The goal of this project is to strive for compliance with the "Don't Repeat Yourself" (DRY) principle of modern software development.
+Welcome to the Common-Utilities project! This project is a compilation of a number of unrelated programs and scripts I've written over the years, providing a single source of utilities for their use in other repositories.
 
 ## Table Of Contents
 
@@ -22,11 +22,9 @@ The libraries included in this project include the following, and more informati
 
 - [Math](libs/math/docs/math.md)
 
-<!--
-- [Files](libs/files/docs/files.md)
+<!--- [Files](libs/files/docs/files.md)-->
 
 - [Strings](libs/strings/docs/strings.md)
--->
 
 - [Utilities](libs/utilities/docs/utilities.md)
 

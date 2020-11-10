@@ -1,12 +1,14 @@
-# C++ Units
+# DryChem
 
-[![Build Status](https://travis-ci.com/crdrisko/cpp-units.svg?branch=master)](docs/QUICK_LINKS.md#Current-Build-Status) [![Coverage Status](https://coveralls.io/repos/github/crdrisko/cpp-units/badge.svg?branch=master)](docs/QUICK_LINKS.md#Code-Coverage) [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/crdrisko/cpp-units?include_prereleases)](https://github.com/crdrisko/cpp-units/releases)
+[![Build Status](https://travis-ci.com/crdrisko/drychem.svg?branch=master)](docs/QUICK_LINKS.md#Current-Build-Status) [![Coverage Status](https://coveralls.io/repos/github/crdrisko/drychem/badge.svg?branch=master)](docs/QUICK_LINKS.md#Code-Coverage) [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/crdrisko/drychem?include_prereleases)](https://github.com/crdrisko/drychem/releases)
 
-Welcome to the C++ Units project! This repository is a merger of the formerly separate C++ Units and Common-Utilities projects. Because these repositories were so closely related, it made sense to maintain and release them together.
+Welcome to the DryChem project! DryChem is a collection of generic C++ libraries, who's main goal is compliance with the "Don't Repeat Yourself" (DRY) principle of modern software development. The libraries we release and maintain are general enough to find use in a number of projects, but don't go much farther than what you would find in your average computational chemistry codebases' utility library.
+
+This repository is a merger of the formerly separate C++ Units and Common-Utilities projects. Because these repositories were so closely related, it made sense to maintain and release them together.
 
 ## Getting started
 
-General information for getting started using C++ Units is available in the documentation [here](docs/PRIMER.md).
+General information for getting started using DryChem is available in the documentation [here](docs/PRIMER.md).
 
 More detailed documentation for Common-Utilities and C++ Units can be found in the interior [`common-utilities/README.md`](common-utilities/README.md) and [`cpp-units/README.md`](cpp-units/README.md) files, respectively.
 
@@ -19,7 +21,7 @@ More detailed documentation for Common-Utilities and C++ Units can be found in t
 
 ## Platforms
 
-The C++ Units project has been built and tested on a number of operating systems, computer architectures, and compiler combinations.
+The DryChem project has been built and tested on a number of operating systems, computer architectures, and compiler combinations.
 
 - Mac OS X
 - Linux
@@ -32,7 +34,7 @@ The C++ Units project has been built and tested on a number of operating systems
 
 ## Requirements
 
-The C++ Units project was designed to have as few external dependencies as possible so it could be easily built and used by other projects. The project requires:
+The DryChem project was designed to have as few external dependencies as possible so it could be easily built and used by other projects. The project requires:
 
 - A C++17-standard-compliant compiler with support for the Standard Library.
 

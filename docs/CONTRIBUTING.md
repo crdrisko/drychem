@@ -1,32 +1,32 @@
-# Contributing to C++ Units
+# Contributing to DryChem
 
-The C++ Units team encourages community feedback and contributions. Thank you for your interest in making C++ Units better! There are several ways you can get involved.
+The DryChem team encourages community feedback and contributions. Thank you for your interest in making DryChem better! There are several ways you can get involved.
 
 If you are looking for a good way to contribute to the project, please:
 
-- Have a look at the [available issue templates](https://github.com/crdrisko/cpp-units/issues/new/choose) and checkout the [examples of good first issues](https://github.com/crdrisko/cpp-units/contribute) (or [click here](https://github.com/crdrisko/cpp-units/labels/good%20first%20issue)).
+- Have a look at the [available issue templates](https://github.com/crdrisko/drychem/issues/new/choose) and checkout the [examples of good first issues](https://github.com/crdrisko/drychem/contribute) (or [click here](https://github.com/crdrisko/drychem/labels/good%20first%20issue)).
 
-- Look through the [issues that need help](https://github.com/crdrisko/cpp-units/labels/help%20wanted).
+- Look through the [issues that need help](https://github.com/crdrisko/drychem/labels/help%20wanted).
 
 - Take a look at a [Pull Request Template](PULL_REQUEST_TEMPLATE.md) to get yourself started.
 
 ## Reporting issues and suggesting new features
 
-If you find that the project is not working properly, please file a report using the [Bug Report template](https://github.com/crdrisko/cpp-units/issues/new?assignees=&labels=bug&template=bug_report.md&title=[BUG]). Should the template provided not suit your needs, feel free to make a [Custom Bug Report](https://github.com/crdrisko/cpp-units/issues/new?assignees=&labels=&template=custom.md&title=), but please label it accordingly.
+If you find that the project is not working properly, please file a report using the [Bug Report template](https://github.com/crdrisko/drychem/issues/new?assignees=&labels=bug&template=bug_report.md&title=[BUG]). Should the template provided not suit your needs, feel free to make a [Custom Bug Report](https://github.com/crdrisko/drychem/issues/new?assignees=&labels=&template=custom.md&title=), but please label it accordingly.
 
-We are happy to hear your ideas for how to further improve C++ Units, ensuring it suits your needs. Check the [Issues](https://github.com/crdrisko/cpp-units/issues) and see if others have submitted similar feedback. You can upvote existing feedback (using the thumbs up reaction/by commenting) or [submit a new suggestion](https://github.com/crdrisko/cpp-units/issues/new?assignees=&labels=&template=feature_request.md&title=).
+We are happy to hear your ideas for how to further improve DryChem, ensuring it suits your needs. Check the [Issues](https://github.com/crdrisko/drychem/issues) and see if others have submitted similar feedback. You can upvote existing feedback (using the thumbs up reaction/by commenting) or [submit a new suggestion](https://github.com/crdrisko/drychem/issues/new?assignees=&labels=&template=feature_request.md&title=).
 
-We always look at upvoted items in [Issues](https://github.com/crdrisko/cpp-units/issues) when we decide what to work on next. We read the comments and we look forward to hearing your input.
+We always look at upvoted items in [Issues](https://github.com/crdrisko/drychem/issues) when we decide what to work on next. We read the comments and we look forward to hearing your input.
 
 ## Finding issues you can help with
 
-Looking for something to work on? Issues marked [`good first issue`](https://github.com/crdrisko/cpp-units/labels/good%20first%20issue) are a good place to start.
+Looking for something to work on? Issues marked [`good first issue`](https://github.com/crdrisko/drychem/labels/good%20first%20issue) are a good place to start.
 
-You can also check the [`help wanted`](https://github.com/crdrisko/cpp-units/labels/help%20wanted) tag to find other issues to help with. If you're interested in working on a fix, leave a comment to let everyone know and to help avoid duplicated effort from others.
+You can also check the [`help wanted`](https://github.com/crdrisko/drychem/labels/help%20wanted) tag to find other issues to help with. If you're interested in working on a fix, leave a comment to let everyone know and to help avoid duplicated effort from others.
 
 ## Contributions we accept
 
-We highly appreciate any contributions that help us improve the end product, with a high emphasis being put on any bug fixes you can manage to create and direct improvements which address the top issues reported by C++ Units users. Some general guidelines:
+We highly appreciate any contributions that help us improve the end product, with a high emphasis being put on any bug fixes you can manage to create and direct improvements which address the top issues reported by DryChem users. Some general guidelines:
 
 - Follow our coding and style [Coding and Style](#Style-guidelines) guidelines, and keep code changes as small as possible.
 
@@ -63,12 +63,11 @@ While `clang-format` is certainly a useful tool, there are some style options we
 
 ***Run clang-format***
 
-Use the following commands during the build phase to run `clang-format`
-(must be installed on the host system):
+Use the following commands during the build phase to run `clang-format` (must be installed on the host system):
 
 ```bash
 cd build
-cmake ../cpp-units/. -Dformat_codebase=ON
+cmake ../drychem/. -Dformat_codebase=ON
 ```
 
 ### Testing
@@ -85,7 +84,7 @@ When completing a pull request, we will generally squash your changes into a sin
 
 ### Continuous Integration
 
-For this project, CI is provided by [Travis-CI](https://travis-ci.com/github/crdrisko/cpp-units), with workflows found in [.travis.yml](https://github.com/crdrisko/cpp-units/blob/master/.travis.yml). Workflows are run automatically on every commit made on the master branch, unless told to skip for that particular commit.
+For this project, CI is provided by [Travis-CI](https://travis-ci.com/github/crdrisko/drychem), with workflows found in [.travis.yml](https://github.com/crdrisko/drychem/blob/master/.travis.yml). Workflows are run automatically on every commit made on the master branch, unless told to skip for that particular commit.
 
 To skip CI runs on a particular commit, include either `[skip ci]` or `[ci skip]` in the commit message.
 
@@ -93,7 +92,7 @@ To skip CI runs on a particular commit, include either `[skip ci]` or `[ci skip]
 
 After submitting a pull request, members of the team will review your code. We will assign the request to an appropriate reviewer (if applicable). Any member of the community may participate in the review, but at least one member of the project team will ultimately approve the request.
 
-Often, multiple iterations or discussions will be needed to responding to feedback from reviewers. Try looking at [past pull requests](https://github.com/crdrisko/cpp-units/pulls?q=is%3Apr+is%3Aclosed) to see what the experience might be like.
+Often, multiple iterations or discussions will be needed to responding to feedback from reviewers. Try looking at [past pull requests](https://github.com/crdrisko/drychem/pulls?q=is%3Apr+is%3Aclosed) to see what the experience might be like.
 
 ## Contributor License Agreement
 

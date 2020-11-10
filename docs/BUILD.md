@@ -1,13 +1,13 @@
-# Building and Installing C++ Units
+# Building and Installing DryChem
 
 ## Installation
 
 Using [CMake](https://cmake.org), the following commands can be run to install the repository:
 
 ```bash
-git clone https://github.com/crdrisko/cpp-units.git
+git clone https://github.com/crdrisko/drychem.git
 mkdir build && cd build
-cmake ../cpp-units/.
+cmake ../drychem/.
 make && [sudo] make install
 ```
 
@@ -19,7 +19,7 @@ With each library in the project, I have strived to provide ~100% unit test cove
 
 ```bash
 ## Same steps as before ... ##
-cmake ../cpp-units/. -Dunits_build_all=ON
+cmake ../drychem/. -Dunits_build_all=ON
 make && [sudo] make install
 
 ## Run the unit tests ##

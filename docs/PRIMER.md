@@ -1,3 +1,3 @@
-# C++ Units Primer
+# DryChem Primer
 
 ...

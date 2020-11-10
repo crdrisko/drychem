@@ -1,5 +1,5 @@
 ### Function to find and download external projects from Github ###
-function(CppUnitsExternalDownload)
+function(DryChemExternalDownload)
     set(options)
     set(one_value_keywords PROJECT
                            REPOSITORY)
@@ -8,7 +8,7 @@ function(CppUnitsExternalDownload)
     cmake_parse_arguments(EXTERN_ARGS "${options}" "${one_value_keywords}" "${multi_value_keywords}" ${ARGN})
 
     ## Download and unpack project at configure time ##
-    configure_file(${CppUnits_SOURCE_DIR}/cmake/CMakeLists.txt.in ${EXTERN_ARGS_PROJECT}-download/CMakeLists.txt)
+    configure_file(${DryChem_SOURCE_DIR}/cmake/CMakeLists.txt.in ${EXTERN_ARGS_PROJECT}-download/CMakeLists.txt)
 
     ## Configuration step ##
     execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
@@ -34,7 +34,7 @@ endfunction()
 
 
 ### Function to create a new test from a predefined naming template ###
-function(CppUnitsNewTest)
+function(DryChemNewTest)
     set(options)
     set(one_value_keywords TESTNAME
                            LIBRARY
@@ -43,7 +43,7 @@ function(CppUnitsNewTest)
 
     cmake_parse_arguments(TEST_ARGS "${options}" "${one_value_keywords}" "${multi_value_keywords}" ${ARGN})
 
-    set(TESTPATH ${CppUnits_SOURCE_DIR}/${TEST_ARGS_LIBRARY}/libs/${TEST_ARGS_INTERIOR_DIRECTORY}/tests)
+    set(TESTPATH ${DryChem_SOURCE_DIR}/${TEST_ARGS_LIBRARY}/libs/${TEST_ARGS_INTERIOR_DIRECTORY}/tests)
 
     add_executable(${TEST_ARGS_LIBRARY}Test${TEST_ARGS_TESTNAME} ${TESTPATH}/test${TEST_ARGS_TESTNAME}.cpp)
 
