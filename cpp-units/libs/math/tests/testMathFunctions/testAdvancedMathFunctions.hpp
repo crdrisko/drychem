@@ -6,8 +6,8 @@
 // Date: 10/28/2020-10:15:51
 // Description: Provides ~100% unit test coverage over all mathematical functions in the Common-Utilities library for PhysicalQuantities
 
-#ifndef CPP_UNITS_TESTING_TESTADVANCEDMATHFUNCTIONS_HPP
-#define CPP_UNITS_TESTING_TESTADVANCEDMATHFUNCTIONS_HPP
+#ifndef DRYCHEM_CPP_UNITS_TESTING_TESTADVANCEDMATHFUNCTIONS_HPP
+#define DRYCHEM_CPP_UNITS_TESTING_TESTADVANCEDMATHFUNCTIONS_HPP
 
 #include <array>
 #include <vector>
@@ -15,7 +15,7 @@
 #include <common-utils/math.hpp>
 #include <gtest/gtest.h>
 
-#include "physicalQuantities.hpp"
+#include "cpp-units/physicalQuantities.hpp"
 
 using namespace CppUnits;
 using namespace CppUnits::Literals;

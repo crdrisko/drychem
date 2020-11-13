@@ -19,11 +19,11 @@ option(utils_build_tests     "Builds common-utils library and corresponding unit
 option(utils_build_samples   "Builds common-utils library and corresponding code samples." OFF)
 option(utils_exclude_scripts "Builds appropriate libraries while ignoring the scripts directory." OFF)
 
-## Set appropriate option flags and continue ##
 if (chem_format_codebase)
     ## Run clang-format on all code except the files passed as arguments with the '-i' flag ##
     execute_process(COMMAND bash cmake/scripts/format-codebase.sh
                                     -i common-utilities/include/common-utils/math/*
+                                    -i common-utilities/include/common-utils/strings/utils/tokenizer.hpp
                                     -i common-utilities/libs/utilities/samples/comparableExample.cpp
                                     -i cpp-units/include/cpp-units/math/basicMath.hpp
                                     -i cpp-units/include/cpp-units/types/physicalQuantity.hpp
@@ -50,24 +50,13 @@ endif()
 
 if (chem_build_samples)
     set(units_build_samples ON)
-    set(utils_build_samples ON)  
-endif()
-
-if (units_build_all)
-    set(units_build_tests ON)
-    set(units_build_samples ON)
-endif()
-
-if (utils_build_all)
-    set(utils_build_tests ON)
     set(utils_build_samples ON)
-
-    if (NOT chem_build_all AND NOT chem_build_tests AND NOT chem_build_samples
-        AND NOT units_build_all AND NOT units_build_tests AND NOT units_build_samples)
-        set(exclude_units ON)
-    endif()
 endif()
 
+if (NOT chem_build_all AND NOT chem_build_tests AND NOT chem_build_samples
+        AND NOT units_build_all AND NOT units_build_tests AND NOT units_build_samples)
+    set(exclude_units ON)
+endif()
 
 ### Compilation Options ###
 set(CMAKE_CXX_STANDARD 17)
@@ -77,7 +66,7 @@ if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Release")
 endif()
 
-add_compile_options(-Wall -Wextra -pedantic-errors -Werror)
+add_compile_options(-pedantic-errors -Wall -Werror -Wextra)
 
 if (CMAKE_COMPILER_IS_GNUCXX)
     add_compile_options(-Wno-psabi)
@@ -89,75 +78,23 @@ include(cmake/utility-functions.cmake)
 
 
 ### Files / Directories ###
-if (NOT utils_exclude_scripts)
-    set(SCRIPTS
-        common-utilities/scripts/changeCase.sh
-        common-utilities/scripts/compiler.sh
-        common-utilities/scripts/fileMaker.sh
-        common-utilities/scripts/linkLogin.sh
-        common-utilities/scripts/modifyFiles.sh
-        common-utilities/scripts/utilities/errorHandling.sh
-        common-utilities/scripts/utilities/showOpts.sh
-        common-utilities/scripts/utilities/typeParsing.sh)
-endif()
-
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
-    ${PROJECT_BINARY_DIR}/bin
-    CACHE PATH
-    "Single directory for all executables.")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin
+    CACHE PATH "Single directory for all executables.")
 
 
 ### Libraries / Executables ###
-include_directories(common-utilities/include common-utilities/include/common-utils)
-
-set(LIBRARIES
-    common-utilities/include/common-utils)
-
-## Build the common-utilities code samples ##
-if (utils_build_samples)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/samples)
-
-    add_executable(fibonacciExample common-utilities/libs/errors/samples/fibonacciExample.cpp)
-    add_executable(finiteDifferencesExample common-utilities/libs/math/samples/finiteDifferencesExample.cpp)
-    add_executable(comparableExample common-utilities/libs/utilities/samples/comparableExample.cpp)
-
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
-endif()
+include_directories(common-utilities/include)
+add_subdirectory(common-utilities)
 
 if (NOT exclude_units)
-    include_directories(cpp-units/include cpp-units/include/cpp-units)
-
-    ## Build the cpp-units code samples ##
-    # if (units_build_samples)
-    #     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/samples)
-
-    #     add_executable(* cpp-units/libs/*/samples/*.cpp)
-
-    #     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
-    # endif()
-
-    list(APPEND LIBRARIES cpp-units/include/cpp-units)
+    include_directories(cpp-units/include)
+    add_subdirectory(cpp-units)
 endif()
 
 
 ### Installation ###
 install(DIRECTORY ${LIBRARIES}
         DESTINATION include)
-
-if (NOT utils_exclude_scripts)
-    foreach (SCRIPT ${SCRIPTS})
-        ## Remove extensions and make scripts executable ##
-        get_filename_component(filename "${SCRIPT}" NAME_WE)
-
-        configure_file(${SCRIPT} "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${filename}" @ONLY)
-
-        install(FILES "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${filename}"
-                DESTINATION bin
-                PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
-                            GROUP_READ             GROUP_EXECUTE
-                            WORLD_READ             WORLD_EXECUTE)
-    endforeach()
-endif()
 
 
 ### Unit Testing ###

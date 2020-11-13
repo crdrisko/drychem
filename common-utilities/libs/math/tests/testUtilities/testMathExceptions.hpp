@@ -6,20 +6,17 @@
 // Date: 10/27/2020-07:31:00
 // Description: Provides ~100% unit test coverage over all exceptions specifically relating to the math library
 
-#ifndef COMMON_UTILITIES_TESTING_TESTMATHEXCEPTIONS_HPP
-#define COMMON_UTILITIES_TESTING_TESTMATHEXCEPTIONS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTMATHEXCEPTIONS_HPP
+#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTMATHEXCEPTIONS_HPP
 
 #include <gtest/gtest.h>
 
-#include "errors.hpp"
-#include "math.hpp"
+#include "common-utils/errors.hpp"
+#include "common-utils/math.hpp"
 
-using namespace CppUtils::Math;
-
-//! \test Testing the \c CppUtils::Math::InputSizeMismatch class
 GTEST_TEST(testMathExceptions, inputSizeMismatchIsAFatalExceptionAndCanTerminateWhenHandled)
 {
-    InputSizeMismatch exception1 {"Common-Utilities", __FILE__, __LINE__};
+    DryChem::InputSizeMismatch exception1 {"Common-Utilities", __FILE__, __LINE__};
 
     ASSERT_DEATH(
         {
@@ -27,7 +24,7 @@ GTEST_TEST(testMathExceptions, inputSizeMismatchIsAFatalExceptionAndCanTerminate
             {
                 throw exception1;
             }
-            catch (const InputSizeMismatch& except)
+            catch (const DryChem::InputSizeMismatch& except)
             {
                 except.handleErrorWithMessage();
             }
@@ -35,16 +32,15 @@ GTEST_TEST(testMathExceptions, inputSizeMismatchIsAFatalExceptionAndCanTerminate
         "Common-Utilities Fatal Error: [(]testMathExceptions.hpp: *[0-9]*[)]\n\tInput sizes for x and y containers must be the same.\n");
 }
 
-//! \test Testing the \c CppUtils::Math::InputSizeMismatch class
 GTEST_TEST(testMathExceptions, derivedExceptionsCanBeCaughtByBaseFatalException)
 {
     ASSERT_DEATH(
         {
             try
             {
-                throw InputSizeMismatch("Common-Utilities", __FILE__, __LINE__);
+                throw DryChem::InputSizeMismatch("Common-Utilities", __FILE__, __LINE__);
             }
-            catch (const CppUtils::Errors::FatalException& except)
+            catch (const DryChem::FatalException& except)
             {
                 except.handleErrorWithMessage();
             }

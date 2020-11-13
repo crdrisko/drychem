@@ -6,14 +6,14 @@
 // Date: 04/07/2020-11:09:24
 // Description: Defines a specialized exception handling class designed around the error utilities
 
-#ifndef COMMON_UTILITIES_FATALEXCEPTION_HPP
-#define COMMON_UTILITIES_FATALEXCEPTION_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_FATALEXCEPTION_HPP
+#define DRYCHEM_COMMON_UTILITIES_FATALEXCEPTION_HPP
 
 #include <exception>
 #include <string>
 
-#include "errors/utils/errorHandling.hpp"
-#include "errors/utils/errorTypes.hpp"
+#include "common-utils/errors/utils/errorHandling.hpp"
+#include "common-utils/errors/utils/errorTypes.hpp"
 
 namespace CppUtils::Errors
 {
@@ -41,7 +41,6 @@ namespace CppUtils::Errors
         //! Delegate our exception handling to the error handling classes
         void handleErrorWithMessage() const { printFatalErrorMessage(error); }
     };
-    //! \example fibonacciExample.cpp
 }   // namespace CppUtils::Errors
 
 #endif

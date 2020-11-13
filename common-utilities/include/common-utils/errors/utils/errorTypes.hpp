@@ -6,8 +6,8 @@
 // Date: 08/26/2020-14:53:34
 // Description: Common types to be used with the various error handling techniques
 
-#ifndef COMMON_UTILITIES_ERRORTYPES_HPP
-#define COMMON_UTILITIES_ERRORTYPES_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_ERRORTYPES_HPP
+#define DRYCHEM_COMMON_UTILITIES_ERRORTYPES_HPP
 
 #include <cstddef>
 #include <string>

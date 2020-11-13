@@ -6,10 +6,10 @@
 // Date: 09/17/2020-12:36:17
 // Description: An alternative to std::rel_opts which doesn't inject the comparison operators into the global namespace
 
-#ifndef COMMON_UTILITIES_COMPARISONOPERATORS_HPP
-#define COMMON_UTILITIES_COMPARISONOPERATORS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_COMPARISONOPERATORS_HPP
+#define DRYCHEM_COMMON_UTILITIES_COMPARISONOPERATORS_HPP
 
-#include "utilities/operators/potentiallyEmptyBaseClass.hpp"
+#include "common-utils/utilities/operators/potentiallyEmptyBaseClass.hpp"
 
 namespace CppUtils::Operators
 {
@@ -55,7 +55,6 @@ namespace CppUtils::Operators
     class CompletelyComparable : public EqualityComparable<Derived, LessThanComparable<Derived, Empty>>
     {
     };
-    //! \example comparableExample.cpp
 }   // namespace CppUtils::Operators
 
 #endif

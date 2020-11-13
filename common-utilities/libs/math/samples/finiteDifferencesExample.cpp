@@ -17,12 +17,6 @@
 #include <common-utils/errors.hpp>
 #include <common-utils/math.hpp>
 
-using namespace CppUtils;
-
-/*!
- * This is an example of how we might use the \c CppUtils::Math::centeredDifferenceMethod() and
- *  \c CppUtils::Math::cumulativeTrapzIntegration() functions.
- */
 std::vector<double> differentiateThenIntegrate(const std::vector<double>& x, const std::vector<double>& y);
 std::vector<double> integrateThenDifferentiate(const std::vector<double>& x, const std::vector<double>& y);
 
@@ -61,14 +55,14 @@ int main()
         }
         catch (const std::exception& except)
         {
-            Errors::ErrorMessage error;
+            DryChem::ErrorMessage error;
             error.programName = "Common-Utilities";
             error.message     = "An exception was thrown from " + std::string {except.what()};
 
-            throw Errors::FatalException(error);
+            throw DryChem::FatalException(error);
         }
     }
-    catch (const Errors::FatalException& except)
+    catch (const DryChem::FatalException& except)
     {
         except.handleErrorWithMessage();
     }
@@ -76,8 +70,8 @@ int main()
 
 std::vector<double> differentiateThenIntegrate(const std::vector<double>& x, const std::vector<double>& y)
 {
-    auto derivative = Math::centeredDifferenceMethod(x.begin(), x.end(), y.begin(), y.end());
-    auto integral   = Math::cumulativeTrapzIntegration(x.begin(), x.end(), derivative.begin(), derivative.end(), 0.0);
+    auto derivative = DryChem::centeredDifferenceMethod(x.begin(), x.end(), y.begin(), y.end());
+    auto integral   = DryChem::cumulativeTrapzIntegration(x.begin(), x.end(), derivative.begin(), derivative.end(), 0.0);
 
     // Account for the constant term we know we're missing from integration
     std::transform(integral.begin(), integral.end(), integral.begin(), [](auto val) { return val + 7; });
@@ -87,8 +81,8 @@ std::vector<double> differentiateThenIntegrate(const std::vector<double>& x, con
 
 std::vector<double> integrateThenDifferentiate(const std::vector<double>& x, const std::vector<double>& y)
 {
-    auto integral   = Math::cumulativeTrapzIntegration(x.begin(), x.end(), y.begin(), y.end(), 0.0);
-    auto derivative = Math::centeredDifferenceMethod(x.begin(), x.end(), integral.begin(), integral.end());
+    auto integral   = DryChem::cumulativeTrapzIntegration(x.begin(), x.end(), y.begin(), y.end(), 0.0);
+    auto derivative = DryChem::centeredDifferenceMethod(x.begin(), x.end(), integral.begin(), integral.end());
 
     return derivative;
 }

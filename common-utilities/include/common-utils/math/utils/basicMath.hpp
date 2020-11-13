@@ -6,8 +6,8 @@
 // Date: 01/31/2020-15:42:41
 // Description: Common mathematical functions
 
-#ifndef COMMON_UTILITIES_BASICMATH_HPP
-#define COMMON_UTILITIES_BASICMATH_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_BASICMATH_HPP
+#define DRYCHEM_COMMON_UTILITIES_BASICMATH_HPP
 
 #include <algorithm>
 #include <type_traits>

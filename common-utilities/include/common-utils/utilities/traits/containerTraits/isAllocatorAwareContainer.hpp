@@ -6,12 +6,12 @@
 // Date: 09/23/2020-07:41:26
 // Description: A type trait for determining whether a type T meets the requirements of an allocator-aware container
 
-#ifndef COMMON_UTILITIES_ISALLOCATORAWARECONTAINER_HPP
-#define COMMON_UTILITIES_ISALLOCATORAWARECONTAINER_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_ISALLOCATORAWARECONTAINER_HPP
+#define DRYCHEM_COMMON_UTILITIES_ISALLOCATORAWARECONTAINER_HPP
 
 #include <type_traits>
 
-#include "utilities/traits/containerTraits/isContainer.hpp"
+#include "common-utils/utilities/traits/containerTraits/isContainer.hpp"
 
 namespace CppUtils::Traits
 {

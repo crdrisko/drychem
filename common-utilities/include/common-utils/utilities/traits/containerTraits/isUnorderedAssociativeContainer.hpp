@@ -6,12 +6,12 @@
 // Date: 09/23/2020-07:42:43
 // Description: A type trait for determining whether a type T meets the requirements of an unordered, associative container
 
-#ifndef COMMON_UTILITIES_ISUNORDEREDASSOCIATIVECONTAINER_HPP
-#define COMMON_UTILITIES_ISUNORDEREDASSOCIATIVECONTAINER_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_ISUNORDEREDASSOCIATIVECONTAINER_HPP
+#define DRYCHEM_COMMON_UTILITIES_ISUNORDEREDASSOCIATIVECONTAINER_HPP
 
 #include <type_traits>
 
-#include "utilities/traits/containerTraits/isContainer.hpp"
+#include "common-utils/utilities/traits/containerTraits/isContainer.hpp"
 
 namespace CppUtils::Traits
 {

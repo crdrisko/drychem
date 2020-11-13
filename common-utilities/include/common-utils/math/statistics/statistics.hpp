@@ -6,8 +6,8 @@
 // Date: 02/03/2020-08:22:29
 // Description: Common mathematical functions relating to statistics
 
-#ifndef COMMON_UTILITIES_STATISTICS_HPP
-#define COMMON_UTILITIES_STATISTICS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_STATISTICS_HPP
+#define DRYCHEM_COMMON_UTILITIES_STATISTICS_HPP
 
 #include <algorithm>
 #include <cmath>

@@ -6,8 +6,8 @@
 // Date: 09/17/2020-09:54:44
 // Description: Provides ~100% unit test coverage over all miscellaneous PhysicalQuantity member functions
 
-#ifndef CPP_UNITS_TESTING_TESTPHYSICALQUANTITY_HPP
-#define CPP_UNITS_TESTING_TESTPHYSICALQUANTITY_HPP
+#ifndef DRYCHEM_CPP_UNITS_TESTING_TESTPHYSICALQUANTITY_HPP
+#define DRYCHEM_CPP_UNITS_TESTING_TESTPHYSICALQUANTITY_HPP
 
 #include <exception>
 #include <string>
@@ -15,7 +15,7 @@
 #include <common-utils/errors.hpp>
 #include <gtest/gtest.h>
 
-#include "physicalQuantities.hpp"
+#include "cpp-units/physicalQuantities.hpp"
 
 using namespace CppUnits;
 

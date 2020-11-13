@@ -6,29 +6,25 @@
 // Date: 08/26/2020-15:02:42
 // Description: Provides ~100% unit test coverage over all error types and associated functions
 
-#ifndef COMMON_UTILITIES_TESTING_TESTERRORTYPES_HPP
-#define COMMON_UTILITIES_TESTING_TESTERRORTYPES_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTERRORTYPES_HPP
+#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTERRORTYPES_HPP
 
 #include <gtest/gtest.h>
 
-#include "errors.hpp"
+#include "common-utils/errors.hpp"
 
-using namespace CppUtils::Errors;
-
-//! \test Testing the \c CppUtils::Errors::ErrorSeverity scoped enumeration
 GTEST_TEST(testErrorTypes, errorSeveritiesConvertToCorrectValues)
 {
-    ASSERT_FALSE(static_cast<bool>(ErrorSeverity::Warning));
-    ASSERT_TRUE(static_cast<bool>(ErrorSeverity::Fatal));
+    ASSERT_FALSE(static_cast<bool>(DryChem::ErrorSeverity::Warning));
+    ASSERT_TRUE(static_cast<bool>(DryChem::ErrorSeverity::Fatal));
 
-    ASSERT_TRUE(static_cast<int>(ErrorSeverity::Warning) == 0);
-    ASSERT_TRUE(static_cast<int>(ErrorSeverity::Fatal) == 1);
+    ASSERT_TRUE(static_cast<int>(DryChem::ErrorSeverity::Warning) == 0);
+    ASSERT_TRUE(static_cast<int>(DryChem::ErrorSeverity::Fatal) == 1);
 }
 
-//! \test Testing the \c CppUtils::Errors::ErrorMessage structure
 GTEST_TEST(testErrorTypes, errorMessagesCanBeSetByIndividualValues)
 {
-    ErrorMessage err {};
+    DryChem::ErrorMessage err {};
 
     ASSERT_TRUE(err.programName.empty() && err.message.empty() && err.fileName.empty() && err.lineNumber == 0ul);
 
@@ -40,18 +36,17 @@ GTEST_TEST(testErrorTypes, errorMessagesCanBeSetByIndividualValues)
     ASSERT_EQ("Common-Utilities", err.programName);
     ASSERT_EQ("This is the error message.", err.message);
     ASSERT_EQ("testErrorTypes.hpp", err.fileName.substr(err.fileName.find_last_of('/') + 1, err.fileName.length()));
-    ASSERT_EQ(38ul, err.lineNumber);
+    ASSERT_EQ(34ul, err.lineNumber);
 }
 
-//! \test Testing the \c CppUtils::Errors::ErrorMessage structure
 GTEST_TEST(testErrorTypes, errorMessagesCanBeSetByConstructor)
 {
-    ErrorMessage err {"Common-Utilities", "This is the error message.", __FILE__, __LINE__};
+    DryChem::ErrorMessage err {"Common-Utilities", "This is the error message.", __FILE__, __LINE__};
 
     ASSERT_EQ("Common-Utilities", err.programName);
     ASSERT_EQ("This is the error message.", err.message);
     ASSERT_EQ("testErrorTypes.hpp", err.fileName.substr(err.fileName.find_last_of('/') + 1, err.fileName.length()));
-    ASSERT_EQ(49ul, err.lineNumber);
+    ASSERT_EQ(44ul, err.lineNumber);
 }
 
 #endif

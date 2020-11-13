@@ -15,9 +15,6 @@
 
 #include <common-utils/errors.hpp>
 
-using namespace CppUtils::Errors;
-
-//! This is an example of how we would use the \c CppUtils::Errors::FatalException class.
 void printNFibonacciNumbers(std::size_t n);
 
 int main()
@@ -34,33 +31,26 @@ int main()
         }
         catch (const std::exception& except)
         {
-            ErrorMessage error;
+            DryChem::ErrorMessage error;
             error.programName = "\nCommon-Utilities";
             error.message     = "An exception was thrown from " + std::string {except.what()};
 
-            throw FatalException(error);
+            throw DryChem::FatalException(error);
         }
     }
-    catch (const FatalException& except)
+    catch (const DryChem::FatalException& except)
     {
         except.handleErrorWithMessage();
     }
 }
 
-/*!
- * A function for printing \c n fibonacci numbers to demonstrate how we might throw an exception.
- * 
- * \param n The number of fibonacci numbers to print
- *  
- * \exception CppUtils::Errors::FatalException We don't want to overshoot our data type, so we throw
- *            when we get close to std::numeric_limits<std::size_t>::max().
- */
 void printNFibonacciNumbers(std::size_t n)
 {
     std::vector<std::size_t> fibonacciNumbers;
 
     if (std::size_t maxNAllowed {94}; n > maxNAllowed)
-        throw FatalException {ErrorMessage {"Common-Utilities", "Overflow error for type std::size_t.", __FILE__, __LINE__}};
+        throw DryChem::FatalException {
+            DryChem::ErrorMessage {"Common-Utilities", "Overflow error for type std::size_t.", __FILE__, __LINE__}};
 
     for (std::size_t i {}; i < n; ++i)
     {

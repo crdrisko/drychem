@@ -6,15 +6,15 @@
 // Date: 09/17/2020-09:50:41
 // Description: Provides ~100% unit test coverage over the overloaded stream functions
 
-#ifndef CPP_UNITS_TESTING_TESTSTREAMOPERATORS_HPP
-#define CPP_UNITS_TESTING_TESTSTREAMOPERATORS_HPP
+#ifndef DRYCHEM_CPP_UNITS_TESTING_TESTSTREAMOPERATORS_HPP
+#define DRYCHEM_CPP_UNITS_TESTING_TESTSTREAMOPERATORS_HPP
 
 #include <iostream>
 #include <string>
 
 #include <gtest/gtest.h>
 
-#include "physicalQuantities.hpp"
+#include "cpp-units/physicalQuantities.hpp"
 
 using namespace CppUnits;
 using namespace CppUnits::Literals;

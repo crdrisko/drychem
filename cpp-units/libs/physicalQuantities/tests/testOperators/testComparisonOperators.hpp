@@ -6,14 +6,14 @@
 // Date: 09/17/2020-09:42:58
 // Description: Provides ~100% unit test coverage over all comparison functions and traits
 
-#ifndef CPP_UNITS_TESTING_TESTCOMPARISONOPERATORS_HPP
-#define CPP_UNITS_TESTING_TESTCOMPARISONOPERATORS_HPP
+#ifndef DRYCHEM_CPP_UNITS_TESTING_TESTCOMPARISONOPERATORS_HPP
+#define DRYCHEM_CPP_UNITS_TESTING_TESTCOMPARISONOPERATORS_HPP
 
 #include <type_traits>
 
 #include <gtest/gtest.h>
 
-#include "physicalQuantities.hpp"
+#include "cpp-units/physicalQuantities.hpp"
 
 using namespace CppUnits;
 using namespace CppUnits::Literals;
@@ -57,8 +57,8 @@ GTEST_TEST(testComparisonOperators, physicalQuantitiesInheritAndImplementAllComp
 
 GTEST_TEST(testComparisonOperators, physicalQuantitiesAreOnlyCompletelyComparableWithTheSameTypeOfPhysicalQuantity)
 {
-    ASSERT_TRUE((std::is_base_of_v<CompletelyComparable<Length>, Length>));
-    ASSERT_FALSE((std::is_base_of_v<CompletelyComparable<Length>, DimensionlessQuantity>));
+    ASSERT_TRUE((std::is_base_of_v<DryChem::CompletelyComparable<Length>, Length>));
+    ASSERT_FALSE((std::is_base_of_v<DryChem::CompletelyComparable<Length>, DimensionlessQuantity>));
 }
 
 #endif

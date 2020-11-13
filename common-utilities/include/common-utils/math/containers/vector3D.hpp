@@ -6,15 +6,15 @@
 // Date: 04/07/2020-11:08:41
 // Description: A vector representing a quantity with x, y, and z components
 
-#ifndef COMMON_UTILITIES_VECTOR3D_HPP
-#define COMMON_UTILITIES_VECTOR3D_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_VECTOR3D_HPP
+#define DRYCHEM_COMMON_UTILITIES_VECTOR3D_HPP
 
 #include <array>
 #include <cstddef>
 #include <type_traits>
 #include <utility>
 
-#include "utilities.hpp"
+#include "common-utils/utilities/operators/comparisonOperators.hpp"
 
 namespace CppUtils::Math
 {

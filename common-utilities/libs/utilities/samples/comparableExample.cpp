@@ -17,15 +17,7 @@
 
 #include <common-utils/utilities.hpp>
 
-using namespace CppUtils::Operators;
-
-/*!
- * This is an example of how we might use the \c CppUtils::Operators::CompletelyComparable class template.
- * 
- * \note We can use private inheritance with our \c CompletelyComparable class for 
- *       an 'implements a' relationship.
- */
-class Fruit : private CompletelyComparable<Fruit>
+class Fruit : private DryChem::CompletelyComparable<Fruit>
 {
 private:
     std::string name;

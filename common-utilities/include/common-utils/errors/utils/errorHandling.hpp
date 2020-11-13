@@ -6,15 +6,15 @@
 // Date: 01/31/2020-15:38:03
 // Description: Utilities for printing error messages according to an error's severity
 
-#ifndef COMMON_UTILITIES_ERRORHANDLING_HPP
-#define COMMON_UTILITIES_ERRORHANDLING_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_ERRORHANDLING_HPP
+#define DRYCHEM_COMMON_UTILITIES_ERRORHANDLING_HPP
 
 #include <cstdlib>
 #include <iostream>
 #include <string>
 
-#include "errors/traits/isFatal.hpp"
-#include "errors/utils/errorTypes.hpp"
+#include "common-utils/errors/traits/isFatal.hpp"
+#include "common-utils/errors/utils/errorTypes.hpp"
 
 namespace CppUtils::Errors
 {

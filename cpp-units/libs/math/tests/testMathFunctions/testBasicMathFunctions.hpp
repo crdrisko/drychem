@@ -6,15 +6,15 @@
 // Date: 08/25/2020-20:34:50
 // Description: Provides ~100% unit test coverage over all basic mathematical functions in the CppUnits library
 
-#ifndef CPP_UNITS_TESTING_TESTBASICMATHFUNCTIONS_HPP
-#define CPP_UNITS_TESTING_TESTBASICMATHFUNCTIONS_HPP
+#ifndef DRYCHEM_CPP_UNITS_TESTING_TESTBASICMATHFUNCTIONS_HPP
+#define DRYCHEM_CPP_UNITS_TESTING_TESTBASICMATHFUNCTIONS_HPP
 
 #include <cmath>
 
 #include <common-utils/math.hpp>
 #include <gtest/gtest.h>
 
-#include "physicalQuantities.hpp"
+#include "cpp-units/physicalQuantities.hpp"
 
 using namespace CppUnits;
 using namespace CppUnits::Literals;

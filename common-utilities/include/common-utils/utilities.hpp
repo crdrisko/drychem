@@ -10,12 +10,34 @@
 // Note: The internal implementation details associated with this API should not be used in any
 //   user program as they are subject to change at any time without warning.
 
-#ifndef COMMON_UTILITIES_UTILITIES_HPP
-#define COMMON_UTILITIES_UTILITIES_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_UTILITIES_HPP
+#define DRYCHEM_COMMON_UTILITIES_UTILITIES_HPP
 
 #include "utilities/operators/comparisonOperators.hpp"
 #include "utilities/operators/potentiallyEmptyBaseClass.hpp"
 #include "utilities/testing/performanceTesting.hpp"
 #include "utilities/traits/containerTraits.hpp"
+
+//! Allow for a shorter namespace name for less \c using statements
+namespace DryChem
+{
+    inline namespace CppUtils
+    {
+        inline namespace Operators
+        {
+            using namespace ::CppUtils::Operators;
+        }
+
+        inline namespace Testing
+        {
+            using namespace ::CppUtils::Testing;
+        }
+
+        inline namespace Traits
+        {
+            using namespace ::CppUtils::Traits;
+        }
+    }   // namespace CppUtils
+}   // namespace DryChem
 
 #endif

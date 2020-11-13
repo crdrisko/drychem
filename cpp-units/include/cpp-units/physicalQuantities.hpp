@@ -10,8 +10,8 @@
 // Note: The internal implementation details associated with this API should not be used in any
 //   user program as they are subject to change at any time without warning.
 
-#ifndef CPP_UNITS_PHYSICALQUANTITIES_HPP
-#define CPP_UNITS_PHYSICALQUANTITIES_HPP
+#ifndef DRYCHEM_CPP_UNITS_PHYSICALQUANTITIES_HPP
+#define DRYCHEM_CPP_UNITS_PHYSICALQUANTITIES_HPP
 
 #include "math/basicMath.hpp"
 #include "types/dimensionality.hpp"

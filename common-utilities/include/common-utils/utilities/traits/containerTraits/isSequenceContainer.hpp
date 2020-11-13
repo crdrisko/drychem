@@ -6,14 +6,14 @@
 // Date: 09/24/2020-09:04:56
 // Description: A type trait for determining whether a type T meets the requirements of a sequence container
 
-#ifndef COMMON_UTILITIES_ISSEQUENCECONTAINER_HPP
-#define COMMON_UTILITIES_ISSEQUENCECONTAINER_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_ISSEQUENCECONTAINER_HPP
+#define DRYCHEM_COMMON_UTILITIES_ISSEQUENCECONTAINER_HPP
 
 #include <type_traits>
 
-#include "utilities/traits/containerTraits/isAssociativeContainer.hpp"
-#include "utilities/traits/containerTraits/isContainer.hpp"
-#include "utilities/traits/containerTraits/isUnorderedAssociativeContainer.hpp"
+#include "common-utils/utilities/traits/containerTraits/isAssociativeContainer.hpp"
+#include "common-utils/utilities/traits/containerTraits/isContainer.hpp"
+#include "common-utils/utilities/traits/containerTraits/isUnorderedAssociativeContainer.hpp"
 
 namespace CppUtils::Traits
 {

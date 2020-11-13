@@ -6,8 +6,8 @@
 // Date: 08/27/2020-12:07:48
 // Description: Provides ~100% unit test coverage over all exception handing functions
 
-#ifndef COMMON_UTILITIES_TESTING_TESTEXCEPTIONHANDLING_HPP
-#define COMMON_UTILITIES_TESTING_TESTEXCEPTIONHANDLING_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTEXCEPTIONHANDLING_HPP
+#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTEXCEPTIONHANDLING_HPP
 
 #include <exception>
 #include <iostream>
@@ -16,11 +16,8 @@
 
 #include <gtest/gtest.h>
 
-#include "errors.hpp"
+#include "common-utils/errors.hpp"
 
-using namespace CppUtils::Errors;
-
-//! \test Testing the \c CppUtils::Errors::FatalException class when a standard exception is thrown
 GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAStdException)
 {
     ASSERT_DEATH(
@@ -34,14 +31,14 @@ GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAStdException)
                 catch (const std::exception& except)
                 {
                     // Toss the exception back up for program termination and a more verbose message
-                    ErrorMessage error1;
+                    DryChem::ErrorMessage error1;
                     error1.programName = "YourProgramName";
                     error1.message     = "An exception was thrown from " + std::string {except.what()};
 
-                    throw FatalException(error1);
+                    throw DryChem::FatalException(error1);
                 }
             }
-            catch (const FatalException& except)
+            catch (const DryChem::FatalException& except)
             {
                 except.handleErrorWithMessage();
             }
@@ -49,7 +46,6 @@ GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAStdException)
         "YourProgramName Fatal Error:\n\tAn exception was thrown from std::bad_alloc\n");
 }
 
-//! \test Testing the \c CppUtils::Errors::FatalException class when a FatalException is thrown
 GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAFatalException)
 {
     ASSERT_DEATH(
@@ -58,19 +54,20 @@ GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAFatalException)
             {
                 try
                 {
-                    throw FatalException(ErrorMessage {"Common-Utilities", "Location message.", __FILE__, __LINE__});
+                    throw DryChem::FatalException(
+                        DryChem::ErrorMessage {"Common-Utilities", "Location message.", __FILE__, __LINE__});
                 }
                 catch (const std::exception& except)
                 {
                     // Toss the exception back up for program termination and a more verbose message
-                    ErrorMessage error1;
+                    DryChem::ErrorMessage error1;
                     error1.programName = "YourProgramName";
                     error1.message     = "An exception was thrown from " + std::string {except.what()};
 
-                    throw FatalException(error1);
+                    throw DryChem::FatalException(error1);
                 }
             }
-            catch (const FatalException& except)
+            catch (const DryChem::FatalException& except)
             {
                 except.handleErrorWithMessage();
             }
@@ -78,37 +75,35 @@ GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAFatalException)
         "YourProgramName Fatal Error:\n\tAn exception was thrown from [(]testExceptionHandling.hpp: *[0-9]*[)]\n\tLocation message.\n");
 }
 
-//! \test Testing the \c CppUtils::Errors::FatalException class
 GTEST_TEST(testExceptionHandling, fatalErrorsAreHandledByTerminating)
 {
     ASSERT_DEATH(
         {
-            ErrorMessage error;
+            DryChem::ErrorMessage error;
             error.programName = "Common-Utilities";
             error.message     = "This would be the error message.";
             error.fileName    = __FILE__;
             error.lineNumber  = __LINE__;
 
-            FatalException exceptFatal {error};
+            DryChem::FatalException exceptFatal {error};
             exceptFatal.handleErrorWithMessage();
         },
         "Common-Utilities Fatal Error: [(]testExceptionHandling.hpp: *[0-9]*[)]\n\tThis would be the error message.\n");
 }
 
-//! \test Testing the \c CppUtils::Errors::FatalException class
 GTEST_TEST(testExceptionHandling, derivedExceptionClassIsCaughtByParentClass)
 {
     testing::internal::CaptureStderr();
 
     try
     {
-        ErrorMessage error {};
+        DryChem::ErrorMessage error {};
         error.programName = "Common-Utilities";
         error.message     = "Let's throw a non-fatal warning.";
         error.fileName    = __FILE__;
         error.lineNumber  = __LINE__;
 
-        throw FatalException(error);
+        throw DryChem::FatalException(error);
     }
     catch (const std::exception& except)
     {
@@ -116,7 +111,7 @@ GTEST_TEST(testExceptionHandling, derivedExceptionClassIsCaughtByParentClass)
     }
 
     std::string actualOutput = testing::internal::GetCapturedStderr();
-    ASSERT_EQ(actualOutput, "(testExceptionHandling.hpp: 109)\n\tLet's throw a non-fatal warning.\n");
+    ASSERT_EQ(actualOutput, "(testExceptionHandling.hpp: 104)\n\tLet's throw a non-fatal warning.\n");
 }
 
 #endif

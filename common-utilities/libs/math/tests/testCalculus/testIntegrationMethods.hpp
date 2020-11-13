@@ -6,35 +6,30 @@
 // Date: 10/28/2020-07:58:30
 // Description: Provides ~100% unit test coverage over the approximate integration methods
 
-#ifndef COMMON_UTILITIES_TESTING_TESTINTEGRATIONMETHODS_HPP
-#define COMMON_UTILITIES_TESTING_TESTINTEGRATIONMETHODS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTINTEGRATIONMETHODS_HPP
+#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTINTEGRATIONMETHODS_HPP
 
 #include <cstddef>
 #include <vector>
 
 #include <gtest/gtest.h>
 
-#include "math.hpp"
+#include "common-utils/math.hpp"
 
-using namespace CppUtils::Math;
-
-//! \test Testing the \c CppUtils::Math::trapz() function at compile time
 GTEST_TEST(testIntegrationMethods, theTrapzMethodCanBeUsedInCompileTimeCalculations)
 {
     const int x1 {0}, x2 {15}, y1 {0}, y2 {6};
 
-    GTEST_COMPILE_ASSERT_(45 == trapz(x1, x2, y1, y2), "Trapz method failed.");
+    GTEST_COMPILE_ASSERT_(45 == DryChem::trapz(x1, x2, y1, y2), "Trapz method failed.");
 }
 
-//! \test Testing the \c CppUtils::Math::trapz() function
 GTEST_TEST(testIntegrationMethods, theTrapzMethodCanAcceptMultipleTypes)
 {
     long double x1 {0.1}, x2 {22.5}, y1 {2.3}, y2 {6.0};
 
-    ASSERT_DOUBLE_EQ(92.96, trapz(x1, x2, y1, y2));
+    ASSERT_DOUBLE_EQ(92.96, DryChem::trapz(x1, x2, y1, y2));
 }
 
-//! \test Testing the first \c CppUtils::Math::cumulativeTrapzIntegration() function overload
 GTEST_TEST(testIntegrationMethods, theCumulativeTrapzMethodHasAnOptionalParameterWhichCanBeOverriden)
 {
     std::vector<long double> x, y, expectedResult;
@@ -48,9 +43,9 @@ GTEST_TEST(testIntegrationMethods, theCumulativeTrapzMethodHasAnOptionalParamete
     }
 
     // ∫x = 1/2 x^2
-    auto integrationResult1 = cumulativeTrapzIntegration(x.begin(), x.end(), y.begin(), y.end());
-    auto integrationResult2 = cumulativeTrapzIntegration(x.begin(), x.end(), y.begin(), y.end(), 0);
-    auto integrationResult3 = cumulativeTrapzIntegration(x.begin(), x.end(), y.begin(), y.end(), 5);
+    auto integrationResult1 = DryChem::cumulativeTrapzIntegration(x.begin(), x.end(), y.begin(), y.end());
+    auto integrationResult2 = DryChem::cumulativeTrapzIntegration(x.begin(), x.end(), y.begin(), y.end(), 0);
+    auto integrationResult3 = DryChem::cumulativeTrapzIntegration(x.begin(), x.end(), y.begin(), y.end(), 5);
 
     for (std::size_t i {}; i < expectedResult.size(); ++i)
     {
@@ -68,7 +63,6 @@ GTEST_TEST(testIntegrationMethods, theCumulativeTrapzMethodHasAnOptionalParamete
     }
 }
 
-//! \test Testing the second \c CppUtils::Math::cumulativeTrapzIntegration() function overload
 GTEST_TEST(testIntegrationMethods, insteadOfUsingIteratorsWeCanJustPassFullContainers)
 {
     std::vector<long double> x, y, expectedResult;
@@ -82,12 +76,11 @@ GTEST_TEST(testIntegrationMethods, insteadOfUsingIteratorsWeCanJustPassFullConta
     }
 
     // ∫x = 1/2 x^2
-    auto integrationResult = cumulativeTrapzIntegration(x, y, 0);
+    auto integrationResult = DryChem::cumulativeTrapzIntegration(x, y, 0);
 
     ASSERT_EQ(expectedResult, integrationResult);
 }
 
-//! \test Testing the \c CppUtils::Math::cumulativeTrapzIntegration() function
 GTEST_TEST(testIntegrationMethods, passingTwoDifferentlySizedContainersResultsInFatalException)
 {
     std::vector<long double> x {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
@@ -97,9 +90,9 @@ GTEST_TEST(testIntegrationMethods, passingTwoDifferentlySizedContainersResultsIn
         {
             try
             {
-                cumulativeTrapzIntegration(x.begin(), x.end(), y.begin(), y.end() - 2);
+                DryChem::cumulativeTrapzIntegration(x.begin(), x.end(), y.begin(), y.end() - 2);
             }
-            catch (const InputSizeMismatch& except)
+            catch (const DryChem::InputSizeMismatch& except)
             {
                 except.handleErrorWithMessage();
             }

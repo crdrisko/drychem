@@ -6,8 +6,8 @@
 // Date: 03/03/2020-18:45:26
 // Description: Defines the PhysicalQuantity class template with SI base units
 
-#ifndef CPP_UNITS_PHYSICALQUANTITY_HPP
-#define CPP_UNITS_PHYSICALQUANTITY_HPP
+#ifndef DRYCHEM_CPP_UNITS_PHYSICALQUANTITY_HPP
+#define DRYCHEM_CPP_UNITS_PHYSICALQUANTITY_HPP
 
 #include <iostream>
 #include <string>
@@ -15,14 +15,12 @@
 
 #include <common-utils/utilities.hpp>
 
-#include "types/dimensionality.hpp"
-
-using CppUtils::Operators::CompletelyComparable;
+#include "cpp-units/types/dimensionality.hpp"
 
 namespace CppUnits
 {
     template<typename BaseDimensionality>
-    class PhysicalQuantity : private CompletelyComparable<PhysicalQuantity<BaseDimensionality>>
+    class PhysicalQuantity : private DryChem::CompletelyComparable<PhysicalQuantity<BaseDimensionality>>
     {
     private:
         long double magnitude {0.0l};

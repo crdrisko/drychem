@@ -6,8 +6,8 @@
 // Date: 09/15/2020-08:38:28
 // Description: A type trait for determining whether a type T meets the requirements of a container
 
-#ifndef COMMON_UTILITIES_ISCONTAINER_HPP
-#define COMMON_UTILITIES_ISCONTAINER_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_ISCONTAINER_HPP
+#define DRYCHEM_COMMON_UTILITIES_ISCONTAINER_HPP
 
 #include <type_traits>
 #include <utility>

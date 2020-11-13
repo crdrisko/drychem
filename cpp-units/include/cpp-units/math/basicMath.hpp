@@ -6,15 +6,12 @@
 // Date: 08/25/2020-20:21:04
 // Description: Function overloads for common mathematical operations in the cmath standard library header
 
-#ifndef CPP_UNITS_BASICMATH_HPP
-#define CPP_UNITS_BASICMATH_HPP
+#ifndef DRYCHEM_CPP_UNITS_BASICMATH_HPP
+#define DRYCHEM_CPP_UNITS_BASICMATH_HPP
 
 #include <cmath>
 
-#include <common-utils/math.hpp>
-
-#include "math/internal/powerImpl.hpp"
-#include "types/physicalQuantity.hpp"
+#include "cpp-units/types/physicalQuantity.hpp"
 
 namespace CppUnits::Math
 {
@@ -43,13 +40,43 @@ namespace CppUnits::Math
     DECLARE_DIMENSIONLESS_CMATH_FUNCTION(log10)
 
     // Power functions
+    namespace details
+    {
+        template<unsigned int Power, int L, int M, int T, int I, int Th, int N, int J>
+        struct PowImpl
+        {
+            static constexpr auto result(const PhysicalQuantity<Dimensionality<L, M, T, I, Th, N, J>>& physicalQuantity) noexcept
+            {
+                return physicalQuantity * PowImpl<Power - 1, L, M, T, I, Th, N, J>::result(physicalQuantity);
+            }
+        };
+
+        template<int L, int M, int T, int I, int Th, int N, int J>
+        struct PowImpl<0, L, M, T, I, Th, N, J>
+        {
+            static constexpr auto result(const PhysicalQuantity<Dimensionality<L, M, T, I, Th, N, J>>&) noexcept
+            {
+                return PhysicalQuantity<Dimensionality<>>(1.0);
+            }
+        };
+
+        template<int Power, int L, int M, int T, int I, int Th, int N, int J>
+        struct InversePowImpl
+        {
+            static constexpr auto result(const PhysicalQuantity<Dimensionality<L, M, T, I, Th, N, J>>& physicalQuantity) noexcept
+            {
+                return 1.0 / (PowImpl<-Power, L, M, T, I, Th, N, J>::result(physicalQuantity));
+            }
+        };
+    }   // namespace details
+
     template<int Power, int L, int M, int T, int I, int Th, int N, int J>
     constexpr auto pow(const PhysicalQuantity<Dimensionality<L, M, T, I, Th, N, J>>& physicalQuantity) noexcept
     {
         if constexpr (Power >= 0)
-            return Internal::PowImpl<Power, L, M, T, I, Th, N, J>::result(physicalQuantity);
+            return details::PowImpl<Power, L, M, T, I, Th, N, J>::result(physicalQuantity);
         else
-            return Internal::InversePowImpl<Power, L, M, T, I, Th, N, J>::result(physicalQuantity);
+            return details::InversePowImpl<Power, L, M, T, I, Th, N, J>::result(physicalQuantity);
     }
 
     template<int L, int M, int T, int I, int Th, int N, int J,

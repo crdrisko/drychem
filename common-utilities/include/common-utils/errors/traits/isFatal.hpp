@@ -6,12 +6,12 @@
 // Date: 08/26/2020-14:26:29
 // Description: Type trait used to determine whether a given ErrorSeverity is fatal or not
 
-#ifndef COMMON_UTILITIES_ISFATAL_HPP
-#define COMMON_UTILITIES_ISFATAL_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_ISFATAL_HPP
+#define DRYCHEM_COMMON_UTILITIES_ISFATAL_HPP
 
 #include <type_traits>
 
-#include "errors/utils/errorTypes.hpp"
+#include "common-utils/errors/utils/errorTypes.hpp"
 
 namespace CppUtils::Errors
 {

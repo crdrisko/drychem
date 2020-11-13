@@ -6,8 +6,8 @@
 // Date: 09/23/2020-07:42:03
 // Description: A type trait for determining whether a type T meets the requirements of a container adapter
 
-#ifndef COMMON_UTILITIES_ISCONTAINERADAPTER_HPP
-#define COMMON_UTILITIES_ISCONTAINERADAPTER_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_ISCONTAINERADAPTER_HPP
+#define DRYCHEM_COMMON_UTILITIES_ISCONTAINERADAPTER_HPP
 
 #include <type_traits>
 #include <utility>

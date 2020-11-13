@@ -6,12 +6,12 @@
 // Date: 09/17/2020-09:54:53
 // Description: Provides ~100% unit test coverage over all dimensionality functions and types
 
-#ifndef CPP_UNITS_TESTING_TESTDIMENSIONALITY_HPP
-#define CPP_UNITS_TESTING_TESTDIMENSIONALITY_HPP
+#ifndef DRYCHEM_CPP_UNITS_TESTING_TESTDIMENSIONALITY_HPP
+#define DRYCHEM_CPP_UNITS_TESTING_TESTDIMENSIONALITY_HPP
 
 #include <gtest/gtest.h>
 
-#include "physicalQuantities.hpp"
+#include "cpp-units/physicalQuantities.hpp"
 
 using namespace CppUnits;
 

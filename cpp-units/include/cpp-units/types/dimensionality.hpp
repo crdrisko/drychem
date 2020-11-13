@@ -6,8 +6,8 @@
 // Date: 09/02/2020-10:58:01
 // Description: A structure holding the SI base units from which all physical quantities can be constructed
 
-#ifndef CPP_UNITS_DIMENSIONALITY_HPP
-#define CPP_UNITS_DIMENSIONALITY_HPP
+#ifndef DRYCHEM_CPP_UNITS_DIMENSIONALITY_HPP
+#define DRYCHEM_CPP_UNITS_DIMENSIONALITY_HPP
 
 namespace CppUnits
 {

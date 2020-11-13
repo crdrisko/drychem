@@ -6,12 +6,12 @@
 // Date: 09/02/2020-14:48:00
 // Description: Provides ~100% unit test coverage over all arithmetic functions
 
-#ifndef CPP_UNITS_TESTING_TESTARITHMETICOPERATORS_HPP
-#define CPP_UNITS_TESTING_TESTARITHMETICOPERATORS_HPP
+#ifndef DRYCHEM_CPP_UNITS_TESTING_TESTARITHMETICOPERATORS_HPP
+#define DRYCHEM_CPP_UNITS_TESTING_TESTARITHMETICOPERATORS_HPP
 
 #include <gtest/gtest.h>
 
-#include "physicalQuantities.hpp"
+#include "cpp-units/physicalQuantities.hpp"
 
 using namespace CppUnits;
 using namespace CppUnits::Literals;

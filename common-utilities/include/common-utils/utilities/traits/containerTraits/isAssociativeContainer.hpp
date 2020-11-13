@@ -6,13 +6,13 @@
 // Date: 09/23/2020-07:42:36
 // Description: A type trait for determining whether a type T meets the requirements of an associative container
 
-#ifndef COMMON_UTILITIES_ISASSOCIATIVECONTAINER_HPP
-#define COMMON_UTILITIES_ISASSOCIATIVECONTAINER_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_ISASSOCIATIVECONTAINER_HPP
+#define DRYCHEM_COMMON_UTILITIES_ISASSOCIATIVECONTAINER_HPP
 
 #include <type_traits>
 #include <utility>
 
-#include "utilities/traits/containerTraits/isContainer.hpp"
+#include "common-utils/utilities/traits/containerTraits/isContainer.hpp"
 
 namespace CppUtils::Traits
 {

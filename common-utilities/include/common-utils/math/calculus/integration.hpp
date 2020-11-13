@@ -6,8 +6,8 @@
 // Date: 10/28/2020-07:49:21
 // Description:Some advanced mathematical functions relating to approximate integration methods
 
-#ifndef COMMON_UTILITIES_INTEGRATION_HPP
-#define COMMON_UTILITIES_INTEGRATION_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_INTEGRATION_HPP
+#define DRYCHEM_COMMON_UTILITIES_INTEGRATION_HPP
 
 #include <cstddef>
 #include <iterator>
@@ -16,7 +16,7 @@
 #include <utility>
 #include <vector>
 
-#include "math/utils/mathExceptions.hpp"
+#include "common-utils/math/utils/mathExceptions.hpp"
 
 namespace CppUtils::Math
 {
@@ -106,7 +106,6 @@ namespace CppUtils::Math
 
         return y_cumulative;
     }
-    //! \example finiteDifferencesExample.cpp
 
     /*!
      * \overload

@@ -10,12 +10,24 @@
 // Note: The internal implementation details associated with this API should not be used in any
 //   user program as they are subject to change at any time without warning.
 
-#ifndef COMMON_UTILITIES_ERRORS_HPP
-#define COMMON_UTILITIES_ERRORS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_ERRORS_HPP
+#define DRYCHEM_COMMON_UTILITIES_ERRORS_HPP
 
 #include "errors/exceptions/fatalException.hpp"
 #include "errors/traits/isFatal.hpp"
 #include "errors/utils/errorHandling.hpp"
 #include "errors/utils/errorTypes.hpp"
+
+//! Allow for a shorter namespace name for less \c using statements
+namespace DryChem
+{
+    inline namespace CppUtils
+    {
+        inline namespace Errors
+        {
+            using namespace ::CppUtils::Errors;
+        }
+    }   // namespace CppUtils
+}   // namespace DryChem
 
 #endif

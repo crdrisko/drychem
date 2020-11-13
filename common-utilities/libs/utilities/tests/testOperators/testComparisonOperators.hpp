@@ -6,18 +6,16 @@
 // Date: 09/18/2020-09:01:46
 // Description: Provides ~100% unit test coverage over all comparison operators
 
-#ifndef COMMON_UTILITIES_TESTING_TESTCOMPARISONOPERATORS_HPP
-#define COMMON_UTILITIES_TESTING_TESTCOMPARISONOPERATORS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIESTILITIES_TESTING_TESTCOMPARISONOPERATORS_HPP
+#define DRYCHEM_COMMON_UTILITIESTILITIES_TESTING_TESTCOMPARISONOPERATORS_HPP
 
 #include <gtest/gtest.h>
 
-#include "utilities.hpp"
+#include "common-utils/utilities.hpp"
 
-using namespace CppUtils::Operators;
-
-namespace CppUtils::Internal::Testing
+namespace CppUtils::Operators::details::testing
 {
-    class SomewhatComparable1 : private EqualityComparable<SomewhatComparable1>
+    class SomewhatComparable1 : private DryChem::EqualityComparable<SomewhatComparable1>
     {
     private:
         int value;
@@ -31,7 +29,7 @@ namespace CppUtils::Internal::Testing
         }
     };
 
-    class SomewhatComparable2 : private LessThanComparable<SomewhatComparable2>
+    class SomewhatComparable2 : private DryChem::LessThanComparable<SomewhatComparable2>
     {
     private:
         int value;
@@ -45,7 +43,7 @@ namespace CppUtils::Internal::Testing
         }
     };
 
-    class Comparable : private CompletelyComparable<Comparable>
+    class Comparable : private DryChem::CompletelyComparable<Comparable>
     {
     private:
         int value;
@@ -56,14 +54,15 @@ namespace CppUtils::Internal::Testing
         friend bool operator==(const Comparable& lhs, const Comparable& rhs) noexcept { return lhs.value == rhs.value; }
         friend bool operator<(const Comparable& lhs, const Comparable& rhs) noexcept { return lhs.value < rhs.value; }
     };
-}   // namespace CppUtils::Internal::Testing
+}   // namespace CppUtils::Operators::details::testing
 
-//! \test Testing the \c CppUtils::Operators::EqualityComparable class
 GTEST_TEST(testComparisonOperators, aClassThatInheritsFromEqualityComparableCanOnlyCallEqualityComparisons)
 {
-    CppUtils::Internal::Testing::SomewhatComparable1 value1 {5};
-    CppUtils::Internal::Testing::SomewhatComparable1 value2 {5};
-    CppUtils::Internal::Testing::SomewhatComparable1 value3 {10};
+    using CppUtils::Operators::details::testing::SomewhatComparable1;
+
+    SomewhatComparable1 value1 {5};
+    SomewhatComparable1 value2 {5};
+    SomewhatComparable1 value3 {10};
 
     ASSERT_TRUE(value1 == value2);
     ASSERT_FALSE(value1 == value3);
@@ -74,12 +73,13 @@ GTEST_TEST(testComparisonOperators, aClassThatInheritsFromEqualityComparableCanO
     // ASSERT_TRUE(value1 < value3);                        // Error: no operator "<" matches these operands
 }
 
-//! \test Testing the \c CppUtils::Operators::LessThanComparable class
 GTEST_TEST(testComparisonOperators, aClassThatInheritsFromLessThanComparableCanOnlyCallInequalityComparisons)
 {
-    CppUtils::Internal::Testing::SomewhatComparable2 value1 {5};
-    CppUtils::Internal::Testing::SomewhatComparable2 value2 {5};
-    CppUtils::Internal::Testing::SomewhatComparable2 value3 {10};
+    using CppUtils::Operators::details::testing::SomewhatComparable2;
+
+    SomewhatComparable2 value1 {5};
+    SomewhatComparable2 value2 {5};
+    SomewhatComparable2 value3 {10};
 
     ASSERT_TRUE(value1 < value3);
     ASSERT_FALSE(value1 < value2);
@@ -96,12 +96,13 @@ GTEST_TEST(testComparisonOperators, aClassThatInheritsFromLessThanComparableCanO
     // ASSERT_TRUE(value1 == value2);                       // Error: no operator "==" matches these operands
 }
 
-//! \test Testing the \c CppUtils::Operators::CompletelyComparable class
 GTEST_TEST(testComparisonOperators, aClassThatInheritsFromCompletelyComparableCanCallAllComparisons)
 {
-    CppUtils::Internal::Testing::Comparable value1 {5};
-    CppUtils::Internal::Testing::Comparable value2 {5};
-    CppUtils::Internal::Testing::Comparable value3 {10};
+    using CppUtils::Operators::details::testing::Comparable;
+
+    Comparable value1 {5};
+    Comparable value2 {5};
+    Comparable value3 {10};
 
     ASSERT_TRUE(value1 == value2);
     ASSERT_FALSE(value1 == value3);

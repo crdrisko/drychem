@@ -6,48 +6,44 @@
 // Date: 10/23/2020-15:54:44
 // Description: Provides ~100% unit test coverage over all statistics-based mathematical functions
 
-#ifndef COMMON_UTILITIES_TESTING_TESTSTATISTICALFUNCTIONS_HPP
-#define COMMON_UTILITIES_TESTING_TESTSTATISTICALFUNCTIONS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTSTATISTICALFUNCTIONS_HPP
+#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTSTATISTICALFUNCTIONS_HPP
 
 #include <array>
 #include <vector>
 
 #include <gtest/gtest.h>
 
-#include "math.hpp"
+#include "common-utils/math.hpp"
 
-using namespace CppUtils::Math;
-
-//! \test Testing the \c findOrderOfMagnitude() function
 GTEST_TEST(testStatisticalFunctions, orderOfMagnitudeIsCalculatedCorrectly)
 {
-    ASSERT_EQ(-15, findOrderOfMagnitude(1e-15));
-    ASSERT_EQ(0, findOrderOfMagnitude(6.8));
-    ASSERT_EQ(1, findOrderOfMagnitude(50));
-    ASSERT_EQ(2, findOrderOfMagnitude(457));
-    ASSERT_EQ(3, findOrderOfMagnitude(1000));
-    ASSERT_EQ(18, findOrderOfMagnitude(1.7e18));
+    ASSERT_EQ(-15, DryChem::findOrderOfMagnitude(1e-15));
+    ASSERT_EQ(0, DryChem::findOrderOfMagnitude(6.8));
+    ASSERT_EQ(1, DryChem::findOrderOfMagnitude(50));
+    ASSERT_EQ(2, DryChem::findOrderOfMagnitude(457));
+    ASSERT_EQ(3, DryChem::findOrderOfMagnitude(1000));
+    ASSERT_EQ(18, DryChem::findOrderOfMagnitude(1.7e18));
 }
 
-//! \test Testing the \c findAbsoluteError() function
 GTEST_TEST(testStatisticalFunctions, weCanEasilyApproximatePiToACetainDegreeOfAccurracy)
 {
-    ASSERT_NEAR(3.14159265, (355.0 / 113.0), findAbsoluteError(3.14159265, 7));
+    ASSERT_NEAR(3.14159265, (355.0 / 113.0), DryChem::findAbsoluteError(3.14159265, 7));
 }
 
-//! \test Testing the \c calculateAverage() function
 GTEST_TEST(testStatisticalFunctions, averageCalculationsWorkOnARangeOfValuesInAGivenContainer)
 {
     std::vector<long double> x {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
     std::array<long double, 10> y {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
 
-    ASSERT_EQ(5.5, calculateAverage(x.begin(), x.end()));
-    ASSERT_EQ(3.0, calculateAverage(y.begin(), y.end() - 5));
+    ASSERT_EQ(5.5, DryChem::calculateAverage(x.begin(), x.end()));
+    ASSERT_EQ(3.0, DryChem::calculateAverage(y.begin(), y.end() - 5));
 }
 
-//! \test Testing the \c calculateVariance() function
 GTEST_TEST(testStatisticalFunctions, varianceCalculationsWorkOnARangeOfValuesInAGivenContainer)
 {
+    using namespace DryChem;
+
     std::vector<long double> x {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
     std::array<long double, 10> y {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
 
@@ -61,8 +57,8 @@ GTEST_TEST(testStatisticalFunctions, varianceCalculationsWorkOnARangeOfValuesInA
 //     {
 //     } nonArithmeticType;
 
-//     ASSERT_FALSE(findOrderOfMagnitude(nonArithmeticType));                      // no instance of function template matches the argument list
-//     ASSERT_FALSE(findAbsoluteError(nonArithmeticType, 7));                      // no instance of function template matches the argument list
+//     ASSERT_FALSE(DryChem::findOrderOfMagnitude(nonArithmeticType));                      // no instance of function template matches the argument list
+//     ASSERT_FALSE(DryChem::findAbsoluteError(nonArithmeticType, 7));                      // no instance of function template matches the argument list
 // }
 
 // GTEST_TEST(testStatisticalFunctions, certainStatisticalFunctionsOnlyWorkWithTypesThatHaveDefaultConstructors)
@@ -74,8 +70,8 @@ GTEST_TEST(testStatisticalFunctions, varianceCalculationsWorkOnARangeOfValuesInA
 
 //     std::vector<NoDefaultConstructor> x;
 
-//     ASSERT_FALSE(calculateAverage(x.begin(), x.end()));                         // no instance of function template matches the argument list
-//     ASSERT_FALSE(calculateStandardDeviation(x.begin(), x.end()));               // no instance of function template matches the argument list
+//     ASSERT_FALSE(DryChem::calculateAverage(x.begin(), x.end()));                         // no instance of function template matches the argument list
+//     ASSERT_FALSE(DryChem::calculateStandardDeviation(x.begin(), x.end()));               // no instance of function template matches the argument list
 // }
 
 #endif

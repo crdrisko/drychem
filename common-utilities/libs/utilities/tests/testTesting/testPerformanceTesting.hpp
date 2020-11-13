@@ -6,18 +6,16 @@
 // Date: 10/21/2020-16:42:31
 // Description: Provides ~100% unit test coverage over all performance testing functions
 
-#ifndef COMMON_UTILITIES_TESTING_TESTPERFORMANCETESTING_HPP
-#define COMMON_UTILITIES_TESTING_TESTPERFORMANCETESTING_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTPERFORMANCETESTING_HPP
+#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTPERFORMANCETESTING_HPP
 
 #include <cstddef>
 
 #include <gtest/gtest.h>
 
-#include "utilities.hpp"
+#include "common-utils/utilities.hpp"
 
-using namespace CppUtils::Testing;
-
-namespace CppUtils::Internal::Testing
+namespace CppUtils::Testing::details::testing
 {
     struct SumSquares
     {
@@ -68,69 +66,75 @@ namespace CppUtils::Internal::Testing
         for (std::size_t i {}; i < iter; ++i)
             result += i * i;
     }
-}   // namespace CppUtils::Internal::Testing
+}   // namespace CppUtils::Testing::details::testing
 
-//! \test Testing the \c CppUtils::Testing::ReturnType structure without structured binding
 GTEST_TEST(testPerformanceTesting, timeAndInvokeReturnsAReturnTypeStruct)
 {
+    using CppUtils::Testing::details::testing::sumSquares;
+
     std::size_t iterations {1'000'000UL};
 
-    ReturnType ret = timeAndInvoke(CppUtils::Internal::Testing::sumSquares, iterations);
+    CppUtils::Testing::details::ReturnType ret = DryChem::timeAndInvoke(sumSquares, iterations);
 
     ASSERT_TRUE(ret.time >= 0);
     ASSERT_EQ(ret.result, 333'332'833'333'500'000ULL);
 }
 
-//! \test Testing the \c CppUtils::Testing::timeAndInvoke() function with a \c void input function
 GTEST_TEST(testPerformanceTesting, timeAndInvokeWithAVoidFunctionReturnsOnlyTheTime)
 {
+    using CppUtils::Testing::details::testing::voidSumSquares;
+
     std::size_t iterations {1'000'000UL};
 
-    auto time = timeAndInvoke(CppUtils::Internal::Testing::voidSumSquares, iterations);
+    auto time = DryChem::timeAndInvoke(voidSumSquares, iterations);
 
     ASSERT_TRUE(time >= 0);
 }
 
-//! \test Testing the \c CppUtils::Testing::timeAndInvoke() function with a functor
 GTEST_TEST(testPerformanceTesting, timeAndInvokeWithAFunctorReturnsResultAndTime)
 {
+    using CppUtils::Testing::details::testing::SumSquares;
+
     std::size_t iterations {1'000'000UL};
 
-    auto [result, time] = timeAndInvoke(CppUtils::Internal::Testing::SumSquares(), iterations);
+    auto [result, time] = DryChem::timeAndInvoke(SumSquares(), iterations);
 
     ASSERT_TRUE(time >= 0);
     ASSERT_EQ(result, 333'332'833'333'500'000ULL);
 }
 
-//! \test Testing the \c CppUtils::Testing::timeAndInvoke() function with a member function
 GTEST_TEST(testPerformanceTesting, timeAndInvokeWithAMemberFunctionReturnsResultAndTime)
 {
-    std::size_t iterations {1'000'000UL};
-    CppUtils::Internal::Testing::MyClass myClass {iterations};
+    using CppUtils::Testing::details::testing::MyClass;
 
-    auto [result, time] = timeAndInvoke(&CppUtils::Internal::Testing::MyClass::sumSquares, myClass);
+    std::size_t iterations {1'000'000UL};
+    MyClass myClass {iterations};
+
+    auto [result, time] = DryChem::timeAndInvoke(&MyClass::sumSquares, myClass);
 
     ASSERT_TRUE(time >= 0);
     ASSERT_EQ(result, 333'332'833'333'500'000ULL);
 }
 
-//! \test Testing the \c CppUtils::Testing::timeAndInvoke() function with a regular function
 GTEST_TEST(testPerformanceTesting, timeAndInvokeWithAPlainFunctionReturnsResultAndTime)
 {
+    using CppUtils::Testing::details::testing::sumSquares;
+
     std::size_t iterations {1'000'000UL};
 
-    auto [result, time] = timeAndInvoke(CppUtils::Internal::Testing::sumSquares, iterations);
+    auto [result, time] = DryChem::timeAndInvoke(sumSquares, iterations);
 
     ASSERT_TRUE(time >= 0);
     ASSERT_EQ(result, 333'332'833'333'500'000ULL);
 }
 
-//! \test Testing the \c CppUtils::Testing::timeAndInvoke() function with a lambda function
 GTEST_TEST(testPerformanceTesting, timeAndInvokeWithALambdaFunctionReturnsResultAndTime)
 {
+    using CppUtils::Testing::details::testing::sumSquares;
+
     std::size_t iterations {1'000'000UL};
 
-    auto [result, time] = timeAndInvoke([=]() { return CppUtils::Internal::Testing::sumSquares(iterations); });
+    auto [result, time] = DryChem::timeAndInvoke([=]() { return sumSquares(iterations); });
 
     ASSERT_TRUE(time >= 0);
     ASSERT_EQ(result, 333'332'833'333'500'000ULL);

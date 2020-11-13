@@ -6,8 +6,8 @@
 // Date: 10/20/2020-12:09:44
 // Description: A function that can be used to time other functions
 
-#ifndef COMMON_UTILITIES_PERFORMANCETESTING_HPP
-#define COMMON_UTILITIES_PERFORMANCETESTING_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_PERFORMANCETESTING_HPP
+#define DRYCHEM_COMMON_UTILITIES_PERFORMANCETESTING_HPP
 
 #include <chrono>
 #include <functional>
@@ -16,13 +16,16 @@
 
 namespace CppUtils::Testing
 {
-    //! An aggregate structure that can be used as the return type of the \c timeAndInvoke<>() function template
-    template<typename F, typename... TArgs>
-    struct ReturnType
+    namespace details
     {
-        std::invoke_result_t<F, TArgs...> result;
-        std::chrono::microseconds::rep time;
-    };
+        //! An aggregate structure that can be used as the return type of the \c timeAndInvoke<>() function template
+        template<typename F, typename... TArgs>
+        struct ReturnType
+        {
+            std::invoke_result_t<F, TArgs...> result;
+            std::chrono::microseconds::rep time;
+        };
+    }   // namespace details
 
     /*!
      * A function that invokes another function and times how long it took to invoke said function.
@@ -35,7 +38,7 @@ namespace CppUtils::Testing
      *
      * \returns Because we have two different pieces of information to return, the result of the invoked
      *          function (unless it is a void function) and the time it took to invoke the function, we
-     *          return an object of the \c ReturnType struct. The preferred way to collect this information
+     *          return an object of the \c detatils::ReturnType struct. The preferred way to collect this information
      *          is through structured binding.
      */
     template<typename F, typename... TArgs>
@@ -60,7 +63,7 @@ namespace CppUtils::Testing
 
             auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
 
-            return ReturnType<F, TArgs...> {result, duration};
+            return details::ReturnType<F, TArgs...> {result, duration};
         }
     }
 }   // namespace CppUtils::Testing

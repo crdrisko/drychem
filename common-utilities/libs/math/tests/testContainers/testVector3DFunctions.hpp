@@ -6,8 +6,8 @@
 // Date: 04/09/2020-21:56:59
 // Description: Provides ~100% unit test coverage over all Vector3D functions
 
-#ifndef COMMON_UTILITIES_TESTING_TESTVECTOR3DFUNCTIONS_HPP
-#define COMMON_UTILITIES_TESTING_TESTVECTOR3DFUNCTIONS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTVECTOR3DFUNCTIONS_HPP
+#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTVECTOR3DFUNCTIONS_HPP
 
 #include <algorithm>
 #include <array>
@@ -19,13 +19,10 @@
 
 #include <gtest/gtest.h>
 
-#include "errors.hpp"
-#include "math.hpp"
-#include "utilities.hpp"
+#include "common-utils/errors.hpp"
+#include "common-utils/math.hpp"
+#include "common-utils/utilities.hpp"
 
-using namespace CppUtils::Math;
-
-//! \test Testing the \c CppUtils::Math::Vector3D<> class template
 GTEST_TEST(testContainerFunctions, typeWithNoDefaultConstructorGivesACompileTimeError)
 {
     struct NoDefaultConstructor
@@ -33,48 +30,45 @@ GTEST_TEST(testContainerFunctions, typeWithNoDefaultConstructorGivesACompileTime
         // NoDefaultConstructor() = delete;                 // Uncomment for a compile-time error
     };
 
-    Vector3D<NoDefaultConstructor> test {};
+    DryChem::Vector3D<NoDefaultConstructor> test {};
 
     GTEST_COMPILE_ASSERT_(test.size() == 3UL, "size() of Vector 3D should alwauys be 3.");
 }
 
-//! \test Testing the \c CppUtils::Math::Vector3D<> member types
 GTEST_TEST(testContainerFunctions, memberTypesForAnExampleVector3DTypeAreCorrect)
 {
     // clang-format off
-    GTEST_COMPILE_ASSERT_((std::is_same_v<Vector3D<double>::value_type, double>),                    "value_type is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<Vector3D<double>::size_type, std::size_t>),                "size_type is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<Vector3D<double>::difference_type, std::ptrdiff_t>),       "difference_type is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<Vector3D<double>::reference, double&>),                    "reference is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<Vector3D<double>::const_reference, const double&>),        "const_reference is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<Vector3D<double>::pointer, double*>),                      "pointer is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<Vector3D<double>::const_pointer, const double*>),          "const_pointer is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<Vector3D<double>::iterator, double*>),                     "iterator is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<Vector3D<double>::const_iterator, const double*>),         "const_iterator is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<Vector3D<double>::container_type, std::array<double, 3>>), "const_iterator is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::value_type, double>),                    "value_type is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::size_type, std::size_t>),                "size_type is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::difference_type, std::ptrdiff_t>),       "difference_type is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::reference, double&>),                    "reference is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::const_reference, const double&>),        "const_reference is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::pointer, double*>),                      "pointer is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::const_pointer, const double*>),          "const_pointer is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::iterator, double*>),                     "iterator is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::const_iterator, const double*>),         "const_iterator is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::container_type, std::array<double, 3>>), "const_iterator is incorrect.");
     // clang-format on
 }
 
-//! \test Testing the \c CppUtils::Math::Vector3D<> container classifications
 GTEST_TEST(testContainerFunctions, vector3DIsClassifiedLikeAStdArrayAndAContainerAdapter)
 {
-    ASSERT_FALSE((CppUtils::Traits::is_allocator_aware_container_v<Vector3D<int>>));
-    ASSERT_FALSE((CppUtils::Traits::is_associative_container_v<Vector3D<int>>));
-    ASSERT_TRUE((CppUtils::Traits::is_container_v<Vector3D<int>>));
-    ASSERT_TRUE((CppUtils::Traits::is_container_adapter_v<Vector3D<int>>));
-    ASSERT_FALSE((CppUtils::Traits::is_reversible_container_v<Vector3D<int>>));
-    ASSERT_TRUE((CppUtils::Traits::is_sequence_container_v<Vector3D<int>>));
-    ASSERT_FALSE((CppUtils::Traits::is_unordered_associative_container_v<Vector3D<int>>));
+    ASSERT_FALSE((DryChem::is_allocator_aware_container_v<DryChem::Vector3D<int>>));
+    ASSERT_FALSE((DryChem::is_associative_container_v<DryChem::Vector3D<int>>));
+    ASSERT_TRUE((DryChem::is_container_v<DryChem::Vector3D<int>>));
+    ASSERT_TRUE((DryChem::is_container_adapter_v<DryChem::Vector3D<int>>));
+    ASSERT_FALSE((DryChem::is_reversible_container_v<DryChem::Vector3D<int>>));
+    ASSERT_TRUE((DryChem::is_sequence_container_v<DryChem::Vector3D<int>>));
+    ASSERT_FALSE((DryChem::is_unordered_associative_container_v<DryChem::Vector3D<int>>));
 }
 
-//! \test Testing the \c CppUtils::Math::Vector3D<> constructors
 GTEST_TEST(testContainerFunctions, differentConstructorsGiveInitializeObjectsAsExpected)
 {
     std::array<int, 3> sampleArray {1, 2, 3};
 
-    Vector3D<long double> defaultInitialized {};
-    Vector3D<int> arrayInitialized {sampleArray};
-    Vector3D<float> valuesInitialized {1.0f, 3.0f, 5.0f};
+    DryChem::Vector3D<long double> defaultInitialized {};
+    DryChem::Vector3D<int> arrayInitialized {sampleArray};
+    DryChem::Vector3D<float> valuesInitialized {1.0f, 3.0f, 5.0f};
 
     for (std::size_t i {}; i < 3; ++i)
     {
@@ -84,15 +78,14 @@ GTEST_TEST(testContainerFunctions, differentConstructorsGiveInitializeObjectsAsE
     }
 }
 
-//! \test Testing the \c CppUtils::Math::Vector3D<> comparison operators
 GTEST_TEST(testContainerFunctions, overloadedComparsionOperatorsPerformElementwiseComparisons)
 {
     std::array<int, 3> valueArray {1, 2, 3};
 
-    Vector3D<int> value1 {1, 2, 3};
-    Vector3D<int> value2 {};
-    Vector3D<int> value3 {valueArray};
-    Vector3D<int> value4 {1, 0, 3};
+    DryChem::Vector3D<int> value1 {1, 2, 3};
+    DryChem::Vector3D<int> value2 {};
+    DryChem::Vector3D<int> value3 {valueArray};
+    DryChem::Vector3D<int> value4 {1, 0, 3};
 
     ASSERT_TRUE(value1 == value3);
     ASSERT_FALSE(value1 == value2);
@@ -113,10 +106,9 @@ GTEST_TEST(testContainerFunctions, overloadedComparsionOperatorsPerformElementwi
     ASSERT_FALSE(value2 >= value4);
 }
 
-//! \test Testing the \c CppUtils::Math::Vector3D<> element access
 GTEST_TEST(testContainerFunctions, atFunctionOverloadsCanReturnAndSetTheInternalData)
 {
-    Vector3D<long double> coordinates {1.0, -3.0, 5.0};
+    DryChem::Vector3D<long double> coordinates {1.0, -3.0, 5.0};
 
     ASSERT_EQ(1.0, coordinates.at(0));
     ASSERT_EQ(-3.0, coordinates.at(1));
@@ -131,10 +123,9 @@ GTEST_TEST(testContainerFunctions, atFunctionOverloadsCanReturnAndSetTheInternal
     ASSERT_EQ(9.0, coordinates.at(2));
 }
 
-//! \test Testing the \c CppUtils::Math::Vector3D<> element access
 GTEST_TEST(testContainerFunctions, subscriptOperatorsCanReturnAndSetTheInternalData)
 {
-    Vector3D<long double> coordinates {1.0, -3.0, 5.0};
+    DryChem::Vector3D<long double> coordinates {1.0, -3.0, 5.0};
 
     ASSERT_EQ(1.0, coordinates[0]);
     ASSERT_EQ(-3.0, coordinates[1]);
@@ -149,10 +140,9 @@ GTEST_TEST(testContainerFunctions, subscriptOperatorsCanReturnAndSetTheInternalD
     ASSERT_EQ(9.0, coordinates[2]);
 }
 
-//! \test Testing the \c CppUtils::Math::Vector3D<> element access
 GTEST_TEST(testContainerFunctions, atFunctionOverloadsWillThrowWhenIndexIsOutOfRange)
 {
-    Vector3D<long double> sampleVector {};
+    DryChem::Vector3D<long double> sampleVector {};
 
     ASSERT_DEATH(
         {
@@ -164,14 +154,14 @@ GTEST_TEST(testContainerFunctions, atFunctionOverloadsWillThrowWhenIndexIsOutOfR
                 }
                 catch (const std::exception& except)
                 {
-                    CppUtils::Errors::ErrorMessage error;
+                    DryChem::ErrorMessage error;
                     error.programName = "Common-Utilities";
                     error.message     = "Exception message: " + std::string {except.what()};
 
-                    throw CppUtils::Errors::FatalException(error);
+                    throw DryChem::FatalException(error);
                 }
             }
-            catch (const CppUtils::Errors::FatalException& except)
+            catch (const DryChem::FatalException& except)
             {
                 except.handleErrorWithMessage();
             }
@@ -188,14 +178,14 @@ GTEST_TEST(testContainerFunctions, atFunctionOverloadsWillThrowWhenIndexIsOutOfR
                 }
                 catch (const std::exception& except)
                 {
-                    CppUtils::Errors::ErrorMessage error;
+                    DryChem::ErrorMessage error;
                     error.programName = "Common-Utilities";
                     error.message     = "Exception message: " + std::string {except.what()};
 
-                    throw CppUtils::Errors::FatalException(error);
+                    throw DryChem::FatalException(error);
                 }
             }
-            catch (const CppUtils::Errors::FatalException& except)
+            catch (const DryChem::FatalException& except)
             {
                 except.handleErrorWithMessage();
             }
@@ -203,10 +193,9 @@ GTEST_TEST(testContainerFunctions, atFunctionOverloadsWillThrowWhenIndexIsOutOfR
         "Common-Utilities Fatal Error:\n\tException message: array::at");
 }
 
-//! \test Testing the \c CppUtils::Math::Vector3D<> iterators
 GTEST_TEST(testContainerFunctions, aVector3DCanBeUsedInStdAlgorithms)
 {
-    Vector3D<long double> vec {2.0l, 3.5l, 0.1l};
+    DryChem::Vector3D<long double> vec {2.0l, 3.5l, 0.1l};
 
     ASSERT_FALSE(std::is_sorted(vec.cbegin(), vec.cend()));
 
@@ -215,12 +204,11 @@ GTEST_TEST(testContainerFunctions, aVector3DCanBeUsedInStdAlgorithms)
     ASSERT_TRUE(std::is_sorted(vec.begin(), vec.end()));
 }
 
-//! \test Testing the \c CppUtils::Math::Vector3D<> iterators
 GTEST_TEST(testContainerFunctions, aVector3DCanBeUsedInRangeBasedForLoops)
 {
     testing::internal::CaptureStdout();
 
-    for (const auto& elem : Vector3D<long double> {2.2l, 3.3l, 1.1l})
+    for (const auto& elem : DryChem::Vector3D<long double> {2.2l, 3.3l, 1.1l})
         std::cout << elem << ' ';
     std::cout << std::endl;
 
@@ -228,35 +216,31 @@ GTEST_TEST(testContainerFunctions, aVector3DCanBeUsedInRangeBasedForLoops)
     ASSERT_EQ(output, "2.2 3.3 1.1 \n");
 }
 
-//! \test Testing the \c CppUtils::Math::Vector3D<> capacity functions
 GTEST_TEST(testContainerFunctions, aVector3DIsNeverEmpty)
 {
-    Vector3D<long> vec;
+    DryChem::Vector3D<long> vec;
 
     ASSERT_TRUE(!vec.empty());
     ASSERT_FALSE(vec.empty());
 }
 
-//! \test Testing the \c CppUtils::Math::Vector3D<> capacity functions
 GTEST_TEST(testContainerFunctions, theSizeOfAVector3DIsAlways3)
 {
-    Vector3D<long> vec;
+    DryChem::Vector3D<long> vec;
 
     ASSERT_EQ(vec.size(), 3UL);
 }
 
-//! \test Testing the \c CppUtils::Math::Vector3D<> capacity functions
 GTEST_TEST(testContainerFunctions, theMaxSizeOfAVector3DIsAlways3)
 {
-    Vector3D<long> vec;
+    DryChem::Vector3D<long> vec;
 
     ASSERT_EQ(vec.max_size(), 3UL);
 }
 
-//! \test Testing the \c CppUtils::Math::Vector3D<> operations
 GTEST_TEST(testContainerFunctions, theFillMemberFunctionSetsAllElementsToTheSameValue)
 {
-    Vector3D<long double> vec {1.0l, 2.0l, 3.0l};
+    DryChem::Vector3D<long double> vec {1.0l, 2.0l, 3.0l};
 
     long double counter {};
 
@@ -269,14 +253,13 @@ GTEST_TEST(testContainerFunctions, theFillMemberFunctionSetsAllElementsToTheSame
         ASSERT_EQ(3.14l, elem);
 }
 
-//! \test Testing the \c CppUtils::Math::Vector3D<> operations
 GTEST_TEST(testContainerFunctions, theSwapMemberFunctionSwapsAllElementsOfTwoVector3Ds)
 {
-    Vector3D<long double> vec1 {1.0l, 2.0l, 3.0l};
-    Vector3D<long double> vec2 {6.0l, 4.0l, 2.0l};
+    DryChem::Vector3D<long double> vec1 {1.0l, 2.0l, 3.0l};
+    DryChem::Vector3D<long double> vec2 {6.0l, 4.0l, 2.0l};
 
-    Vector3D<long double> copyVec1 {vec1};
-    Vector3D<long double> copyVec2 {vec2};
+    DryChem::Vector3D<long double> copyVec1 {vec1};
+    DryChem::Vector3D<long double> copyVec2 {vec2};
 
     vec1.swap(vec2);
 
@@ -287,10 +270,9 @@ GTEST_TEST(testContainerFunctions, theSwapMemberFunctionSwapsAllElementsOfTwoVec
     }
 }
 
-//! \test Testing the \c CppUtils::Math::Vector3D<> tuple-like API with structured bindings
 GTEST_TEST(testContainerFunctions, ourTupleLikeAPIProvidesReadAccessToTheElementsViaStructuredBindings)
 {
-    Vector3D<long double> vec {0.0l, 1.2l, 3.14l};
+    DryChem::Vector3D<long double> vec {0.0l, 1.2l, 3.14l};
     auto [x, y, z] = vec;
 
     ASSERT_EQ(x, vec[0]);
@@ -298,10 +280,9 @@ GTEST_TEST(testContainerFunctions, ourTupleLikeAPIProvidesReadAccessToTheElement
     ASSERT_EQ(z, vec[2]);
 }
 
-//! \test Testing the \c CppUtils::Math::Vector3D<> tuple-like API with structured bindings
 GTEST_TEST(testContainerFunctions, ourTupleLikeAPIProvidesReadAndWriteAccessToTheElementsViaStructuredBindings)
 {
-    Vector3D<long double> vec {0.0l, 1.2l, 3.14l};
+    DryChem::Vector3D<long double> vec {0.0l, 1.2l, 3.14l};
 
     auto&& [x, y, z] = vec;
 

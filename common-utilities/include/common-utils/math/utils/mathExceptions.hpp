@@ -6,13 +6,14 @@
 // Date: 10/26/2020-12:50:56
 // Description: Exception classes specifically made for errors that could arrise in math-related functions
 
-#ifndef COMMON_UTILITIES_MATHEXCEPTIONS_HPP
-#define COMMON_UTILITIES_MATHEXCEPTIONS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_MATHEXCEPTIONS_HPP
+#define DRYCHEM_COMMON_UTILITIES_MATHEXCEPTIONS_HPP
 
 #include <cstddef>
 #include <string>
 
-#include "errors.hpp"
+#include "common-utils/errors/exceptions/fatalException.hpp"
+#include "common-utils/errors/utils/errorTypes.hpp"
 
 namespace CppUtils::Math
 {
