@@ -11,7 +11,8 @@ endif()
 
 
 ### Libraries / Executables ###
-list(APPEND LIBRARIES cpp-units/include/cpp-units PARENT_SCOPE)
+list(APPEND LIBRARIES cpp-units/include/cpp-units)
+set(LIBRARIES ${LIBRARIES} PARENT_SCOPE)
 
 if (units_build_samples)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${DryChem_BINARY_DIR}/bin/samples)

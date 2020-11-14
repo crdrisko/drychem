@@ -105,7 +105,7 @@ if (utils_build_tests OR units_build_tests)
     if (NOT ${GTest_FOUND})
         ## If googletest isn't installed or can't be found, download it from github ##
         DryChemExternalDownload(PROJECT googletest
-                                 REPOSITORY "https://github.com/google/googletest.git")
+                                REPOSITORY "https://github.com/google/googletest.git")
 
         set(GTEST_LIBRARIES gtest)
         set(GTEST_INCLUDE_DIRS "${gtest_SOURCE_DIR}/include")
