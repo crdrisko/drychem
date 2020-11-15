@@ -10,8 +10,8 @@
 // Note: The internal implementation details associated with this API should not be used in any
 //   user program as they are subject to change at any time without warning.
 
-#ifndef DRYCHEM_COMMON_UTILITIES_UTILITIES_HPP
-#define DRYCHEM_COMMON_UTILITIES_UTILITIES_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_UTILITIES_HPP
+#define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_UTILITIES_HPP
 
 #include "utilities/operators/comparisonOperators.hpp"
 #include "utilities/operators/potentiallyEmptyBaseClass.hpp"

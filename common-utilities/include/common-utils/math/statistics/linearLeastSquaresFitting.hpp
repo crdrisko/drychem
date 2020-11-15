@@ -6,8 +6,8 @@
 // Date: 10/26/2020-11:46:29
 // Description: Function to perform a linear least-squares fitting for the supplied inputs
 
-#ifndef DRYCHEM_COMMON_UTILITIES_LINEARLEASTSQUARESFITTING_HPP
-#define DRYCHEM_COMMON_UTILITIES_LINEARLEASTSQUARESFITTING_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_STATISTICS_LINEARLEASTSQUARESFITTING_HPP
+#define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_STATISTICS_LINEARLEASTSQUARESFITTING_HPP
 
 #include <cstddef>
 #include <iterator>
@@ -20,9 +20,15 @@ namespace CppUtils::Math
 {
     namespace details
     {
-        //! An aggregate structure that can be used as the return type of the linearLeastSquaresFitting<>() function template
+        /*!
+         * An aggregate structure that can be used as the return type of the \c linearLeastSquaresFitting<>()
+         *  function template.
+         *
+         * \note We hide the return type in the \c details namespace so the user is encouraged to use
+         *       structured binding as the way to return from \c linearLeastSquaresFitting<>().
+         */
         template<typename T_slope, typename T_intercept = T_slope, typename T_variance  = T_slope,
-                typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<T_slope>,
+                 typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<T_slope>,
                                                                 std::is_default_constructible<T_intercept>,
                                                                 std::is_default_constructible<T_variance>>>>
         struct LinearLeastSquaresResult
@@ -95,7 +101,7 @@ namespace CppUtils::Math
             ++y_iter;
         }
 
-        results.slope = slope_numerator / slope_denominator;
+        results.slope     = slope_numerator / slope_denominator;
         results.intercept = y_average - (results.slope * x_average);
 
         Tyy var_numerator {};

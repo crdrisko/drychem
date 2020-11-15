@@ -9,18 +9,15 @@ The math library consists of a number of different functions and classes related
   - [Calculus](#Calculus)
   - [Containers](#Containers)
   - [Statistics](#Statistics)
-  - [Traits](#Traits)
   - [Math Utilities](#Math-Utilities)
 - [Usage](#Usage)
 
 ## Getting Started
 
-The following lines of code can be included in any user project to provide access to the math library:
+All the functions and classes belonging to the math library are wrapped in the namespace `DryChem`. Alternatively, these functions and classes also have their own nested namespace in the `CppUtils` namespace, which can be called as `CppUtils::Math`. While either can be used, `DryChem` is preferred to provide a uniform interface for all portions of the library. The following line can be included in any user project to provide access to the math library:
 
 ```C++
 #include <common-utils/math.hpp>
-
-using namespace CppUtils::Math;
 ```
 
 ## Features

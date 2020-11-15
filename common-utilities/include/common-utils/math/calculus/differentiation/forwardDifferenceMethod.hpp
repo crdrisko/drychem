@@ -6,8 +6,8 @@
 // Date: 11/13/2020-10:53:58
 // Description: Approximating the derivative of a function using the forward difference method
 
-#ifndef DRYCHEM_COMMON_UTILITIES_FORWARDDIFFERENCEMETHOD_HPP
-#define DRYCHEM_COMMON_UTILITIES_FORWARDDIFFERENCEMETHOD_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_CALCULUS_DIFFERENTIATION_FORWARDDIFFERENCEMETHOD_HPP
+#define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_CALCULUS_DIFFERENTIATION_FORWARDDIFFERENCEMETHOD_HPP
 
 #include <cstddef>
 #include <iterator>
@@ -77,6 +77,6 @@ namespace CppUtils::Math
     {
         return forwardDifferenceMethod(x.begin(), x.end(), y.begin(), y.end());
     }
-}
+}   // namespace CppUtils::Math
 
 #endif

@@ -6,8 +6,8 @@
 // Date: 10/26/2020-12:50:56
 // Description: Exception classes specifically made for errors that could arrise in math-related functions
 
-#ifndef DRYCHEM_COMMON_UTILITIES_MATHEXCEPTIONS_HPP
-#define DRYCHEM_COMMON_UTILITIES_MATHEXCEPTIONS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_UTILS_MATHEXCEPTIONS_HPP
+#define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_UTILS_MATHEXCEPTIONS_HPP
 
 #include <cstddef>
 #include <string>

@@ -6,15 +6,14 @@
 // Date: 10/28/2020-07:58:30
 // Description: Provides ~100% unit test coverage over the approximate integration methods
 
-#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTINTEGRATIONMETHODS_HPP
-#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTINTEGRATIONMETHODS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_LIBS_MATH_TESTS_TESTCALCULUS_TESTINTEGRATIONMETHODS_HPP
+#define DRYCHEM_COMMON_UTILITIES_LIBS_MATH_TESTS_TESTCALCULUS_TESTINTEGRATIONMETHODS_HPP
 
 #include <cstddef>
 #include <vector>
 
+#include <common-utils/math.hpp>
 #include <gtest/gtest.h>
-
-#include "common-utils/math.hpp"
 
 GTEST_TEST(testIntegrationMethods, theTrapzMethodCanBeUsedInCompileTimeCalculations)
 {

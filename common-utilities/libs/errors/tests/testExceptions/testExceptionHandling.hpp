@@ -6,17 +6,15 @@
 // Date: 08/27/2020-12:07:48
 // Description: Provides ~100% unit test coverage over all exception handing functions
 
-#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTEXCEPTIONHANDLING_HPP
-#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTEXCEPTIONHANDLING_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_LIBS_ERRORS_TESTS_TESTEXCEPTIONS_TESTEXCEPTIONHANDLING_HPP
+#define DRYCHEM_COMMON_UTILITIES_LIBS_ERRORS_TESTS_TESTEXCEPTIONS_TESTEXCEPTIONHANDLING_HPP
 
 #include <exception>
 #include <iostream>
-#include <new>
 #include <string>
 
+#include <common-utils/errors.hpp>
 #include <gtest/gtest.h>
-
-#include "common-utils/errors.hpp"
 
 GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAStdException)
 {
@@ -26,7 +24,7 @@ GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAStdException)
             {
                 try
                 {
-                    throw std::bad_alloc();
+                    throw std::exception();
                 }
                 catch (const std::exception& except)
                 {
@@ -43,7 +41,7 @@ GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAStdException)
                 except.handleErrorWithMessage();
             }
         },
-        "YourProgramName Fatal Error:\n\tAn exception was thrown from std::bad_alloc\n");
+        "YourProgramName Fatal Error:\n\tAn exception was thrown from std::exception\n");
 }
 
 GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAFatalException)
@@ -111,7 +109,7 @@ GTEST_TEST(testExceptionHandling, derivedExceptionClassIsCaughtByParentClass)
     }
 
     std::string actualOutput = testing::internal::GetCapturedStderr();
-    ASSERT_EQ(actualOutput, "(testExceptionHandling.hpp: 104)\n\tLet's throw a non-fatal warning.\n");
+    ASSERT_EQ(actualOutput, "(testExceptionHandling.hpp: 102)\n\tLet's throw a non-fatal warning.\n");
 }
 
 #endif

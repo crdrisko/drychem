@@ -12,12 +12,10 @@ The error handling library of the Common-Utilities project consists of functions
 
 ## Getting Started
 
-The following lines of code can be included in any user project to provide access to the errors library:
+All the functions and classes belonging to the errors library are wrapped in the namespace `DryChem`. Alternatively, these functions and classes also have their own nested namespace in the `CppUtils` namespace, which can be called as `CppUtils::Errors`. While either can be used, `DryChem` is preferred to provide a uniform interface for all portions of the library. The following line can be included in any user project to provide access to the errors library:
 
 ```C++
 #include <common-utils/errors.hpp>
-
-using namespace CppUtils::Errors;
 ```
 
 ## Features

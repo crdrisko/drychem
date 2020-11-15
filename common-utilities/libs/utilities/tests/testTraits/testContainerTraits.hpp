@@ -6,8 +6,8 @@
 // Date: 09/22/2020-13:02:50
 // Description: Provides ~100% unit test coverage over all type traits relating to the classification of containers
 
-#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTCONTAINERTRAITS_HPP
-#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTCONTAINERTRAITS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_LIBS_UTILITIES_TESTS_TESTTRAITS_TESTCONTAINERTRAITS_HPP
+#define DRYCHEM_COMMON_UTILITIES_LIBS_UTILITIES_TESTS_TESTTRAITS_TESTCONTAINERTRAITS_HPP
 
 #include <array>
 #include <deque>
@@ -22,9 +22,8 @@
 #include <unordered_set>
 #include <vector>
 
+#include <common-utils/utilities.hpp>
 #include <gtest/gtest.h>
-
-#include "common-utils/utilities.hpp"
 
 GTEST_TEST(testContainerTraits, allContainersButStdArrayAreAllocatorAwareContainers)
 {

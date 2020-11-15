@@ -22,13 +22,17 @@ option(utils_exclude_scripts "Builds appropriate libraries while ignoring the sc
 if (chem_format_codebase)
     ## Run clang-format on all code except the files passed as arguments with the '-i' flag ##
     execute_process(COMMAND bash cmake/scripts/format-codebase.sh
-                                    -i common-utilities/include/common-utils/math/*
+                                    -i common-utilities/include/common-utils/math/calculus/differentiation/*
+                                    -i common-utilities/include/common-utils/math/calculus/integration.hpp
+                                    -i common-utilities/include/common-utils/math/statistics/*
+                                    -i common-utilities/include/common-utils/math/utils/mathExceptions.hpp
                                     -i common-utilities/include/common-utils/strings/utils/tokenizer.hpp
+                                    -i common-utilities/include/common-utils/utilities/traits/containerTraits/*
                                     -i common-utilities/libs/utilities/samples/comparableExample.cpp
                                     -i cpp-units/include/cpp-units/math/basicMath.hpp
                                     -i cpp-units/include/cpp-units/types/physicalQuantity.hpp
                                     -i cpp-units/include/cpp-units/physicalQuantities.hpp
-                    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+                    WORKING_DIRECTORY ${DryChem_SOURCE_DIR}
                     OUTPUT_QUIET)
 endif()
 

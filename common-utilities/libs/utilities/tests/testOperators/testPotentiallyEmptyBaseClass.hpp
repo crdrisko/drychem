@@ -6,20 +6,13 @@
 // Date: 09/18/2020-09:02:30
 // Description: Provides ~100% unit test coverage over the potentially empty base class utility
 
-#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTPOTENTIALLYEMPTYBASECLASS_HPP
-#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTPOTENTIALLYEMPTYBASECLASS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_LIBS_UTILITIES_TESTS_TESTOPERATORS_TESTPOTENTIALLYEMPTYBASECLASS_HPP
+#define DRYCHEM_COMMON_UTILITIES_LIBS_UTILITIES_TESTS_TESTOPERATORS_TESTPOTENTIALLYEMPTYBASECLASS_HPP
 
+#include <common-utils/utilities.hpp>
 #include <gtest/gtest.h>
 
-#include "common-utils/utilities.hpp"
-
-namespace CppUtils::Operators::details::testing
-{
-    //! The EBCO and CRTP used together for an empty class
-    class EmptyDerived : public DryChem::PotentiallyEmptyBaseClass<EmptyDerived>
-    {
-    };
-}   // namespace CppUtils::Operators::details::testing
+#include "../details/operatorDetails.hpp"
 
 GTEST_TEST(testPotentiallyEmptyBaseClass, anEmptyBaseClassHasANonZeroSize)
 {

@@ -6,8 +6,8 @@
 // Date: 10/28/2020-07:49:21
 // Description:Some advanced mathematical functions relating to approximate integration methods
 
-#ifndef DRYCHEM_COMMON_UTILITIES_INTEGRATION_HPP
-#define DRYCHEM_COMMON_UTILITIES_INTEGRATION_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_CALCULUS_INTEGRATION_HPP
+#define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_CALCULUS_INTEGRATION_HPP
 
 #include <cstddef>
 #include <iterator>

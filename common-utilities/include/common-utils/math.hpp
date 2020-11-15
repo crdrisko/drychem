@@ -10,8 +10,8 @@
 // Note: The internal implementation details associated with this API should not be used in any
 //   user program as they are subject to change at any time without warning.
 
-#ifndef DRYCHEM_COMMON_UTILITIES_MATH_HPP
-#define DRYCHEM_COMMON_UTILITIES_MATH_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_HPP
+#define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_HPP
 
 #include "math/calculus/differentiation.hpp"
 #include "math/calculus/integration.hpp"
@@ -30,7 +30,7 @@ namespace DryChem
         {
             using namespace ::CppUtils::Math;
         }
-    }
+    }   // namespace CppUtils
 }   // namespace DryChem
 
 #endif

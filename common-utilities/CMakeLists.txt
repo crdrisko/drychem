@@ -18,7 +18,7 @@ if (utils_build_samples)
 
     add_executable(fibonacciExample         libs/errors/samples/fibonacciExample.cpp)
     add_executable(finiteDifferencesExample libs/math/samples/finiteDifferencesExample.cpp)
-    # add_executable(***Example               libs/strings/samples/***Example.cpp)
+    add_executable(ciTokenizerExample       libs/strings/samples/ciTokenizerExample.cpp)
     add_executable(comparableExample        libs/utilities/samples/comparableExample.cpp)
 
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${DryChem_BINARY_DIR}/bin)

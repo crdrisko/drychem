@@ -6,16 +6,15 @@
 // Date: 09/28/2020-11:46:58
 // Description: Provides ~100% unit test coverage over all basic mathematical functions
 
-#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTBASICMATHFUNCTIONS_HPP
-#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTBASICMATHFUNCTIONS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_LIBS_MATH_TESTS_TESTUTILITIES_TESTBASICMATHFUNCTIONS_HPP
+#define DRYCHEM_COMMON_UTILITIES_LIBS_MATH_TESTS_TESTUTILITIES_TESTBASICMATHFUNCTIONS_HPP
 
 #include <cstddef>
 #include <string>
 #include <vector>
 
+#include <common-utils/math.hpp>
 #include <gtest/gtest.h>
-
-#include "common-utils/math.hpp"
 
 GTEST_TEST(testBasicMathFunctions, isEvenReturnCorrectBooleansForIntegralTypes)
 {

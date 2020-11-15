@@ -6,14 +6,14 @@
 // Date: 10/26/2020-11:56:41
 // Description: Provides ~100% unit test coverage over the linear least squares fitting function
 
-#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTLINEARLEASTSQUARESFITTING_HPP
-#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTLINEARLEASTSQUARESFITTING_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_LIBS_MATH_TESTS_TESTSTATISTICS_TESTLINEARLEASTSQUARESFITTING_HPP
+#define DRYCHEM_COMMON_UTILITIES_LIBS_MATH_TESTS_TESTSTATISTICS_TESTLINEARLEASTSQUARESFITTING_HPP
 
+#include <cmath>
 #include <vector>
 
+#include <common-utils/math.hpp>
 #include <gtest/gtest.h>
-
-#include "common-utils/math.hpp"
 
 GTEST_TEST(testLinearLeastSquaresFitting, linearLeastSquaresFittingReturnsMultipleValuesInAStruct)
 {

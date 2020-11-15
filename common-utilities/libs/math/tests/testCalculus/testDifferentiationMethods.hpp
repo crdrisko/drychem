@@ -6,15 +6,14 @@
 // Date: 10/28/2020-07:58:23
 // Description: Provides ~100% unit test coverage over the approximate differentiation methods
 
-#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTDIFFERENTIATIONMETHODS_HPP
-#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTDIFFERENTIATIONMETHODS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_LIBS_MATH_TESTS_TESTCALCULUS_TESTDIFFERENTIATIONMETHODS_HPP
+#define DRYCHEM_COMMON_UTILITIES_LIBS_MATH_TESTS_TESTCALCULUS_TESTDIFFERENTIATIONMETHODS_HPP
 
 #include <cstddef>
 #include <vector>
 
+#include <common-utils/math.hpp>
 #include <gtest/gtest.h>
-
-#include "common-utils/math.hpp"
 
 GTEST_TEST(testDifferentiationMethods, forwardDifferenceMethodReturnsAVectorWithASizeOneLessThanTheInputs)
 {

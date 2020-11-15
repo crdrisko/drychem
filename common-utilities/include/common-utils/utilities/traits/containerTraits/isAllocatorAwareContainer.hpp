@@ -6,8 +6,8 @@
 // Date: 09/23/2020-07:41:26
 // Description: A type trait for determining whether a type T meets the requirements of an allocator-aware container
 
-#ifndef DRYCHEM_COMMON_UTILITIES_ISALLOCATORAWARECONTAINER_HPP
-#define DRYCHEM_COMMON_UTILITIES_ISALLOCATORAWARECONTAINER_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_UTILITIES_TRAITS_CONTAINERTRAITS_ISALLOCATORAWARECONTAINER_HPP
+#define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_UTILITIES_TRAITS_CONTAINERTRAITS_ISALLOCATORAWARECONTAINER_HPP
 
 #include <type_traits>
 
@@ -17,7 +17,7 @@ namespace CppUtils::Traits
 {
     /*!
      * A type trait to determine whether or not the supplied container is an allocator aware container.
-     * 
+     *
      * \tparam (unnamed) A placeholder parameter for the container we are checking
      * \tparam (unnamed) A placeholder parameter that serves as our default state (i.e. false)
      */
@@ -27,9 +27,9 @@ namespace CppUtils::Traits
     };
 
     /*!
-     * A partial specialization of our \c is_allocator_aware_container type trait for when  
+     * A partial specialization of our \c is_allocator_aware_container type trait for when
      *  the given container meets the requirements of an allocator aware container.
-     * 
+     *
      * \tparam T The container that may or may not meet the requirements of an allocator aware container
      */
     template<typename T>

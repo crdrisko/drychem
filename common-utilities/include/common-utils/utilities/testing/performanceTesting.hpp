@@ -6,8 +6,8 @@
 // Date: 10/20/2020-12:09:44
 // Description: A function that can be used to time other functions
 
-#ifndef DRYCHEM_COMMON_UTILITIES_PERFORMANCETESTING_HPP
-#define DRYCHEM_COMMON_UTILITIES_PERFORMANCETESTING_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_UTILITIES_TESTING_PERFORMANCETESTING_HPP
+#define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_UTILITIES_TESTING_PERFORMANCETESTING_HPP
 
 #include <chrono>
 #include <functional>
@@ -18,7 +18,13 @@ namespace CppUtils::Testing
 {
     namespace details
     {
-        //! An aggregate structure that can be used as the return type of the \c timeAndInvoke<>() function template
+        /*! 
+         * An aggregate structure that can be used as the return type of the \c timeAndInvoke<>() 
+         *  function template.
+         * 
+         * \note We hide the return type in the \c details namespace so the user is encouraged to use
+         *       structured binding as the way to return from \c timeAndInvoke<>().
+         */
         template<typename F, typename... TArgs>
         struct ReturnType
         {
