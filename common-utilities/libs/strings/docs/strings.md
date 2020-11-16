@@ -24,7 +24,7 @@ All the functions and classes belonging to the strings library are wrapped in th
 
 - [Case-Insensitive Strings:](../../../include/common-utils/strings/traits/ciString.hpp)
 
-  ...
+  Because the standard library designed the `std::basic_string<>` to be easily specialized with user-defined character traits, we made use of that here by creating case-insensitive character traits. Combining these traits with the `std::basic_string<>`, we can create a string that is also case-insensitive. Whenever the characters in a `ci_string` are compared, they are first converted to uppercase and then compared. For example a comparison between the letters 'c' and 'C' would result in a match.
 
 ---
 
@@ -32,7 +32,7 @@ All the functions and classes belonging to the strings library are wrapped in th
 
 - [Lexical Casting:](../../../include/common-utils/strings/utils/lexical_cast.hpp)
 
-  ...
+  In order to allow the `Tokenizer<>` class (see below) to convert strings to other types when splitting on delimiters, a function needed to be able to convert the string to the correct type, preferable by not doing too much more work on built-in types where functions like this already exist. Thus, the `lexical_cast<>` function template was born. For built-in types, the standard library functions are used (i.e. `std::stold()`, `std::stoi()`, etc.), whereas for everything else, the string we are converting from is placed into an input stream and streamed into the type we want. This only works if the type we are trying to convert to has a overloaded `operator>>()` function and could result in some error messages if the stream fails. The testing files show some examples of how to use this in practice.
 
 - [String Function Wrappers:](../../../include/common-utils/strings/utils/stringUtils.hpp)
 
@@ -53,7 +53,7 @@ All the functions and classes belonging to the strings library are wrapped in th
 
 - [Tokenizer:](../../../include/common-utils/strings/utils/tokenizer.hpp)
 
-  ...
+  The `Tokenizer<>` class template is likely the feature we will use the most from this strings library. The main idea behind it is to take an input string, either the full string or a range defined by iterators, and return the individual tokens that exist between specified delimiters. By default these delimiters are spaces, tabs, and newlines but they can be any set of characters the user needs. The one public member function of the `Tokenizer<>` class is the `split<>()` function template. It is templated because it can return any container the user desires but defaults to a `std::vector<std::basic_string<char, CharTraits>>` where `CharTraits` are what the `Tokenizer<>` class is templated on. The only restrictions to what type the user can return is that it must be an allocator-aware container that does not have a `mapped_type` member. Returning a container of a type other than a string is fine as well, as long as type can be lexically cast from a string to the desired type (see above).
 
 ---
 

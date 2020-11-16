@@ -8,7 +8,7 @@ option(chem_build_all       "Builds all libraries, unit tests, and code samples.
 option(chem_build_tests     "Builds all libraries and unit tests." OFF)
 option(chem_build_samples   "Builds all libraries and code samples." OFF)
 option(chem_enable_coverage "Builds all libraries, unit tests, and enables coverage options." OFF)
-option(chem_format_codebase "Builds appropriate libraries while also formatting the code." OFF)
+option(chem_format_codebase "Builds specified libraries while also formatting the code." OFF)
 
 option(units_build_all       "Builds cpp-units library, corresponding unit tests, and corresponding code samples." OFF)
 option(units_build_tests     "Builds cpp-units library and corresponding unit tests." OFF)
@@ -17,7 +17,7 @@ option(units_build_samples   "Builds cpp-units library and corresponding code sa
 option(utils_build_all       "Builds common-utils library, corresponding unit tests, and corresponding code samples." OFF)
 option(utils_build_tests     "Builds common-utils library and corresponding unit tests." OFF)
 option(utils_build_samples   "Builds common-utils library and corresponding code samples." OFF)
-option(utils_exclude_scripts "Builds appropriate libraries while ignoring the scripts directory." OFF)
+option(utils_exclude_scripts "Builds specified libraries while ignoring the scripts directory." OFF)
 
 if (chem_format_codebase)
     ## Run clang-format on all code except the files passed as arguments with the '-i' flag ##

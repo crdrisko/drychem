@@ -55,7 +55,7 @@ namespace CppUtils::Math
      * \param x_end        The end of the range of x values to use
      * \param y_begin      The beginning of the range of y values to use
      * \param y_end        The end of the range of y values to use
-     * \param initialValue An optional value for use as the first point in the returned vector
+     * \param initialValue A value for use as the first point in the returned vector (optional)
      *
      * \returns A vector with a size of one less than the input containers, however if the \c initialValue
      *          parameter is set, the size of the output will be the same as than of the input.

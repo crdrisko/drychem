@@ -9,11 +9,12 @@
 #ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_STRINGS_UTILS_TOKENIZER_HPP
 #define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_STRINGS_UTILS_TOKENIZER_HPP
 
+#include <algorithm>
 #include <forward_list>
 #include <iterator>
+#include <optional>
 #include <string>
 #include <type_traits>
-#include <utility>
 #include <vector>
 
 #include "common-utils/strings/utils/lexicalCast.hpp"
@@ -68,9 +69,10 @@ namespace CppUtils::Strings
         using const_iterator  = typename std::basic_string<char, CharTraits>::const_iterator;
 
     private:
-        const_iterator str_begin;
+        const_iterator str_current;
         const_iterator str_end;
         value_type delimiters;
+        std::optional<value_type> keepDelimiters;
 
         /*!
          * A private helper function that is essentially just a wrapper for \c foundSubstr().
@@ -83,19 +85,24 @@ namespace CppUtils::Strings
          * A private helper function which iterates through the remaining string looking for
          *  the next token.
          *
-         * \returns The next token we are looking for
+         * \returns The next token we are looking for.
          */
         constexpr value_type nextToken()
         {
             value_type str {};
 
-            if (str_begin != str_end)
+            if (str_current != str_end)
             {
-                while (str_begin != str_end && isDelimiter(*str_begin))
-                    ++str_begin;
+                while (str_current != str_end && isDelimiter(*str_current))
+                {
+                    if (keepDelimiters && foundSubstr(*str_current, keepDelimiters.value()))
+                        return value_type {*str_current++};
 
-                while (str_begin != str_end && !isDelimiter(*str_begin))
-                    str += value_type {*str_begin++};
+                    ++str_current;
+                }
+
+                while (str_current != str_end && !isDelimiter(*str_current))
+                    str += value_type {*str_current++};
             }
 
             return str;
@@ -105,25 +112,25 @@ namespace CppUtils::Strings
         /*!
          * A constructor allowing for the user to pass a range to iterate through.
          *
-         * \param begin  The start of our sequence to iterate over
-         * \param end    The end of our sequence to iterate over
-         * \param delims The delimiters we are using as our splitting criterion
+         * \param begin      The start of our sequence to iterate over
+         * \param end        The end of our sequence to iterate over
+         * \param delims     The delimiters we are using as our splitting criterion
+         * \param keepDelims The delimiters to include as tokens (optional)
          */
-        constexpr Tokenizer(const_iterator begin, const_iterator end, const_reference delims = " \t\n")
-            : str_begin {begin}, str_end {end}, delimiters {delims}
-        {
-        }
+        constexpr Tokenizer(const_iterator begin, const_iterator end, const_reference delims = " \t\n",
+            std::optional<value_type> keepDelims = std::nullopt)
+                : str_current {begin}, str_end {end}, delimiters {delims}, keepDelimiters {keepDelims} {}
 
         /*!
          * Delegating constructor taking a full string instead of just a range.
          *
-         * \param str    The full string we will be splitting
-         * \param delims The delimiters we are using as our splitting criterion
+         * \param str        The full string we will be splitting
+         * \param delims     The delimiters we are using as our splitting criterion
+         * \param keepDelims The delimiters to include as tokens (optional)
          */
-        explicit constexpr Tokenizer(const_reference str, const_reference delims = " \t\n")
-            : Tokenizer {str.begin(), str.end(), delims}
-        {
-        }
+        explicit constexpr Tokenizer(const_reference str, const_reference delims = " \t\n",
+            std::optional<value_type> keepDelims = std::nullopt)
+                : str_current {str.begin()}, str_end {str.end()}, delimiters {delims}, keepDelimiters {keepDelims} {}
 
         /*!
          * The main function we call to split our input string into separate tokens.
@@ -137,36 +144,34 @@ namespace CppUtils::Strings
          */
         template<typename Container = std::vector<value_type>, typename T = typename Container::value_type,
                  typename = std::enable_if_t<std::conjunction_v<Traits::is_allocator_aware_container<Container>,
-                std::negation<details::has_mapped_type<Container>>>>>
+                                                                std::negation<details::has_mapped_type<Container>>>>>
         constexpr Container split()
         {
             Container tokens;
 
-            if (str_begin != str_end)
+            if (str_current != str_end)
             {
                 if constexpr (std::is_same_v<Container, std::forward_list<T>>)
                 {
                     std::front_insert_iterator<Container> tokensIter {tokens};
 
-                    while (str_begin != str_end)
-                    {
+                    std::for_each(str_current, str_end, [&](const auto) {
                         auto str = this->nextToken();
 
                         if (!str.empty())
                             *tokensIter++ = lexical_cast<T>(str);
-                    }
+                    });
                 }
                 else
                 {
                     std::insert_iterator<Container> tokensIter {tokens, tokens.begin()};
 
-                    while (str_begin != str_end)
-                    {
+                    std::for_each(str_current, str_end, [&](const auto) {
                         value_type str = this->nextToken();
 
                         if (!str.empty())
                             *tokensIter++ = lexical_cast<T>(str);
-                    }
+                    });
                 }
             }
 
@@ -176,10 +181,13 @@ namespace CppUtils::Strings
 
     /*!
      * Declaration guide for the Tokenizer<> class template so we can still deduce the character
-     *  traits when the delimiters is passed as a character array.
+     *  traits when the other arguments are passed as character arrays.
+     *
+     * \tparam CharTraits The character traits we are trying to deduce
+     * \tparam TArgs      Variadic template parameters representing the types of delimiters
      */
-    template<typename CharTraits>
-    Tokenizer(const std::basic_string<char, CharTraits>&, const char*) -> Tokenizer<CharTraits>;
+    template<typename CharTraits, typename... TArgs>
+    Tokenizer(const std::basic_string<char, CharTraits>&, TArgs...) -> Tokenizer<CharTraits>;
 }   // namespace CppUtils::Strings
 
 #endif

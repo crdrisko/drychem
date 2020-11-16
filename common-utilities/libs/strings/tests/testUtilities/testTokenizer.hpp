@@ -56,42 +56,80 @@ GTEST_TEST(testTokenizer, memberTypesForATokenizerAreCorrect)
 
 GTEST_TEST(testTokenizer, ctadWorksForTheStringConstructorOfAStdStringTokenizer)
 {
+    using DryChem::Tokenizer;
+
     std::string str {"Hello, World!"};
     std::string punctuation {" .,;:'\"?!"};
+    std::string keepChars {",!"};
 
-    DryChem::Tokenizer tokenizer1 {str};
-    DryChem::Tokenizer tokenizer2 {str, punctuation};
-    DryChem::Tokenizer tokenizer3 {str, punctuation.c_str()};
-    DryChem::Tokenizer<std::char_traits<char>> tokenizer4 {str.begin(), str.end() - 6};
-    DryChem::Tokenizer<std::char_traits<char>> tokenizer5 {str.begin(), str.end() - 6, punctuation};
-    DryChem::Tokenizer<std::char_traits<char>> tokenizer6 {str.begin() + 5, str.end(), punctuation.c_str()};
+    Tokenizer tokenizer1 {str};
+    Tokenizer tokenizer2 {str, punctuation};
+    Tokenizer tokenizer3 {str, punctuation.c_str()};
+    Tokenizer tokenizer4 {str, punctuation, keepChars};
+    Tokenizer tokenizer5 {str, punctuation.c_str(), keepChars};
+    Tokenizer tokenizer6 {str, punctuation, keepChars.c_str()};
+    Tokenizer tokenizer7 {str, punctuation.c_str(), keepChars.c_str()};
+    Tokenizer<std::char_traits<char>> tokenizer8 {str.begin(), str.end() - 6};
+    Tokenizer<std::char_traits<char>> tokenizer9 {str.begin(), str.end() - 6, punctuation};
+    Tokenizer<std::char_traits<char>> tokenizer10 {str.begin() + 5, str.end(), punctuation.c_str()};
+    Tokenizer<std::char_traits<char>> tokenizer11 {str.begin(), str.end() - 6, punctuation, keepChars};
+    Tokenizer<std::char_traits<char>> tokenizer12 {str.begin(), str.end() - 6, punctuation.c_str(), keepChars};
+    Tokenizer<std::char_traits<char>> tokenizer13 {str.begin() + 5, str.end(), punctuation, keepChars.c_str()};
+    Tokenizer<std::char_traits<char>> tokenizer14 {str.begin() + 6, str.end(), punctuation.c_str(), keepChars.c_str()};
 
     ASSERT_EQ(tokenizer1.split(), (std::vector<std::string> {"Hello,", "World!"}));
     ASSERT_EQ(tokenizer2.split(), (std::vector<std::string> {"Hello", "World"}));
     ASSERT_EQ(tokenizer3.split(), (std::vector<std::string> {"Hello", "World"}));
-    ASSERT_EQ(tokenizer4.split(), (std::vector<std::string> {"Hello,"}));
-    ASSERT_EQ(tokenizer5.split(), (std::vector<std::string> {"Hello"}));
-    ASSERT_EQ(tokenizer6.split(), (std::vector<std::string> {"World"}));
+    ASSERT_EQ(tokenizer4.split(), (std::vector<std::string> {"Hello", ",", "World", "!"}));
+    ASSERT_EQ(tokenizer5.split(), (std::vector<std::string> {"Hello", ",", "World", "!"}));
+    ASSERT_EQ(tokenizer6.split(), (std::vector<std::string> {"Hello", ",", "World", "!"}));
+    ASSERT_EQ(tokenizer7.split(), (std::vector<std::string> {"Hello", ",", "World", "!"}));
+    ASSERT_EQ(tokenizer8.split(), (std::vector<std::string> {"Hello,"}));
+    ASSERT_EQ(tokenizer9.split(), (std::vector<std::string> {"Hello"}));
+    ASSERT_EQ(tokenizer10.split(), (std::vector<std::string> {"World"}));
+    ASSERT_EQ(tokenizer11.split(), (std::vector<std::string> {"Hello", ","}));
+    ASSERT_EQ(tokenizer12.split(), (std::vector<std::string> {"Hello", ","}));
+    ASSERT_EQ(tokenizer13.split(), (std::vector<std::string> {",", "World", "!"}));
+    ASSERT_EQ(tokenizer14.split(), (std::vector<std::string> {"World", "!"}));
 }
 
 GTEST_TEST(testTokenizer, ctadWorksForTheStringConstructorOfACaseInsensitiveTokenizer)
 {
-    DryChem::ci_string ci_str {"HeLlO, wOrLd!"};
-    DryChem::ci_string ci_punctuation {" .,;:'\"?!"};
+    using DryChem::Tokenizer;
 
-    DryChem::Tokenizer ci_tokenizer1 {ci_str};
-    DryChem::Tokenizer ci_tokenizer2 {ci_str, ci_punctuation};
-    DryChem::Tokenizer ci_tokenizer3 {ci_str, ci_punctuation.c_str()};
-    DryChem::Tokenizer<DryChem::ci_char_traits> ci_tokenizer4 {ci_str.begin(), ci_str.end() - 6};
-    DryChem::Tokenizer<DryChem::ci_char_traits> ci_tokenizer5 {ci_str.begin(), ci_str.end() - 6, ci_punctuation};
-    DryChem::Tokenizer<DryChem::ci_char_traits> ci_tokenizer6 {ci_str.begin() + 5, ci_str.end(), ci_punctuation.c_str()};
+    DryChem::ci_string str {"HeLlO, wOrLd!"};
+    DryChem::ci_string punctuation {" .,;:'\"?!"};
+    DryChem::ci_string keepChars {",!"};
 
-    ASSERT_EQ(ci_tokenizer1.split(), (std::vector<DryChem::ci_string> {"hello,", "world!"}));
-    ASSERT_EQ(ci_tokenizer2.split(), (std::vector<DryChem::ci_string> {"hello", "world"}));
-    ASSERT_EQ(ci_tokenizer3.split(), (std::vector<DryChem::ci_string> {"hello", "world"}));
-    ASSERT_EQ(ci_tokenizer4.split(), (std::vector<DryChem::ci_string> {"hello,"}));
-    ASSERT_EQ(ci_tokenizer5.split(), (std::vector<DryChem::ci_string> {"hello"}));
-    ASSERT_EQ(ci_tokenizer6.split(), (std::vector<DryChem::ci_string> {"world"}));
+    Tokenizer tokenizer1 {str};
+    Tokenizer tokenizer2 {str, punctuation};
+    Tokenizer tokenizer3 {str, punctuation.c_str()};
+    Tokenizer tokenizer4 {str, punctuation, keepChars};
+    Tokenizer tokenizer5 {str, punctuation.c_str(), keepChars};
+    Tokenizer tokenizer6 {str, punctuation, keepChars.c_str()};
+    Tokenizer tokenizer7 {str, punctuation.c_str(), keepChars.c_str()};
+    Tokenizer<DryChem::ci_char_traits> tokenizer8 {str.begin(), str.end() - 6};
+    Tokenizer<DryChem::ci_char_traits> tokenizer9 {str.begin(), str.end() - 6, punctuation};
+    Tokenizer<DryChem::ci_char_traits> tokenizer10 {str.begin() + 5, str.end(), punctuation.c_str()};
+    Tokenizer<DryChem::ci_char_traits> tokenizer11 {str.begin(), str.end() - 6, punctuation, keepChars};
+    Tokenizer<DryChem::ci_char_traits> tokenizer12 {str.begin(), str.end() - 6, punctuation.c_str(), keepChars};
+    Tokenizer<DryChem::ci_char_traits> tokenizer13 {str.begin() + 5, str.end(), punctuation, keepChars.c_str()};
+    Tokenizer<DryChem::ci_char_traits> tokenizer14 {str.begin() + 6, str.end(), punctuation.c_str(), keepChars.c_str()};
+
+    ASSERT_EQ(tokenizer1.split(), (std::vector<DryChem::ci_string> {"hello,", "world!"}));
+    ASSERT_EQ(tokenizer2.split(), (std::vector<DryChem::ci_string> {"hello", "world"}));
+    ASSERT_EQ(tokenizer3.split(), (std::vector<DryChem::ci_string> {"hello", "world"}));
+    ASSERT_EQ(tokenizer4.split(), (std::vector<DryChem::ci_string> {"hello", ",", "world", "!"}));
+    ASSERT_EQ(tokenizer5.split(), (std::vector<DryChem::ci_string> {"hello", ",", "world", "!"}));
+    ASSERT_EQ(tokenizer6.split(), (std::vector<DryChem::ci_string> {"hello", ",", "world", "!"}));
+    ASSERT_EQ(tokenizer7.split(), (std::vector<DryChem::ci_string> {"hello", ",", "world", "!"}));
+    ASSERT_EQ(tokenizer8.split(), (std::vector<DryChem::ci_string> {"hello,"}));
+    ASSERT_EQ(tokenizer9.split(), (std::vector<DryChem::ci_string> {"hello"}));
+    ASSERT_EQ(tokenizer10.split(), (std::vector<DryChem::ci_string> {"world"}));
+    ASSERT_EQ(tokenizer11.split(), (std::vector<DryChem::ci_string> {"hello", ","}));
+    ASSERT_EQ(tokenizer12.split(), (std::vector<DryChem::ci_string> {"hello", ","}));
+    ASSERT_EQ(tokenizer13.split(), (std::vector<DryChem::ci_string> {",", "world", "!"}));
+    ASSERT_EQ(tokenizer14.split(), (std::vector<DryChem::ci_string> {"world", "!"}));
 }
 
 GTEST_TEST(testTokenizer, withoutATemplateParameterSplitReturnsAVectorOfStrings)
