@@ -101,7 +101,7 @@ namespace CppUtils::Strings
      * \returns An output string with another type of char_traits
      */
     template<class OutputTraits, class InputTraits>
-    constexpr std::basic_string<char, OutputTraits> traits_cast(const std::basic_string<char, InputTraits> input) noexcept
+    constexpr std::basic_string<char, OutputTraits> traits_cast(const std::basic_string<char, InputTraits>& input) noexcept
     {
         std::basic_string<char, OutputTraits> ouput {input.data(), input.size()};
         return ouput;

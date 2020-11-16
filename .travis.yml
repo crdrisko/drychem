@@ -48,6 +48,6 @@ matrix:
         - make && sudo make install
         - ctest --output-on-failure
         - lcov --directory . --capture --output-file coverage.info
-        - lcov --remove coverage.info '*gtest*' '*/tests/*' '/usr/*' --output-file coverage.info
+        - lcov --remove coverage.info '*gtest*' '*/libs/*' '/usr/*' --output-file coverage.info
         - coveralls -r ../../. --l coverage.info -n
-        - bash <(curl -s https://codecov.io/bash)
+        - bash <(curl -s https://codecov.io/bash) -f "!*/libs/*"
