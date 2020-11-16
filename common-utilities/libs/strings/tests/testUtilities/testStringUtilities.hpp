@@ -20,6 +20,7 @@ GTEST_TEST(testStringUtilities, foundSubstrFunctionCanBeCalledWithStdStrings)
     std::string stringToFind {"This is a test"};
 
     ASSERT_TRUE(DryChem::foundSubstr(stringToFind, stringToSearch));
+    ASSERT_FALSE(DryChem::foundSubstr(stringToSearch, stringToFind));
 }
 
 GTEST_TEST(testStringUtilities, foundSubstrFunctionCanBeCalledWithChars)

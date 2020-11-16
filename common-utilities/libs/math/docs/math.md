@@ -85,7 +85,7 @@ For working examples of how to use the library, refer to the [testing](../tests)
 To build and run the code samples for the math library, one should include the `utils_build_samples=ON` option to the CMake instructions. Similarly, to build and run the unit tests for the individual math functions, one should include the `utils_build_tests=ON` option, as shown in the code below:
 
 ```bash
-cmake ../cpp-units/. -Dutils_build_samples=ON -Dutils_build_tests=ON
+cmake ../drychem/. -Dutils_build_samples=ON -Dutils_build_tests=ON
 make
 
 ## Run the math library's samples ##
