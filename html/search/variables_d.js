@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['temperature_838',['Temperature',['../struct_cpp_units_1_1_dimensionality.html#a541754091cbaa9c2539bd6da1cd6c00d',1,'CppUnits::Dimensionality']]],
-  ['tests_839',['tests',['../_c_make_lists_8txt.html#a9f9d205c4836dc2d1faf5362c4e26462',1,'CMakeLists.txt']]],
-  ['time_840',['time',['../struct_cpp_utils_1_1_testing_1_1details_1_1_return_type.html#a83f9165f6e60522bf405732cd99f8901',1,'CppUtils::Testing::details::ReturnType::time()'],['../struct_cpp_units_1_1_dimensionality.html#addfc594d32d125328321116200a640a8',1,'CppUnits::Dimensionality::Time()']]],
-  ['tolerance_841',['tolerance',['../namespacevalidate.html#ae447c7fc7ad4f8d8868662843b822338',1,'validate']]]
+  ['slope_840',['slope',['../struct_cpp_utils_1_1_math_1_1details_1_1_linear_least_squares_result.html#a05e014581e2bd909c06f8fbe839cb68e',1,'CppUtils::Math::details::LinearLeastSquaresResult']]],
+  ['speedoflight_841',['speedOfLight',['../namespace_cpp_units_1_1_constants.html#a6813521e4369ca791724384bb354de59',1,'CppUnits::Constants']]],
+  ['str_5fcurrent_842',['str_current',['../class_cpp_utils_1_1_strings_1_1_tokenizer.html#a4c1a0875c186ac05fd8d92bae98176cb',1,'CppUtils::Strings::Tokenizer']]],
+  ['str_5fend_843',['str_end',['../class_cpp_utils_1_1_strings_1_1_tokenizer.html#acc031d1d6b9476abee9c5ba9b4af7ffa',1,'CppUtils::Strings::Tokenizer']]]
 ];

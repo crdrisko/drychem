@@ -1,5 +1,8 @@
 var NAVTREEINDEX3 =
 {
+"test_advanced_math_functions_8hpp_source.html":[16,0,2,1,0,0,0,0],
+"test_all_error_functions_8cpp.html":[16,0,1,1,0,2,3],
+"test_all_error_functions_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627":[16,0,1,1,0,2,3,0],
 "test_all_physical_quantity_functions_8cpp.html":[16,0,2,1,1,0,2],
 "test_all_physical_quantity_functions_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627":[16,0,2,1,1,0,2,0],
 "test_all_string_functions_8cpp.html":[16,0,1,1,2,2,3],
@@ -172,7 +175,7 @@ var NAVTREEINDEX3 =
 "testing_details_8hpp_source.html":[16,0,1,1,3,2,0,1],
 "todo.html":[13],
 "tokenizer_8hpp.html":[16,0,1,0,0,2,1,2],
-"tokenizer_8hpp.html#af8d5833f43fecadb736c01a965c5b54f":[16,0,1,0,0,2,1,2,3],
+"tokenizer_8hpp.html#a36e6697317b9df92027e308e163818f9":[16,0,1,0,0,2,1,2,3],
 "tokenizer_8hpp_source.html":[16,0,1,0,0,2,1,2],
 "utilities_8hpp.html":[16,0,1,0,0,7],
 "utilities_8hpp_source.html":[16,0,1,0,0,7],

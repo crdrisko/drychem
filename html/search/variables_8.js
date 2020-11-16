@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['magnitude_823',['magnitude',['../class_cpp_units_1_1_physical_quantity.html#a5aa2449c3650a214533510dc56a38645',1,'CppUnits::PhysicalQuantity']]],
-  ['mass_824',['Mass',['../struct_cpp_units_1_1_dimensionality.html#adf933dd6d9c90ea5739cf3d96fad7ce6',1,'CppUnits::Dimensionality']]],
-  ['message_825',['message',['../struct_cpp_utils_1_1_errors_1_1_error_message.html#a84ccd6463f53a27b0a94b35ce92fcd8e',1,'CppUtils::Errors::ErrorMessage']]]
+  ['length_826',['Length',['../struct_cpp_units_1_1_dimensionality.html#ae43ad160811b0425a16e864842efdfd3',1,'CppUnits::Dimensionality']]],
+  ['linenumber_827',['lineNumber',['../struct_cpp_utils_1_1_errors_1_1_error_message.html#a3dca8edcb3dcc97e5d8d6f67ccd57939',1,'CppUtils::Errors::ErrorMessage']]],
+  ['luminousintensity_828',['LuminousIntensity',['../struct_cpp_units_1_1_dimensionality.html#aecbc64a91702b054e0005786e6f00fc0',1,'CppUnits::Dimensionality']]]
 ];

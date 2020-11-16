@@ -31,6 +31,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="drychem-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">DryChem
    &#160;<span id="projectnumber">1.0.0</span>
@@ -185,7 +186,7 @@ $(document).ready(function(){initNavTree('test_case_insensitive_strings_8hpp_sou
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    ASSERT_TRUE(lower &gt; upper);</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    ASSERT_TRUE(ci_lower == ci_upper);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    ASSERT_FALSE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a4efc9ea9836223d563cf8c59641acef6">DryChem::traits_cast</a>&lt;std::char_traits&lt;char&gt;&gt;(ci_lower) == upper);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    ASSERT_FALSE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a8c6ffb70f090d71dca0b3b7c5227b820">DryChem::traits_cast</a>&lt;std::char_traits&lt;char&gt;&gt;(ci_lower) == upper);</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
 <div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="test_case_insensitive_strings_8hpp.html#a1e64416e80b60187a83566728879bf77">   95</a></span>&#160;<a class="code" href="test_case_insensitive_strings_8hpp.html#a6cef379fa35d05837a68be06d2c723e3">GTEST_TEST</a>(testCaseInsensitiveStrings, a_ci_stringCanUseAllNormalStringMemberFunctions)</div>
@@ -217,7 +218,7 @@ $(document).ready(function(){initNavTree('test_case_insensitive_strings_8hpp_sou
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="astrings_8hpp_html"><div class="ttname"><a href="strings_8hpp.html">strings.hpp</a></div></div>
-<div class="ttc" id="anamespace_cpp_utils_1_1_strings_html_a4efc9ea9836223d563cf8c59641acef6"><div class="ttname"><a href="namespace_cpp_utils_1_1_strings.html#a4efc9ea9836223d563cf8c59641acef6">CppUtils::Strings::traits_cast</a></div><div class="ttdeci">constexpr std::basic_string&lt; char, OutputTraits &gt; traits_cast(const std::basic_string&lt; char, InputTraits &gt; input) noexcept</div><div class="ttdef"><b>Definition:</b> ciString.hpp:104</div></div>
+<div class="ttc" id="anamespace_cpp_utils_1_1_strings_html_a8c6ffb70f090d71dca0b3b7c5227b820"><div class="ttname"><a href="namespace_cpp_utils_1_1_strings.html#a8c6ffb70f090d71dca0b3b7c5227b820">CppUtils::Strings::traits_cast</a></div><div class="ttdeci">constexpr std::basic_string&lt; char, OutputTraits &gt; traits_cast(const std::basic_string&lt; char, InputTraits &gt; &amp;input) noexcept</div><div class="ttdef"><b>Definition:</b> ciString.hpp:104</div></div>
 <div class="ttc" id="atest_all_string_functions_8cpp_html_a3c04138a5bfe5d72780bb7e82a18e627"><div class="ttname"><a href="test_all_string_functions_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a></div><div class="ttdeci">int main(int argc, char **argv)</div><div class="ttdef"><b>Definition:</b> testAllStringFunctions.cpp:16</div></div>
 <div class="ttc" id="atest_case_insensitive_strings_8hpp_html_a6cef379fa35d05837a68be06d2c723e3"><div class="ttname"><a href="test_case_insensitive_strings_8hpp.html#a6cef379fa35d05837a68be06d2c723e3">GTEST_TEST</a></div><div class="ttdeci">GTEST_TEST(testCaseInsensitiveStrings, only_a_to_z_charsAreConvertedToUpperCase)</div><div class="ttdef"><b>Definition:</b> testCaseInsensitiveStrings.hpp:20</div></div>
 <div class="ttc" id="atest_lexical_cast_8hpp_html"><div class="ttname"><a href="test_lexical_cast_8hpp.html">testLexicalCast.hpp</a></div></div>
@@ -230,7 +231,7 @@ $(document).ready(function(){initNavTree('test_case_insensitive_strings_8hpp_sou
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_0583984bf3346f36c215b565c6efbf15.html">common-utilities</a></li><li class="navelem"><a class="el" href="dir_02f953b27a3cadcc041f5b2eb36934db.html">libs</a></li><li class="navelem"><a class="el" href="dir_7178409f7c2bb7631cb8cb6b4cbd12e6.html">strings</a></li><li class="navelem"><a class="el" href="dir_6f4d494a78aef12b9126f9c0bee7a022.html">tests</a></li><li class="navelem"><a class="el" href="dir_167ef23b1a02642d217f492e1e3f7152.html">testTraits</a></li><li class="navelem"><a class="el" href="test_case_insensitive_strings_8hpp.html">testCaseInsensitiveStrings.hpp</a></li>
-    <li class="footer">Generated on Sun Nov 15 2020 19:37:22 for DryChem by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
+    <li class="footer">Generated on Mon Nov 16 2020 15:58:05 for DryChem by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>
 </body>

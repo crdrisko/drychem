@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['slope_834',['slope',['../struct_cpp_utils_1_1_math_1_1details_1_1_linear_least_squares_result.html#a05e014581e2bd909c06f8fbe839cb68e',1,'CppUtils::Math::details::LinearLeastSquaresResult']]],
-  ['speedoflight_835',['speedOfLight',['../namespace_cpp_units_1_1_constants.html#a6813521e4369ca791724384bb354de59',1,'CppUnits::Constants']]],
-  ['str_5fbegin_836',['str_begin',['../class_cpp_utils_1_1_strings_1_1_tokenizer.html#ad7f85306c7173d0f6fede54bb8b7befb',1,'CppUtils::Strings::Tokenizer']]],
-  ['str_5fend_837',['str_end',['../class_cpp_utils_1_1_strings_1_1_tokenizer.html#acc031d1d6b9476abee9c5ba9b4af7ffa',1,'CppUtils::Strings::Tokenizer']]]
+  ['rank_838',['rank',['../class_fruit.html#a82279dc6e72a36b1303aeefe747ff787',1,'Fruit']]],
+  ['result_839',['result',['../struct_cpp_utils_1_1_testing_1_1details_1_1_return_type.html#a10ef6f09aaaa5dbb1143af3715b24a14',1,'CppUtils::Testing::details::ReturnType']]]
 ];

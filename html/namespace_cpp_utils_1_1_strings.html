@@ -31,6 +31,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="drychem-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">DryChem
    &#160;<span id="projectnumber">1.0.0</span>
@@ -120,9 +121,9 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4efc9ea9836223d563cf8c59641acef6"><td class="memTemplParams" colspan="2">template&lt;class OutputTraits , class InputTraits &gt; </td></tr>
-<tr class="memitem:a4efc9ea9836223d563cf8c59641acef6"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::basic_string&lt; char, OutputTraits &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_cpp_utils_1_1_strings.html#a4efc9ea9836223d563cf8c59641acef6">traits_cast</a> (const std::basic_string&lt; char, InputTraits &gt; input) noexcept</td></tr>
-<tr class="separator:a4efc9ea9836223d563cf8c59641acef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c6ffb70f090d71dca0b3b7c5227b820"><td class="memTemplParams" colspan="2">template&lt;class OutputTraits , class InputTraits &gt; </td></tr>
+<tr class="memitem:a8c6ffb70f090d71dca0b3b7c5227b820"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::basic_string&lt; char, OutputTraits &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_cpp_utils_1_1_strings.html#a8c6ffb70f090d71dca0b3b7c5227b820">traits_cast</a> (const std::basic_string&lt; char, InputTraits &gt; &amp;input) noexcept</td></tr>
+<tr class="separator:a8c6ffb70f090d71dca0b3b7c5227b820"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d3ea1043b871830fe8679a89a69cd6a"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_cpp_utils_1_1_strings.html#a3d3ea1043b871830fe8679a89a69cd6a">operator&lt;&lt;</a> (std::ostream &amp;os, const std::basic_string&lt; char, <a class="el" href="struct_cpp_utils_1_1_strings_1_1ci__char__traits.html">ci_char_traits</a> &gt; &amp;str)</td></tr>
 <tr class="separator:a3d3ea1043b871830fe8679a89a69cd6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e373b8e725b53abcb4d5e0733ad5b17"><td class="memTemplParams" colspan="2">template&lt;typename T , typename CharTraits  = std::char_traits&lt;char&gt;&gt; </td></tr>
@@ -140,9 +141,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a19afdc07dd1b6a23abfe2cdb21b57b09"><td class="memTemplParams" colspan="2">template&lt;typename CharTraits &gt; </td></tr>
 <tr class="memitem:a19afdc07dd1b6a23abfe2cdb21b57b09"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_cpp_utils_1_1_strings.html#a19afdc07dd1b6a23abfe2cdb21b57b09">foundSubstr</a> (const char *stringToFind, const std::basic_string&lt; char, CharTraits &gt; &amp;stringToSearch) noexcept</td></tr>
 <tr class="separator:a19afdc07dd1b6a23abfe2cdb21b57b09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8d5833f43fecadb736c01a965c5b54f"><td class="memTemplParams" colspan="2">template&lt;typename CharTraits &gt; </td></tr>
-<tr class="memitem:af8d5833f43fecadb736c01a965c5b54f"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_cpp_utils_1_1_strings.html#af8d5833f43fecadb736c01a965c5b54f">Tokenizer</a> (const std::basic_string&lt; char, CharTraits &gt; &amp;, const char *) -&gt; <a class="el" href="class_cpp_utils_1_1_strings_1_1_tokenizer.html">Tokenizer</a>&lt; CharTraits &gt;</td></tr>
-<tr class="separator:af8d5833f43fecadb736c01a965c5b54f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36e6697317b9df92027e308e163818f9"><td class="memTemplParams" colspan="2">template&lt;typename CharTraits , typename... TArgs&gt; </td></tr>
+<tr class="memitem:a36e6697317b9df92027e308e163818f9"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_cpp_utils_1_1_strings.html#a36e6697317b9df92027e308e163818f9">Tokenizer</a> (const std::basic_string&lt; char, CharTraits &gt; &amp;, TArgs...) -&gt; <a class="el" href="class_cpp_utils_1_1_strings_1_1_tokenizer.html">Tokenizer</a>&lt; CharTraits &gt;</td></tr>
+<tr class="separator:a36e6697317b9df92027e308e163818f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="a83d4273b7f7b259b79b1b756f25f77b5"></a>
@@ -160,8 +161,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a4efc9ea9836223d563cf8c59641acef6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4efc9ea9836223d563cf8c59641acef6">&#9670;&nbsp;</a></span>traits_cast()</h2>
+<a id="a8c6ffb70f090d71dca0b3b7c5227b820"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c6ffb70f090d71dca0b3b7c5227b820">&#9670;&nbsp;</a></span>traits_cast()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -174,7 +175,7 @@ template&lt;class OutputTraits , class InputTraits &gt; </div>
         <tr>
           <td class="memname">constexpr std::basic_string&lt;char, OutputTraits&gt; CppUtils::Strings::traits_cast </td>
           <td>(</td>
-          <td class="paramtype">const std::basic_string&lt; char, InputTraits &gt;&#160;</td>
+          <td class="paramtype">const std::basic_string&lt; char, InputTraits &gt; &amp;&#160;</td>
           <td class="paramname"><em>input</em></td><td>)</td>
           <td></td>
         </tr>
@@ -367,7 +368,7 @@ template&lt;typename CharTraits &gt; </div>
   </dd>
 </dl>
 
-<p class="reference">Referenced by <a class="el" href="test_string_utilities_8hpp.html#a564e6878683811d1717874a788c86116">GTEST_TEST()</a>, and <a class="el" href="class_cpp_utils_1_1_strings_1_1_tokenizer.html#a7c085d0201acb3c46fd7255f4c374bef">CppUtils::Strings::Tokenizer&lt; CharTraits &gt;::isDelimiter()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="test_string_utilities_8hpp.html#a564e6878683811d1717874a788c86116">GTEST_TEST()</a>, <a class="el" href="class_cpp_utils_1_1_strings_1_1_tokenizer.html#a7c085d0201acb3c46fd7255f4c374bef">CppUtils::Strings::Tokenizer&lt; CharTraits &gt;::isDelimiter()</a>, and <a class="el" href="class_cpp_utils_1_1_strings_1_1_tokenizer.html#ae65de0a5cefc91ac91647453a6f00355">CppUtils::Strings::Tokenizer&lt; CharTraits &gt;::nextToken()</a>.</p>
 
 </div>
 </div>
@@ -449,13 +450,13 @@ template&lt;typename CharTraits &gt; </div>
 
 </div>
 </div>
-<a id="af8d5833f43fecadb736c01a965c5b54f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af8d5833f43fecadb736c01a965c5b54f">&#9670;&nbsp;</a></span>Tokenizer()</h2>
+<a id="a36e6697317b9df92027e308e163818f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36e6697317b9df92027e308e163818f9">&#9670;&nbsp;</a></span>Tokenizer()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename CharTraits &gt; </div>
+template&lt;typename CharTraits , typename... TArgs&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="class_cpp_utils_1_1_strings_1_1_tokenizer.html">CppUtils::Strings::Tokenizer</a> </td>
@@ -466,7 +467,7 @@ template&lt;typename CharTraits &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const char *&#160;</td>
+          <td class="paramtype">TArgs...&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -476,9 +477,16 @@ template&lt;typename CharTraits &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Declaration guide for the Tokenizer&lt;&gt; class template so we can still deduce the character traits when the delimiters is passed as a character array. </p>
+<p>Declaration guide for the Tokenizer&lt;&gt; class template so we can still deduce the character traits when the other arguments are passed as character arrays.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">CharTraits</td><td>The character traits we are trying to deduce </td></tr>
+    <tr><td class="paramname">TArgs</td><td>Variadic template parameters representing the types of delimiters </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="reference">Referenced by <a class="el" href="test_tokenizer_8hpp.html#a3020be691504d95ce99b42d4b3b62c69">GTEST_TEST()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="test_tokenizer_8hpp.html#a3020be691504d95ce99b42d4b3b62c69">GTEST_TEST()</a>, and <a class="el" href="ci_tokenizer_example_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main()</a>.</p>
 
 </div>
 </div>
@@ -488,7 +496,7 @@ template&lt;typename CharTraits &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_cpp_utils.html">CppUtils</a></li><li class="navelem"><a class="el" href="namespace_cpp_utils_1_1_strings.html">Strings</a></li>
-    <li class="footer">Generated on Sun Nov 15 2020 19:37:22 for DryChem by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
+    <li class="footer">Generated on Mon Nov 16 2020 15:58:06 for DryChem by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>
 </body>

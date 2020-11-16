@@ -31,6 +31,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="drychem-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">DryChem
    &#160;<span id="projectnumber">1.0.0</span>
@@ -116,45 +117,46 @@ $(document).ready(function(){initNavTree('test_string_utilities_8hpp_source.html
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    std::string stringToFind {<span class="stringliteral">&quot;This is a test&quot;</span>};</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(stringToFind, stringToSearch));</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;}</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="test_string_utilities_8hpp.html#a2ca6666bdb1858bb5d53ed7d53379411">   25</a></span>&#160;<a class="code" href="test_string_utilities_8hpp.html#a564e6878683811d1717874a788c86116">GTEST_TEST</a>(testStringUtilities, foundSubstrFunctionCanBeCalledWithChars)</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    std::string stringToSearch {<span class="stringliteral">&quot;This is a test of the foundSubstr function.&quot;</span>};</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="charliteral">&#39;T&#39;</span>, stringToSearch));</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="charliteral">&#39;.&#39;</span>, stringToSearch));</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    ASSERT_FALSE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="charliteral">&#39;x&#39;</span>, stringToSearch));</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="test_string_utilities_8hpp.html#a81b9d08ad33f589a0f0ec75b38b68b75">   34</a></span>&#160;<a class="code" href="test_string_utilities_8hpp.html#a564e6878683811d1717874a788c86116">GTEST_TEST</a>(testStringUtilities, foundSubstrFindsIndividualWordsInLongerString)</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    std::string stringToSearch {<span class="stringliteral">&quot;This is a test of the foundSubstr function.&quot;</span>};</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;This&quot;</span>, stringToSearch));</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;is&quot;</span>, stringToSearch));</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;a&quot;</span>, stringToSearch));</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;test&quot;</span>, stringToSearch));</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;of&quot;</span>, stringToSearch));</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;the&quot;</span>, stringToSearch));</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;foundSubstr&quot;</span>, stringToSearch));</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;function&quot;</span>, stringToSearch));</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="test_string_utilities_8hpp.html#a2c172c9f6da3cb24913806034eea6152">   48</a></span>&#160;<a class="code" href="test_string_utilities_8hpp.html#a564e6878683811d1717874a788c86116">GTEST_TEST</a>(testStringUtilities, foundSubstrFunctionCanBeCaseSensitive)</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::string stringToSearch {<span class="stringliteral">&quot;This is a test of the foundSubstr function.&quot;</span>};</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    ASSERT_FALSE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;this&quot;</span>, stringToSearch));</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    ASSERT_FALSE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;THIS&quot;</span>, stringToSearch));</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="namespace_cpp_utils_1_1_strings.html#a83d4273b7f7b259b79b1b756f25f77b5">DryChem::ci_string</a> ci_stringToSearch {<span class="stringliteral">&quot;This is a test of the foundSubstr function.&quot;</span>};</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;this&quot;</span>, ci_stringToSearch));</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;THIS&quot;</span>, ci_stringToSearch));</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    ASSERT_FALSE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(stringToSearch, stringToFind));</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="test_string_utilities_8hpp.html#a2ca6666bdb1858bb5d53ed7d53379411">   26</a></span>&#160;<a class="code" href="test_string_utilities_8hpp.html#a564e6878683811d1717874a788c86116">GTEST_TEST</a>(testStringUtilities, foundSubstrFunctionCanBeCalledWithChars)</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    std::string stringToSearch {<span class="stringliteral">&quot;This is a test of the foundSubstr function.&quot;</span>};</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="charliteral">&#39;T&#39;</span>, stringToSearch));</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="charliteral">&#39;.&#39;</span>, stringToSearch));</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    ASSERT_FALSE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="charliteral">&#39;x&#39;</span>, stringToSearch));</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="test_string_utilities_8hpp.html#a81b9d08ad33f589a0f0ec75b38b68b75">   35</a></span>&#160;<a class="code" href="test_string_utilities_8hpp.html#a564e6878683811d1717874a788c86116">GTEST_TEST</a>(testStringUtilities, foundSubstrFindsIndividualWordsInLongerString)</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    std::string stringToSearch {<span class="stringliteral">&quot;This is a test of the foundSubstr function.&quot;</span>};</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;This&quot;</span>, stringToSearch));</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;is&quot;</span>, stringToSearch));</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;a&quot;</span>, stringToSearch));</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;test&quot;</span>, stringToSearch));</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;of&quot;</span>, stringToSearch));</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;the&quot;</span>, stringToSearch));</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;foundSubstr&quot;</span>, stringToSearch));</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;function&quot;</span>, stringToSearch));</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="test_string_utilities_8hpp.html#a2c172c9f6da3cb24913806034eea6152">   49</a></span>&#160;<a class="code" href="test_string_utilities_8hpp.html#a564e6878683811d1717874a788c86116">GTEST_TEST</a>(testStringUtilities, foundSubstrFunctionCanBeCaseSensitive)</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::string stringToSearch {<span class="stringliteral">&quot;This is a test of the foundSubstr function.&quot;</span>};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    ASSERT_FALSE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;this&quot;</span>, stringToSearch));</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    ASSERT_FALSE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;THIS&quot;</span>, stringToSearch));</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="namespace_cpp_utils_1_1_strings.html#a83d4273b7f7b259b79b1b756f25f77b5">DryChem::ci_string</a> ci_stringToSearch {<span class="stringliteral">&quot;This is a test of the foundSubstr function.&quot;</span>};</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;this&quot;</span>, ci_stringToSearch));</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    ASSERT_TRUE(<a class="code" href="namespace_cpp_utils_1_1_strings.html#a859293ba62299cd77e751a707806a3ad">DryChem::foundSubstr</a>(<span class="stringliteral">&quot;THIS&quot;</span>, ci_stringToSearch));</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="astrings_8hpp_html"><div class="ttname"><a href="strings_8hpp.html">strings.hpp</a></div></div>
@@ -165,7 +167,7 @@ $(document).ready(function(){initNavTree('test_string_utilities_8hpp_source.html
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_0583984bf3346f36c215b565c6efbf15.html">common-utilities</a></li><li class="navelem"><a class="el" href="dir_02f953b27a3cadcc041f5b2eb36934db.html">libs</a></li><li class="navelem"><a class="el" href="dir_7178409f7c2bb7631cb8cb6b4cbd12e6.html">strings</a></li><li class="navelem"><a class="el" href="dir_6f4d494a78aef12b9126f9c0bee7a022.html">tests</a></li><li class="navelem"><a class="el" href="dir_7cbcc7201d3d83e7e598876fca9fda6e.html">testUtilities</a></li><li class="navelem"><a class="el" href="test_string_utilities_8hpp.html">testStringUtilities.hpp</a></li>
-    <li class="footer">Generated on Sun Nov 15 2020 19:37:22 for DryChem by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
+    <li class="footer">Generated on Mon Nov 16 2020 15:58:05 for DryChem by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>
 </body>
