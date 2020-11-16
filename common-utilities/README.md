@@ -12,7 +12,27 @@ Welcome to the Common-Utilities project! This project is a compilation of a numb
 
 ## Building and Installing
 
-...
+To build the common-utilities libraries and scripts there are a few options that can be specified when calling `cmake`, these are discussed here:
+
+- `utils_build_all`
+
+  Libraries, unit tests, and code samples will all be built. This option should be used if you don't want to install the cpp-units part of the larger drychem repository. Otherwise, use the `chem_build_all` option.
+
+- `utils_build_tests`
+
+  If you're interested in building the unit tests but don't care about the examples that accompany the project, this option will build the common-utilities library and the tests.
+
+  *Note:* Only the libraries will be installed.
+
+- `utils_build_samples`
+
+  If you're interested in building the examples but don't care about the unit tests that accompany the project, this option will build the common-utilities library and the samples.
+
+  *Note:* Only the libraries will be installed.
+
+- `utils_exclude_scripts`
+
+  This option won't include or install the bash scripts that go with the repository. This is useful if you're just interested in the C++ libraries. The bash scripts, while useful, may not find much use outside of my own development or research processes.
 
 ## C++ Libraries
 

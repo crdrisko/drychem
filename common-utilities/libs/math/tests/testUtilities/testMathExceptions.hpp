@@ -6,13 +6,12 @@
 // Date: 10/27/2020-07:31:00
 // Description: Provides ~100% unit test coverage over all exceptions specifically relating to the math library
 
-#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTMATHEXCEPTIONS_HPP
-#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTMATHEXCEPTIONS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_LIBS_MATH_TESTS_TESTUTILITIES_TESTMATHEXCEPTIONS_HPP
+#define DRYCHEM_COMMON_UTILITIES_LIBS_MATH_TESTS_TESTUTILITIES_TESTMATHEXCEPTIONS_HPP
 
+#include <common-utils/errors.hpp>
+#include <common-utils/math.hpp>
 #include <gtest/gtest.h>
-
-#include "common-utils/errors.hpp"
-#include "common-utils/math.hpp"
 
 GTEST_TEST(testMathExceptions, inputSizeMismatchIsAFatalExceptionAndCanTerminateWhenHandled)
 {

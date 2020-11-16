@@ -7,13 +7,13 @@ The utilities library consists of a number of miscellaneous functions and classe
 - [Getting Started](#Getting-Started)
 - [Features](#Features)
   - [Operators](#Operators)
-  - [Strings](#Strings)
   - [Testing](#Testing)
+  - [Traits](#Traits)
 - [Usage](#Usage)
 
 ## Getting Started
 
-The following lines of code can be included in any user project to provide access to the utilities library:
+All the functions and classes belonging to the utilities library are wrapped in the namespace `DryChem`. Alternatively, each of the separate modules (Operators, Testing, etc.), have their own nested namespace in the `CppUtils` namespace. While either can be used, `DryChem` is preferred to provide a uniform interface for all portions of the library. The following line can be included in any user project to provide access to the utilities library:
 
 ```C++
 #include <common-utils/utilities.hpp>
@@ -46,9 +46,7 @@ The following lines of code can be included in any user project to provide acces
   ```C++
   #include <common-utils/utilities.hpp>
 
-  using namespace CppUtils::Testing;
-
-  auto [result, time] = timeAndInvoke(funcToCall, arg1, arg2, ..., argN);
+  auto [result, time] = DryChem::timeAndInvoke(funcToCall, arg1, arg2, ..., argN);
   ```
 
   In this example, the `result` variable now contains the value returned from `funcToCall(arg1, arg2, ..., argN)`, and the `time` variable contains the time (in microseconds) it took to invoke `funcToCall`.
@@ -62,8 +60,8 @@ The following lines of code can be included in any user project to provide acces
   The container traits folder consists of a number of predicate type traits that classify a given container according to the member functions and types it contains. Following the standard library's naming system, each of the type traits is in all lowercase, with underscores separating the individual words. A convinence variable template is provided to help shorten the use cases:
 
   ```C++
-  Traits::is_container<std::vector<int>>::value;  // yields true
-  Traits::is_container_v<std::vector<int>>;       // yields true
+  DryChem::is_container<std::vector<int>>::value;  // yields true
+  DryChem::is_container_v<std::vector<int>>;       // yields true
   ```
 
   The testing module for this specific part of the library is probably more useful than any desciption I could write, so you can look at the example usage [here](../tests/testTraits/testContainerTraits.hpp).
@@ -77,7 +75,7 @@ For working examples of how to use the library, refer to the [testing](../tests)
 To build and run the code samples for the utilities library, one should include the `utils_build_samples=ON` option to the CMake instructions. Similarly, to build and run the unit tests for the individual utility functions, one should include the `utils_build_tests=ON` option, as shown in the code below:
 
 ```bash
-cmake ../cpp-units/. -Dutils_build_samples=ON -Dutils_build_tests=ON
+cmake ../drychem/. -Dutils_build_samples=ON -Dutils_build_tests=ON
 make
 
 ## Run the utility library's samples ##

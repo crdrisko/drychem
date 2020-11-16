@@ -6,15 +6,15 @@
 // Date: 10/23/2020-15:54:44
 // Description: Provides ~100% unit test coverage over all statistics-based mathematical functions
 
-#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTSTATISTICALFUNCTIONS_HPP
-#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTSTATISTICALFUNCTIONS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_LIBS_MATH_TESTS_TESTSTATISTICS_TESTSTATISTICALFUNCTIONS_HPP
+#define DRYCHEM_COMMON_UTILITIES_LIBS_MATH_TESTS_TESTSTATISTICS_TESTSTATISTICALFUNCTIONS_HPP
 
 #include <array>
+#include <cmath>
 #include <vector>
 
+#include <common-utils/math.hpp>
 #include <gtest/gtest.h>
-
-#include "common-utils/math.hpp"
 
 GTEST_TEST(testStatisticalFunctions, orderOfMagnitudeIsCalculatedCorrectly)
 {
@@ -50,28 +50,5 @@ GTEST_TEST(testStatisticalFunctions, varianceCalculationsWorkOnARangeOfValuesInA
     ASSERT_NEAR(3.027650, std::sqrt(calculateVariance(x.begin(), x.end())), findAbsoluteError(3.027650, 7));
     ASSERT_NEAR(2.449490, std::sqrt(calculateVariance(y.begin() + 2, y.end())), findAbsoluteError(2.449490, 7));
 }
-
-// GTEST_TEST(testStatisticalFunctions, certainStatisticalFunctionsOnlyWorkWithArithmeticTypes)
-// {
-//     struct NonArithmetic
-//     {
-//     } nonArithmeticType;
-
-//     ASSERT_FALSE(DryChem::findOrderOfMagnitude(nonArithmeticType));                      // no instance of function template matches the argument list
-//     ASSERT_FALSE(DryChem::findAbsoluteError(nonArithmeticType, 7));                      // no instance of function template matches the argument list
-// }
-
-// GTEST_TEST(testStatisticalFunctions, certainStatisticalFunctionsOnlyWorkWithTypesThatHaveDefaultConstructors)
-// {
-//     struct NoDefaultConstructor
-//     {
-//         NoDefaultConstructor() = delete;
-//     };
-
-//     std::vector<NoDefaultConstructor> x;
-
-//     ASSERT_FALSE(DryChem::calculateAverage(x.begin(), x.end()));                         // no instance of function template matches the argument list
-//     ASSERT_FALSE(DryChem::calculateStandardDeviation(x.begin(), x.end()));               // no instance of function template matches the argument list
-// }
 
 #endif

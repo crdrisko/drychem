@@ -6,14 +6,13 @@
 // Date: 08/26/2020-14:35:44
 // Description: Provides ~100% unit test coverage over all error handing functions
 
-#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTERRORHANDLING_HPP
-#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTERRORHANDLING_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_LIBS_ERRORS_TESTS_TESTUTILITIES_TESTERRORHANDLING_HPP
+#define DRYCHEM_COMMON_UTILITIES_LIBS_ERRORS_TESTS_TESTUTILITIES_TESTERRORHANDLING_HPP
 
 #include <string>
 
+#include <common-utils/errors.hpp>
 #include <gtest/gtest.h>
-
-#include "common-utils/errors.hpp"
 
 GTEST_TEST(testErrorHandling, errorPrintsMessageToStandardError)
 {

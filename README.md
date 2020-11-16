@@ -14,10 +14,10 @@ More detailed documentation for Common-Utilities and C++ Units can be found in t
 
 ## Features
 
-- A compile-time, header-only physical quantity library.
-- A set of compile-time user defined literals for cleaner code that takes away nothing from overall performance.
-- A common method of error and exception handling.
+- A familiar framework for error and exception handling.
+- A number of mathematical functions with domains ranging from calculus to statistics.
 - A number of utility type traits for better, more general programming.
+- A compile-time, header-only physical quantity library.
 
 ## Platforms
 

@@ -6,8 +6,8 @@
 // Date: 10/28/2020-07:50:09
 // Description: A collection of all the differentiation methods in the math library
 
-#ifndef DRYCHEM_COMMON_UTILITIES_DIFFERENTIATION_HPP
-#define DRYCHEM_COMMON_UTILITIES_DIFFERENTIATION_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_CALCULUS_DIFFERENTIATION_HPP
+#define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_CALCULUS_DIFFERENTIATION_HPP
 
 #include "differentiation/backwardsDifferenceMethod.hpp"
 #include "differentiation/centeredDifferenceMethod.hpp"

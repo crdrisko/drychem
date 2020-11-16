@@ -6,8 +6,8 @@
 // Date: 09/17/2020-12:36:17
 // Description: An alternative to std::rel_opts which doesn't inject the comparison operators into the global namespace
 
-#ifndef DRYCHEM_COMMON_UTILITIES_COMPARISONOPERATORS_HPP
-#define DRYCHEM_COMMON_UTILITIES_COMPARISONOPERATORS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_UTILITIES_OPERATORS_COMPARISONOPERATORS_HPP
+#define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_UTILITIES_OPERATORS_COMPARISONOPERATORS_HPP
 
 #include "common-utils/utilities/operators/potentiallyEmptyBaseClass.hpp"
 

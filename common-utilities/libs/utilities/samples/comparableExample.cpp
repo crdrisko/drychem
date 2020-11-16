@@ -34,6 +34,7 @@ public:
     std::string getName() const { return name; }
 };
 
+// Function prototypes
 void printFruitComparisons(const std::vector<Fruit>& commonFruits);
 
 int main()
@@ -55,6 +56,7 @@ int main()
     printFruitComparisons(commonFruits);
 }
 
+// Function definitions
 void printFruitComparisons(const std::vector<Fruit>& commonFruits)
 {
     for (std::size_t i {}; i < commonFruits.size(); ++i)

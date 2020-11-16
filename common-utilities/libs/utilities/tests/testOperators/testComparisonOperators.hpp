@@ -6,55 +6,13 @@
 // Date: 09/18/2020-09:01:46
 // Description: Provides ~100% unit test coverage over all comparison operators
 
-#ifndef DRYCHEM_COMMON_UTILITIESTILITIES_TESTING_TESTCOMPARISONOPERATORS_HPP
-#define DRYCHEM_COMMON_UTILITIESTILITIES_TESTING_TESTCOMPARISONOPERATORS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_LIBS_UTILITIES_TESTS_TESTOPERATORS_TESTCOMPARISONOPERATORS_HPP
+#define DRYCHEM_COMMON_UTILITIES_LIBS_UTILITIES_TESTS_TESTOPERATORS_TESTCOMPARISONOPERATORS_HPP
 
+#include <common-utils/utilities.hpp>
 #include <gtest/gtest.h>
 
-#include "common-utils/utilities.hpp"
-
-namespace CppUtils::Operators::details::testing
-{
-    class SomewhatComparable1 : private DryChem::EqualityComparable<SomewhatComparable1>
-    {
-    private:
-        int value;
-
-    public:
-        explicit SomewhatComparable1(int Value) noexcept : value {Value} {}
-
-        friend bool operator==(const SomewhatComparable1& lhs, const SomewhatComparable1& rhs) noexcept
-        {
-            return lhs.value == rhs.value;
-        }
-    };
-
-    class SomewhatComparable2 : private DryChem::LessThanComparable<SomewhatComparable2>
-    {
-    private:
-        int value;
-
-    public:
-        explicit SomewhatComparable2(int Value) noexcept : value {Value} {}
-
-        friend bool operator<(const SomewhatComparable2& lhs, const SomewhatComparable2& rhs) noexcept
-        {
-            return lhs.value < rhs.value;
-        }
-    };
-
-    class Comparable : private DryChem::CompletelyComparable<Comparable>
-    {
-    private:
-        int value;
-
-    public:
-        explicit Comparable(int Value) noexcept : value {Value} {}
-
-        friend bool operator==(const Comparable& lhs, const Comparable& rhs) noexcept { return lhs.value == rhs.value; }
-        friend bool operator<(const Comparable& lhs, const Comparable& rhs) noexcept { return lhs.value < rhs.value; }
-    };
-}   // namespace CppUtils::Operators::details::testing
+#include "../details/operatorDetails.hpp"
 
 GTEST_TEST(testComparisonOperators, aClassThatInheritsFromEqualityComparableCanOnlyCallEqualityComparisons)
 {

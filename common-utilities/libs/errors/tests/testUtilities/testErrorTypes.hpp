@@ -6,12 +6,11 @@
 // Date: 08/26/2020-15:02:42
 // Description: Provides ~100% unit test coverage over all error types and associated functions
 
-#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTERRORTYPES_HPP
-#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTERRORTYPES_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_LIBS_ERRORS_TESTS_TESTUTILITIES_TESTERRORTYPES_HPP
+#define DRYCHEM_COMMON_UTILITIES_LIBS_ERRORS_TESTS_TESTUTILITIES_TESTERRORTYPES_HPP
 
+#include <common-utils/errors.hpp>
 #include <gtest/gtest.h>
-
-#include "common-utils/errors.hpp"
 
 GTEST_TEST(testErrorTypes, errorSeveritiesConvertToCorrectValues)
 {
@@ -36,7 +35,7 @@ GTEST_TEST(testErrorTypes, errorMessagesCanBeSetByIndividualValues)
     ASSERT_EQ("Common-Utilities", err.programName);
     ASSERT_EQ("This is the error message.", err.message);
     ASSERT_EQ("testErrorTypes.hpp", err.fileName.substr(err.fileName.find_last_of('/') + 1, err.fileName.length()));
-    ASSERT_EQ(34ul, err.lineNumber);
+    ASSERT_EQ(33ul, err.lineNumber);
 }
 
 GTEST_TEST(testErrorTypes, errorMessagesCanBeSetByConstructor)
@@ -46,7 +45,7 @@ GTEST_TEST(testErrorTypes, errorMessagesCanBeSetByConstructor)
     ASSERT_EQ("Common-Utilities", err.programName);
     ASSERT_EQ("This is the error message.", err.message);
     ASSERT_EQ("testErrorTypes.hpp", err.fileName.substr(err.fileName.find_last_of('/') + 1, err.fileName.length()));
-    ASSERT_EQ(44ul, err.lineNumber);
+    ASSERT_EQ(43ul, err.lineNumber);
 }
 
 #endif

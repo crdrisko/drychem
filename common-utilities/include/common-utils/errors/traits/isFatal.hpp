@@ -6,8 +6,8 @@
 // Date: 08/26/2020-14:26:29
 // Description: Type trait used to determine whether a given ErrorSeverity is fatal or not
 
-#ifndef DRYCHEM_COMMON_UTILITIES_ISFATAL_HPP
-#define DRYCHEM_COMMON_UTILITIES_ISFATAL_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_ERRORS_TRAITS_ISFATAL_HPP
+#define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_ERRORS_TRAITS_ISFATAL_HPP
 
 #include <type_traits>
 

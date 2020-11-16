@@ -9,18 +9,15 @@ The math library consists of a number of different functions and classes related
   - [Calculus](#Calculus)
   - [Containers](#Containers)
   - [Statistics](#Statistics)
-  - [Traits](#Traits)
   - [Math Utilities](#Math-Utilities)
 - [Usage](#Usage)
 
 ## Getting Started
 
-The following lines of code can be included in any user project to provide access to the math library:
+All the functions and classes belonging to the math library are wrapped in the namespace `DryChem`. Alternatively, these functions and classes also have their own nested namespace in the `CppUtils` namespace, which can be called as `CppUtils::Math`. While either can be used, `DryChem` is preferred to provide a uniform interface for all portions of the library. The following line can be included in any user project to provide access to the math library:
 
 ```C++
 #include <common-utils/math.hpp>
-
-using namespace CppUtils::Math;
 ```
 
 ## Features
@@ -88,7 +85,7 @@ For working examples of how to use the library, refer to the [testing](../tests)
 To build and run the code samples for the math library, one should include the `utils_build_samples=ON` option to the CMake instructions. Similarly, to build and run the unit tests for the individual math functions, one should include the `utils_build_tests=ON` option, as shown in the code below:
 
 ```bash
-cmake ../cpp-units/. -Dutils_build_samples=ON -Dutils_build_tests=ON
+cmake ../drychem/. -Dutils_build_samples=ON -Dutils_build_tests=ON
 make
 
 ## Run the math library's samples ##

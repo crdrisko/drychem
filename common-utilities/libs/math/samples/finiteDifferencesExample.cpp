@@ -17,9 +17,9 @@
 #include <common-utils/errors.hpp>
 #include <common-utils/math.hpp>
 
+// Function prototypes
 std::vector<double> differentiateThenIntegrate(const std::vector<double>& x, const std::vector<double>& y);
 std::vector<double> integrateThenDifferentiate(const std::vector<double>& x, const std::vector<double>& y);
-
 void validate(const std::vector<double>& expected, const std::vector<double>& actual, double tolerance);
 
 int main()
@@ -68,6 +68,7 @@ int main()
     }
 }
 
+// Function definitions
 std::vector<double> differentiateThenIntegrate(const std::vector<double>& x, const std::vector<double>& y)
 {
     auto derivative = DryChem::centeredDifferenceMethod(x.begin(), x.end(), y.begin(), y.end());

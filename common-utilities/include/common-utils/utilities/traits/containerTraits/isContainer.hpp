@@ -6,8 +6,8 @@
 // Date: 09/15/2020-08:38:28
 // Description: A type trait for determining whether a type T meets the requirements of a container
 
-#ifndef DRYCHEM_COMMON_UTILITIES_ISCONTAINER_HPP
-#define DRYCHEM_COMMON_UTILITIES_ISCONTAINER_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_UTILITIES_TRAITS_CONTAINERTRAITS_ISCONTAINER_HPP
+#define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_UTILITIES_TRAITS_CONTAINERTRAITS_ISCONTAINER_HPP
 
 #include <type_traits>
 #include <utility>
@@ -21,7 +21,7 @@ namespace CppUtils::Traits
      * \tparam (unnamed) A placeholder parameter that serves as our default state (i.e. false)
      */
     template<typename, typename = std::void_t<>>
-    struct is_container : std::false_type 
+    struct is_container : std::false_type
     {
     };
 
@@ -47,7 +47,7 @@ namespace CppUtils::Traits
                                        decltype(std::declval<T>().cbegin()),
                                        decltype(std::declval<T>().cend()),
                                        decltype(std::declval<T>().max_size()),
-                                       decltype(std::declval<T>().empty())>> : std::true_type 
+            decltype(std::declval<T>().empty())>> : std::true_type
     {
     };
 

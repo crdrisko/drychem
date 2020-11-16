@@ -6,8 +6,8 @@
 // Date: 04/09/2020-21:56:59
 // Description: Provides ~100% unit test coverage over all Vector3D functions
 
-#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTVECTOR3DFUNCTIONS_HPP
-#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTVECTOR3DFUNCTIONS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_LIBS_MATH_TESTS_TESTCONTAINERS_TESTVECTOR3DFUNCTIONS_HPP
+#define DRYCHEM_COMMON_UTILITIES_LIBS_MATH_TESTS_TESTCONTAINERS_TESTVECTOR3DFUNCTIONS_HPP
 
 #include <algorithm>
 #include <array>
@@ -17,11 +17,10 @@
 #include <string>
 #include <utility>
 
+#include <common-utils/errors.hpp>
+#include <common-utils/math.hpp>
+#include <common-utils/utilities.hpp>
 #include <gtest/gtest.h>
-
-#include "common-utils/errors.hpp"
-#include "common-utils/math.hpp"
-#include "common-utils/utilities.hpp"
 
 GTEST_TEST(testContainerFunctions, typeWithNoDefaultConstructorGivesACompileTimeError)
 {

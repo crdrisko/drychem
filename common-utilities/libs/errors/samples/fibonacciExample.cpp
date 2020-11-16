@@ -15,6 +15,7 @@
 
 #include <common-utils/errors.hpp>
 
+// Function prototypes
 void printNFibonacciNumbers(std::size_t n);
 
 int main()
@@ -44,6 +45,7 @@ int main()
     }
 }
 
+// Function definitions
 void printNFibonacciNumbers(std::size_t n)
 {
     std::vector<std::size_t> fibonacciNumbers;

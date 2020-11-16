@@ -6,67 +6,15 @@
 // Date: 10/21/2020-16:42:31
 // Description: Provides ~100% unit test coverage over all performance testing functions
 
-#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTPERFORMANCETESTING_HPP
-#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTPERFORMANCETESTING_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_LIBS_UTILITIES_TESTS_TESTTESTING_TESTPERFORMANCETESTING_HPP
+#define DRYCHEM_COMMON_UTILITIES_LIBS_UTILITIES_TESTS_TESTTESTING_TESTPERFORMANCETESTING_HPP
 
 #include <cstddef>
 
+#include <common-utils/utilities.hpp>
 #include <gtest/gtest.h>
 
-#include "common-utils/utilities.hpp"
-
-namespace CppUtils::Testing::details::testing
-{
-    struct SumSquares
-    {
-        std::size_t operator()(std::size_t iter) const
-        {
-            std::size_t result {};
-
-            for (std::size_t i {}; i < iter; ++i)
-                result += i * i;
-
-            return result;
-        }
-    };
-
-    class MyClass
-    {
-    private:
-        std::size_t iter {};
-
-    public:
-        explicit MyClass(std::size_t Iter) : iter {Iter} {}
-
-        std::size_t sumSquares() const
-        {
-            std::size_t result {};
-
-            for (std::size_t i {}; i < iter; ++i)
-                result += i * i;
-
-            return result;
-        }
-    };
-
-    std::size_t sumSquares(std::size_t iter)
-    {
-        std::size_t result {};
-
-        for (std::size_t i {}; i < iter; ++i)
-            result += i * i;
-
-        return result;
-    }
-
-    void voidSumSquares(std::size_t iter)
-    {
-        std::size_t result {};
-
-        for (std::size_t i {}; i < iter; ++i)
-            result += i * i;
-    }
-}   // namespace CppUtils::Testing::details::testing
+#include "../details/testingDetails.hpp"
 
 GTEST_TEST(testPerformanceTesting, timeAndInvokeReturnsAReturnTypeStruct)
 {

@@ -6,12 +6,11 @@
 // Date: 08/26/2020-14:36:00
 // Description: Provides ~100% unit test coverage over all type traits associated with error and exception handling
 
-#ifndef DRYCHEM_COMMON_UTILITIES_TESTING_TESTERRORTRAITS_HPP
-#define DRYCHEM_COMMON_UTILITIES_TESTING_TESTERRORTRAITS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_LIBS_ERRORS_TESTS_TESTTRAITS_TESTERRORTRAITS_HPP
+#define DRYCHEM_COMMON_UTILITIES_LIBS_ERRORS_TESTS_TESTTRAITS_TESTERRORTRAITS_HPP
 
+#include <common-utils/errors.hpp>
 #include <gtest/gtest.h>
-
-#include "common-utils/errors.hpp"
 
 GTEST_TEST(testErrorTraits, isFatalIsFalseWhenTemplateParameterIsWarning)
 {
