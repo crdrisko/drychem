@@ -23,15 +23,7 @@ script:
   - make && sudo make install
   - ctest --output-on-failure
   - cd bin/samples
-  - for file in *;
-    do
-      if [ $file -eq ciTokenizerExample ];
-      then
-        printf 'Hello, World!\n*' | ./$file;
-      else
-        ./$file || echo -n;
-      fi;
-    done
+  - for file in *; do printf 'Hello, World!\n*' | ./$file || echo -n; done
 
 
 ### Additional Build Stages ###
