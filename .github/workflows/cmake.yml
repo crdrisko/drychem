@@ -11,36 +11,39 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest] #, windows-latest
-        compiler: [gcc, clang]
+        compiler: [g++, clang++]
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Create Build Environment
-      run: cmake -E make_directory ${{runner.workspace}}/build
+    - name: Get Version Information
+      run: |
+          cmake --version
+          if [ ${{ matrix.compiler }} -eq clang++ ]; then clang++ --version; else g++ --verison; fi
 
-    - name: Configure CMake
-      working-directory: ${{runner.workspace}}/build
-      shell: bash
-      run: cmake $GITHUB_WORKSPACE -DCMAKE_CXX_COMPILER=${{ matrix.compiler }} -DCMAKE_BUILD_TYPE=$BUILD_TYPE -Dchem_build_all=ON
+    # - name: Create Build Environment
+    #   run: cmake -E make_directory ${{runner.workspace}}/build
 
-    - name: Build
-      working-directory: ${{runner.workspace}}/build
-      shell: bash
-      run: cmake --build . --config $BUILD_TYPE
+    # - name: Configure CMake
+    #   working-directory: ${{runner.workspace}}/build
+    #   shell: bash
+    #   run: cmake $GITHUB_WORKSPACE -DCMAKE_CXX_COMPILER=${{ matrix.compiler }} -DCMAKE_BUILD_TYPE=$BUILD_TYPE -Dchem_build_all=ON
 
-    - name: Install
-      working-directory: ${{runner.workspace}}/build
-      shell: bash
-      run: cmake --install . --config $BUILD_TYPE
+    # - name: Build
+    #   working-directory: ${{runner.workspace}}/build
+    #   shell: bash
+    #   run: cmake --build . --config $BUILD_TYPE
 
-    - name: Tests
-      working-directory: ${{runner.workspace}}/build
-      shell: bash
-      run: ctest --output-on-failure -C $BUILD_TYPE
+    # - name: Install
+    #   working-directory: ${{runner.workspace}}/build
+    #   shell: bash
+    #   run: cmake --install . --config $BUILD_TYPE
 
-    - name: Samples
-      working-directory: ${{runner.workspace}}/build/bin/samples
-      shell: bash
-      run: for file in *; do printf 'Hello, World!\n*' | ./$file || echo -n; done
+    # - name: Tests
+    #   working-directory: ${{runner.workspace}}/build
+    #   shell: bash
+    #   run: |
+    #     ctest --output-on-failure -C $BUILD_TYPE
+    #     cd bin/samples
+    #     for file in *; do printf 'Hello, World!\n*' | ./$file || echo -n; done
   
