@@ -7,7 +7,11 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest] #, windows-latest
+        compiler: [gcc, clang]
 
     steps:
     - uses: actions/checkout@v2
@@ -16,16 +20,27 @@ jobs:
       run: cmake -E make_directory ${{runner.workspace}}/build
 
     - name: Configure CMake
-      shell: bash
       working-directory: ${{runner.workspace}}/build
-      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -Dchem_build_all=ON
+      shell: bash
+      run: cmake $GITHUB_WORKSPACE -DCMAKE_CXX_COMPILER=${{ matrix.compiler }} -DCMAKE_BUILD_TYPE=$BUILD_TYPE -Dchem_build_all=ON
 
     - name: Build
       working-directory: ${{runner.workspace}}/build
       shell: bash
       run: cmake --build . --config $BUILD_TYPE
 
-    - name: Test
+    - name: Install
       working-directory: ${{runner.workspace}}/build
       shell: bash
-      run: ctest -C $BUILD_TYPE
+      run: cmake --install . --config $BUILD_TYPE
+
+    - name: Tests
+      working-directory: ${{runner.workspace}}/build
+      shell: bash
+      run: ctest --output-on-failure -C $BUILD_TYPE
+
+    - name: Samples
+      working-directory: ${{runner.workspace}}/build/bin/samples
+      shell: bash
+      run: for file in *; do printf 'Hello, World!\n*' | ./$file || echo -n; done
+  
