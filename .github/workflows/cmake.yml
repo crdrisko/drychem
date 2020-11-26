@@ -19,7 +19,7 @@ jobs:
     - name: Get Version Information
       run: |
           cmake --version
-          if [ ${{ matrix.compiler }} -eq clang++ ]; then clang++ --version; else g++ --verison; fi
+          if [[ "${{ matrix.compiler }}" == "clang++" ]]; then clang++ --version; else g++ --version; fi
 
     # - name: Create Build Environment
     #   run: cmake -E make_directory ${{runner.workspace}}/build
