@@ -23,14 +23,9 @@ More detailed documentation for Common-Utilities and C++ Units can be found in t
 
 The DryChem project has been built and tested on a number of operating systems, computer architectures, and compiler combinations.
 
-- Mac OS X
 - Linux
-- Windows Subsystem for Linux (WSL)
-
-**Coming Soon:**
-
+- Mac OS X
 - Windows
-- Cygwin
 
 ## Requirements
 

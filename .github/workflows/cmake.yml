@@ -10,40 +10,26 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest] #, windows-latest
-        compiler: [g++, clang++]
-
+        os: [macos-latest, ubuntu-latest, windows-latest]
     steps:
     - uses: actions/checkout@v2
 
-    - name: Get Version Information
-      run: |
-          cmake --version
-          if [[ "${{ matrix.compiler }}" == "clang++" ]]; then clang++ --version; else g++ --version; fi
+    - name: Create Build Environment
+      run: cmake -E make_directory ${{runner.workspace}}/build
 
-    # - name: Create Build Environment
-    #   run: cmake -E make_directory ${{runner.workspace}}/build
+    - name: Configure CMake
+      working-directory: ${{runner.workspace}}/build
+      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -Dchem_build_all=ON -Duils_exclude_scripts=ON
 
-    # - name: Configure CMake
-    #   working-directory: ${{runner.workspace}}/build
-    #   shell: bash
-    #   run: cmake $GITHUB_WORKSPACE -DCMAKE_CXX_COMPILER=${{ matrix.compiler }} -DCMAKE_BUILD_TYPE=$BUILD_TYPE -Dchem_build_all=ON
+    - name: Build
+      working-directory: ${{runner.workspace}}/build
+      run: cmake --build .
 
-    # - name: Build
-    #   working-directory: ${{runner.workspace}}/build
-    #   shell: bash
-    #   run: cmake --build . --config $BUILD_TYPE
+    - name: Install
+      working-directory: ${{runner.workspace}}/build
+      run: cmake --install .
 
-    # - name: Install
-    #   working-directory: ${{runner.workspace}}/build
-    #   shell: bash
-    #   run: cmake --install . --config $BUILD_TYPE
-
-    # - name: Tests
-    #   working-directory: ${{runner.workspace}}/build
-    #   shell: bash
-    #   run: |
-    #     ctest --output-on-failure -C $BUILD_TYPE
-    #     cd bin/samples
-    #     for file in *; do printf 'Hello, World!\n*' | ./$file || echo -n; done
+    - name: Tests
+      working-directory: ${{runner.workspace}}/build
+      run: ctest --output-on-failure
   

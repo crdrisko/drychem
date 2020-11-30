@@ -124,7 +124,7 @@ GTEST_TEST(testDifferentiationMethods, passingTwoDifferentlySizedContainersResul
     deathRegex << "Common-Utilities Fatal Error: ";
 
 #if GTEST_USES_POSIX_RE
-    deathRegex << "[(]\\S*DifferenceMethod.hpp: *[0-9]*[)]\n\t";
+    deathRegex << "[(](forward|backwards|centered)DifferenceMethod.hpp: *[0-9]*[)]\n\t";
 #elif GTEST_USES_SIMPLE_RE
     deathRegex << "\\(\\S*DifferenceMethod.hpp: \\d*\\)\n\t";
 #endif
