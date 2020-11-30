@@ -22,14 +22,14 @@ GTEST_TEST(testDifferentiationMethods, forwardDifferenceMethodReturnsAVectorWith
 
     for (std::size_t i {}; i <= 10; ++i)
     {
-        x.push_back(i);
-        y.push_back(i);
+        x.push_back(static_cast<long double>(i));
+        y.push_back(static_cast<long double>(i));
 
-        expectedResult.push_back((x[i] * x[i]) / 2);
+        expectedResult.push_back((x[i] * x[i]) / 2.0);
     }
 
     // Actual: d/dx (x) = 1
-    std::vector<long double> forwardFDM1(10, 1);
+    std::vector<long double> forwardFDM1(10, 1.0);
     auto forwardResult1 = DryChem::forwardDifferenceMethod(x, y);
 
     ASSERT_EQ(forwardFDM1, forwardResult1);
@@ -47,14 +47,14 @@ GTEST_TEST(testDifferentiationMethods, backwardsDifferenceMethodReturnsAVectorWi
 
     for (std::size_t i {}; i <= 10; ++i)
     {
-        x.push_back(i);
-        y.push_back(i);
+        x.push_back(static_cast<long double>(i));
+        y.push_back(static_cast<long double>(i));
 
-        expectedResult.push_back((x[i] * x[i]) / 2);
+        expectedResult.push_back((x[i] * x[i]) / 2.0);
     }
 
     // Actual: d/dx (x) = 1
-    std::vector<long double> backwardsFDM1(10, 1);
+    std::vector<long double> backwardsFDM1(10, 1.0);
     auto backwardsResult1 = DryChem::backwardsDifferenceMethod(x, y);
 
     ASSERT_EQ(backwardsFDM1, backwardsResult1);
@@ -73,19 +73,19 @@ GTEST_TEST(testDifferentiationMethods, defaultCenteredDifferenceMethodReturnsAVe
 
     for (std::size_t i {}; i <= 10; ++i)
     {
-        x.push_back(i);
-        y.push_back(i);
-        expectedResult.push_back((x[i] * x[i]) / 2);
+        x.push_back(static_cast<long double>(i));
+        y.push_back(static_cast<long double>(i));
+        expectedResult.push_back((x[i] * x[i]) / 2.0);
     }
 
     // Actual: d/dx (x) = 1
-    std::vector<long double> centeredFDM1(11, 1);
+    std::vector<long double> centeredFDM1(11, 1.0);
     auto centeredResult1 = DryChem::centeredDifferenceMethod(x, y);
 
     ASSERT_EQ(centeredFDM1, centeredResult1);
 
     // Actual: d/dx (1/2 x^2) = x
-    std::vector<long double> centeredFDM2 {0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9.5};
+    std::vector<long double> centeredFDM2 {0.5, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 9.5};
     auto centeredResult2
         = DryChem::centeredDifferenceMethod(x.begin(), x.end(), expectedResult.begin(), expectedResult.end());
 
@@ -98,19 +98,19 @@ GTEST_TEST(testDifferentiationMethods, nonDefaultCenteredDifferenceMethodReturns
 
     for (std::size_t i {}; i <= 10; ++i)
     {
-        x.push_back(i);
-        y.push_back(i);
-        expectedResult.push_back((x[i] * x[i]) / 2);
+        x.push_back(static_cast<long double>(i));
+        y.push_back(static_cast<long double>(i));
+        expectedResult.push_back((x[i] * x[i]) / 2.0);
     }
 
     // Actual: d/dx (x) = 1
-    std::vector<long double> centeredFDM1(9, 1);
+    std::vector<long double> centeredFDM1(9, 1.0);
     auto centeredResult1 = DryChem::centeredDifferenceMethod(x, y, false);
 
     ASSERT_EQ(centeredFDM1, centeredResult1);
 
     // Actual: d/dx (1/2 x^2) = x
-    std::vector<long double> centeredFDM2 {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    std::vector<long double> centeredFDM2 {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
     auto centeredResult2
         = DryChem::centeredDifferenceMethod(x.begin(), x.end(), expectedResult.begin(), expectedResult.end(), false);
 

@@ -98,7 +98,7 @@ GTEST_TEST(testBasicMathFunctions, linearInterpolationOf_y_along_x_gives_x)
     std::vector<long double> y;
 
     for (std::size_t i {}; i <= 10; ++i)
-        x.push_back(i);
+        x.push_back(static_cast<long double>(i));
 
     y = DryChem::linearlyInterpolate(x, 0.0l, 10.0l);
 

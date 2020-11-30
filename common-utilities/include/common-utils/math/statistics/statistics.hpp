@@ -96,11 +96,6 @@ namespace CppUtils::Math
         Txx result = std::accumulate(x_begin, x_end, init, 
             [&average](Txx res, T x) { return std::move(res) + ((x - average) * (x - average)); }) / (x_size - 1);
 
-        /*std::transform(x_begin, x_end, averageCorrectedValues.begin(),
-            [&](auto x) { return (x - average) * (x - average); });
-
-        Txx result = std::accumulate(averageCorrectedValues.begin(), averageCorrectedValues.end(), init) / (x_size - static_cast<std::ptrdiff_t>(1));*/
-
         return result;
     }
 }   // namespace CppUtils::Math

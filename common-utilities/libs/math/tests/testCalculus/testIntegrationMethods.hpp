@@ -36,23 +36,23 @@ GTEST_TEST(testIntegrationMethods, theCumulativeTrapzMethodHasAnOptionalParamete
 
     for (std::size_t i {}; i <= 10; ++i)
     {
-        x.push_back(i);
-        y.push_back(i);
+        x.push_back(static_cast<long double>(i));
+        y.push_back(static_cast<long double>(i));
 
-        expectedResult.push_back((x[i] * x[i]) / 2);
+        expectedResult.push_back((x[i] * x[i]) / 2.0);
     }
 
     // ∫x = 1/2 x^2
     auto integrationResult1 = DryChem::cumulativeTrapzIntegration(x.begin(), x.end(), y.begin(), y.end());
-    auto integrationResult2 = DryChem::cumulativeTrapzIntegration(x.begin(), x.end(), y.begin(), y.end(), 0);
-    auto integrationResult3 = DryChem::cumulativeTrapzIntegration(x.begin(), x.end(), y.begin(), y.end(), 5);
+    auto integrationResult2 = DryChem::cumulativeTrapzIntegration(x.begin(), x.end(), y.begin(), y.end(), 0.0);
+    auto integrationResult3 = DryChem::cumulativeTrapzIntegration(x.begin(), x.end(), y.begin(), y.end(), 5.0);
 
     for (std::size_t i {}; i < expectedResult.size(); ++i)
     {
         ASSERT_EQ(expectedResult[i], integrationResult2[i]);
 
         if (i == 0)
-            ASSERT_EQ(5, integrationResult3[i]);
+            ASSERT_EQ(5.0, integrationResult3[i]);
         else
             ASSERT_EQ(expectedResult[i], integrationResult3[i]);
 
@@ -69,14 +69,14 @@ GTEST_TEST(testIntegrationMethods, insteadOfUsingIteratorsWeCanJustPassFullConta
 
     for (std::size_t i {}; i <= 10; ++i)
     {
-        x.push_back(i);
-        y.push_back(i);
+        x.push_back(static_cast<long double>(i));
+        y.push_back(static_cast<long double>(i));
 
-        expectedResult.push_back((x[i] * x[i]) / 2);
+        expectedResult.push_back((x[i] * x[i]) / 2.0);
     }
 
     // ∫x = 1/2 x^2
-    auto integrationResult = DryChem::cumulativeTrapzIntegration(x, y, 0);
+    auto integrationResult = DryChem::cumulativeTrapzIntegration(x, y, 0.0);
 
     ASSERT_EQ(expectedResult, integrationResult);
 }

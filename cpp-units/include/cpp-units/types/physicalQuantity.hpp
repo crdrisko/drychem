@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include <string>
-#include <string_view>
+#include <type_traits>
 
 #include <common-utils/utilities.hpp>
 
@@ -31,9 +31,9 @@ namespace CppUnits
         constexpr PhysicalQuantity() noexcept = default;
         constexpr explicit PhysicalQuantity(long double Magnitude) noexcept : magnitude {Magnitude} {}
 
-        constexpr explicit PhysicalQuantity(std::string_view Magnitude)
+        constexpr explicit PhysicalQuantity(const std::string& Magnitude)
         {
-            magnitude = std::stold(std::string {Magnitude});   // This particular conversion could throw
+            magnitude = std::stold(Magnitude);   // This particular conversion could throw
         }
 
         constexpr long double getMagnitude() const noexcept { return magnitude; }
@@ -83,14 +83,16 @@ namespace CppUnits
 
         /* Physical quantities and dimensionless quantities can only be multiplied or divided by each other,
             adding or subtracting is an error due to a dimensionality mismatch */
-        constexpr auto operator*(long double rhs) const noexcept
+        template<typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
+        constexpr auto operator*(T rhs) const noexcept
         {
-            return (*this) * PhysicalQuantity<Dimensionality<>>(rhs);
+            return (*this) * PhysicalQuantity<Dimensionality<>>(static_cast<long double>(rhs));
         }
 
-        constexpr auto operator*=(long double rhs) noexcept
+        template<typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
+        constexpr auto operator*=(T rhs) noexcept
         {
-            magnitude *= rhs;
+            magnitude *= static_cast<long double>(rhs);
             return *this;
         }
 
@@ -100,14 +102,16 @@ namespace CppUnits
             return *this;
         }
 
-        constexpr auto operator/(long double rhs) const noexcept
+        template<typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
+        constexpr auto operator/(T rhs) const noexcept
         {
-            return (*this) / PhysicalQuantity<Dimensionality<>>(rhs);
+            return (*this) / PhysicalQuantity<Dimensionality<>>(static_cast<long double>(rhs));
         }
 
-        constexpr auto operator/=(long double rhs) noexcept
+        template<typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
+        constexpr auto operator/=(T rhs) noexcept
         {
-            magnitude /= rhs;
+            magnitude /= static_cast<long double>(rhs);
             return *this;
         }
 
