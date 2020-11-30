@@ -20,9 +20,6 @@ jobs:
     - name: Build
       run: cmake --build .
 
-    - name: Install
-      run: cmake --install .
-
     - name: Tests
       run: ctest --output-on-failure
   
