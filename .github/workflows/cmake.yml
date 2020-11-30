@@ -14,22 +14,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Create Build Environment
-      run: cmake -E make_directory ${{runner.workspace}}/build
-
     - name: Configure CMake
-      working-directory: ${{runner.workspace}}/build
-      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -Dchem_build_all=ON -Duils_exclude_scripts=ON
+      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -Dchem_build_all=ON -Dutils_exclude_scripts=ON
 
     - name: Build
-      working-directory: ${{runner.workspace}}/build
       run: cmake --build .
 
     - name: Install
-      working-directory: ${{runner.workspace}}/build
       run: cmake --install .
 
     - name: Tests
-      working-directory: ${{runner.workspace}}/build
       run: ctest --output-on-failure
   
