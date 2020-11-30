@@ -29,7 +29,7 @@ namespace CppUtils::Math
     template<typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
     constexpr int findOrderOfMagnitude(T value) noexcept
     {
-        return std::floor(std::log10(value));
+        return static_cast<int>(std::floor(std::log10(value)));
     }
 
 
@@ -91,12 +91,15 @@ namespace CppUtils::Math
         const Txx init {};
         T average {calculateAverage(x_begin, x_end)};
 
-        std::vector<Txx> averageCorrectedValues(x_size);
+        //std::vector<Txx> averageCorrectedValues(x_size);
 
-        std::transform(x_begin, x_end, averageCorrectedValues.begin(),
+        Txx result = std::accumulate(x_begin, x_end, init, 
+            [&average](Txx res, T x) { return std::move(res) + ((x - average) * (x - average)); }) / (x_size - 1);
+
+        /*std::transform(x_begin, x_end, averageCorrectedValues.begin(),
             [&](auto x) { return (x - average) * (x - average); });
 
-        Txx result = std::accumulate(averageCorrectedValues.begin(), averageCorrectedValues.end(), init) / (x_size - 1);
+        Txx result = std::accumulate(averageCorrectedValues.begin(), averageCorrectedValues.end(), init) / (x_size - static_cast<std::ptrdiff_t>(1));*/
 
         return result;
     }

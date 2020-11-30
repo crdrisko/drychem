@@ -10,6 +10,7 @@
 #define DRYCHEM_COMMON_UTILITIES_LIBS_MATH_TESTS_TESTCALCULUS_TESTDIFFERENTIATIONMETHODS_HPP
 
 #include <cstddef>
+#include <sstream>
 #include <vector>
 
 #include <common-utils/math.hpp>
@@ -118,6 +119,18 @@ GTEST_TEST(testDifferentiationMethods, nonDefaultCenteredDifferenceMethodReturns
 
 GTEST_TEST(testDifferentiationMethods, passingTwoDifferentlySizedContainersResultsInFatalException)
 {
+    std::stringstream deathRegex;
+
+    deathRegex << "Common-Utilities Fatal Error: ";
+
+#if GTEST_USES_POSIX_RE
+    deathRegex << "[(]\\S*DifferenceMethod.hpp: *[0-9]*[)]\n\t";
+#elif GTEST_USES_SIMPLE_RE
+    deathRegex << "\\(\\S*DifferenceMethod.hpp: \\d*\\)\n\t";
+#endif
+
+    deathRegex << "Input sizes for x and y containers must be the same.\n";
+
     std::vector<long double> x {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
     std::vector<long double> y {2.0, 5.0, 3.0, 7.0, 8.0, 9.0, 12.0, 10.0, 15.0, 20.0};
 
@@ -132,7 +145,7 @@ GTEST_TEST(testDifferentiationMethods, passingTwoDifferentlySizedContainersResul
                 except.handleErrorWithMessage();
             }
         },
-        "Common-Utilities Fatal Error: [(]forwardDifferenceMethod.hpp: *[0-9]*[)]\n\tInput sizes for x and y containers must be the same.\n");
+        deathRegex.str());
 
     ASSERT_DEATH(
         {
@@ -145,7 +158,7 @@ GTEST_TEST(testDifferentiationMethods, passingTwoDifferentlySizedContainersResul
                 except.handleErrorWithMessage();
             }
         },
-        "Common-Utilities Fatal Error: [(]backwardsDifferenceMethod.hpp: *[0-9]*[)]\n\tInput sizes for x and y containers must be the same.\n");
+        deathRegex.str());
 
     ASSERT_DEATH(
         {
@@ -158,7 +171,7 @@ GTEST_TEST(testDifferentiationMethods, passingTwoDifferentlySizedContainersResul
                 except.handleErrorWithMessage();
             }
         },
-        "Common-Utilities Fatal Error: [(]centeredDifferenceMethod.hpp: *[0-9]*[)]\n\tInput sizes for x and y containers must be the same.\n");
+        deathRegex.str());
 }
 
 #endif

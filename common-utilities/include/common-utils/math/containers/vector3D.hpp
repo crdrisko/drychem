@@ -37,12 +37,12 @@ namespace CppUtils::Math
         using value_type      = T;
         using size_type       = std::size_t;
         using difference_type = std::ptrdiff_t;
-        using reference       = T&;
-        using const_reference = const T&;
-        using pointer         = T*;
-        using const_pointer   = const T*;
-        using iterator        = T*;
-        using const_iterator  = const T*;
+        using reference       = typename std::array<T, 3>::reference;
+        using const_reference = typename std::array<T, 3>::const_reference;
+        using pointer         = typename std::array<T, 3>::pointer;
+        using const_pointer   = typename std::array<T, 3>::const_pointer;
+        using iterator        = typename std::array<T, 3>::iterator;
+        using const_iterator  = typename std::array<T, 3>::const_iterator;
 
         //! With this member type, we are now both a container and container adapter
         using container_type = std::array<T, 3>;

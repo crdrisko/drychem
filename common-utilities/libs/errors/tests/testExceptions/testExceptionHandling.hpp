@@ -12,12 +12,17 @@
 #include <exception>
 #include <iostream>
 #include <string>
+#include <sstream>
 
 #include <common-utils/errors.hpp>
 #include <gtest/gtest.h>
 
 GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAStdException)
 {
+    std::stringstream deathRegex;
+    
+    deathRegex << "YourProgramName Fatal Error:\n\tAn exception was thrown from " << std::exception().what();
+
     ASSERT_DEATH(
         {
             try
@@ -41,11 +46,23 @@ GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAStdException)
                 except.handleErrorWithMessage();
             }
         },
-        "YourProgramName Fatal Error:\n\tAn exception was thrown from std::exception\n");
+        deathRegex.str());
 }
 
 GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAFatalException)
 {
+    std::stringstream deathRegex;
+
+    deathRegex << "YourProgramName Fatal Error:\n\tAn exception was thrown from ";
+
+#if GTEST_USES_POSIX_RE
+    deathRegex << "[(]testExceptionHandling.hpp: *[0-9]*[)]";
+#elif GTEST_USES_SIMPLE_RE
+    deathRegex << "\\(testExceptionHandling.hpp: \\d*\\)";
+#endif
+
+     deathRegex << "\n\tLocation message.\n";
+
     ASSERT_DEATH(
         {
             try
@@ -70,11 +87,23 @@ GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAFatalException)
                 except.handleErrorWithMessage();
             }
         },
-        "YourProgramName Fatal Error:\n\tAn exception was thrown from [(]testExceptionHandling.hpp: *[0-9]*[)]\n\tLocation message.\n");
+        deathRegex.str());
 }
 
 GTEST_TEST(testExceptionHandling, fatalErrorsAreHandledByTerminating)
 {
+    std::stringstream deathRegex;
+
+    deathRegex << "Common-Utilities Fatal Error: ";
+
+#if GTEST_USES_POSIX_RE
+    deathRegex << "[(]testExceptionHandling.hpp: *[0-9]*[)]";
+#elif GTEST_USES_SIMPLE_RE
+    deathRegex << "\\(testExceptionHandling.hpp: \\d*\\)";
+#endif
+
+     deathRegex << "\n\tThis would be the error message.\n";
+
     ASSERT_DEATH(
         {
             DryChem::ErrorMessage error;
@@ -86,7 +115,7 @@ GTEST_TEST(testExceptionHandling, fatalErrorsAreHandledByTerminating)
             DryChem::FatalException exceptFatal {error};
             exceptFatal.handleErrorWithMessage();
         },
-        "Common-Utilities Fatal Error: [(]testExceptionHandling.hpp: *[0-9]*[)]\n\tThis would be the error message.\n");
+        deathRegex.str());
 }
 
 GTEST_TEST(testExceptionHandling, derivedExceptionClassIsCaughtByParentClass)
@@ -109,7 +138,7 @@ GTEST_TEST(testExceptionHandling, derivedExceptionClassIsCaughtByParentClass)
     }
 
     std::string actualOutput = testing::internal::GetCapturedStderr();
-    ASSERT_EQ(actualOutput, "(testExceptionHandling.hpp: 102)\n\tLet's throw a non-fatal warning.\n");
+    ASSERT_EQ(actualOutput, "(testExceptionHandling.hpp: 131)\n\tLet's throw a non-fatal warning.\n");
 }
 
 #endif

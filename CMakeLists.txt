@@ -70,7 +70,9 @@ if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Release")
 endif()
 
-add_compile_options(-pedantic-errors -Wall -Werror -Wextra)
+if (NOT WIN32)
+    add_compile_options(-pedantic-errors -Wall -Werror -Wextra)
+endif()
 
 if (CMAKE_COMPILER_IS_GNUCXX)
     add_compile_options(-Wno-psabi)
@@ -105,6 +107,10 @@ install(DIRECTORY ${LIBRARIES}
 if (utils_build_tests OR units_build_tests)
     find_package(GTest)
     find_package(Threads)
+
+    if (WIN32)
+        add_compile_options(/MD /WX)
+    endif()
 
     if (NOT ${GTest_FOUND})
         ## If googletest isn't installed or can't be found, download it from github ##

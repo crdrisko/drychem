@@ -10,6 +10,7 @@
 #define DRYCHEM_COMMON_UTILITIES_LIBS_MATH_TESTS_TESTCALCULUS_TESTINTEGRATIONMETHODS_HPP
 
 #include <cstddef>
+#include <sstream>
 #include <vector>
 
 #include <common-utils/math.hpp>
@@ -82,6 +83,18 @@ GTEST_TEST(testIntegrationMethods, insteadOfUsingIteratorsWeCanJustPassFullConta
 
 GTEST_TEST(testIntegrationMethods, passingTwoDifferentlySizedContainersResultsInFatalException)
 {
+    std::stringstream deathRegex;
+
+    deathRegex << "Common-Utilities Fatal Error: ";
+
+#if GTEST_USES_POSIX_RE
+    deathRegex << "[(]integration.hpp: *[0-9]*[)]\n\t";
+#elif GTEST_USES_SIMPLE_RE
+    deathRegex << "\\(integration.hpp: \\d*\\)\n\t";
+#endif
+
+    deathRegex << "Input sizes for x and y containers must be the same.\n";
+
     std::vector<long double> x {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0};
     std::vector<long double> y {2.0, 5.0, 3.0, 7.0, 8.0, 9.0, 12.0, 10.0, 15.0, 20.0};
 
@@ -96,7 +109,7 @@ GTEST_TEST(testIntegrationMethods, passingTwoDifferentlySizedContainersResultsIn
                 except.handleErrorWithMessage();
             }
         },
-        "Common-Utilities Fatal Error: [(]integration.hpp: *[0-9]*[)]\n\tInput sizes for x and y containers must be the same.\n");
+        deathRegex.str());
 }
 
 #endif

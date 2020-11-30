@@ -102,4 +102,4 @@ Before we can review and accept a pull request from you, you'll need to sign a C
 
 ***Checking the aforementioned boxes means that you agree to provide your change and/or code FREE TO USE and SUBJECT TO CHANGES for the entire community!***
 
-You don't need to sign a CLA until you're ready to create a pull request. When your pull request is created, it is reviewed by a team member which, if the change is trivial (i.e. you just fixed a typo) will be labelled as `cla-not-required`. Otherwise, it's classified as `cla-required`, if not already signed.
+You don't need to sign a CLA until you're ready to create a pull request. When your pull request is created, it is reviewed by a team member which, if the change is trivial (i.e. you just fixed a typo) will be labeled as `cla-not-required`. Otherwise, it's classified as `cla-required`, if not already signed.

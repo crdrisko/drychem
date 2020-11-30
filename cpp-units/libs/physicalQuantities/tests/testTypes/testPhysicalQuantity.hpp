@@ -11,6 +11,8 @@
 
 #include <exception>
 #include <string>
+#include <sstream>
+#include <stdexcept>
 
 #include <common-utils/errors.hpp>
 #include <gtest/gtest.h>
@@ -59,6 +61,17 @@ GTEST_TEST(testPhysicalQuantity, physicalQuantitiesCanBeConstructedFromStrings)
 
 GTEST_TEST(testPhysicalQuantity, stringConstructorCanThrowAnException)
 {
+    std::stringstream deathRegex;
+
+    try
+    {
+        std::stold("Not a number");
+    }
+    catch (const std::invalid_argument& except)
+    {
+        deathRegex << "CPP Units Fatal Error:\n\tException message: " << except.what();
+    }
+
     ASSERT_DEATH(
         {
             try
@@ -81,7 +94,7 @@ GTEST_TEST(testPhysicalQuantity, stringConstructorCanThrowAnException)
                 except.handleErrorWithMessage();
             }
         },
-        "CPP Units Fatal Error:\n\tException message: stold");
+        deathRegex.str());
 }
 
 #endif
