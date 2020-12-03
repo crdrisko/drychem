@@ -33,6 +33,7 @@ jobs:
         export PATH="$PATH:/home/runner/.local/bin" 
         lcov --directory . --capture --output-file coverage.info
         lcov --remove coverage.info '*gtest*' '*/libs/*' '/usr/*' --output-file coverage.info
-        coveralls -r . --l coverage.info -n
         bash <(curl -s https://codecov.io/bash) -s "!*/libs/*"
+        coveralls -r ../. --l coverage.info -n
+
 
