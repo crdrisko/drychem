@@ -7,7 +7,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     # if: "!contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[ci skip]')"
         
     steps:
@@ -27,8 +27,9 @@ jobs:
 
     - name: Report
       run: |
-        sudo apt-get install python-pip lcov 
-        pip install --target="$PWD" --user cpp-coveralls
+        sudo apt-get install python3-pip lcov 
+        python3 -m pip install --user cpp-coveralls
+        export PATH="$PATH:/home/runner/.local/bin" 
         lcov --directory . --capture --output-file coverage.info
         lcov --remove coverage.info '*gtest*' '*/libs/*' '/usr/*' --output-file coverage.info
         coveralls -r ../../. --l coverage.info -n
