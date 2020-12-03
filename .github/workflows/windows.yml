@@ -1,4 +1,4 @@
-name: cmake
+name: Windows
 
 on: [push]
 
@@ -19,6 +19,9 @@ jobs:
     - name: Build
       run: cmake --build .
 
+    -name: Install
+    -run: cmake --build . --target install
+
     - name: Test
       run: ctest --output-on-failure
 
@@ -28,5 +31,3 @@ jobs:
         cd $locationOfSamples.DirectoryName
         $files = gci *.exe
         foreach ($file in $files) { echo "Hello World!*" | cmd /c $file; if (-not $?) { echo "" } }
-
-    
