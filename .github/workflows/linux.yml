@@ -26,6 +26,6 @@ jobs:
       run: ctest --output-on-failure
 
     - name: Verify
-    - run: |
+      run: |
         cd bin/samples
         for file in *; do printf 'Hello, World!\n*' | ./$file || echo -n; done

@@ -19,8 +19,8 @@ jobs:
     - name: Build
       run: cmake --build .
 
-    -name: Install
-    -run: cmake --build . --target install
+    - name: Install
+      run: cmake --build . --target install
 
     - name: Test
       run: ctest --output-on-failure
