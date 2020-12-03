@@ -28,6 +28,7 @@ jobs:
     - name: Report
       run: |
         sudo apt-get install python3-pip lcov python3-setuptools 
+        python3 -m pip install wheel
         python3 -m pip install --user cpp-coveralls
         export PATH="$PATH:/home/runner/.local/bin" 
         lcov --directory . --capture --output-file coverage.info
