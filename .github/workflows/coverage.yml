@@ -28,7 +28,7 @@ jobs:
     - name: Report
       run: |
         sudo apt-get install python-pip lcov 
-        pip install --user cpp-coveralls
+        pip install --target="$PWD" --user cpp-coveralls
         lcov --directory . --capture --output-file coverage.info
         lcov --remove coverage.info '*gtest*' '*/libs/*' '/usr/*' --output-file coverage.info
         coveralls -r ../../. --l coverage.info -n
