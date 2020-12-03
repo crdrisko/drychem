@@ -19,7 +19,7 @@ option(utils_build_tests     "Builds common-utils library and corresponding unit
 option(utils_build_samples   "Builds common-utils library and corresponding code samples." OFF)
 option(utils_exclude_scripts "Builds specified libraries while ignoring the scripts directory." OFF)
 
-if (chem_format_codebase)
+if (chem_format_codebase AND NOT WIN32)
     ## Run clang-format on all code except the files passed as arguments with the '-i' flag ##
     execute_process(COMMAND bash cmake/scripts/format-codebase.sh
                                     -i common-utilities/include/common-utils/math/calculus/differentiation/*
@@ -70,7 +70,9 @@ if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Release")
 endif()
 
-if (NOT WIN32)
+if (WIN32)
+    add_compile_options(/MD /WX)
+else()
     add_compile_options(-pedantic-errors -Wall -Werror -Wextra)
 endif()
 
@@ -107,10 +109,6 @@ install(DIRECTORY ${LIBRARIES}
 if (utils_build_tests OR units_build_tests)
     find_package(GTest)
     find_package(Threads)
-
-    if (WIN32)
-        add_compile_options(/MD /WX)
-    endif()
 
     if (NOT ${GTest_FOUND})
         ## If googletest isn't installed or can't be found, download it from github ##

@@ -84,7 +84,7 @@ When completing a pull request, we will generally squash your changes into a sin
 
 ### Continuous Integration
 
-For this project, CI is provided by [Travis-CI](https://travis-ci.com/github/crdrisko/drychem), with workflows found in [.travis.yml](https://github.com/crdrisko/drychem/blob/master/.travis.yml). Workflows are run automatically on every commit made on the master branch, unless told to skip for that particular commit.
+For this project, CI is provided by [GitHub-Actions](https://github.com/crdrisko/drychem/actions), with workflows found in [cmake.yml](https://github.com/crdrisko/drychem/blob/master/.github/workflows/cmake.yml). Workflows are run automatically on every commit made on the master branch, unless told to skip for that particular commit.
 
 To skip CI runs on a particular commit, include either `[skip ci]` or `[ci skip]` in the commit message.
 

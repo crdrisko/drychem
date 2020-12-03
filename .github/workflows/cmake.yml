@@ -7,19 +7,34 @@ env:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+    runs-on: windows-latest
+    # if: "!contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[ci skip]')"
+
     steps:
     - uses: actions/checkout@v2
 
-    - name: Configure CMake
-      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -Dchem_build_all=ON -Dutils_exclude_scripts=ON
+    - name: Configure
+      run: cmake -Bbuild $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -Dchem_build_all=ON -Dutils_exclude_scripts=ON
 
     - name: Build
-      run: cmake --build .
+      working-directory: $GITHUB_WORKSPACE
+      shell: pwsh
+      run: cmake --build build --config $BUILD_TYPE -j4
 
-    - name: Tests
+    - name: Install
+      working-directory: $GITHUB_WORKSPACE
+      shell: pwsh
+      run: cmake --build build --target install --config $BUILD_TYPE 
+
+    - name: Test
+      working-directory: $GITHUB_WORKSPACE/build
+      shell: pwsh
       run: ctest --output-on-failure
-  
+
+    - name: Verify
+      working-directory: $GITHUB_WORKSPACE/build/bin/samples/$BUILD_TYPE
+      run: |
+        $files = gci *.exe
+        foreach ($file in $files) { echo "Hello World!*" | cmd /c $file; if (-not $?) { echo "" } }
+
+    

@@ -42,7 +42,7 @@ Put `closes #XXXX` in your comment to auto-close the issue that your PR fixes (i
 
 Demonstrate the code is solid. Example: The exact commands you ran and their output, screenshots / videos if the pull request changes UI.
 
-*Make sure tests pass on all of the [relevant CI workflows](https://github.com/crdrisko/drychem/blob/master/.travis.yml).*
+*Make sure tests pass on all of the [relevant CI workflows](https://github.com/crdrisko/drychem/blob/master/.github/workflows/cmake.yml).*
 
 ### Pull Request Readiness Checklist
 
