@@ -20,7 +20,7 @@ jobs:
       run: cmake --build .
 
     - name: Install
-      run: cmake --build . --target install
+      run: sudo cmake --build . --target install
 
     - name: Test
       run: ctest --output-on-failure

@@ -1,4 +1,4 @@
-name: Linux
+name: Coverage
 
 on: [push]
 
@@ -20,14 +20,14 @@ jobs:
       run: cmake --build .
 
     - name: Install
-      run: cmake --build . --target install
+      run: sudo cmake --build . --target install
 
     - name: Test
       run: ctest --output-on-failure
 
     - name: Report
       run: |
-        apt-get install python-pip lcov 
+        sudo apt-get install python-pip lcov 
         pip install --user cpp-coveralls
         lcov --directory . --capture --output-file coverage.info
         lcov --remove coverage.info '*gtest*' '*/libs/*' '/usr/*' --output-file coverage.info
