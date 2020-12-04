@@ -2,11 +2,11 @@
 
 ## Build Status
 
-- **Github Actions:** [![cmake](https://github.com/crdrisko/drychem/workflows/build/badge.svg)](https://github.com/crdrisko/drychem/actions?query=workflow%3ABuild)
+- **Github Actions:** [![build](https://github.com/crdrisko/drychem/workflows/build/badge.svg)](https://github.com/crdrisko/drychem/actions?query=workflow%3Abuild)
 
 ## Code Coverage
 
-- **CodeCov:** [![codecov](https://codecov.io/gh/crdrisko/drychem/branch/main/graph/badge.svg)](https://codecov.io/gh/crdrisko/drychem)
+- **CodeCov:** [![codecov](https://codecov.io/gh/crdrisko/drychem/branch/main/graph/badge.svg?token=CWAZYZG5VH)](https://codecov.io/gh/crdrisko/drychem)
 - **Coveralls:** [![Coverage Status](https://coveralls.io/repos/github/crdrisko/drychem/badge.svg?branch=main)](https://coveralls.io/github/crdrisko/drychem?branch=main)
 
 ## Code Quality Analysis
