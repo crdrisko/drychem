@@ -1,4 +1,4 @@
-name: Windows
+name: build
 
 on: [push]
 
@@ -6,7 +6,7 @@ env:
   BUILD_TYPE: Release
 
 jobs:
-  build:
+  windows-builds:
     runs-on: windows-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[ci skip]')"
 
@@ -31,3 +31,30 @@ jobs:
         cd $locationOfSamples.DirectoryName
         $files = gci *.exe
         foreach ($file in $files) { echo "Hello World!*" | cmd /c $file; if (-not $?) { echo "" } }
+
+  nix-builds:
+    runs-on: ${{ matrix.os }}
+    if: "!contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[ci skip]')"
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Configure
+      run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -Dchem_build_all=ON
+
+    - name: Build
+      run: cmake --build .
+
+    - name: Install
+      run: sudo cmake --build . --target install
+
+    - name: Test
+      run: ctest --output-on-failure
+
+    - name: Verify
+      run: |
+        cd bin/samples
+        for file in *; do printf 'Hello, World!\n*' | ./$file || echo -n; done

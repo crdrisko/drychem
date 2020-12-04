@@ -1,32 +1,6 @@
 ### DryChem Build Matrix ###
 language: cpp
-os:
-  - linux
-  - osx
-compiler:
-  - clang
-  - gcc
-osx_image: xcode12
-dist: focal
-arch:
-  - arm64
-  - amd64
 
-notifications:
-  email: false
-
-
-### Standard Installation Procedure ###
-script:
-  - mkdir build && cd build
-  - cmake ../. -Dchem_build_all=ON
-  - make && sudo make install
-  - ctest --output-on-failure
-  - cd bin/samples
-  - for file in *; do printf 'Hello, World!\n*' | ./$file || echo -n; done
-
-
-### Additional Build Stages ###
 matrix:
   include:
     - stage: coverage   ## Provide code coverage reports

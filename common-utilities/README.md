@@ -39,14 +39,10 @@ To build the common-utilities libraries and scripts there are a few options that
 The libraries included in this project include the following, and more information can be found in the specific libraries documentation:
 
 - [Errors](libs/errors/docs/errors.md)
-
 - [Math](libs/math/docs/math.md)
-
-<!--- [Files](libs/files/docs/files.md)-->
-
 - [Strings](libs/strings/docs/strings.md)
-
 - [Utilities](libs/utilities/docs/utilities.md)
+<!-- [Files](libs/files/docs/files.md)-->
 
 The following tree diagram shows how a sample library, `library1`, would be organized in the API:
 

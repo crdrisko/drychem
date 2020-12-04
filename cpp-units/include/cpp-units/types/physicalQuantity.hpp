@@ -6,8 +6,8 @@
 // Date: 03/03/2020-18:45:26
 // Description: Defines the PhysicalQuantity class template with SI base units
 
-#ifndef DRYCHEM_CPP_UNITS_PHYSICALQUANTITY_HPP
-#define DRYCHEM_CPP_UNITS_PHYSICALQUANTITY_HPP
+#ifndef DRYCHEM_CPP_UNITS_INCLUDE_CPP_UNITS_TYPES_PHYSICALQUANTITY_HPP
+#define DRYCHEM_CPP_UNITS_INCLUDE_CPP_UNITS_TYPES_PHYSICALQUANTITY_HPP
 
 #include <iostream>
 #include <string>
@@ -31,10 +31,12 @@ namespace CppUnits
         constexpr PhysicalQuantity() noexcept = default;
         constexpr explicit PhysicalQuantity(long double Magnitude) noexcept : magnitude {Magnitude} {}
 
-        constexpr explicit PhysicalQuantity(const std::string& Magnitude)
-        {
-            magnitude = std::stold(Magnitude);   // This particular conversion could throw
-        }
+        /*!
+         * Allow strings to be parsed as physical quantities if they can first be parsed as long doubles.
+         *
+         * \exception std::invalid_argument If we can't convert the string to a long double our constructor will throw
+         */
+        constexpr explicit PhysicalQuantity(const std::string& Magnitude) : magnitude {std::stold(Magnitude)} {}
 
         constexpr long double getMagnitude() const noexcept { return magnitude; }
         constexpr void setMagnitude(long double Magnitude) noexcept { magnitude = Magnitude; }

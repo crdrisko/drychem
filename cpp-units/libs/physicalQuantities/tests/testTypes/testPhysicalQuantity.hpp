@@ -6,13 +6,13 @@
 // Date: 09/17/2020-09:54:44
 // Description: Provides ~100% unit test coverage over all miscellaneous PhysicalQuantity member functions
 
-#ifndef DRYCHEM_CPP_UNITS_TESTING_TESTPHYSICALQUANTITY_HPP
-#define DRYCHEM_CPP_UNITS_TESTING_TESTPHYSICALQUANTITY_HPP
+#ifndef DRYCHEM_CPP_UNITS_LIBS_PHYSICALQUANTITIES_TESTS_TESTTYPES_TESTPHYSICALQUANTITY_HPP
+#define DRYCHEM_CPP_UNITS_LIBS_PHYSICALQUANTITIES_TESTS_TESTTYPES_TESTPHYSICALQUANTITY_HPP
 
 #include <exception>
-#include <string>
 #include <sstream>
 #include <stdexcept>
+#include <string>
 
 #include <common-utils/errors.hpp>
 #include <gtest/gtest.h>

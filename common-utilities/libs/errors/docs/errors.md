@@ -37,6 +37,8 @@ All the functions and classes belonging to the errors library are wrapped in the
 
   The `FatalException` class delegates its error handling to a separate utility function (discussed next) when the user invokes `handleErrorWithMessage()`. Because this exception type is deemed fatal, a verbose error message will be printed and `std::exit()` will be called.
 
+---
+
 ### Error Handling Utilities
 
 - [Convience Types and Traits:](../../../include/common-utils/errors/utils/errorTypes.hpp)
@@ -46,6 +48,8 @@ All the functions and classes belonging to the errors library are wrapped in the
 - [Error Handling:](../../../include/common-utils/errors/utils/errorHandling.hpp)
 
   The `printErrorMessage()` function template is a helper function for the `FatalException` class but can be called directly if needed. Depending on the error severity, the function will either print a warning to STDERR or print the supplied message and exit. `printFatalErrorMessage()` exists as a convience function for a fatal error so template parameters don't need to be explicitly writen.
+
+---
 
 ## Working Example
 

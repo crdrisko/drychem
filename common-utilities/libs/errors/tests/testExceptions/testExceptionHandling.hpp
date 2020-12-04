@@ -11,8 +11,8 @@
 
 #include <exception>
 #include <iostream>
-#include <string>
 #include <sstream>
+#include <string>
 
 #include <common-utils/errors.hpp>
 #include <gtest/gtest.h>
@@ -20,7 +20,7 @@
 GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAStdException)
 {
     std::stringstream deathRegex;
-    
+
     deathRegex << "YourProgramName Fatal Error:\n\tAn exception was thrown from " << std::exception().what();
 
     ASSERT_DEATH(
@@ -61,7 +61,7 @@ GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAFatalException)
     deathRegex << "\\(testExceptionHandling.hpp: \\d*\\)";
 #endif
 
-     deathRegex << "\n\tLocation message.\n";
+    deathRegex << "\n\tLocation message.\n";
 
     ASSERT_DEATH(
         {
@@ -102,7 +102,7 @@ GTEST_TEST(testExceptionHandling, fatalErrorsAreHandledByTerminating)
     deathRegex << "\\(testExceptionHandling.hpp: \\d*\\)";
 #endif
 
-     deathRegex << "\n\tThis would be the error message.\n";
+    deathRegex << "\n\tThis would be the error message.\n";
 
     ASSERT_DEATH(
         {

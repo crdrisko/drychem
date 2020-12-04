@@ -2,7 +2,7 @@
 
 ## Build Status
 
-- **Github Actions:** [![cmake](https://github.com/crdrisko/drychem/workflows/cmake/badge.svg)](https://github.com/crdrisko/drychem/actions?query=workflow%3ACMake)
+- **Github Actions:** [![cmake](https://github.com/crdrisko/drychem/workflows/build/badge.svg)](https://github.com/crdrisko/drychem/actions?query=workflow%3ABuild)
 
 ## Code Coverage
 
