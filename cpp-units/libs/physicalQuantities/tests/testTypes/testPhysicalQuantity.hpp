@@ -62,10 +62,11 @@ GTEST_TEST(testPhysicalQuantity, physicalQuantitiesCanBeConstructedFromStrings)
 GTEST_TEST(testPhysicalQuantity, stringConstructorCanThrowAnException)
 {
     std::stringstream deathRegex;
+    long double number {};
 
     try
     {
-        std::stold("Not a number");
+        number = std::stold("Not a number");
     }
     catch (const std::invalid_argument& except)
     {
