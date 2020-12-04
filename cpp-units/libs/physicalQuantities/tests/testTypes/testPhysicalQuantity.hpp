@@ -73,6 +73,9 @@ GTEST_TEST(testPhysicalQuantity, stringConstructorCanThrowAnException)
         deathRegex << "CPP Units Fatal Error:\n\tException message: " << except.what();
     }
 
+    if (number != 0.0l)
+        number = 0.0l;
+
     ASSERT_DEATH(
         {
             try
