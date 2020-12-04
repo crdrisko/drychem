@@ -6,8 +6,8 @@
 
 ## Code Coverage
 
-- **CodeCov:** [![codecov](https://codecov.io/gh/crdrisko/drychem/branch/master/graph/badge.svg)](https://codecov.io/gh/crdrisko/drychem)
-- **Coveralls:** [![Coverage Status](https://coveralls.io/repos/github/crdrisko/drychem/badge.svg?branch=master)](https://coveralls.io/github/crdrisko/drychem?branch=master)
+- **CodeCov:** [![codecov](https://codecov.io/gh/crdrisko/drychem/branch/main/graph/badge.svg)](https://codecov.io/gh/crdrisko/drychem)
+- **Coveralls:** [![Coverage Status](https://coveralls.io/repos/github/crdrisko/drychem/badge.svg?branch=main)](https://coveralls.io/github/crdrisko/drychem?branch=main)
 
 ## Code Quality Analysis
 
@@ -16,6 +16,6 @@
 
 ## General Repository Information
 
-- **Languages:** [![Language](https://img.shields.io/badge/language-c%2B%2B17-ff69b4)](https://github.com/crdrisko/drychem/tree/master) [![Language](https://img.shields.io/badge/language-bash-brightgreen)](https://github.com/crdrisko/drychem/tree/master/common-utilities/scripts)
+- **Languages:** [![Language](https://img.shields.io/badge/language-c%2B%2B17-ff69b4)](https://github.com/crdrisko/drychem/tree/main) [![Language](https://img.shields.io/badge/language-bash-brightgreen)](https://github.com/crdrisko/drychem/tree/main/common-utilities/scripts)
 - **License:** [![GitHub](https://img.shields.io/github/license/crdrisko/drychem?color=orange)](../LICENSE)
 - **Release:** [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/crdrisko/drychem?include_prereleases)](https://github.com/crdrisko/drychem/releases)
