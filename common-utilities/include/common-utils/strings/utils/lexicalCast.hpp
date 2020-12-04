@@ -49,7 +49,7 @@ namespace CppUtils::Strings
 
                 return var;
             }
-            catch (const std::ios_base::failure& fail)
+            catch (const std::ios_base::failure&)
             {
                 Errors::printErrorMessage(
                     Errors::ErrorMessage {"Common-Utilities", "Error in lexical_cast, default value returned."});

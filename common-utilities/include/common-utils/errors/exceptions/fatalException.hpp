@@ -28,7 +28,7 @@ namespace CppUtils::Errors
     private:
         ErrorMessage error {};
 
-        virtual const char* what() const noexcept override { return error.message.c_str(); }
+        const char* what() const noexcept override { return error.message.c_str(); }
 
     public:
         explicit FatalException(const ErrorMessage& Error) : error {Error}

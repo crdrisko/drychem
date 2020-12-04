@@ -14,6 +14,7 @@
 #include <cstddef>
 #include <exception>
 #include <iostream>
+#include <stdexcept>
 #include <string>
 #include <utility>
 
@@ -31,22 +32,22 @@ GTEST_TEST(testContainerFunctions, typeWithNoDefaultConstructorGivesACompileTime
 
     DryChem::Vector3D<NoDefaultConstructor> test {};
 
-    GTEST_COMPILE_ASSERT_(test.size() == 3UL, "size() of Vector 3D should alwauys be 3.");
+    GTEST_COMPILE_ASSERT_(test.size() == 3UL, "size() of Vector 3D should always be 3.");
 }
 
 GTEST_TEST(testContainerFunctions, memberTypesForAnExampleVector3DTypeAreCorrect)
 {
     // clang-format off
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::value_type, double>),                    "value_type is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::size_type, std::size_t>),                "size_type is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::difference_type, std::ptrdiff_t>),       "difference_type is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::reference, double&>),                    "reference is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::const_reference, const double&>),        "const_reference is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::pointer, double*>),                      "pointer is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::const_pointer, const double*>),          "const_pointer is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::iterator, double*>),                     "iterator is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::const_iterator, const double*>),         "const_iterator is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::container_type, std::array<double, 3>>), "const_iterator is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::value_type, double>),                                      "value_type is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::size_type, std::size_t>),                                  "size_type is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::difference_type, std::ptrdiff_t>),                         "difference_type is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::reference, double&>),                                      "reference is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::const_reference, const double&>),                          "const_reference is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::pointer, double*>),                                        "pointer is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::const_pointer, const double*>),                            "const_pointer is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::iterator, std::array<double, 3>::iterator>),               "iterator is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::const_iterator, std::array<double, 3>::const_iterator>),   "const_iterator is incorrect.");
+    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::container_type, std::array<double, 3>>),                   "const_iterator is incorrect.");
     // clang-format on
 }
 
@@ -141,7 +142,22 @@ GTEST_TEST(testContainerFunctions, subscriptOperatorsCanReturnAndSetTheInternalD
 
 GTEST_TEST(testContainerFunctions, atFunctionOverloadsWillThrowWhenIndexIsOutOfRange)
 {
-    DryChem::Vector3D<long double> sampleVector {};
+    std::stringstream deathRegex;
+
+    deathRegex << "Common-Utilities Fatal Error:\n\tException message: ";
+
+#if GTEST_USES_POSIX_RE
+    deathRegex << "array::at";
+#elif GTEST_USES_SIMPLE_RE
+    try
+    {
+        std::cout << std::array<int, 3>().at(3) << std::endl;
+    }
+    catch (const std::out_of_range& except)
+    {
+        deathRegex << except.what();
+    }
+#endif
 
     ASSERT_DEATH(
         {
@@ -149,7 +165,7 @@ GTEST_TEST(testContainerFunctions, atFunctionOverloadsWillThrowWhenIndexIsOutOfR
             {
                 try
                 {
-                    std::cout << sampleVector.at(3) << std::endl;
+                    DryChem::Vector3D<int>().at(3);
                 }
                 catch (const std::exception& except)
                 {
@@ -165,7 +181,7 @@ GTEST_TEST(testContainerFunctions, atFunctionOverloadsWillThrowWhenIndexIsOutOfR
                 except.handleErrorWithMessage();
             }
         },
-        "Common-Utilities Fatal Error:\n\tException message: array::at");
+        deathRegex.str());
 
     ASSERT_DEATH(
         {
@@ -173,7 +189,7 @@ GTEST_TEST(testContainerFunctions, atFunctionOverloadsWillThrowWhenIndexIsOutOfR
             {
                 try
                 {
-                    sampleVector.at(3) = 2.0;
+                    DryChem::Vector3D<int>().at(3) = 2;
                 }
                 catch (const std::exception& except)
                 {
@@ -189,7 +205,7 @@ GTEST_TEST(testContainerFunctions, atFunctionOverloadsWillThrowWhenIndexIsOutOfR
                 except.handleErrorWithMessage();
             }
         },
-        "Common-Utilities Fatal Error:\n\tException message: array::at");
+        deathRegex.str());
 }
 
 GTEST_TEST(testContainerFunctions, aVector3DCanBeUsedInStdAlgorithms)

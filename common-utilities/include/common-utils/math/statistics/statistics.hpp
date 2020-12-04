@@ -9,13 +9,12 @@
 #ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_STATISTICS_STATISTICS_HPP
 #define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_STATISTICS_STATISTICS_HPP
 
-#include <algorithm>
 #include <cmath>
 #include <cstddef>
 #include <iterator>
 #include <numeric>
 #include <type_traits>
-#include <vector>
+#include <utility>
 
 namespace CppUtils::Math
 {
@@ -29,7 +28,7 @@ namespace CppUtils::Math
     template<typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
     constexpr int findOrderOfMagnitude(T value) noexcept
     {
-        return std::floor(std::log10(value));
+        return static_cast<int>(std::floor(std::log10(value)));
     }
 
 
@@ -88,15 +87,11 @@ namespace CppUtils::Math
 
         std::ptrdiff_t x_size {x_end - x_begin};
 
-        const Txx init {};
         T average {calculateAverage(x_begin, x_end)};
 
-        std::vector<Txx> averageCorrectedValues(x_size);
-
-        std::transform(x_begin, x_end, averageCorrectedValues.begin(),
-            [&](auto x) { return (x - average) * (x - average); });
-
-        Txx result = std::accumulate(averageCorrectedValues.begin(), averageCorrectedValues.end(), init) / (x_size - 1);
+        Txx init {};
+        Txx result = std::accumulate(x_begin, x_end, init,
+            [&average](Txx res, T x) { return std::move(res) + ((x - average) * (x - average)); }) / (x_size - 1);
 
         return result;
     }

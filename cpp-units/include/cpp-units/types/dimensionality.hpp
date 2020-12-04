@@ -6,13 +6,22 @@
 // Date: 09/02/2020-10:58:01
 // Description: A structure holding the SI base units from which all physical quantities can be constructed
 
-#ifndef DRYCHEM_CPP_UNITS_DIMENSIONALITY_HPP
-#define DRYCHEM_CPP_UNITS_DIMENSIONALITY_HPP
+#ifndef DRYCHEM_CPP_UNITS_INCLUDE_CPP_UNITS_TYPES_DIMENSIONALITY_HPP
+#define DRYCHEM_CPP_UNITS_INCLUDE_CPP_UNITS_TYPES_DIMENSIONALITY_HPP
 
 namespace CppUnits
 {
-    /* When using static constant members instead of enumerations, we want to ensure any usage of the members is limited
-        to a purely compile-time effect, so we'll explicitly use the inline keyword in conjuction with constexpr */
+    /*!
+     * A structure representing the dimensionality of a unit in terms of the seven SI base units.
+     * 
+     * \tparam L  The length dimensionality of the unit
+     * \tparam M  The mass dimensionality of the unit
+     * \tparam T  The time dimensionality of the unit
+     * \tparam I  The electric current dimensionality of the unit
+     * \tparam Th The temperature dimensionality of the unit
+     * \tparam N  The amount of substance dimensionality of the unit
+     * \tparam J  The luminous intensity dimensionality of the unit
+     */
     template<int L = 0, int M = 0, int T = 0, int I = 0, int Th = 0, int N = 0, int J = 0>
     struct Dimensionality
     {

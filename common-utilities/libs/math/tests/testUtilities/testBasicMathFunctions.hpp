@@ -18,14 +18,12 @@
 
 GTEST_TEST(testBasicMathFunctions, isEvenReturnCorrectBooleansForIntegralTypes)
 {
-    bool bValue {false};
     char cValue {'2'};
     short sValue {4};
     int iValue {6};
     long lValue {8};
     long long llValue {10};
 
-    ASSERT_TRUE(DryChem::isEven(bValue));
     ASSERT_TRUE(DryChem::isEven(cValue));
     ASSERT_TRUE(DryChem::isEven(sValue));
     ASSERT_TRUE(DryChem::isEven(iValue));
@@ -34,19 +32,18 @@ GTEST_TEST(testBasicMathFunctions, isEvenReturnCorrectBooleansForIntegralTypes)
 
     ASSERT_FALSE(DryChem::isEven(3));
 
-    // ASSERT_TRUE(DryChem::isEven(2.0));        // no instance of function template matches the argument list
+    // ASSERT_TRUE(DryChem::isEven(false));         // no instance of function template matches the argument list
+    // ASSERT_TRUE(DryChem::isEven(2.0));           // no instance of function template matches the argument list
 }
 
 GTEST_TEST(testBasicMathFunctions, isOddReturnCorrectBooleansForIntegralTypes)
 {
-    bool bValue {true};
     char cValue {'3'};
     short sValue {5};
     int iValue {7};
     long lValue {9};
     long long llValue {11};
 
-    ASSERT_TRUE(DryChem::isOdd(bValue));
     ASSERT_TRUE(DryChem::isOdd(cValue));
     ASSERT_TRUE(DryChem::isOdd(sValue));
     ASSERT_TRUE(DryChem::isOdd(iValue));
@@ -55,7 +52,8 @@ GTEST_TEST(testBasicMathFunctions, isOddReturnCorrectBooleansForIntegralTypes)
 
     ASSERT_FALSE(DryChem::isOdd(2));
 
-    // ASSERT_TRUE(DryChem::isOdd(3.0));        // no instance of function template matches the argument list
+    // ASSERT_TRUE(DryChem::isOdd(true));           // no instance of function template matches the argument list
+    // ASSERT_TRUE(DryChem::isOdd(3.0));            // no instance of function template matches the argument list
 }
 
 GTEST_TEST(testBasicMathFunctions, withinRangeFunctionalityWorksForIntegers)
@@ -100,7 +98,7 @@ GTEST_TEST(testBasicMathFunctions, linearInterpolationOf_y_along_x_gives_x)
     std::vector<long double> y;
 
     for (std::size_t i {}; i <= 10; ++i)
-        x.push_back(i);
+        x.push_back(static_cast<long double>(i));
 
     y = DryChem::linearlyInterpolate(x, 0.0l, 10.0l);
 

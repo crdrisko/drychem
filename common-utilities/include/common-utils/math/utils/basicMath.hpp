@@ -22,7 +22,7 @@ namespace CppUtils::Math
      *
      * \param value The input integral to check
      */
-    template<typename T, typename = std::enable_if_t<std::is_integral_v<T>>>
+    template<typename T, typename = std::enable_if_t<std::is_integral_v<T> && !std::is_same_v<T, bool>>>
     constexpr bool isEven(T value)
     {
         return !(value % 2);

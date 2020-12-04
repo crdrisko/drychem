@@ -9,12 +9,26 @@
 #ifndef DRYCHEM_COMMON_UTILITIES_LIBS_MATH_TESTS_TESTUTILITIES_TESTMATHEXCEPTIONS_HPP
 #define DRYCHEM_COMMON_UTILITIES_LIBS_MATH_TESTS_TESTUTILITIES_TESTMATHEXCEPTIONS_HPP
 
+#include <sstream>
+
 #include <common-utils/errors.hpp>
 #include <common-utils/math.hpp>
 #include <gtest/gtest.h>
 
 GTEST_TEST(testMathExceptions, inputSizeMismatchIsAFatalExceptionAndCanTerminateWhenHandled)
 {
+    std::stringstream deathRegex;
+
+    deathRegex << "Common-Utilities Fatal Error: ";
+
+#if GTEST_USES_POSIX_RE
+    deathRegex << "[(]testMathExceptions.hpp: *[0-9]*[)]\n\t";
+#elif GTEST_USES_SIMPLE_RE
+    deathRegex << "\\(testMathExceptions.hpp: \\d*\\)\n\t";
+#endif
+
+    deathRegex << "Input sizes for x and y containers must be the same.\n";
+
     DryChem::InputSizeMismatch exception1 {"Common-Utilities", __FILE__, __LINE__};
 
     ASSERT_DEATH(
@@ -28,11 +42,23 @@ GTEST_TEST(testMathExceptions, inputSizeMismatchIsAFatalExceptionAndCanTerminate
                 except.handleErrorWithMessage();
             }
         },
-        "Common-Utilities Fatal Error: [(]testMathExceptions.hpp: *[0-9]*[)]\n\tInput sizes for x and y containers must be the same.\n");
+        deathRegex.str());
 }
 
 GTEST_TEST(testMathExceptions, derivedExceptionsCanBeCaughtByBaseFatalException)
 {
+    std::stringstream deathRegex;
+
+    deathRegex << "Common-Utilities Fatal Error: ";
+
+#if GTEST_USES_POSIX_RE
+    deathRegex << "[(]testMathExceptions.hpp: *[0-9]*[)]\n\t";
+#elif GTEST_USES_SIMPLE_RE
+    deathRegex << "\\(testMathExceptions.hpp: \\d*\\)\n\t";
+#endif
+
+    deathRegex << "Input sizes for x and y containers must be the same.\n";
+
     ASSERT_DEATH(
         {
             try
@@ -44,7 +70,7 @@ GTEST_TEST(testMathExceptions, derivedExceptionsCanBeCaughtByBaseFatalException)
                 except.handleErrorWithMessage();
             }
         },
-        "Common-Utilities Fatal Error: [(]testMathExceptions.hpp: *[0-9]*[)]\n\tInput sizes for x and y containers must be the same.\n");
+        deathRegex.str());
 }
 
 #endif

@@ -40,7 +40,7 @@ We highly appreciate any contributions that help us improve the end product, wit
 
 - Do not merge multiple changes into one PR unless they have the same root cause.
 
-- Do not merge directly into the master branch.
+- Do not merge directly into the main branch.
 
 > Submitting a pull request for an approved Issue is not a guarantee it will be approved.
 > The change must meet our high bar for code quality, architecture, and performance.
@@ -76,7 +76,7 @@ Your change should include tests to verify new functionality wherever possible. 
 
 ### Git Workflow
 
-The core principle of the project, when it comes to Git workflows is that the `master` branch should always be in a healthy state which is ready for release. Every commit on master should be deployable on push. To ensure this, pull request **must not** be made directly on master. **Each change** should either be made in the **development branch** (named a variation of development, i.e. `dev`) or in a separate branch, named as a short summary of the change.
+The core principle of the project, when it comes to Git workflows is that the `main` branch should always be in a healthy state which is ready for release. Every commit on main should be deployable on push. To ensure this, pull request **must not** be made directly on main. **Each change** should either be made in the **development branch** (named a variation of development, i.e. `dev`) or in a separate branch, named as a short summary of the change.
 
 If your change is complex, please clean up the branch history before submitting a pull request. You can use [git rebase](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) to group your changes into a small number of commits which we can review one at a time.
 
@@ -84,7 +84,7 @@ When completing a pull request, we will generally squash your changes into a sin
 
 ### Continuous Integration
 
-For this project, CI is provided by [Travis-CI](https://travis-ci.com/github/crdrisko/drychem), with workflows found in [.travis.yml](https://github.com/crdrisko/drychem/blob/master/.travis.yml). Workflows are run automatically on every commit made on the master branch, unless told to skip for that particular commit.
+For this project, CI is provided by [GitHub-Actions](https://github.com/crdrisko/drychem/actions), with workflows found in [cmake.yml](https://github.com/crdrisko/drychem/blob/main/.github/workflows/cmake.yml). Workflows are run automatically on every commit made on the main branch, unless told to skip for that particular commit.
 
 To skip CI runs on a particular commit, include either `[skip ci]` or `[ci skip]` in the commit message.
 
@@ -102,4 +102,4 @@ Before we can review and accept a pull request from you, you'll need to sign a C
 
 ***Checking the aforementioned boxes means that you agree to provide your change and/or code FREE TO USE and SUBJECT TO CHANGES for the entire community!***
 
-You don't need to sign a CLA until you're ready to create a pull request. When your pull request is created, it is reviewed by a team member which, if the change is trivial (i.e. you just fixed a typo) will be labelled as `cla-not-required`. Otherwise, it's classified as `cla-required`, if not already signed.
+You don't need to sign a CLA until you're ready to create a pull request. When your pull request is created, it is reviewed by a team member which, if the change is trivial (i.e. you just fixed a typo) will be labeled as `cla-not-required`. Otherwise, it's classified as `cla-required`, if not already signed.

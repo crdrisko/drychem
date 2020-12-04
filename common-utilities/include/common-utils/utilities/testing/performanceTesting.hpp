@@ -36,8 +36,8 @@ namespace CppUtils::Testing
     /*!
      * A function that invokes another function and times how long it took to invoke said function.
      *
-     * \tparam F     The type of the function we are calling
-     * \tparam TArgs Variadic template parameters representing the types of the arguments passed to the function f
+     * \tparam F        The type of the function we are calling
+     * \tparam ...TArgs The types of the arguments passed to the function f
      *
      * \param f    The function to invoke
      * \param args The parameters of the function we are invoking

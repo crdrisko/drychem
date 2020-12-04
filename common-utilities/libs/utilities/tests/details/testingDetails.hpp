@@ -15,11 +15,11 @@ namespace CppUtils::Testing::details::testing
 {
     struct SumSquares
     {
-        std::size_t operator()(std::size_t iter) const
+        unsigned long long operator()(unsigned long long iter) const
         {
-            std::size_t result {};
+            unsigned long long result {};
 
-            for (std::size_t i {}; i < iter; ++i)
+            for (unsigned long long i {}; i < iter; ++i)
                 result += i * i;
 
             return result;
@@ -29,37 +29,37 @@ namespace CppUtils::Testing::details::testing
     class MyClass
     {
     private:
-        std::size_t iter {};
+        unsigned long long iter {};
 
     public:
-        explicit MyClass(std::size_t Iter) : iter {Iter} {}
+        explicit MyClass(unsigned long long Iter) : iter {Iter} {}
 
-        std::size_t sumSquares() const
+        unsigned long long sumSquares() const
         {
-            std::size_t result {};
+            unsigned long long result {};
 
-            for (std::size_t i {}; i < iter; ++i)
+            for (unsigned long long i {}; i < iter; ++i)
                 result += i * i;
 
             return result;
         }
     };
 
-    std::size_t sumSquares(std::size_t iter)
+    unsigned long long sumSquares(unsigned long long iter)
     {
-        std::size_t result {};
+        unsigned long long result {};
 
-        for (std::size_t i {}; i < iter; ++i)
+        for (unsigned long long i {}; i < iter; ++i)
             result += i * i;
 
         return result;
     }
 
-    void voidSumSquares(std::size_t iter)
+    void voidSumSquares(unsigned long long iter)
     {
-        std::size_t result {};
+        unsigned long long result {};
 
-        for (std::size_t i {}; i < iter; ++i)
+        for (unsigned long long i {}; i < iter; ++i)
             result += i * i;
     }
 }   // namespace CppUtils::Testing::details::testing

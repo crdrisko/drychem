@@ -1,6 +1,6 @@
 # DryChem
 
-[![Build Status](https://travis-ci.com/crdrisko/drychem.svg?branch=master)](docs/QUICK_LINKS.md#Current-Build-Status) [![Coverage Status](https://coveralls.io/repos/github/crdrisko/drychem/badge.svg?branch=master)](docs/QUICK_LINKS.md#Code-Coverage) [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/crdrisko/drychem?include_prereleases)](https://github.com/crdrisko/drychem/releases)
+[![cmake](https://github.com/crdrisko/drychem/workflows/build/badge.svg)](docs/QUICK_LINKS.md#Current-Build-Status) [![Coverage Status](https://coveralls.io/repos/github/crdrisko/drychem/badge.svg?branch=main)](docs/QUICK_LINKS.md#Code-Coverage) [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/crdrisko/drychem?include_prereleases)](https://github.com/crdrisko/drychem/releases)
 
 Welcome to the DryChem project! DryChem is a collection of generic C++ libraries, who's main goal is compliance with the "Don't Repeat Yourself" (DRY) principle of modern software development. The libraries we release and maintain are general enough to find use in a number of projects, but don't go much farther than what you would find in your average computational chemistry codebases' utility library.
 
@@ -23,14 +23,9 @@ More detailed documentation for Common-Utilities and C++ Units can be found in t
 
 The DryChem project has been built and tested on a number of operating systems, computer architectures, and compiler combinations.
 
-- Mac OS X
 - Linux
-- Windows Subsystem for Linux (WSL)
-
-**Coming Soon:**
-
+- Mac OS X
 - Windows
-- Cygwin
 
 ## Requirements
 

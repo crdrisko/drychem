@@ -19,7 +19,7 @@ option(utils_build_tests     "Builds common-utils library and corresponding unit
 option(utils_build_samples   "Builds common-utils library and corresponding code samples." OFF)
 option(utils_exclude_scripts "Builds specified libraries while ignoring the scripts directory." OFF)
 
-if (chem_format_codebase)
+if (chem_format_codebase AND NOT WIN32)
     ## Run clang-format on all code except the files passed as arguments with the '-i' flag ##
     execute_process(COMMAND bash cmake/scripts/format-codebase.sh
                                     -i common-utilities/include/common-utils/math/calculus/differentiation/*
@@ -70,7 +70,11 @@ if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Release")
 endif()
 
-add_compile_options(-pedantic-errors -Wall -Werror -Wextra)
+if (WIN32)
+    add_compile_options(/MD /WX)
+else()
+    add_compile_options(-pedantic-errors -Wall -Werror -Wextra)
+endif()
 
 if (CMAKE_COMPILER_IS_GNUCXX)
     add_compile_options(-Wno-psabi)

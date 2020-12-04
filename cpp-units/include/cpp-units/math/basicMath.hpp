@@ -6,8 +6,8 @@
 // Date: 08/25/2020-20:21:04
 // Description: Function overloads for common mathematical operations in the cmath standard library header
 
-#ifndef DRYCHEM_CPP_UNITS_BASICMATH_HPP
-#define DRYCHEM_CPP_UNITS_BASICMATH_HPP
+#ifndef DRYCHEM_CPP_UNITS_INCLUDE_CPP_UNITS_MATH_BASICMATH_HPP
+#define DRYCHEM_CPP_UNITS_INCLUDE_CPP_UNITS_MATH_BASICMATH_HPP
 
 #include <cmath>
 

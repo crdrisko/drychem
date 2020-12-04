@@ -184,7 +184,7 @@ namespace CppUtils::Strings
      *  traits when the other arguments are passed as character arrays.
      *
      * \tparam CharTraits The character traits we are trying to deduce
-     * \tparam TArgs      Variadic template parameters representing the types of delimiters
+     * \tparam ...TArgs   The types of delimiters
      */
     template<typename CharTraits, typename... TArgs>
     Tokenizer(const std::basic_string<char, CharTraits>&, TArgs...) -> Tokenizer<CharTraits>;

@@ -6,12 +6,12 @@
 // Date: 03/03/2020-18:45:26
 // Description: Defines the PhysicalQuantity class template with SI base units
 
-#ifndef DRYCHEM_CPP_UNITS_PHYSICALQUANTITY_HPP
-#define DRYCHEM_CPP_UNITS_PHYSICALQUANTITY_HPP
+#ifndef DRYCHEM_CPP_UNITS_INCLUDE_CPP_UNITS_TYPES_PHYSICALQUANTITY_HPP
+#define DRYCHEM_CPP_UNITS_INCLUDE_CPP_UNITS_TYPES_PHYSICALQUANTITY_HPP
 
 #include <iostream>
 #include <string>
-#include <string_view>
+#include <type_traits>
 
 #include <common-utils/utilities.hpp>
 
@@ -31,10 +31,12 @@ namespace CppUnits
         constexpr PhysicalQuantity() noexcept = default;
         constexpr explicit PhysicalQuantity(long double Magnitude) noexcept : magnitude {Magnitude} {}
 
-        constexpr explicit PhysicalQuantity(std::string_view Magnitude)
-        {
-            magnitude = std::stold(std::string {Magnitude});   // This particular conversion could throw
-        }
+        /*!
+         * Allow strings to be parsed as physical quantities if they can first be parsed as long doubles.
+         *
+         * \exception std::invalid_argument If we can't convert the string to a long double our constructor will throw
+         */
+        constexpr explicit PhysicalQuantity(const std::string& Magnitude) : magnitude {std::stold(Magnitude)} {}
 
         constexpr long double getMagnitude() const noexcept { return magnitude; }
         constexpr void setMagnitude(long double Magnitude) noexcept { magnitude = Magnitude; }
@@ -83,14 +85,16 @@ namespace CppUnits
 
         /* Physical quantities and dimensionless quantities can only be multiplied or divided by each other,
             adding or subtracting is an error due to a dimensionality mismatch */
-        constexpr auto operator*(long double rhs) const noexcept
+        template<typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
+        constexpr auto operator*(T rhs) const noexcept
         {
-            return (*this) * PhysicalQuantity<Dimensionality<>>(rhs);
+            return (*this) * PhysicalQuantity<Dimensionality<>>(static_cast<long double>(rhs));
         }
 
-        constexpr auto operator*=(long double rhs) noexcept
+        template<typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
+        constexpr auto operator*=(T rhs) noexcept
         {
-            magnitude *= rhs;
+            magnitude *= static_cast<long double>(rhs);
             return *this;
         }
 
@@ -100,14 +104,16 @@ namespace CppUnits
             return *this;
         }
 
-        constexpr auto operator/(long double rhs) const noexcept
+        template<typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
+        constexpr auto operator/(T rhs) const noexcept
         {
-            return (*this) / PhysicalQuantity<Dimensionality<>>(rhs);
+            return (*this) / PhysicalQuantity<Dimensionality<>>(static_cast<long double>(rhs));
         }
 
-        constexpr auto operator/=(long double rhs) noexcept
+        template<typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
+        constexpr auto operator/=(T rhs) noexcept
         {
-            magnitude /= rhs;
+            magnitude /= static_cast<long double>(rhs);
             return *this;
         }
 

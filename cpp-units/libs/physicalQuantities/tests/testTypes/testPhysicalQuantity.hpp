@@ -6,10 +6,12 @@
 // Date: 09/17/2020-09:54:44
 // Description: Provides ~100% unit test coverage over all miscellaneous PhysicalQuantity member functions
 
-#ifndef DRYCHEM_CPP_UNITS_TESTING_TESTPHYSICALQUANTITY_HPP
-#define DRYCHEM_CPP_UNITS_TESTING_TESTPHYSICALQUANTITY_HPP
+#ifndef DRYCHEM_CPP_UNITS_LIBS_PHYSICALQUANTITIES_TESTS_TESTTYPES_TESTPHYSICALQUANTITY_HPP
+#define DRYCHEM_CPP_UNITS_LIBS_PHYSICALQUANTITIES_TESTS_TESTTYPES_TESTPHYSICALQUANTITY_HPP
 
 #include <exception>
+#include <sstream>
+#include <stdexcept>
 #include <string>
 
 #include <common-utils/errors.hpp>
@@ -59,6 +61,21 @@ GTEST_TEST(testPhysicalQuantity, physicalQuantitiesCanBeConstructedFromStrings)
 
 GTEST_TEST(testPhysicalQuantity, stringConstructorCanThrowAnException)
 {
+    std::stringstream deathRegex;
+    long double number {};
+
+    try
+    {
+        number = std::stold("Not a number");
+    }
+    catch (const std::invalid_argument& except)
+    {
+        deathRegex << "CPP Units Fatal Error:\n\tException message: " << except.what();
+    }
+
+    if (number != 0.0l)
+        number = 0.0l;
+
     ASSERT_DEATH(
         {
             try
@@ -81,7 +98,7 @@ GTEST_TEST(testPhysicalQuantity, stringConstructorCanThrowAnException)
                 except.handleErrorWithMessage();
             }
         },
-        "CPP Units Fatal Error:\n\tException message: stold");
+        deathRegex.str());
 }
 
 #endif
