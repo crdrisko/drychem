@@ -1,5 +1,6 @@
 # DryChem
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/66a346a99ef54a2083f94c0a52096138)](https://app.codacy.com/gh/crdrisko/drychem?utm_source=github.com&utm_medium=referral&utm_content=crdrisko/drychem&utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.com/crdrisko/drychem.svg?branch=master)](docs/QUICK_LINKS.md#Current-Build-Status) [![Coverage Status](https://coveralls.io/repos/github/crdrisko/drychem/badge.svg?branch=master)](docs/QUICK_LINKS.md#Code-Coverage) [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/crdrisko/drychem?include_prereleases)](https://github.com/crdrisko/drychem/releases)
 
 Welcome to the DryChem project! DryChem is a collection of generic C++ libraries, who's main goal is compliance with the "Don't Repeat Yourself" (DRY) principle of modern software development. The libraries we release and maintain are general enough to find use in a number of projects, but don't go much farther than what you would find in your average computational chemistry codebases' utility library.
