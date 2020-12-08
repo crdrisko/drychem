@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['length_866',['Length',['../namespace_cpp_units.html#a18ba79fd8b9bf4217c6a9eebd8b73e19',1,'CppUnits']]],
-  ['luminance_867',['Luminance',['../namespace_cpp_units.html#a99f84b653fa9e87bc5298213022d2b0e',1,'CppUnits']]],
-  ['luminousintensity_868',['LuminousIntensity',['../namespace_cpp_units.html#a1f7f370a31a249cabdf8173f15f1882b',1,'CppUnits']]]
+  ['length_896',['Length',['../namespace_cpp_units.html#a18ba79fd8b9bf4217c6a9eebd8b73e19',1,'CppUnits']]],
+  ['luminance_897',['Luminance',['../namespace_cpp_units.html#a99f84b653fa9e87bc5298213022d2b0e',1,'CppUnits']]],
+  ['luminousintensity_898',['LuminousIntensity',['../namespace_cpp_units.html#a1f7f370a31a249cabdf8173f15f1882b',1,'CppUnits']]]
 ];

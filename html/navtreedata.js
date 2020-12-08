@@ -23,6 +23,15 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "DryChem", "index.html", [
+    [ "Getting started", "index.html#autotoc_md52", null ],
+    [ "Features", "index.html#autotoc_md53", null ],
+    [ "Platforms", "index.html#autotoc_md54", null ],
+    [ "Requirements", "index.html#autotoc_md55", [
+      [ "Build Requirements", "index.html#autotoc_md56", null ],
+      [ "Test Requirements", "index.html#autotoc_md57", null ]
+    ] ],
+    [ "Contributing", "index.html#autotoc_md58", null ],
+    [ "License", "index.html#autotoc_md59", null ],
     [ "Errors", "md_common-utilities_libs_errors_docs_errors.html", [
       [ "Table Of Contents", "md_common-utilities_libs_errors_docs_errors.html#autotoc_md1", null ],
       [ "Getting Started", "md_common-utilities_libs_errors_docs_errors.html#autotoc_md2", null ],
@@ -102,6 +111,7 @@ var NAVTREE =
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
+        [ "Variables", "globals_vars.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -110,10 +120,10 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html",
-"dir_b31254e1112f65304e1bea34dfc3bd5e.html",
-"physical_quantities_8hpp.html#a3b8bd77e48c9c093b66c5d297c93b7ba",
-"test_error_handling_8hpp.html#a43cc931e033af8a6cb942c41e51a685e"
+"_c_make_c_compiler_id_8c.html",
+"dir_5c06749150a6204e19ab5be38fee94dc.html",
+"physical_quantities_8hpp.html#a094fdfa18fff14573de82b1609b0e48a",
+"test_all_utility_functions_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

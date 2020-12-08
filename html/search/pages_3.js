@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['strings_923',['Strings',['../md_common-utilities_libs_strings_docs_strings.html',1,'']]]
+  ['math_962',['Math',['../md_common-utilities_libs_math_docs_math.html',1,'']]]
 ];
