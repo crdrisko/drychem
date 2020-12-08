@@ -1,36 +1,12 @@
 var NAVTREE =
 [
   [ "DryChem", "index.html", [
-    [ "Errors", "autotoc_md0.html", [
-      [ "Getting started", "index.html#autotoc_md90", null ],
-      [ "Features", "index.html#autotoc_md91", null ],
-      [ "Platforms", "index.html#autotoc_md92", null ],
-      [ "Requirements", "index.html#autotoc_md93", [
-        [ "Build Requirements", "index.html#autotoc_md94", null ],
-        [ "Test Requirements", "index.html#autotoc_md95", null ]
-      ] ],
-      [ "Contributing", "index.html#autotoc_md96", null ],
-      [ "License", "index.html#autotoc_md97", [
-        [ "Table Of Contents", "autotoc_md0.html#autotoc_md1", null ],
-        [ "Getting Started", "autotoc_md0.html#autotoc_md2", null ],
-        [ "Features", "autotoc_md0.html#autotoc_md3", [
-          [ "Exception Handling", "autotoc_md0.html#autotoc_md4", null ],
-          [ "Error Handling Utilities", "autotoc_md0.html#autotoc_md6", null ]
-        ] ],
-        [ "Working Example", "autotoc_md0.html#autotoc_md8", null ]
-      ] ]
-    ] ],
+    [ "Errors", "autotoc_md0.html", null ],
     [ "Math", "autotoc_md9.html", null ],
     [ "Strings", "autotoc_md22.html", null ],
     [ "Utilities", "autotoc_md31.html", null ],
     [ "Common-Utilities", "autotoc_md42.html", null ],
     [ "C++ Units", "autotoc_md47.html", null ],
-    [ "Building and Installing DryChem", "autotoc_md51.html", null ],
-    [ "Contributor Covenant Code of Conduct", "autotoc_md54.html", null ],
-    [ "Contributing to DryChem", "autotoc_md61.html", null ],
-    [ "DryChem Primer", "autotoc_md75.html", null ],
-    [ "Pull Request Template for DryChem", "autotoc_md76.html", null ],
-    [ "CI/CD Sevices for DryChem", "autotoc_md84.html", null ],
     [ "Todo List", "todo.html", null ],
     [ "Namespaces", null, [
       [ "Namespace List", "namespaces.html", "namespaces" ],
@@ -60,7 +36,6 @@ var NAVTREE =
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
-        [ "Variables", "globals_vars.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -69,10 +44,10 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_c_make_c_compiler_id_8c.html",
-"class_fruit.html#afb52adac17224ceef4968443f36108d3",
-"namespacemembers_e.html",
-"struct_cpp_utils_1_1_testing_1_1details_1_1testing_1_1_sum_squares.html#a8571536e3db2cbbfa20887c2eb0a6369"
+"annotated.html",
+"dir_212a9570425503489632e97801b402d4.html",
+"physical_quantities_8hpp.html#a4ff5eff9009940c0203908fadfce8b1b",
+"test_error_traits_8hpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['readme_2emd',['README.md',['../common-utilities_2_r_e_a_d_m_e_8md.html',1,'(Global Namespace)'],['../cpp-units_2_r_e_a_d_m_e_8md.html',1,'(Global Namespace)'],['../_r_e_a_d_m_e_8md.html',1,'(Global Namespace)']]]
+  ['statistics_2ehpp',['statistics.hpp',['../statistics_8hpp.html',1,'']]],
+  ['stringdetails_2ehpp',['stringDetails.hpp',['../string_details_8hpp.html',1,'']]],
+  ['strings_2ehpp',['strings.hpp',['../strings_8hpp.html',1,'']]],
+  ['strings_2emd',['strings.md',['../strings_8md.html',1,'']]],
+  ['stringutils_2ehpp',['stringUtils.hpp',['../string_utils_8hpp.html',1,'']]]
 ];

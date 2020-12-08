@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['drychem_20primer',['DryChem Primer',['../autotoc_md75.html',1,'']]],
   ['data',['data',['../class_cpp_utils_1_1_math_1_1_vector3_d.html#a4df862cb82069ebb0295f0e83e5ea3c0',1,'CppUtils::Math::Vector3D']]],
-  ['dec',['DEC',['../_c_make_c_compiler_id_8c.html#ad1280362da42492bbc11aa78cbf776ad',1,'DEC():&#160;CMakeCCompilerId.c'],['../_c_make_c_x_x_compiler_id_8cpp.html#ad1280362da42492bbc11aa78cbf776ad',1,'DEC():&#160;CMakeCXXCompilerId.cpp']]],
   ['declare_5fcmath_5ffunction',['DECLARE_CMATH_FUNCTION',['../cpp-units_2include_2cpp-units_2math_2basic_math_8hpp.html#ae8aa9822abc203dd38bbdc29343fb8ac',1,'basicMath.hpp']]],
   ['declare_5fdimensionless_5fcmath_5ffunction',['DECLARE_DIMENSIONLESS_CMATH_FUNCTION',['../cpp-units_2include_2cpp-units_2math_2basic_math_8hpp.html#abe87bc0c92254264e5a2101d466f35bc',1,'basicMath.hpp']]],
   ['define_5flexi_5fcast_5foverload',['DEFINE_LEXI_CAST_OVERLOAD',['../lexical_cast_8hpp.html#a03494a9cd90c68c75a37e8390668d7cd',1,'lexicalCast.hpp']]],
@@ -16,6 +14,5 @@ var searchData=
   ['dimensionality_2ehpp',['dimensionality.hpp',['../dimensionality_8hpp.html',1,'']]],
   ['dimensionalitytype',['DimensionalityType',['../class_cpp_units_1_1_physical_quantity.html#a46db8d1f463eb5a44157c84096f4fe71',1,'CppUnits::PhysicalQuantity']]],
   ['dimensionlessquantity',['DimensionlessQuantity',['../namespace_cpp_units.html#a193ae0ebb6928974e03ca67b329eecbb',1,'CppUnits']]],
-  ['drychem',['DryChem',['../namespace_dry_chem.html',1,'']]],
-  ['drychem',['DryChem',['../index.html',1,'']]]
+  ['drychem',['DryChem',['../namespace_dry_chem.html',1,'']]]
 ];
