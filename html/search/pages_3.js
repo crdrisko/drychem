@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['strings',['Strings',['../autotoc_md22.html',1,'']]]
+  ['strings_923',['Strings',['../md_common-utilities_libs_strings_docs_strings.html',1,'']]]
 ];

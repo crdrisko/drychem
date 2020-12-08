@@ -51,6 +51,15 @@ var hierarchy =
     [ "PotentiallyEmptyBaseClass", null, [
       [ "CppUtils::Operators::details::testing::EmptyDerived", "class_cpp_utils_1_1_operators_1_1details_1_1testing_1_1_empty_derived.html", null ]
     ] ],
+    [ "CppUtils::Operators::PotentiallyEmptyBaseClass< Derived >", "class_cpp_utils_1_1_operators_1_1_potentially_empty_base_class.html", [
+      [ "CppUtils::Operators::EqualityComparable< Derived, Empty >", "class_cpp_utils_1_1_operators_1_1_equality_comparable.html", null ],
+      [ "CppUtils::Operators::LessThanComparable< Derived, Empty >", "class_cpp_utils_1_1_operators_1_1_less_than_comparable.html", null ],
+      [ "CppUtils::Operators::LessThanComparable< Derived, PotentiallyEmptyBaseClass< Derived > >", "class_cpp_utils_1_1_operators_1_1_less_than_comparable.html", [
+        [ "CppUtils::Operators::EqualityComparable< Derived, LessThanComparable< Derived, PotentiallyEmptyBaseClass< Derived > > >", "class_cpp_utils_1_1_operators_1_1_equality_comparable.html", [
+          [ "CppUtils::Operators::CompletelyComparable< Derived, Empty >", "class_cpp_utils_1_1_operators_1_1_completely_comparable.html", null ]
+        ] ]
+      ] ]
+    ] ],
     [ "CppUtils::Operators::PotentiallyEmptyBaseClass< Vector3D< T > >", "class_cpp_utils_1_1_operators_1_1_potentially_empty_base_class.html", [
       [ "CppUtils::Operators::LessThanComparable< Vector3D< T >, PotentiallyEmptyBaseClass< Vector3D< T > > >", "class_cpp_utils_1_1_operators_1_1_less_than_comparable.html", [
         [ "CppUtils::Operators::EqualityComparable< Vector3D< T >, LessThanComparable< Vector3D< T >, PotentiallyEmptyBaseClass< Vector3D< T > > > >", "class_cpp_utils_1_1_operators_1_1_equality_comparable.html", [
@@ -72,13 +81,5 @@ var hierarchy =
       [ "CppUtils::Traits::is_container_adapter< T, std::void_t< typename T::container_type, typename T::value_type, typename T::size_type, typename T::reference, typename T::const_reference, decltype(std::declval< T >().empty()), decltype(std::declval< T >().size())> >", "struct_cpp_utils_1_1_traits_1_1is__container__adapter_3_01_t_00_01std_1_1void__t_3_01typename_014ff0eace031100fb2e03ee2c8782ed9f.html", null ]
     ] ],
     [ "std::tuple_element< Index, CppUtils::Math::Vector3D< T > >", "structstd_1_1tuple__element_3_01_index_00_01_cpp_utils_1_1_math_1_1_vector3_d_3_01_t_01_4_01_4.html", null ],
-    [ "std::tuple_size< CppUtils::Math::Vector3D< T > >", "structstd_1_1tuple__size_3_01_cpp_utils_1_1_math_1_1_vector3_d_3_01_t_01_4_01_4.html", null ],
-    [ "Empty", null, [
-      [ "CppUtils::Operators::EqualityComparable< Derived, Empty >", "class_cpp_utils_1_1_operators_1_1_equality_comparable.html", null ],
-      [ "CppUtils::Operators::LessThanComparable< Derived, Empty >", "class_cpp_utils_1_1_operators_1_1_less_than_comparable.html", [
-        [ "CppUtils::Operators::EqualityComparable< Derived, LessThanComparable< Derived, Empty > >", "class_cpp_utils_1_1_operators_1_1_equality_comparable.html", [
-          [ "CppUtils::Operators::CompletelyComparable< Derived, Empty >", "class_cpp_utils_1_1_operators_1_1_completely_comparable.html", null ]
-        ] ]
-      ] ]
-    ] ]
+    [ "std::tuple_size< CppUtils::Math::Vector3D< T > >", "structstd_1_1tuple__size_3_01_cpp_utils_1_1_math_1_1_vector3_d_3_01_t_01_4_01_4.html", null ]
 ];
