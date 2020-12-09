@@ -7,6 +7,7 @@ project(DryChem VERSION 1.0.0)
 option(chem_build_all       "Builds all libraries, unit tests, and code samples." OFF)
 option(chem_build_tests     "Builds all libraries and unit tests." OFF)
 option(chem_build_samples   "Builds all libraries and code samples." OFF)
+option(chem_configure_docs  "Builds specified libraries while configuring the Doxygen file for documentation generation." OFF)
 option(chem_enable_coverage "Builds all libraries, unit tests, and enables coverage options." OFF)
 option(chem_format_codebase "Builds specified libraries while also formatting the code." OFF)
 
@@ -32,7 +33,7 @@ if (chem_format_codebase AND NOT WIN32)
                                     -i cpp-units/include/cpp-units/math/basicMath.hpp
                                     -i cpp-units/include/cpp-units/types/physicalQuantity.hpp
                                     -i cpp-units/include/cpp-units/physicalQuantities.hpp
-                    WORKING_DIRECTORY ${DryChem_SOURCE_DIR}
+                    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
                     OUTPUT_QUIET)
 endif()
 
@@ -40,6 +41,10 @@ if (chem_enable_coverage)
     set(chem_build_tests ON)
     set(CMAKE_BUILD_TYPE "Debug")
     set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} --coverage)
+endif()
+
+if (chem_configure_docs)
+    configure_file(${PROJECT_SOURCE_DIR}/docs/Doxyfile.in ${PROJECT_BINARY_DIR}/Doxyfile)
 endif()
 
 if (chem_build_all)
