@@ -32,8 +32,8 @@ GTEST_TEST(testCaseInsensitiveStrings, only_a_to_z_charsAreConvertedToUpperCase)
 
 GTEST_TEST(testCaseInsensitiveStrings, ci_char_traits_compare_ConvertsBothArgsToUpperCaseBeforeComparison)
 {
-    GTEST_COMPILE_ASSERT_(DryChem::ci_char_traits::compare("hello", "hElLoWorld", 11) == -1,
-        "s2 should be greater than s1.");
+    GTEST_COMPILE_ASSERT_(
+        DryChem::ci_char_traits::compare("hello", "hElLoWorld", 11) == -1, "s2 should be greater than s1.");
     GTEST_COMPILE_ASSERT_(DryChem::ci_char_traits::compare("hello", "hElLo", 6) == 0, "The two strings should be equal.");
     GTEST_COMPILE_ASSERT_(DryChem::ci_char_traits::compare("helloworld", "hElLo", 6) == 1, "s1 should be greater than s2.");
 }

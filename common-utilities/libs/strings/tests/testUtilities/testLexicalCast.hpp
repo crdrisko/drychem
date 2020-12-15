@@ -105,8 +105,8 @@ GTEST_TEST(testLexicalCast, lexiCastOnUnsignedLongIsTheSameAsCallingStdFunction)
 {
     std::string str {std::to_string(std::numeric_limits<unsigned long>::max())};
 
-    ASSERT_EQ(std::stoul(std::to_string(std::numeric_limits<unsigned long>::max())),
-        DryChem::lexical_cast<unsigned long>(str));
+    ASSERT_EQ(
+        std::stoul(std::to_string(std::numeric_limits<unsigned long>::max())), DryChem::lexical_cast<unsigned long>(str));
 }
 
 GTEST_TEST(testLexicalCast, lexiCastOnLongLongIsTheSameAsCallingStdFunction)

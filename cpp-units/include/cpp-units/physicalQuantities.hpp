@@ -23,6 +23,7 @@ namespace CppUnits
 
     // MKS Quantities
     using MassDensity           = PhysicalQuantity<Dimensionality<-3,  1,  0>>;
+    using AngularMomentumFlux   = PhysicalQuantity<Dimensionality<-2,  1, -2>>;
     using WaveNumber            = PhysicalQuantity<Dimensionality<-1,  0,  0>>;
     using MomentumFlux          = PhysicalQuantity<Dimensionality<-1,  1, -2>>;
     using Pressure              = PhysicalQuantity<Dimensionality<-1,  1, -2>>;
@@ -36,12 +37,13 @@ namespace CppUnits
     using Length                = PhysicalQuantity<Dimensionality< 1,  0,  0>>;
     using Force                 = PhysicalQuantity<Dimensionality< 1,  1, -2>>;
     using Momentum              = PhysicalQuantity<Dimensionality< 1,  1, -1>>;
-    using Action                = PhysicalQuantity<Dimensionality< 2,  2, -2>>;
     using SpecificEnergy        = PhysicalQuantity<Dimensionality< 2,  0, -2>>;
     using AngularVelocity       = PhysicalQuantity<Dimensionality< 2,  0, -1>>;
     using Area                  = PhysicalQuantity<Dimensionality< 2,  0,  0>>;
     using Power                 = PhysicalQuantity<Dimensionality< 2,  1, -3>>;
+    using AngularMomentum       = PhysicalQuantity<Dimensionality< 2,  1, -1>>;
     using Energy                = PhysicalQuantity<Dimensionality< 2,  1, -2>>;
+    using Action                = PhysicalQuantity<Dimensionality< 2,  2, -2>>;
     using SpecificVolume        = PhysicalQuantity<Dimensionality< 3, -1,  0>>;
     using Volume                = PhysicalQuantity<Dimensionality< 3,  0,  0>>;
 
