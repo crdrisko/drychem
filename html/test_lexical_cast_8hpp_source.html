@@ -35,7 +35,7 @@
    <div id="projectname">DryChem
    &#160;<span id="projectnumber">1.0.0</span>
    </div>
-   <div id="projectbrief">A collection of generic, templated libraries written in modern C++ with no dependencies</div>
+   <div id="projectbrief">A generic, compile-time C++ toolbox with no dependencies for the modern computational chemistry project.</div>
   </td>
  </tr>
  </tbody>
@@ -201,8 +201,8 @@ $(document).ready(function(){initNavTree('test_lexical_cast_8hpp_source.html',''
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;{</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    std::string str {std::to_string(std::numeric_limits&lt;unsigned long&gt;::max())};</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    ASSERT_EQ(std::stoul(std::to_string(std::numeric_limits&lt;unsigned long&gt;::max())),</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        DryChem::lexical_cast&lt;unsigned long&gt;(str));</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    ASSERT_EQ(</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        std::stoul(std::to_string(std::numeric_limits&lt;unsigned long&gt;::max())), DryChem::lexical_cast&lt;unsigned long&gt;(str));</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
 <div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="test_lexical_cast_8hpp.html#a145468917cea84fd14c0e0a5b6209931">  112</a></span>&#160;<a class="code" href="test_lexical_cast_8hpp.html#a41148a7d10617e94955cf00d1748c93e">GTEST_TEST</a>(testLexicalCast, lexiCastOnLongLongIsTheSameAsCallingStdFunction)</div>
@@ -233,7 +233,7 @@ $(document).ready(function(){initNavTree('test_lexical_cast_8hpp_source.html',''
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_0583984bf3346f36c215b565c6efbf15.html">common-utilities</a></li><li class="navelem"><a class="el" href="dir_02f953b27a3cadcc041f5b2eb36934db.html">libs</a></li><li class="navelem"><a class="el" href="dir_7178409f7c2bb7631cb8cb6b4cbd12e6.html">strings</a></li><li class="navelem"><a class="el" href="dir_6f4d494a78aef12b9126f9c0bee7a022.html">tests</a></li><li class="navelem"><a class="el" href="dir_7cbcc7201d3d83e7e598876fca9fda6e.html">testUtilities</a></li><li class="navelem"><a class="el" href="test_lexical_cast_8hpp.html">testLexicalCast.hpp</a></li>
-    <li class="footer">Generated on Wed Dec 9 2020 12:12:35 for DryChem by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
+    <li class="footer">Generated on Tue Dec 15 2020 12:22:40 for DryChem by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>
 </body>
