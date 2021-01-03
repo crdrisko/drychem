@@ -23,6 +23,7 @@ option(utils_exclude_scripts "Builds specified libraries while ignoring the scri
 if (chem_format_codebase AND NOT WIN32)
     ## Run clang-format on all code except the files passed as arguments with the '-i' flag ##
     execute_process(COMMAND bash cmake/scripts/format-codebase.sh
+                                    -i common-utilities/include/common-utils/files/utils/fileExceptions.hpp
                                     -i common-utilities/include/common-utils/math/calculus/differentiation/*
                                     -i common-utilities/include/common-utils/math/calculus/integration.hpp
                                     -i common-utilities/include/common-utils/math/statistics/*

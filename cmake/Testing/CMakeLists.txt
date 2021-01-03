@@ -23,9 +23,9 @@ if (utils_build_tests)
                    LIBRARY common-utilities
                    INTERIOR_DIRECTORY errors)
 
-    # DryChemNewTest(TESTNAME AllFileFunctions
-    #                LIBRARY common-utilities
-    #                INTERIOR_DIRECTORY files)
+    DryChemNewTest(TESTNAME AllFileFunctions
+                   LIBRARY common-utilities
+                   INTERIOR_DIRECTORY files)
 
     DryChemNewTest(TESTNAME AllMathFunctions
                    LIBRARY common-utilities
