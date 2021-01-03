@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: tokenizer.hpp
@@ -128,7 +128,7 @@ namespace CppUtils::Strings
          * \param delims     The delimiters we are using as our splitting criterion
          * \param keepDelims The delimiters to include as tokens (optional)
          */
-        explicit constexpr Tokenizer(const_reference str, const_reference delims = " \t\n",
+        constexpr explicit Tokenizer(const_reference str, const_reference delims = " \t\n",
             std::optional<value_type> keepDelims = std::nullopt)
                 : str_current {str.begin()}, str_end {str.end()}, delimiters {delims}, keepDelimiters {keepDelims} {}
 

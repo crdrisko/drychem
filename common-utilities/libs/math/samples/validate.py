@@ -1,6 +1,6 @@
 #!/opt/local/bin/python3
 # -*- coding: utf-8 -*-
-# Copyright (c) 2020 Cody R. Drisko. All rights reserved.
+# Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
 # Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
 # Name: validate.py - Version 1.0.0

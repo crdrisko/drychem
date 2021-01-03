@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: errorHandling.hpp
@@ -11,7 +11,7 @@
 
 #include <cstdlib>
 #include <iostream>
-#include <string>
+#include <sstream>
 
 #include "common-utils/errors/traits/isFatal.hpp"
 #include "common-utils/errors/utils/errorTypes.hpp"
@@ -29,20 +29,20 @@ namespace CppUtils::Errors
     template<ErrorSeverity Severity = ErrorSeverity::Warning>
     inline void printErrorMessage(const ErrorMessage& error)
     {
-        std::string message {};
+        std::stringstream errorMessage;
 
         if (error.fileName.empty() && error.lineNumber == 0ul)
-            message = "\n\t" + error.message;
+            errorMessage << "\n\t" << error.message;
         else
-            message = ' ' + error.message;
+            errorMessage << ' ' << error.message;
 
         if constexpr (is_fatal_v<Severity>)
         {
-            std::cerr << error.programName << " Fatal Error:" << message << std::endl;
+            std::cerr << error.programName << " Fatal Error:" << errorMessage.str() << std::endl;
             std::exit(EXIT_FAILURE);
         }
         else
-            std::cerr << error.programName << " Warning:" << message << std::endl;
+            std::cerr << error.programName << " Warning:" << errorMessage.str() << std::endl;
     }
 
     //! A convenience function for printing an error message when said error is fatal

@@ -1,7 +1,7 @@
-// Copyright (c) 2020 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: errors.hpp - Version 3.0.0
+// Name: errors.hpp - Version 3.1.0
 // Author: cdrisko
 // Date: 01/31/2020-15:31:26
 // Description: The public API for the Errors section of the Common-Utilities library.

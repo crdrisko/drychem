@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: fatalException.hpp
@@ -10,6 +10,7 @@
 #define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_ERRORS_EXCEPTIONS_FATALEXCEPTION_HPP
 
 #include <exception>
+#include <sstream>
 #include <string>
 
 #include "common-utils/errors/utils/errorHandling.hpp"
@@ -31,11 +32,17 @@ namespace CppUtils::Errors
         const char* what() const noexcept override { return error.message.c_str(); }
 
     public:
-        explicit FatalException(const ErrorMessage& Error) : error {Error}
+        explicit FatalException(const ErrorMessage& error_) : error {error_}
         {
             if (!error.fileName.empty() && error.lineNumber != 0ul)
-                error.message = '(' + error.fileName.substr(error.fileName.find_last_of('/') + 1, error.fileName.length())
-                                + ": " + std::to_string(error.lineNumber) + ")\n\t" + error.message;
+            {
+                std::stringstream errorMessage;
+
+                errorMessage << '(' << error.fileName.substr(error.fileName.find_last_of('/') + 1, error.fileName.length())
+                             << ": " << std::to_string(error.lineNumber) << ")\n\t" << error.message;
+
+                error.message = errorMessage.str();
+            }
         }
 
         //! Delegate our exception handling to the error handling classes

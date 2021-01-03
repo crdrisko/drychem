@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: mathExceptions.hpp
@@ -24,7 +24,7 @@ namespace CppUtils::Math
     class InputSizeMismatch : public Errors::FatalException
     {
     public:
-        explicit InputSizeMismatch(const std::string& programName, const std::string& fileName, std::size_t lineNumber)
+        InputSizeMismatch(const std::string& programName, const std::string& fileName, std::size_t lineNumber)
             : Errors::FatalException {Errors::ErrorMessage {programName, "Input sizes for x and y containers must be the same.",
                 fileName, lineNumber}}
         {

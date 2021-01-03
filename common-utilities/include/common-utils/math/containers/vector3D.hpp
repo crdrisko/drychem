@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: vector3D.hpp
@@ -53,8 +53,8 @@ namespace CppUtils::Math
     public:
         //! Constructors
         constexpr Vector3D() noexcept = default;
-        constexpr Vector3D(T X, T Y, T Z) noexcept : data {{X, Y, Z}} {}
-        constexpr explicit Vector3D(const container_type& Data) noexcept : data {Data} {}
+        constexpr Vector3D(T x_, T y_, T z_) noexcept : data {{x_, y_, z_}} {}
+        constexpr explicit Vector3D(const container_type& data_) noexcept : data {data_} {}
 
         //! Comparison operators - reuse the definitions from the internal array
         constexpr friend bool operator==(const Vector3D<T>& lhs, const Vector3D<T>& rhs) { return lhs.data == rhs.data; }

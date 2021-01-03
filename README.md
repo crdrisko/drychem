@@ -49,6 +49,6 @@ Please read [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details on how you can b
 
 ## License
 
-Copyright (c) 2020 Cody R. Drisko. All rights reserved.
+Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
 
 Licensed under the [MIT License](LICENSE).
