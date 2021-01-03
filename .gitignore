@@ -37,3 +37,6 @@
 .vs/
 out/
 CMakeSettings.json
+
+## Testing Files
+common-utilities/libs/files/tests/test.*
