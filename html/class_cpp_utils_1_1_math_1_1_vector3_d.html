@@ -142,10 +142,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a56513c069ffad19f832886836df235ca"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_utils_1_1_math_1_1_vector3_d.html#a56513c069ffad19f832886836df235ca">Vector3D</a> () noexcept=default</td></tr>
 <tr class="memdesc:a56513c069ffad19f832886836df235ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructors.  <a href="class_cpp_utils_1_1_math_1_1_vector3_d.html#a56513c069ffad19f832886836df235ca">More...</a><br /></td></tr>
 <tr class="separator:a56513c069ffad19f832886836df235ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8819ab237f2664c26088185ae317fcb"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_utils_1_1_math_1_1_vector3_d.html#ae8819ab237f2664c26088185ae317fcb">Vector3D</a> (T X, T Y, T Z) noexcept</td></tr>
-<tr class="separator:ae8819ab237f2664c26088185ae317fcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c1fda7a88e80f52c47d23c2bca69779"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_utils_1_1_math_1_1_vector3_d.html#a6c1fda7a88e80f52c47d23c2bca69779">Vector3D</a> (const <a class="el" href="class_cpp_utils_1_1_math_1_1_vector3_d.html#adf1751aad9357f2315e4d2aaad24e945">container_type</a> &amp;Data) noexcept</td></tr>
-<tr class="separator:a6c1fda7a88e80f52c47d23c2bca69779"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f423c1f82ebb06f666c876b53fd02d3"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_utils_1_1_math_1_1_vector3_d.html#a0f423c1f82ebb06f666c876b53fd02d3">Vector3D</a> (T x_, T y_, T z_) noexcept</td></tr>
+<tr class="separator:a0f423c1f82ebb06f666c876b53fd02d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3af51d25c3edea5955ca61aa98c11765"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_utils_1_1_math_1_1_vector3_d.html#a3af51d25c3edea5955ca61aa98c11765">Vector3D</a> (const <a class="el" href="class_cpp_utils_1_1_math_1_1_vector3_d.html#adf1751aad9357f2315e4d2aaad24e945">container_type</a> &amp;data_) noexcept</td></tr>
+<tr class="separator:a3af51d25c3edea5955ca61aa98c11765"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5f18223f1f22ce6ea19a519624c6d95"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="class_cpp_utils_1_1_math_1_1_vector3_d.html#a29b31b53b8dcf9914b18fd43b3345284">reference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cpp_utils_1_1_math_1_1_vector3_d.html#af5f18223f1f22ce6ea19a519624c6d95">at</a> (<a class="el" href="class_cpp_utils_1_1_math_1_1_vector3_d.html#a12585fa655173e2f44709b2689122298">size_type</a> pos)</td></tr>
 <tr class="memdesc:af5f18223f1f22ce6ea19a519624c6d95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Element access - reuse the definitions from the internal array.  <a href="class_cpp_utils_1_1_math_1_1_vector3_d.html#af5f18223f1f22ce6ea19a519624c6d95">More...</a><br /></td></tr>
 <tr class="separator:af5f18223f1f22ce6ea19a519624c6d95"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -398,8 +398,8 @@ template&lt;typename T , typename  = std::enable_if_t&lt;std::is_default_constru
 
 </div>
 </div>
-<a id="ae8819ab237f2664c26088185ae317fcb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae8819ab237f2664c26088185ae317fcb">&#9670;&nbsp;</a></span>Vector3D() <span class="overload">[2/3]</span></h2>
+<a id="a0f423c1f82ebb06f666c876b53fd02d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f423c1f82ebb06f666c876b53fd02d3">&#9670;&nbsp;</a></span>Vector3D() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -413,19 +413,19 @@ template&lt;typename T , typename  = std::enable_if_t&lt;std::is_default_constru
           <td class="memname">constexpr <a class="el" href="class_cpp_utils_1_1_math_1_1_vector3_d.html">CppUtils::Math::Vector3D</a>&lt; T, typename &gt;::<a class="el" href="class_cpp_utils_1_1_math_1_1_vector3_d.html">Vector3D</a> </td>
           <td>(</td>
           <td class="paramtype">T&#160;</td>
-          <td class="paramname"><em>X</em>, </td>
+          <td class="paramname"><em>x_</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">T&#160;</td>
-          <td class="paramname"><em>Y</em>, </td>
+          <td class="paramname"><em>y_</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">T&#160;</td>
-          <td class="paramname"><em>Z</em>&#160;</td>
+          <td class="paramname"><em>z_</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -442,8 +442,8 @@ template&lt;typename T , typename  = std::enable_if_t&lt;std::is_default_constru
 
 </div>
 </div>
-<a id="a6c1fda7a88e80f52c47d23c2bca69779"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c1fda7a88e80f52c47d23c2bca69779">&#9670;&nbsp;</a></span>Vector3D() <span class="overload">[3/3]</span></h2>
+<a id="a3af51d25c3edea5955ca61aa98c11765"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3af51d25c3edea5955ca61aa98c11765">&#9670;&nbsp;</a></span>Vector3D() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -457,7 +457,7 @@ template&lt;typename T , typename  = std::enable_if_t&lt;std::is_default_constru
           <td class="memname">constexpr <a class="el" href="class_cpp_utils_1_1_math_1_1_vector3_d.html">CppUtils::Math::Vector3D</a>&lt; T, typename &gt;::<a class="el" href="class_cpp_utils_1_1_math_1_1_vector3_d.html">Vector3D</a> </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="class_cpp_utils_1_1_math_1_1_vector3_d.html#adf1751aad9357f2315e4d2aaad24e945">container_type</a> &amp;&#160;</td>
-          <td class="paramname"><em>Data</em></td><td>)</td>
+          <td class="paramname"><em>data_</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1019,7 +1019,7 @@ template&lt;typename T , typename  = std::enable_if_t&lt;std::is_default_constru
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_cpp_utils.html">CppUtils</a></li><li class="navelem"><a class="el" href="namespace_cpp_utils_1_1_math.html">Math</a></li><li class="navelem"><a class="el" href="class_cpp_utils_1_1_math_1_1_vector3_d.html">Vector3D</a></li>
-    <li class="footer">Generated on Tue Dec 15 2020 12:22:40 for DryChem by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
+    <li class="footer">Generated on Sun Jan 3 2021 23:33:41 for DryChem by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>
 </body>

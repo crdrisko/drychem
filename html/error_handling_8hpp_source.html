@@ -94,7 +94,7 @@ $(document).ready(function(){initNavTree('error_handling_8hpp_source.html',''); 
 <div class="title">errorHandling.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="error_handling_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright (c) 2020 Cody R. Drisko. All rights reserved.</span></div>
+<a href="error_handling_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Licensed under the MIT License. See the LICENSE file in the project root for more information.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// Name: errorHandling.hpp</span></div>
@@ -107,7 +107,7 @@ $(document).ready(function(){initNavTree('error_handling_8hpp_source.html',''); 
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="is_fatal_8hpp.html">common-utils/errors/traits/isFatal.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="error_types_8hpp.html">common-utils/errors/utils/errorTypes.hpp</a>&quot;</span></div>
@@ -117,20 +117,20 @@ $(document).ready(function(){initNavTree('error_handling_8hpp_source.html',''); 
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">template</span>&lt;ErrorSeverity Severity = ErrorSeverity::Warning&gt;</div>
 <div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="namespace_cpp_utils_1_1_errors.html#a95290e3ada955373fbe281e5cf62874a">   30</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="namespace_cpp_utils_1_1_errors.html#a95290e3ada955373fbe281e5cf62874a">printErrorMessage</a>(<span class="keyword">const</span> <a class="code" href="struct_cpp_utils_1_1_errors_1_1_error_message.html">ErrorMessage</a>&amp; error)</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        std::string message {};</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        std::stringstream errorMessage;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordflow">if</span> (error.<a class="code" href="struct_cpp_utils_1_1_errors_1_1_error_message.html#a6d15c9c7d37d1edd5f42d014ded983c7">fileName</a>.empty() &amp;&amp; error.<a class="code" href="struct_cpp_utils_1_1_errors_1_1_error_message.html#a3dca8edcb3dcc97e5d8d6f67ccd57939">lineNumber</a> == 0ul)</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            message = <span class="stringliteral">&quot;\n\t&quot;</span> + error.<a class="code" href="struct_cpp_utils_1_1_errors_1_1_error_message.html#a84ccd6463f53a27b0a94b35ce92fcd8e">message</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            errorMessage &lt;&lt; <span class="stringliteral">&quot;\n\t&quot;</span> &lt;&lt; error.<a class="code" href="struct_cpp_utils_1_1_errors_1_1_error_message.html#a84ccd6463f53a27b0a94b35ce92fcd8e">message</a>;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            message = <span class="charliteral">&#39; &#39;</span> + error.<a class="code" href="struct_cpp_utils_1_1_errors_1_1_error_message.html#a84ccd6463f53a27b0a94b35ce92fcd8e">message</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            errorMessage &lt;&lt; <span class="charliteral">&#39; &#39;</span> &lt;&lt; error.<a class="code" href="struct_cpp_utils_1_1_errors_1_1_error_message.html#a84ccd6463f53a27b0a94b35ce92fcd8e">message</a>;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">if</span> constexpr (is_fatal_v&lt;Severity&gt;)</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        {</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            std::cerr &lt;&lt; error.<a class="code" href="struct_cpp_utils_1_1_errors_1_1_error_message.html#a4e5ad87c57faf5b9544d2ffb80e9f2ea">programName</a> &lt;&lt; <span class="stringliteral">&quot; Fatal Error:&quot;</span> &lt;&lt; message &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            std::cerr &lt;&lt; error.<a class="code" href="struct_cpp_utils_1_1_errors_1_1_error_message.html#a4e5ad87c57faf5b9544d2ffb80e9f2ea">programName</a> &lt;&lt; <span class="stringliteral">&quot; Fatal Error:&quot;</span> &lt;&lt; errorMessage.str() &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            std::exit(EXIT_FAILURE);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        }</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            std::cerr &lt;&lt; error.<a class="code" href="struct_cpp_utils_1_1_errors_1_1_error_message.html#a4e5ad87c57faf5b9544d2ffb80e9f2ea">programName</a> &lt;&lt; <span class="stringliteral">&quot; Warning:&quot;</span> &lt;&lt; message &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            std::cerr &lt;&lt; error.<a class="code" href="struct_cpp_utils_1_1_errors_1_1_error_message.html#a4e5ad87c57faf5b9544d2ffb80e9f2ea">programName</a> &lt;&lt; <span class="stringliteral">&quot; Warning:&quot;</span> &lt;&lt; errorMessage.str() &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
 <div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="namespace_cpp_utils_1_1_errors.html#a9160e604a04368a07042c6278a0d86f2">   49</a></span>&#160;    <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code" href="namespace_cpp_utils_1_1_errors.html#a9160e604a04368a07042c6278a0d86f2">printFatalErrorMessage</a> = [](<span class="keyword">const</span> <a class="code" href="struct_cpp_utils_1_1_errors_1_1_error_message.html">ErrorMessage</a>&amp; error) { printErrorMessage&lt;ErrorSeverity::Fatal&gt;(error); };</div>
@@ -146,14 +146,14 @@ $(document).ready(function(){initNavTree('error_handling_8hpp_source.html',''); 
 <div class="ttc" id="astruct_cpp_utils_1_1_errors_1_1_error_message_html_a84ccd6463f53a27b0a94b35ce92fcd8e"><div class="ttname"><a href="struct_cpp_utils_1_1_errors_1_1_error_message.html#a84ccd6463f53a27b0a94b35ce92fcd8e">CppUtils::Errors::ErrorMessage::message</a></div><div class="ttdeci">std::string message</div><div class="ttdoc">The main error message describing the error.</div><div class="ttdef"><b>Definition:</b> errorTypes.hpp:34</div></div>
 <div class="ttc" id="ais_fatal_8hpp_html"><div class="ttname"><a href="is_fatal_8hpp.html">isFatal.hpp</a></div></div>
 <div class="ttc" id="aerror_types_8hpp_html"><div class="ttname"><a href="error_types_8hpp.html">errorTypes.hpp</a></div></div>
-<div class="ttc" id="anamespace_cpp_utils_1_1_errors_html"><div class="ttname"><a href="namespace_cpp_utils_1_1_errors.html">CppUtils::Errors</a></div><div class="ttdef"><b>Definition:</b> fatalException.hpp:19</div></div>
+<div class="ttc" id="anamespace_cpp_utils_1_1_errors_html"><div class="ttname"><a href="namespace_cpp_utils_1_1_errors.html">CppUtils::Errors</a></div><div class="ttdef"><b>Definition:</b> fatalException.hpp:20</div></div>
 <div class="ttc" id="astruct_cpp_utils_1_1_errors_1_1_error_message_html"><div class="ttname"><a href="struct_cpp_utils_1_1_errors_1_1_error_message.html">CppUtils::Errors::ErrorMessage</a></div><div class="ttdef"><b>Definition:</b> errorTypes.hpp:32</div></div>
 <div class="ttc" id="astruct_cpp_utils_1_1_errors_1_1_error_message_html_a6d15c9c7d37d1edd5f42d014ded983c7"><div class="ttname"><a href="struct_cpp_utils_1_1_errors_1_1_error_message.html#a6d15c9c7d37d1edd5f42d014ded983c7">CppUtils::Errors::ErrorMessage::fileName</a></div><div class="ttdeci">std::string fileName</div><div class="ttdoc">The file name where the error took place, use the FILE macro.</div><div class="ttdef"><b>Definition:</b> errorTypes.hpp:35</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_0583984bf3346f36c215b565c6efbf15.html">common-utilities</a></li><li class="navelem"><a class="el" href="dir_89c62cf962456d7339e3940c46c58fdc.html">include</a></li><li class="navelem"><a class="el" href="dir_a929251ca6ccf5ee32539366c0a91224.html">common-utils</a></li><li class="navelem"><a class="el" href="dir_b9469283b4ca81ef5d72e99aa1cd61b8.html">errors</a></li><li class="navelem"><a class="el" href="dir_b6b68bd05fe1a1113c25565c3dd6222c.html">utils</a></li><li class="navelem"><a class="el" href="error_handling_8hpp.html">errorHandling.hpp</a></li>
-    <li class="footer">Generated on Tue Dec 15 2020 12:22:40 for DryChem by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
+    <li class="footer">Generated on Sun Jan 3 2021 23:33:41 for DryChem by <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
   </ul>
 </div>
 </body>

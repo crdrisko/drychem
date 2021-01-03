@@ -4,7 +4,7 @@ var searchData=
   ['faradays_111',['Faradays',['../namespace_cpp_units.html#a627c09e67389d4e27e174b520eade07b',1,'CppUnits']]],
   ['faradaysconstant_112',['faradaysConstant',['../namespace_cpp_units_1_1_constants.html#a5e53daa35d37540c6d98ca3ecb340164',1,'CppUnits::Constants']]],
   ['fatal_113',['Fatal',['../namespace_cpp_utils_1_1_errors.html#a7f9e8d4bcda1a4efceeaceaf301f28c2a882384ec38ce8d9582b57e70861730e4',1,'CppUtils::Errors']]],
-  ['fatalexception_114',['FatalException',['../class_cpp_utils_1_1_errors_1_1_fatal_exception.html',1,'CppUtils::Errors::FatalException'],['../class_cpp_utils_1_1_errors_1_1_fatal_exception.html#abdc384060306b818d36023b49607da31',1,'CppUtils::Errors::FatalException::FatalException()']]],
+  ['fatalexception_114',['FatalException',['../class_cpp_utils_1_1_errors_1_1_fatal_exception.html',1,'CppUtils::Errors::FatalException'],['../class_cpp_utils_1_1_errors_1_1_fatal_exception.html#accc26a3fef63c7f43aa0c22189faa298',1,'CppUtils::Errors::FatalException::FatalException()']]],
   ['fatalexception_2ehpp_115',['fatalException.hpp',['../fatal_exception_8hpp.html',1,'']]],
   ['fibonacciexample_2ecpp_116',['fibonacciExample.cpp',['../fibonacci_example_8cpp.html',1,'']]],
   ['filename_117',['fileName',['../struct_cpp_utils_1_1_errors_1_1_error_message.html#a6d15c9c7d37d1edd5f42d014ded983c7',1,'CppUtils::Errors::ErrorMessage']]],
