@@ -1,6 +1,6 @@
 # DryChem
 
-[![cmake](https://github.com/crdrisko/drychem/workflows/build/badge.svg)](docs/QUICK_LINKS.md#Current-Build-Status) [![Coverage Status](https://coveralls.io/repos/github/crdrisko/drychem/badge.svg?branch=main)](docs/QUICK_LINKS.md#Code-Coverage) [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/crdrisko/drychem?include_prereleases)](https://github.com/crdrisko/drychem/releases)
+[![cmake](https://github.com/crdrisko/drychem/workflows/build/badge.svg)](docs/quick_links.md#Current-Build-Status) [![Coverage Status](https://coveralls.io/repos/github/crdrisko/drychem/badge.svg?branch=main)](docs/quick_links.md#Code-Coverage) [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/crdrisko/drychem?include_prereleases)](https://github.com/crdrisko/drychem/releases)
 
 Welcome to the DryChem project! DryChem is a collection of generic C++ libraries, who's main goal is compliance with the "Don't Repeat Yourself" (DRY) principle of modern software development. The libraries we release and maintain are general enough to find use in a number of projects, but don't go much farther than what you would find in your average computational chemistry codebases' utility library.
 
@@ -8,9 +8,9 @@ This repository is a merger of the formerly separate C++ Units and Common-Utilit
 
 ## Getting started
 
-General information for getting started using DryChem is available in the documentation [here](docs/PRIMER.md).
+General information for getting started using DryChem is available in the documentation [here](docs/primer.md).
 
-More detailed documentation for Common-Utilities and C++ Units can be found in the interior [`common-utilities/README.md`](common-utilities/README.md) and [`cpp-units/README.md`](cpp-units/README.md) files, respectively.
+More detailed documentation for Common-Utilities and C++ Units can be found in the interior [common-utilities/README.md](common-utilities/README.md) and [cpp-units/README.md](cpp-units/README.md) files, respectively.
 
 ## Features
 
@@ -37,15 +37,15 @@ The DryChem project was designed to have as few external dependencies as possibl
 
 ### Build Requirements
 
-- [CMake](https://cmake.org): Version 3.12.0 or higher. See the documentation in the [`BUILD.md`](docs/BUILD.md) file for specific instructions on installing the project.
+- [CMake](https://cmake.org): Version 3.12.0 or higher. See the documentation in the [build.md](docs/build.md) file for specific instructions on installing the project.
 
 ### Test Requirements
 
-- [GoogleTest](https://github.com/google/googletest) was used for the testing all the source code in the project. Building and running all these tests is optional and more information can be found in the testing section of [`BUILD.md`](docs/BUILD.md#Testing).
+- [GoogleTest](https://github.com/google/googletest) was used for the testing all the source code in the project. Building and running all these tests is optional and more information can be found in the testing section of [build.md](docs/build.md#Testing).
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details on how you can become a contributor and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) for details on how you can become a contributor and the process for submitting pull requests to us.
 
 ## License
 

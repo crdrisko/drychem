@@ -49,7 +49,7 @@ We highly appreciate any contributions that help us improve the end product, wit
 
 ### Preparing your development environment
 
-To learn how to build the code and run tests, follow the instructions in [docs/BUILD.md](BUILD.md).
+To learn how to build the code and run tests, follow the instructions in [docs/build.md](../docs/build.md).
 
 ### Style guidelines
 
@@ -84,7 +84,7 @@ When completing a pull request, we will generally squash your changes into a sin
 
 ### Continuous Integration
 
-For this project, CI is provided by [GitHub-Actions](https://github.com/crdrisko/drychem/actions), with workflows found in [cmake.yml](https://github.com/crdrisko/drychem/blob/main/.github/workflows/cmake.yml). Workflows are run automatically on every commit made on the main branch, unless told to skip for that particular commit.
+For this project, CI is provided by [GitHub-Actions](https://github.com/crdrisko/drychem/actions), with workflows found in [build.yml](workflows/build.yml). Workflows are run automatically on every commit made on the main branch, unless told to skip for that particular commit.
 
 To skip CI runs on a particular commit, include either `[skip ci]` or `[ci skip]` in the commit message.
 
