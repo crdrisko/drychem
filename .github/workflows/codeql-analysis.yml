@@ -14,13 +14,9 @@ name: "CodeQL"
 on:
   push:
     branches: [ main ]
-    paths-ignore:
-        - googletest-download/**
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ main ]
-    paths-ignore:
-        - googletest-download/**
   schedule:
     - cron: '21 16 * * 1'
 
@@ -66,7 +62,7 @@ jobs:
 
     - name: Build
       run: |
-        cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -Dchem_build_all=ON
+        cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -Dchem_build_samples=ON
         cmake --build .
         sudo cmake --build . --target install
 
