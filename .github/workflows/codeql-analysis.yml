@@ -14,11 +14,16 @@ name: "CodeQL"
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+        - googletest-download/**
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ main ]
+    paths-ignore:
+        - googletest-download/**
   schedule:
     - cron: '21 16 * * 1'
+
 
 jobs:
   analyze:
