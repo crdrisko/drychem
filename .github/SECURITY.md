@@ -12,4 +12,4 @@ currently being supported with security updates.
 
 ## Reporting a Vulnerability
 
-Please send a mail to drychem@fastmail.us when you found a security issue in DryChem, even when you are not 100% certain that it is actually a security issue. Typically, you will receive an answer within a day or even within a few hours.
+Please send a mail to drychem_support@emailengine.net when you found a security issue in DryChem, even when you are not 100% certain that it is actually a security issue. Typically, you will receive an answer within a day or even within a few hours.

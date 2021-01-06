@@ -1,7 +1,7 @@
 // Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: utilities.hpp - Version 1.2.0
+// Name: utilities.hpp - Version 1.3.0
 // Author: crdrisko
 // Date: 09/17/2020-12:35:51
 // Description: The public API for the Utilities section of the Common-Utilities library.
@@ -17,6 +17,7 @@
 #include "utilities/operators/potentiallyEmptyBaseClass.hpp"
 #include "utilities/testing/performanceTesting.hpp"
 #include "utilities/traits/containerTraits.hpp"
+#include "utilities/tuples/tupleAlgorithms.hpp"
 
 //! Allow for a shorter namespace name for less \c using statements
 namespace DryChem
@@ -36,6 +37,11 @@ namespace DryChem
         inline namespace Traits
         {
             using namespace ::CppUtils::Traits;
+        }
+
+        inline namespace Tuples
+        {
+            using namespace ::CppUtils::Tuples;
         }
     }   // namespace CppUtils
 }   // namespace DryChem

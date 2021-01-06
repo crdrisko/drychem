@@ -12,6 +12,7 @@
 #include "testOperators/testPotentiallyEmptyBaseClass.hpp"
 #include "testTesting/testPerformanceTesting.hpp"
 #include "testTraits/testContainerTraits.hpp"
+#include "testTuples/testTupleAlgorithms.hpp"
 
 int main(int argc, char** argv)
 {

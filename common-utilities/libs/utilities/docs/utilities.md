@@ -9,6 +9,7 @@ The utilities library consists of a number of miscellaneous functions and classe
   - [Operators](#Operators)
   - [Testing](#Testing)
   - [Traits](#Traits)
+  - [Tuples](#Tuples)
 - [Usage](#Usage)
 
 ## Getting Started
@@ -65,6 +66,14 @@ All the functions and classes belonging to the utilities library are wrapped in 
   ```
 
   The testing module for this specific part of the library is probably more useful than any desciption I could write, so you can look at the example usage [here](../tests/testTraits/testContainerTraits.hpp).
+
+---
+
+### Tuples
+
+- [Tuple Algorithms](../../../include/common-utils/utilities/tuples/tupleAlgorithms.hpp)
+
+  In this portion of the library, we define a number of basic algorithms revolving around the `std::tuple` class template. Because heterogeneous collections like the `std::tuple` are fairly common but don't have the same interface as other standard containers, basic algorithms have to be defined specifically for this type. One of the most fundamental algorithms for the `std::tuple` is the `select<>()` function template. It takes a tuple and a list of indices and constructs a new tuple in the desired order.
 
 ---
 

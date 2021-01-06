@@ -25,7 +25,8 @@ if (utils_build_tests)
 
     DryChemNewTest(TESTNAME AllFileFunctions
                    LIBRARY common-utilities
-                   INTERIOR_DIRECTORY files)
+                   INTERIOR_DIRECTORY files
+                   USEFILESYSTEM)
 
     DryChemNewTest(TESTNAME AllMathFunctions
                    LIBRARY common-utilities
