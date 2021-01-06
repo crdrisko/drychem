@@ -30,11 +30,11 @@ GTEST_TEST(testTupleAlgorithms, theApplyNAlgorithmAppliesAFunctionToTheFirstNEle
 
 GTEST_TEST(testTupleAlgorithms, theSelectAlgorithmShufflesATupleBasedOnTheOrderingOfAnIndexList)
 {
-    std::tuple tuple {"Hello, World!", 12.3, 6, std::string {"A string"}, true, nullptr};
+    std::tuple tuple {std::string {"Hello, World!"}, 12.3, 6, std::string {"A string"}, true};
 
     auto shuffledTuple = DryChem::select(tuple, std::index_sequence<1, 4, 0, 3> {});
 
-    std::tuple expectedTuple {12.3, true, "Hello, World!", std::string {"A string"}};
+    std::tuple expectedTuple {12.3, true, std::string {"Hello, World!"}, std::string {"A string"}};
 
     ASSERT_EQ(shuffledTuple, expectedTuple);
 }
