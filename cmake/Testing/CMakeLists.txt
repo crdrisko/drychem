@@ -32,6 +32,10 @@ if (utils_build_tests)
                    LIBRARY common-utilities
                    INTERIOR_DIRECTORY math)
 
+    DryChemNewTest(TESTNAME AllMetaFunctions
+                   LIBRARY common-utilities
+                   INTERIOR_DIRECTORY meta)
+
     DryChemNewTest(TESTNAME AllStringFunctions
                    LIBRARY common-utilities
                    INTERIOR_DIRECTORY strings)

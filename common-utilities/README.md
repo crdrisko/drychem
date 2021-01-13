@@ -39,10 +39,12 @@ To build the common-utilities libraries and scripts there are a few options that
 The libraries included in this project include the following, and more information can be found in the specific libraries documentation:
 
 - [Errors](libs/errors/docs/errors.md)
+- [Files](libs/files/docs/files.md)
 - [Math](libs/math/docs/math.md)
+- [Meta](libs/meta/docs/meta.md)
+- [Networking](libs/networking/docs/networking.md)
 - [Strings](libs/strings/docs/strings.md)
 - [Utilities](libs/utilities/docs/utilities.md)
-<!-- [Files](libs/files/docs/files.md)-->
 
 The following tree diagram shows how a sample library, `library1`, would be organized in the API:
 
@@ -54,15 +56,19 @@ The following tree diagram shows how a sample library, `library1`, would be orga
 │       │   └── ...
 │       ├── library1.hpp
 │       └── ...
-└── libs
-    └── library1
-        ├── docs
-        │   └── ...
-        ├── samples
-        │   └── ...
-        └── tests
-            ├── testAllLibrary1Functions.cpp
-            └── ...
+├── libs
+│   └── library1
+│       ├── docs
+│       │   └── ...
+│       ├── samples
+│       │   └── ...
+│       └── tests
+│           ├── testAllLibrary1Functions.cpp
+│           └── ...
+└── src
+    ├── library1
+    |    └── ...
+    └── ...
 ```
 
 The `libs` directory contains information about the specific library, such as the documentation, example code samples, source code (if any), and unit tests. The `include/common-utils` directory is where the header files for the library are stored. Note that the `libraryName.hpp` file serves as the public API of the library and should be `#include`'d in a user's project. The files in the `libraryName` directory contain the internal implementation details and are subject to change without notice.

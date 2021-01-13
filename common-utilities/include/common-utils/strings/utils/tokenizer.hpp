@@ -17,9 +17,9 @@
 #include <type_traits>
 #include <vector>
 
+#include "common-utils/meta/traits/containerTraits.hpp"
 #include "common-utils/strings/utils/lexicalCast.hpp"
 #include "common-utils/strings/utils/stringUtils.hpp"
-#include "common-utils/utilities/traits/containerTraits.hpp"
 
 namespace CppUtils::Strings
 {
@@ -143,7 +143,7 @@ namespace CppUtils::Strings
          * \note A \c std::forward_list<> requires special treatment as it can only call \c insert_front
          */
         template<typename Container = std::vector<value_type>, typename T = typename Container::value_type,
-                 typename = std::enable_if_t<std::conjunction_v<Traits::is_allocator_aware_container<Container>,
+                 typename = std::enable_if_t<std::conjunction_v<Meta::is_allocator_aware_container<Container>,
                                                                 std::negation<details::has_mapped_type<Container>>>>>
         constexpr Container split()
         {

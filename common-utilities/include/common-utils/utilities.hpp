@@ -16,8 +16,6 @@
 #include "utilities/operators/comparisonOperators.hpp"
 #include "utilities/operators/potentiallyEmptyBaseClass.hpp"
 #include "utilities/testing/performanceTesting.hpp"
-#include "utilities/traits/containerTraits.hpp"
-#include "utilities/tuples/tupleAlgorithms.hpp"
 
 //! Allow for a shorter namespace name for less \c using statements
 namespace DryChem
@@ -32,16 +30,6 @@ namespace DryChem
         inline namespace Testing
         {
             using namespace ::CppUtils::Testing;
-        }
-
-        inline namespace Traits
-        {
-            using namespace ::CppUtils::Traits;
-        }
-
-        inline namespace Tuples
-        {
-            using namespace ::CppUtils::Tuples;
         }
     }   // namespace CppUtils
 }   // namespace DryChem

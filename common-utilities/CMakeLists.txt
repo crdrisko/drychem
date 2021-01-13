@@ -7,11 +7,22 @@ project(CommonUtils VERSION 1.0.0)
 if (utils_build_all)
     set(utils_build_tests ON PARENT_SCOPE)
     set(utils_build_samples ON)
+    set(utils_enable_networking ON)
 endif()
 
 
 ### Libraries / Executables ###
 set(LIBRARIES common-utilities/include/common-utils PARENT_SCOPE)
+
+if (utils_enable_networking)
+    set(NETWORKING_SOURCE src/networking/tcp/tcpClient.cpp
+                          src/networking/tcp/tcpServer.cpp
+                          src/networking/tcp/tcpSocket.cpp
+                          src/networking/tcp/tcpStates/tcpClosed.cpp
+                          src/networking/tcp/tcpStates/tcpOpened.cpp)
+
+    add_library(networking STATIC ${NETWORKING_SOURCE})
+endif()
 
 if (utils_build_samples)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${DryChem_BINARY_DIR}/bin/samples)
@@ -21,11 +32,42 @@ if (utils_build_samples)
     add_executable(ciTokenizerExample       libs/strings/samples/ciTokenizerExample.cpp)
     add_executable(comparableExample        libs/utilities/samples/comparableExample.cpp)
 
+    if (utils_enable_networking)
+        set(NETWORKING_SAMPLES clientExample
+                               httpExample
+                               serverExample)
+
+        foreach(SAMPLE ${NETWORKING_SAMPLES})
+            add_executable(${SAMPLE} libs/networking/samples/${SAMPLE}.cpp)
+
+            target_link_libraries(${SAMPLE} networking)
+        endforeach()
+    endif()
+
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${DryChem_BINARY_DIR}/bin)
+
+    add_executable(passphrase src/applications/passphrase/passphrase.cpp src/applications/passphrase/passphraseGen.cpp)
 endif()
 
 
 ### Installation ###
+if (utils_enable_networking)
+    install(TARGETS networking
+            DESTINATION lib)
+endif()
+
+if (utils_install_applications)
+    set(APPLICATIONS passphrase)
+
+    foreach (APP ${APPLICATIONS})
+        install(FILES "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${APP}"
+                DESTINATION bin
+                PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+                            GROUP_READ             GROUP_EXECUTE
+                            WORLD_READ             WORLD_EXECUTE)
+    endforeach()
+endif()
+
 if (NOT utils_exclude_scripts)
     set(SCRIPTS
         scripts/changeCase.sh

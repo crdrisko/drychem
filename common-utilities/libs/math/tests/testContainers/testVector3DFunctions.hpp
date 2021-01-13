@@ -20,7 +20,7 @@
 
 #include <common-utils/errors.hpp>
 #include <common-utils/math.hpp>
-#include <common-utils/utilities.hpp>
+#include <common-utils/meta.hpp>
 #include <gtest/gtest.h>
 
 GTEST_TEST(testContainerFunctions, typeWithNoDefaultConstructorGivesACompileTimeError)
