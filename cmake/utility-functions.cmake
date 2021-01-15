@@ -47,7 +47,7 @@ function(DryChemNewTest)
 
     add_executable(${TEST_ARGS_LIBRARY}Test${TEST_ARGS_TESTNAME} ${TESTPATH}/test${TEST_ARGS_TESTNAME}.cpp)
 
-    target_link_libraries(${TEST_ARGS_LIBRARY}Test${TEST_ARGS_TESTNAME} ${GTEST_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+    target_link_libraries(${TEST_ARGS_LIBRARY}Test${TEST_ARGS_TESTNAME} ${GTEST_LIBRARIES} Threads::Threads)
 
     if (TEST_ARGS_USEFILESYSTEM AND CMAKE_COMPILER_IS_GNUCXX)
         target_link_libraries(${TEST_ARGS_LIBRARY}Test${TEST_ARGS_TESTNAME} stdc++fs)

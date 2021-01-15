@@ -33,13 +33,15 @@ if (utils_build_samples)
     add_executable(comparableExample        libs/utilities/samples/comparableExample.cpp)
 
     if (utils_enable_networking)
+        find_package(Threads)
+
         set(NETWORKING_SAMPLES httpExample
                                serverClientExample)
 
         foreach(SAMPLE ${NETWORKING_SAMPLES})
             add_executable(${SAMPLE} libs/networking/samples/${SAMPLE}.cpp)
 
-            target_link_libraries(${SAMPLE} networking ${CMAKE_THREAD_LIBS_INIT})
+            target_link_libraries(${SAMPLE} networking Threads::Threads)
         endforeach()
     endif()
 
