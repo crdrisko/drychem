@@ -39,7 +39,7 @@ if (utils_build_samples)
         foreach(SAMPLE ${NETWORKING_SAMPLES})
             add_executable(${SAMPLE} libs/networking/samples/${SAMPLE}.cpp)
 
-            target_link_libraries(${SAMPLE} networking)
+            target_link_libraries(${SAMPLE} networking ${CMAKE_THREAD_LIBS_INIT})
         endforeach()
     endif()
 
