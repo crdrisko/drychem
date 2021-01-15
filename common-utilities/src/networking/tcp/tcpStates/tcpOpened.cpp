@@ -55,7 +55,9 @@ namespace CppUtils::Networking
 
     void TCPOpened::connect(TCPClient* client_) const
     {
-        if (::connect(getSocket(client_), getInfo(client_)->ai_addr, getInfo(client_)->ai_addrlen) == 0)
+        int sock = static_cast<int>(getSocket(client_));
+
+        if (::connect(sock, getInfo(client_)->ai_addr, getInfo(client_)->ai_addrlen) == 0)
             changeState(client_, TCPConnected::getInstance());
         else
             throw BasicNetworkingFailure {"connect", __FILE__, __LINE__};

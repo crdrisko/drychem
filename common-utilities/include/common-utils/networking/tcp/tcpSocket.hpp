@@ -17,7 +17,7 @@
 
 namespace CppUtils::Networking
 {
-    constexpr inline auto addrinfo_deleter = [](addrinfo* pInfo) { ::freeaddrinfo(pInfo); };
+    // constexpr auto addrinfo_deleter = [](addrinfo* pInfo) { ::freeaddrinfo(pInfo); };
 
     class TCPState;
 
@@ -32,7 +32,7 @@ namespace CppUtils::Networking
         std::shared_ptr<TCPState> state;
 
         SOCKET socket {static_cast<SOCKET>(0xFFFFFFFF)};
-        std::unique_ptr<addrinfo, decltype(addrinfo_deleter)> info {nullptr, addrinfo_deleter};
+        std::unique_ptr<addrinfo, decltype(&::freeaddrinfo)> info {nullptr, &::freeaddrinfo};
 
     public:
         explicit TCPSocket(int port_, const std::string& address_ = "");

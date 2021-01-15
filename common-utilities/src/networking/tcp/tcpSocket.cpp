@@ -83,7 +83,9 @@ namespace CppUtils::Networking
         const std::size_t size {4096};
         char dataReceived[size];
 
-        ssize_t status {::recv(socket, dataReceived, size - 1, 0)};
+        int sock = static_cast<int>(socket);
+
+        ssize_t status {::recv(sock, dataReceived, size - 1, 0)};
 
         if (status == -1)
             throw BasicNetworkingFailure {"receive", __FILE__, __LINE__};
