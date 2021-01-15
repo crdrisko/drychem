@@ -18,7 +18,7 @@ namespace CppUtils::Networking
     class TCPClient : public TCPSocket
     {
     public:
-        explicit TCPClient(int port, const std::string& address = "") : TCPSocket {port, address} {}
+        explicit TCPClient(int port_, const std::string& address_ = "") : TCPSocket {port_, address_} {}
 
         void connect();
     };

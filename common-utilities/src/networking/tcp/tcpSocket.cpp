@@ -70,9 +70,11 @@ namespace CppUtils::Networking
         info.reset(temp);
     }
 
-    void TCPSocket::send(std::stringstream&& data) const
+    void TCPSocket::send(std::stringstream&& data_) const
     {
-        if (auto strData {std::move(data).str()}; ::send(socket, strData.c_str(), strData.length(), 0) == -1)
+        int sock = static_cast<int>(socket);
+
+        if (auto strData {std::move(data_).str()}; ::send(sock, strData.c_str(), strData.length(), 0) == -1)
             throw BasicNetworkingFailure {"send", __FILE__, __LINE__};
     }
 

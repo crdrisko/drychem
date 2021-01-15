@@ -24,9 +24,9 @@ namespace CppUtils::Files
     class FileNotFound : public Errors::FatalException
     {
     public:
-        FileNotFound(const std::string& programName, const std::string& fileName, std::size_t lineNumber)
-            : Errors::FatalException {Errors::ErrorMessage {programName, "Could not find the requested file.",
-                fileName, lineNumber}}
+        FileNotFound(const std::string& programName_, const std::string& fileName_, std::size_t lineNumber_)
+            : Errors::FatalException {Errors::ErrorMessage {programName_, "Could not find the requested file.",
+                fileName_, lineNumber_}}
         {
         }
     };

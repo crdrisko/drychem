@@ -24,13 +24,13 @@ namespace CppUtils::Files
     private:
         mutable std::vector<std::string> columnCache;
 
-        void resetColumnsOnNewLine(std::size_t tokenIndex, std::size_t& columnIndex) const
+        void resetColumnsOnNewLine(std::size_t tokenIndex_, std::size_t& columnIndex_) const
         {
             // We only need to resize the vector once after we know the number of columns
-            if (tokenIndex == columnIndex)
-                columnCache.resize(tokenIndex);
+            if (tokenIndex_ == columnIndex_)
+                columnCache.resize(tokenIndex_);
 
-            columnIndex = 0;
+            columnIndex_ = 0;
         }
 
         void trimTrainingSeparators() const
@@ -50,13 +50,13 @@ namespace CppUtils::Files
          * \returns A \c std::vector<std::string> where each element of the vector is a column from the file.
          */
         auto operator()(
-            const std::string& fileContents, const std::optional<std::string>& fieldSeparator = std::nullopt) const
+            const std::string& fileContents_, const std::optional<std::string>& fieldSeparator_ = std::nullopt) const
         {
             if (columnCache.empty())
             {
-                std::string delimiters = fieldSeparator.value_or("") + " \t\n";
+                std::string delimiters = fieldSeparator_.value_or("") + " \t\n";
 
-                Strings::Tokenizer tok {fileContents, delimiters, "\n"};
+                Strings::Tokenizer tok {fileContents_, delimiters, "\n"};
 
                 auto tokens = tok.split();
                 columnCache.resize(tokens.size());
@@ -69,7 +69,7 @@ namespace CppUtils::Files
                         continue;
                     }
 
-                    columnCache[j++].append(tokens[i]).append(fieldSeparator.value_or("\t"));
+                    columnCache[j++].append(tokens[i]).append(fieldSeparator_.value_or("\t"));
                 }
 
                 this->trimTrainingSeparators();

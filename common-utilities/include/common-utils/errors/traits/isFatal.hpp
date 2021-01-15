@@ -16,7 +16,8 @@
 namespace CppUtils::Errors
 {
     /*!
-     * A type trait to determine whether or not the supplied ErrorSeverity is fatal.
+     * A type trait to determine whether or not the supplied ErrorSeverity describes a 
+     *  fatal error.
      *
      * \tparam Severity The severity of the error in question
      */

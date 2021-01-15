@@ -29,11 +29,11 @@ namespace CppUtils::Files
          * 
          * \returns A \c std::vector<std::string> where each element of the vector is a line from the file.
          */
-        auto operator()(const std::string& fileContents) const
+        auto operator()(const std::string& fileContents_) const
         {
             if (rowCache.empty())
             {
-                Strings::Tokenizer tok {fileContents, "\n"};
+                Strings::Tokenizer tok {fileContents_, "\n"};
                 rowCache = tok.split();
             }
 

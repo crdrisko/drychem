@@ -19,10 +19,10 @@ namespace CppUtils::Networking
     class TCPServer : public TCPSocket
     {
     public:
-        explicit TCPServer(int port, const std::string& address = "") : TCPSocket {port, address} {}
+        explicit TCPServer(int port_, const std::string& address_ = "") : TCPSocket {port_, address_} {}
 
         void bind();
-        void listen(int queueSize) const;
+        void listen(int queueSize_) const;
         std::unique_ptr<TCPSocket> accept() const;
     };
 }   // namespace CppUtils::Networking

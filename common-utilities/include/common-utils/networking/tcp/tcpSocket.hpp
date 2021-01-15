@@ -17,7 +17,7 @@
 
 namespace CppUtils::Networking
 {
-    constexpr auto addrinfo_deleter = [](addrinfo* pInfo) { ::freeaddrinfo(pInfo); };
+    constexpr inline auto addrinfo_deleter = [](addrinfo* pInfo) { ::freeaddrinfo(pInfo); };
 
     class TCPState;
 
@@ -39,12 +39,12 @@ namespace CppUtils::Networking
         TCPSocket(SOCKET socket_, std::shared_ptr<TCPState> state_);
 
         virtual ~TCPSocket();
-        TCPSocket(const TCPSocket& otherSocket_) = delete;
-        TCPSocket(TCPSocket&& otherSocket_)      = default;
-        TCPSocket& operator=(const TCPSocket& otherSocket_) = delete;
-        TCPSocket& operator=(TCPSocket&& otherSocket_) = default;
+        TCPSocket(const TCPSocket&) = delete;
+        TCPSocket(TCPSocket&&)      = default;
+        TCPSocket& operator=(const TCPSocket&) = delete;
+        TCPSocket& operator=(TCPSocket&&) = default;
 
-        void send(std::stringstream&& data) const;
+        void send(std::stringstream&& data_) const;
         std::stringstream receive() const;
 
         std::string queryState() const;

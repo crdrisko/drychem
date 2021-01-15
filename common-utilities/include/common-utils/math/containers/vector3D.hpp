@@ -57,15 +57,15 @@ namespace CppUtils::Math
         constexpr explicit Vector3D(const container_type& data_) noexcept : data {data_} {}
 
         //! Comparison operators - reuse the definitions from the internal array
-        constexpr friend bool operator==(const Vector3D<T>& lhs, const Vector3D<T>& rhs) { return lhs.data == rhs.data; }
-        constexpr friend bool operator<(const Vector3D<T>& lhs, const Vector3D<T>& rhs) { return lhs.data < rhs.data; }
+        constexpr friend bool operator==(const Vector3D<T>& lhs_, const Vector3D<T>& rhs_) { return lhs_.data == rhs_.data; }
+        constexpr friend bool operator<(const Vector3D<T>& lhs_, const Vector3D<T>& rhs_) { return lhs_.data < rhs_.data; }
 
         //! Element access - reuse the definitions from the internal array
-        constexpr reference at(size_type pos) { return data.at(pos); }               //! Could throw: array::at
-        constexpr const_reference at(size_type pos) const { return data.at(pos); }   //! Could throw: array::at
+        constexpr reference at(size_type pos_) { return data.at(pos_); }               //! Could throw: array::at
+        constexpr const_reference at(size_type pos_) const { return data.at(pos_); }   //! Could throw: array::at
 
-        constexpr reference operator[](size_type pos) noexcept { return data[pos]; }
-        constexpr const_reference operator[](size_type pos) const noexcept { return data[pos]; }
+        constexpr reference operator[](size_type pos_) noexcept { return data[pos_]; }
+        constexpr const_reference operator[](size_type pos_) const noexcept { return data[pos_]; }
 
         //! Iterators - reuse the definitions from the internal array
         constexpr iterator begin() noexcept { return data.begin(); }
@@ -82,8 +82,8 @@ namespace CppUtils::Math
         constexpr size_type max_size() const noexcept { return 3; }
 
         //! Operations - reuse the definitions from the internal array
-        constexpr void fill(const_reference value) { data.fill(value); }
-        constexpr void swap(Vector3D<T>& other) { data.swap(other.data); }
+        constexpr void fill(const_reference value_) { data.fill(value_); }
+        constexpr void swap(Vector3D<T>& other_) { data.swap(other_.data); }
     };
 
     /*!

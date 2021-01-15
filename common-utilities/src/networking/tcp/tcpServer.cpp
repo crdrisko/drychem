@@ -19,9 +19,9 @@ namespace CppUtils::Networking
 {
     void TCPServer::bind() { state->bind(this); }
 
-    void TCPServer::listen(int queueSize) const
+    void TCPServer::listen(int queueSize_) const
     {
-        if (::listen(socket, queueSize) == -1)
+        if (::listen(socket, queueSize_) == -1)
             throw BasicNetworkingFailure {"listen", __FILE__, __LINE__};
     }
 

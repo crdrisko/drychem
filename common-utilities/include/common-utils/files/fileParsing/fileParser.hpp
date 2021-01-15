@@ -65,16 +65,16 @@ namespace CppUtils::Files
          *          a simpler syntax for those callable types we do support.
          */
         template<typename F, typename... TArgs>
-        constexpr decltype(auto) parseDataFile(F&& f, TArgs&&... args) const
+        constexpr decltype(auto) parseDataFile(F&& f_, TArgs&&... args_) const
         {
             if (fileContentCache.empty())
                 this->readFileContent();
 
             // Need to handle `void f(args...)` case differently from `auto f(args...)` case
             if constexpr (std::is_void_v<std::invoke_result_t<F, std::string, TArgs...>>)
-                std::invoke(std::forward<F>(f), std::cref(fileContentCache), std::forward<TArgs>(args)...);
+                std::invoke(std::forward<F>(f_), std::cref(fileContentCache), std::forward<TArgs>(args_)...);
             else
-                return std::invoke(std::forward<F>(f), std::cref(fileContentCache), std::forward<TArgs>(args)...);
+                return std::invoke(std::forward<F>(f_), std::cref(fileContentCache), std::forward<TArgs>(args_)...);
         }
     };
 }   // namespace CppUtils::Files

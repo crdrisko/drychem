@@ -24,9 +24,9 @@ namespace CppUtils::Math
     class InputSizeMismatch : public Errors::FatalException
     {
     public:
-        InputSizeMismatch(const std::string& programName, const std::string& fileName, std::size_t lineNumber)
-            : Errors::FatalException {Errors::ErrorMessage {programName, "Input sizes for x and y containers must be the same.",
-                fileName, lineNumber}}
+        InputSizeMismatch(const std::string& programName_, const std::string& fileName_, std::size_t lineNumber_)
+            : Errors::FatalException {Errors::ErrorMessage {programName_, "Input sizes for x and y containers must be the same.",
+                fileName_, lineNumber_}}
         {
         }
     };

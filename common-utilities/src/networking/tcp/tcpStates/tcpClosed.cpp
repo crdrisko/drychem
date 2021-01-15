@@ -41,7 +41,7 @@ namespace CppUtils::Networking
             {
                 open(server_, result);
             }
-            catch (const Errors::FatalException& except)
+            catch (const Errors::FatalException&)
             {
                 continue;
             }
@@ -62,7 +62,7 @@ namespace CppUtils::Networking
             {
                 open(client_, result);
             }
-            catch (const Errors::FatalException& except)
+            catch (const Errors::FatalException&)
             {
                 continue;
             }

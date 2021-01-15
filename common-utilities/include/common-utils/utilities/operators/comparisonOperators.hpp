@@ -18,13 +18,12 @@ namespace CppUtils::Operators
      *
      * \tparam Derived The class with the overloaded \c operator==()
      * \tparam Empty   An empty base class, not really needed for the general user
-     *
      */
     template<typename Derived, typename Empty = PotentiallyEmptyBaseClass<Derived>>
     class EqualityComparable : public Empty
     {
     public:
-        constexpr friend bool operator!=(const Derived& x1, const Derived& x2) { return !(x1 == x2); }
+        constexpr friend bool operator!=(const Derived& x1_, const Derived& x2_) { return !(x1_ == x2_); }
     };
 
     /*!
@@ -37,9 +36,9 @@ namespace CppUtils::Operators
     class LessThanComparable : public Empty
     {
     public:
-        constexpr friend bool operator>(const Derived& x1, const Derived& x2) { return x2 < x1; }
-        constexpr friend bool operator<=(const Derived& x1, const Derived& x2) { return !(x2 < x1); }
-        constexpr friend bool operator>=(const Derived& x1, const Derived& x2) { return !(x1 < x2); }
+        constexpr friend bool operator>(const Derived& x1_, const Derived& x2_) { return x2_ < x1_; }
+        constexpr friend bool operator<=(const Derived& x1_, const Derived& x2_) { return !(x2_ < x1_); }
+        constexpr friend bool operator>=(const Derived& x1_, const Derived& x2_) { return !(x1_ < x2_); }
     };
 
     /*!

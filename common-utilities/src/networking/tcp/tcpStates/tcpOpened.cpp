@@ -45,7 +45,9 @@ namespace CppUtils::Networking
 
     void TCPOpened::bind(TCPServer* server_) const
     {
-        if (::bind(getSocket(server_), getInfo(server_)->ai_addr, getInfo(server_)->ai_addrlen) == 0)
+        int sock = static_cast<int>(getSocket(server_));
+
+        if (::bind(sock, getInfo(server_)->ai_addr, getInfo(server_)->ai_addrlen) == 0)
             changeState(server_, TCPBound::getInstance());
         else
             throw BasicNetworkingFailure {"bind", __FILE__, __LINE__};

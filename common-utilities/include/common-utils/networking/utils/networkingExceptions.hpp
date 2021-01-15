@@ -25,7 +25,8 @@ namespace CppUtils::Networking
     {
     public:
         BasicNetworkingFailure(const std::string& basicOperationName_, const std::string& fileName_, std::size_t lineNumber_)
-            : Errors::FatalException { Errors::ErrorMessage {"Common-Utilities", basicOperationName_ + "() failed.", fileName_, lineNumber_}}
+            : Errors::FatalException { Errors::ErrorMessage {"Common-Utilities", basicOperationName_ + "() failed.",
+                fileName_, lineNumber_}}
         {
         }
     };
@@ -38,7 +39,8 @@ namespace CppUtils::Networking
     {
     public:
         AlreadyInNetworkState(const std::string& stateName_, const std::string fileName_, std::size_t lineNumber_)
-            : Errors::FatalException {Errors::ErrorMessage {"Common-Utilities", "Socket is already in the " + stateName_ + " state.", fileName_, lineNumber_}}
+            : Errors::FatalException {Errors::ErrorMessage {"Common-Utilities", "Socket is already in the " + stateName_ + " state.",
+                fileName_, lineNumber_}}
         {
         }
     };

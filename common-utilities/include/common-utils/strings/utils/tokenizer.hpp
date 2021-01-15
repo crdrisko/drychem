@@ -79,7 +79,7 @@ namespace CppUtils::Strings
          *
          * \param ch The character we are evaluating from the list of delimiters
          */
-        constexpr bool isDelimiter(const char ch) const noexcept { return foundSubstr(ch, delimiters); }
+        constexpr bool isDelimiter(const char ch_) const noexcept { return foundSubstr(ch_, delimiters); }
 
         /*!
          * A private helper function which iterates through the remaining string looking for
@@ -112,25 +112,25 @@ namespace CppUtils::Strings
         /*!
          * A constructor allowing for the user to pass a range to iterate through.
          *
-         * \param begin      The start of our sequence to iterate over
-         * \param end        The end of our sequence to iterate over
-         * \param delims     The delimiters we are using as our splitting criterion
-         * \param keepDelims The delimiters to include as tokens (optional)
+         * \param begin_          The start of our sequence to iterate over
+         * \param end_            The end of our sequence to iterate over
+         * \param delimiters_     The delimiters we are using as our splitting criterion
+         * \param keepDelimiters_ The delimiters to include as tokens (optional)
          */
-        constexpr Tokenizer(const_iterator begin, const_iterator end, const_reference delims = " \t\n",
-            std::optional<value_type> keepDelims = std::nullopt)
-                : str_current {begin}, str_end {end}, delimiters {delims}, keepDelimiters {keepDelims} {}
+        constexpr Tokenizer(const_iterator begin_, const_iterator end_, const_reference delimiters_ = " \t\n",
+            std::optional<value_type> keepDelimiters_ = std::nullopt)
+                : str_current {begin_}, str_end {end_}, delimiters {delimiters_}, keepDelimiters {keepDelimiters_} {}
 
         /*!
          * Delegating constructor taking a full string instead of just a range.
          *
-         * \param str        The full string we will be splitting
-         * \param delims     The delimiters we are using as our splitting criterion
-         * \param keepDelims The delimiters to include as tokens (optional)
+         * \param str_            The full string we will be splitting
+         * \param delimiters_     The delimiters we are using as our splitting criterion
+         * \param keepDelimiters_ The delimiters to include as tokens (optional)
          */
-        constexpr explicit Tokenizer(const_reference str, const_reference delims = " \t\n",
-            std::optional<value_type> keepDelims = std::nullopt)
-                : str_current {str.begin()}, str_end {str.end()}, delimiters {delims}, keepDelimiters {keepDelims} {}
+        constexpr explicit Tokenizer(const_reference str_, const_reference delimiters_ = " \t\n",
+            std::optional<value_type> keepDelimiters_ = std::nullopt)
+                : str_current {str_.begin()}, str_end {str_.end()}, delimiters {delimiters_}, keepDelimiters {keepDelimiters_} {}
 
         /*!
          * The main function we call to split our input string into separate tokens.
