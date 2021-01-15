@@ -47,7 +47,7 @@ GTEST_TEST(testLexicalCast, ifInputStreamFailsWithTheBadBitSetAWarningIsPrintedA
     BadValue val = DryChem::lexical_cast<BadValue>("14");
 
     std::string output = testing::internal::GetCapturedStderr();
-    ASSERT_EQ(output, "Common-Utilities Warning:\n\tError in lexical_cast, default value returned.\n");
+    ASSERT_EQ(output, "Common-Utilities Warning:\n    Error in lexical_cast, default value returned.\n");
 
     ASSERT_EQ(0, val.getValue());
 }
@@ -61,7 +61,7 @@ GTEST_TEST(testLexicalCast, ifInputStreamFailsWithTheFailBitAWarningIsPrintedAnd
     FailValue val = DryChem::lexical_cast<FailValue>("14");
 
     std::string output = testing::internal::GetCapturedStderr();
-    ASSERT_EQ(output, "Common-Utilities Warning:\n\tError in lexical_cast, default value returned.\n");
+    ASSERT_EQ(output, "Common-Utilities Warning:\n    Error in lexical_cast, default value returned.\n");
 
     ASSERT_EQ(0, val.getValue());
 }

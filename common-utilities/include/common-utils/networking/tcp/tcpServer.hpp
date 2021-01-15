@@ -22,7 +22,7 @@ namespace CppUtils::Networking
         explicit TCPServer(int port_, const std::string& address_ = "") : TCPSocket {port_, address_} {}
 
         void bind();
-        void listen(int queueSize_) const;
+        void listen(int queueSize_ = 5) const;
         std::unique_ptr<TCPSocket> accept() const;
     };
 }   // namespace CppUtils::Networking

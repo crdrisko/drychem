@@ -21,7 +21,7 @@ GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAStdException)
 {
     std::stringstream deathRegex;
 
-    deathRegex << "YourProgramName Fatal Error:\n\tAn exception was thrown from " << std::exception().what();
+    deathRegex << "YourProgramName Fatal Error:\n    An exception was thrown from " << std::exception().what();
 
     ASSERT_DEATH(
         {
@@ -53,7 +53,7 @@ GTEST_TEST(testExceptionHandling, thisIsHowWeWouldCatchAndHandleAFatalException)
 {
     std::stringstream deathRegex;
 
-    deathRegex << "YourProgramName Fatal Error:\n\tAn exception was thrown from ";
+    deathRegex << "YourProgramName Fatal Error:\n    An exception was thrown from ";
 
 #if GTEST_USES_POSIX_RE
     deathRegex << "[(]testExceptionHandling.hpp: *[0-9]*[)]";

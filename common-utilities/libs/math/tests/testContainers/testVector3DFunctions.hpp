@@ -23,7 +23,7 @@
 #include <common-utils/meta.hpp>
 #include <gtest/gtest.h>
 
-GTEST_TEST(testContainerFunctions, typeWithNoDefaultConstructorGivesACompileTimeError)
+GTEST_TEST(testVector3DFunctions, typeWithNoDefaultConstructorGivesACompileTimeError)
 {
     struct NoDefaultConstructor
     {
@@ -35,7 +35,7 @@ GTEST_TEST(testContainerFunctions, typeWithNoDefaultConstructorGivesACompileTime
     GTEST_COMPILE_ASSERT_(test.size() == 3UL, "size() of Vector 3D should always be 3.");
 }
 
-GTEST_TEST(testContainerFunctions, memberTypesForAnExampleVector3DTypeAreCorrect)
+GTEST_TEST(testVector3DFunctions, memberTypesForAnExampleVector3DTypeAreCorrect)
 {
     // clang-format off
     GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::value_type, double>),                                      "value_type is incorrect.");
@@ -51,7 +51,7 @@ GTEST_TEST(testContainerFunctions, memberTypesForAnExampleVector3DTypeAreCorrect
     // clang-format on
 }
 
-GTEST_TEST(testContainerFunctions, vector3DIsClassifiedLikeAStdArrayAndAContainerAdapter)
+GTEST_TEST(testVector3DFunctions, vector3DIsClassifiedLikeAStdArrayAndAContainerAdapter)
 {
     ASSERT_FALSE((DryChem::is_allocator_aware_container_v<DryChem::Vector3D<int>>));
     ASSERT_FALSE((DryChem::is_associative_container_v<DryChem::Vector3D<int>>));
@@ -62,7 +62,7 @@ GTEST_TEST(testContainerFunctions, vector3DIsClassifiedLikeAStdArrayAndAContaine
     ASSERT_FALSE((DryChem::is_unordered_associative_container_v<DryChem::Vector3D<int>>));
 }
 
-GTEST_TEST(testContainerFunctions, differentConstructorsGiveInitializeObjectsAsExpected)
+GTEST_TEST(testVector3DFunctions, differentConstructorsGiveInitializeObjectsAsExpected)
 {
     std::array<int, 3> sampleArray {1, 2, 3};
 
@@ -78,7 +78,7 @@ GTEST_TEST(testContainerFunctions, differentConstructorsGiveInitializeObjectsAsE
     }
 }
 
-GTEST_TEST(testContainerFunctions, overloadedComparsionOperatorsPerformElementwiseComparisons)
+GTEST_TEST(testVector3DFunctions, overloadedComparsionOperatorsPerformElementwiseComparisons)
 {
     std::array<int, 3> valueArray {1, 2, 3};
 
@@ -106,7 +106,7 @@ GTEST_TEST(testContainerFunctions, overloadedComparsionOperatorsPerformElementwi
     ASSERT_FALSE(value2 >= value4);
 }
 
-GTEST_TEST(testContainerFunctions, atFunctionOverloadsCanReturnAndSetTheInternalData)
+GTEST_TEST(testVector3DFunctions, atFunctionOverloadsCanReturnAndSetTheInternalData)
 {
     DryChem::Vector3D<long double> coordinates {1.0, -3.0, 5.0};
 
@@ -123,7 +123,7 @@ GTEST_TEST(testContainerFunctions, atFunctionOverloadsCanReturnAndSetTheInternal
     ASSERT_EQ(9.0, coordinates.at(2));
 }
 
-GTEST_TEST(testContainerFunctions, subscriptOperatorsCanReturnAndSetTheInternalData)
+GTEST_TEST(testVector3DFunctions, subscriptOperatorsCanReturnAndSetTheInternalData)
 {
     DryChem::Vector3D<long double> coordinates {1.0, -3.0, 5.0};
 
@@ -140,11 +140,11 @@ GTEST_TEST(testContainerFunctions, subscriptOperatorsCanReturnAndSetTheInternalD
     ASSERT_EQ(9.0, coordinates[2]);
 }
 
-GTEST_TEST(testContainerFunctions, atFunctionOverloadsWillThrowWhenIndexIsOutOfRange)
+GTEST_TEST(testVector3DFunctions, atFunctionOverloadsWillThrowWhenIndexIsOutOfRange)
 {
     std::stringstream deathRegex;
 
-    deathRegex << "Common-Utilities Fatal Error:\n\tException message: ";
+    deathRegex << "Common-Utilities Fatal Error:\n    Exception message: ";
 
 #if GTEST_USES_POSIX_RE
     deathRegex << "array::at";
@@ -208,7 +208,7 @@ GTEST_TEST(testContainerFunctions, atFunctionOverloadsWillThrowWhenIndexIsOutOfR
         deathRegex.str());
 }
 
-GTEST_TEST(testContainerFunctions, aVector3DCanBeUsedInStdAlgorithms)
+GTEST_TEST(testVector3DFunctions, aVector3DCanBeUsedInStdAlgorithms)
 {
     DryChem::Vector3D<long double> vec {2.0l, 3.5l, 0.1l};
 
@@ -219,7 +219,7 @@ GTEST_TEST(testContainerFunctions, aVector3DCanBeUsedInStdAlgorithms)
     ASSERT_TRUE(std::is_sorted(vec.begin(), vec.end()));
 }
 
-GTEST_TEST(testContainerFunctions, aVector3DCanBeUsedInRangeBasedForLoops)
+GTEST_TEST(testVector3DFunctions, aVector3DCanBeUsedInRangeBasedForLoops)
 {
     testing::internal::CaptureStdout();
 
@@ -231,7 +231,7 @@ GTEST_TEST(testContainerFunctions, aVector3DCanBeUsedInRangeBasedForLoops)
     ASSERT_EQ(output, "2.2 3.3 1.1 \n");
 }
 
-GTEST_TEST(testContainerFunctions, aVector3DIsNeverEmpty)
+GTEST_TEST(testVector3DFunctions, aVector3DIsNeverEmpty)
 {
     DryChem::Vector3D<long> vec;
 
@@ -239,21 +239,21 @@ GTEST_TEST(testContainerFunctions, aVector3DIsNeverEmpty)
     ASSERT_FALSE(vec.empty());
 }
 
-GTEST_TEST(testContainerFunctions, theSizeOfAVector3DIsAlways3)
+GTEST_TEST(testVector3DFunctions, theSizeOfAVector3DIsAlways3)
 {
     DryChem::Vector3D<long> vec;
 
     ASSERT_EQ(vec.size(), 3UL);
 }
 
-GTEST_TEST(testContainerFunctions, theMaxSizeOfAVector3DIsAlways3)
+GTEST_TEST(testVector3DFunctions, theMaxSizeOfAVector3DIsAlways3)
 {
     DryChem::Vector3D<long> vec;
 
     ASSERT_EQ(vec.max_size(), 3UL);
 }
 
-GTEST_TEST(testContainerFunctions, theFillMemberFunctionSetsAllElementsToTheSameValue)
+GTEST_TEST(testVector3DFunctions, theFillMemberFunctionSetsAllElementsToTheSameValue)
 {
     DryChem::Vector3D<long double> vec {1.0l, 2.0l, 3.0l};
 
@@ -268,7 +268,7 @@ GTEST_TEST(testContainerFunctions, theFillMemberFunctionSetsAllElementsToTheSame
         ASSERT_EQ(3.14l, elem);
 }
 
-GTEST_TEST(testContainerFunctions, theSwapMemberFunctionSwapsAllElementsOfTwoVector3Ds)
+GTEST_TEST(testVector3DFunctions, theSwapMemberFunctionSwapsAllElementsOfTwoVector3Ds)
 {
     DryChem::Vector3D<long double> vec1 {1.0l, 2.0l, 3.0l};
     DryChem::Vector3D<long double> vec2 {6.0l, 4.0l, 2.0l};
@@ -285,7 +285,7 @@ GTEST_TEST(testContainerFunctions, theSwapMemberFunctionSwapsAllElementsOfTwoVec
     }
 }
 
-GTEST_TEST(testContainerFunctions, ourTupleLikeAPIProvidesReadAccessToTheElementsViaStructuredBindings)
+GTEST_TEST(testVector3DFunctions, ourTupleLikeAPIProvidesReadAccessToTheElementsViaStructuredBindings)
 {
     DryChem::Vector3D<long double> vec {0.0l, 1.2l, 3.14l};
     auto [x, y, z] = vec;
@@ -295,7 +295,7 @@ GTEST_TEST(testContainerFunctions, ourTupleLikeAPIProvidesReadAccessToTheElement
     ASSERT_EQ(z, vec[2]);
 }
 
-GTEST_TEST(testContainerFunctions, ourTupleLikeAPIProvidesReadAndWriteAccessToTheElementsViaStructuredBindings)
+GTEST_TEST(testVector3DFunctions, ourTupleLikeAPIProvidesReadAndWriteAccessToTheElementsViaStructuredBindings)
 {
     DryChem::Vector3D<long double> vec {0.0l, 1.2l, 3.14l};
 

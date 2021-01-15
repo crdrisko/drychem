@@ -22,7 +22,7 @@ GTEST_TEST(testErrorHandling, errorPrintsMessageToStandardError)
         DryChem::ErrorMessage {"Common-Utilities", "Testing the output of the non-fatal error message command."});
 
     std::string output = testing::internal::GetCapturedStderr();
-    ASSERT_EQ(output, "Common-Utilities Warning:\n\tTesting the output of the non-fatal error message command.\n");
+    ASSERT_EQ(output, "Common-Utilities Warning:\n    Testing the output of the non-fatal error message command.\n");
 }
 
 GTEST_TEST(testErrorHandling, fatalErrorCausesProgramTermination)
@@ -32,7 +32,7 @@ GTEST_TEST(testErrorHandling, fatalErrorCausesProgramTermination)
             DryChem::printErrorMessage<DryChem::ErrorSeverity::Fatal>(
                 DryChem::ErrorMessage {"Common-Utilities", "Fatal Error, Program Terminated."});
         },
-        "Common-Utilities Fatal Error:\n\tFatal Error, Program Terminated.\n");
+        "Common-Utilities Fatal Error:\n    Fatal Error, Program Terminated.\n");
 }
 
 GTEST_TEST(testErrorHandling, defaultTemplateParameterIsAWarning)
@@ -43,7 +43,7 @@ GTEST_TEST(testErrorHandling, defaultTemplateParameterIsAWarning)
         DryChem::ErrorMessage {"Common-Utilities", "Testing the output of the non-fatal error message command."});
 
     std::string output = testing::internal::GetCapturedStderr();
-    ASSERT_EQ(output, "Common-Utilities Warning:\n\tTesting the output of the non-fatal error message command.\n");
+    ASSERT_EQ(output, "Common-Utilities Warning:\n    Testing the output of the non-fatal error message command.\n");
 }
 
 GTEST_TEST(testErrorHandling, aliasLambdaFunctionWorksForAFatalError)
@@ -52,7 +52,7 @@ GTEST_TEST(testErrorHandling, aliasLambdaFunctionWorksForAFatalError)
         {
             DryChem::printFatalErrorMessage(DryChem::ErrorMessage {"Common-Utilities", "Fatal Error, Program Terminated."});
         },
-        "Common-Utilities Fatal Error:\n\tFatal Error, Program Terminated.\n");
+        "Common-Utilities Fatal Error:\n    Fatal Error, Program Terminated.\n");
 }
 
 #endif

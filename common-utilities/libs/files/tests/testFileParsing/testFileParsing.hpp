@@ -120,8 +120,7 @@ GTEST_TEST(testFileParsing, onceAFileIsParsedOnceAllSubsequentTimesUseCaches)
     ASSERT_EQ(rows1, rows2);
     ASSERT_EQ(columns1, columns2);
 
-    ASSERT_TRUE(
-        timeFor1stColumns > timeFor1stRows && timeFor1stRows >= timeFor2ndRows && timeFor1stColumns > timeFor2ndColumns);
+    ASSERT_TRUE(timeFor1stRows >= timeFor2ndRows && timeFor1stColumns > timeFor2ndColumns);
 }
 
 GTEST_TEST(testFileParsing, returningTheFileNameAllowsUsToUtilizeTheFileSystemLibrary)

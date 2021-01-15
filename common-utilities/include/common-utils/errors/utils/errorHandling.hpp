@@ -32,7 +32,7 @@ namespace CppUtils::Errors
         std::stringstream errorMessage;
 
         if (error.fileName.empty() && error.lineNumber == 0ul)
-            errorMessage << "\n\t" << error.message;
+            errorMessage << "\n    " << error.message;
         else
             errorMessage << ' ' << error.message;
 

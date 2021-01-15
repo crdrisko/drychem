@@ -25,12 +25,12 @@ jobs:
       - name: Test
         run: ctest --output-on-failure
 
-      # - name: Verify
-      #   run: |
-      #     $locationOfSamples = gci -Path . -Filter ciTokenizerExample.exe -Recurse -ErrorAction SilentlyContinue -Force
-      #     cd $locationOfSamples.DirectoryName
-      #     $files = gci *.exe
-      #     foreach ($file in $files) { echo "Hello World!*" | cmd /c $file; if (-not $?) { echo "" } }
+      - name: Verify
+        run: |
+          $locationOfSamples = gci -Path . -Filter ciTokenizerExample.exe -Recurse -ErrorAction SilentlyContinue -Force
+          cd $locationOfSamples.DirectoryName
+          $files = gci *.exe
+          foreach ($file in $files) { echo "Hello World!*" | cmd /c $file; if (-not $?) { echo "" } }
 
   nix-builds:
     runs-on: ${{ matrix.os }}
@@ -54,7 +54,7 @@ jobs:
       - name: Test
         run: ctest --output-on-failure
 
-      # - name: Verify
-      #   run: |
-      #     cd bin/samples
-      #     for file in *; do printf 'Hello, World!\n*' | ./$file || echo -n; done
+      - name: Verify
+        run: |
+          cd bin/samples
+          for file in *; do printf 'Hello, World!\n*' | ./$file || echo -n; done

@@ -33,9 +33,8 @@ if (utils_build_samples)
     add_executable(comparableExample        libs/utilities/samples/comparableExample.cpp)
 
     if (utils_enable_networking)
-        set(NETWORKING_SAMPLES clientExample
-                               httpExample
-                               serverExample)
+        set(NETWORKING_SAMPLES httpExample
+                               serverClientExample)
 
         foreach(SAMPLE ${NETWORKING_SAMPLES})
             add_executable(${SAMPLE} libs/networking/samples/${SAMPLE}.cpp)

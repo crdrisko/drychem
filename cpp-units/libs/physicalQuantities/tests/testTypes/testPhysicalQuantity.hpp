@@ -70,7 +70,7 @@ GTEST_TEST(testPhysicalQuantity, stringConstructorCanThrowAnException)
     }
     catch (const std::invalid_argument& except)
     {
-        deathRegex << "CPP Units Fatal Error:\n\tException message: " << except.what();
+        deathRegex << "CPP Units Fatal Error:\n    Exception message: " << except.what();
     }
 
     if (number != 0.0l)
