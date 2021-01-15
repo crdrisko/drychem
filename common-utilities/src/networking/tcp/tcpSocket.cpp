@@ -72,15 +72,23 @@ namespace CppUtils::Networking
 
     void TCPSocket::send(std::stringstream&& data_) const
     {
-        int sock = static_cast<int>(socket);
+        std::string strData {std::move(data_).str()};
 
-        if (auto strData {std::move(data_).str()}; ::send(sock, strData.c_str(), strData.length(), 0) == -1)
+        // clang-format off
+    #ifdef _MSC_VER
+        int len = static_cast<int>(strData.length());
+    #else
+        std::size_t len = strData.length();
+    #endif
+        // clang-format on
+
+        if (::send(socket, strData.c_str(), len, 0) == -1)
             throw BasicNetworkingFailure {"send", __FILE__, __LINE__};
     }
 
     std::stringstream TCPSocket::receive() const
     {
-        const std::size_t size {4096};
+        const int size {4096};
         char dataReceived[size];
 
         int sock = static_cast<int>(socket);

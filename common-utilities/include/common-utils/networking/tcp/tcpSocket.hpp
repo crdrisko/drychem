@@ -17,8 +17,6 @@
 
 namespace CppUtils::Networking
 {
-    // constexpr auto addrinfo_deleter = [](addrinfo* pInfo) { ::freeaddrinfo(pInfo); };
-
     class TCPState;
 
     class TCPSocket
