@@ -33,21 +33,27 @@ namespace CppUtils::Networking
     #else
         auto closeResult = ::close(sock);
     #endif
-        // clang-format on    
+        // clang-format on
 
         if (closeResult == -1)
             throw BasicNetworkingFailure {"close", __FILE__, __LINE__};
         else
-            changeState(socket_, TCPClosed::getInstance()); 
+            changeState(socket_, TCPClosed::getInstance());
 
         setSocket(socket_, static_cast<SOCKET>(0xFFFFFFFF));
     }
 
     void TCPOpened::bind(TCPServer* server_) const
     {
-        int sock = static_cast<int>(getSocket(server_));
+        // clang-format off
+    #ifdef _MSC_VER
+        int nameLength = static_cast<int>(getInfo(server_)->ai_addrlen);
+    #else
+        socklen_t nameLength = getInfo(server_)->ai_addrlen;
+    #endif
+        // clang-format on
 
-        if (::bind(sock, getInfo(server_)->ai_addr, getInfo(server_)->ai_addrlen) == 0)
+        if (::bind(getSocket(server_), getInfo(server_)->ai_addr, nameLength) == 0)
             changeState(server_, TCPBound::getInstance());
         else
             throw BasicNetworkingFailure {"bind", __FILE__, __LINE__};
@@ -55,9 +61,15 @@ namespace CppUtils::Networking
 
     void TCPOpened::connect(TCPClient* client_) const
     {
-        int sock = static_cast<int>(getSocket(client_));
+        // clang-format off
+    #ifdef _MSC_VER
+        int nameLength = static_cast<int>(getInfo(client_)->ai_addrlen);
+    #else
+        socklen_t nameLength = getInfo(client_)->ai_addrlen;
+    #endif
+        // clang-format on
 
-        if (::connect(sock, getInfo(client_)->ai_addr, getInfo(client_)->ai_addrlen) == 0)
+        if (::connect(getSocket(client_), getInfo(client_)->ai_addr, nameLength) == 0)
             changeState(client_, TCPConnected::getInstance());
         else
             throw BasicNetworkingFailure {"connect", __FILE__, __LINE__};
