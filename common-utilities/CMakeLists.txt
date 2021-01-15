@@ -7,7 +7,6 @@ project(CommonUtils VERSION 1.0.0)
 if (utils_build_all)
     set(utils_build_tests ON PARENT_SCOPE)
     set(utils_build_samples ON)
-    set(utils_enable_networking ON)
 endif()
 
 
@@ -35,8 +34,8 @@ if (utils_build_samples)
     if (utils_enable_networking)
         find_package(Threads)
 
-        set(NETWORKING_SAMPLES httpExample
-                               serverClientExample)
+        set(NETWORKING_SAMPLES httpExample)
+                               # serverClientExample)
 
         foreach(SAMPLE ${NETWORKING_SAMPLES})
             add_executable(${SAMPLE} libs/networking/samples/${SAMPLE}.cpp)

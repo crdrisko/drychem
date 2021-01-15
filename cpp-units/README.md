@@ -10,7 +10,25 @@ This project contains a unit converter written in C++ designed to be extendable 
 
 ## Building and Installing
 
-...
+To build the cpp-units libraries there are a few options that can be specified when building with `cmake`, these are discussed here:
+
+- `units_build_all`
+
+  Libraries, unit tests, and code samples will all be built. This option should be used if you don't want to install the tests and samples of only the common-utilities portion of the larger drychem repository. Otherwise, use the `chem_build_all` option.
+
+  *Note:* The common-utilities libraries will be installed regardless, becasue the cpp-units library depends on them.
+
+- `units_build_tests`
+
+  If you're interested in building the unit tests but don't care about the examples that accompany the project, this option will build the cpp-units library and the tests.
+
+  *Note:* Only the libraries will be installed.
+
+- `units_build_samples`
+
+  If you're interested in building the examples but don't care about the unit tests that accompany the project, this option will build the cpp-units library and the samples.
+
+  *Note:* Only the libraries will be installed.
 
 ## C++ Libraries
 

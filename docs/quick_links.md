@@ -6,7 +6,6 @@
 
 ## Code Coverage
 
-- **CodeCov:** [![codecov](https://codecov.io/gh/crdrisko/drychem/branch/main/graph/badge.svg?token=CWAZYZG5VH)](https://codecov.io/gh/crdrisko/drychem)
 - **Coveralls:** [![Coverage Status](https://coveralls.io/repos/github/crdrisko/drychem/badge.svg?branch=main)](https://coveralls.io/github/crdrisko/drychem?branch=main)
 
 ## Code Quality Analysis
