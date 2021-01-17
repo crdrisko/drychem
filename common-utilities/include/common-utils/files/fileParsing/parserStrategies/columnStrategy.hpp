@@ -35,9 +35,10 @@ namespace CppUtils::Files
 
         void trimTrainingSeparators() const
         {
-            std::transform(columnCache.begin(), columnCache.end(), columnCache.begin(), [](const std::string& column) {
-                return column.substr(0, column.size() - 1);
-            });
+            // clang-format off
+            std::transform(columnCache.begin(), columnCache.end(), columnCache.begin(), 
+                [](const std::string& column) { return column.substr(0, column.size() - 1); });
+            //clang-format on
         }
 
     public:

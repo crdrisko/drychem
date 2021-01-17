@@ -27,12 +27,13 @@ if (utils_build_samples)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${DryChem_BINARY_DIR}/bin/samples)
 
     add_executable(fibonacciExample         libs/errors/samples/fibonacciExample.cpp)
+    add_executable(markupParsingExample     libs/files/samples/markupParsingExample.cpp)
     add_executable(finiteDifferencesExample libs/math/samples/finiteDifferencesExample.cpp)
     add_executable(ciTokenizerExample       libs/strings/samples/ciTokenizerExample.cpp)
     add_executable(comparableExample        libs/utilities/samples/comparableExample.cpp)
 
     if (utils_enable_networking)
-        find_package(Threads)
+        # find_package(Threads)
 
         set(NETWORKING_SAMPLES httpExample)
                                # serverClientExample)
@@ -40,7 +41,7 @@ if (utils_build_samples)
         foreach(SAMPLE ${NETWORKING_SAMPLES})
             add_executable(${SAMPLE} libs/networking/samples/${SAMPLE}.cpp)
 
-            target_link_libraries(${SAMPLE} networking Threads::Threads)
+            target_link_libraries(${SAMPLE} networking) # Threads::Threads)
         endforeach()
     endif()
 
