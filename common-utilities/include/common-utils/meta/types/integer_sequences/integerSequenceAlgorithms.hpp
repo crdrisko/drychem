@@ -16,13 +16,14 @@
 
 namespace CppUtils::Meta
 {
-    template<typename T, T... Indices>
-    struct is_empty<std::integer_sequence<T, Indices...>>
-    {
-        static constexpr bool value = sizeof...(Indices) == 0;
-    };
-
-
+    /*!
+     * A partial specialization of our \c front metafunction for when the compile-time
+     *  list is a std::integer_sequence.
+     *
+     * \tparam       T - The integer type to use for the elements of the sequence 
+     * \tparam    Head - The first element in the sequence
+     * \tparam ...Tail - All elements but the first in the sequence
+     */
     template<typename T, T Head, T... Tail>
     struct front<std::integer_sequence<T, Head, Tail...>>
     {
@@ -30,6 +31,28 @@ namespace CppUtils::Meta
     };
 
 
+    /*!
+     * A partial specialization of our \c is_empty metafunction for when the compile-time
+     *  list is a std::integer_sequence.
+     *
+     * \tparam          T  - The integer type to use for the elements of the sequence 
+     * \tparam ...Elements - The sequence of integer types
+     */
+    template<typename T, T... Elements>
+    struct is_empty<std::integer_sequence<T, Elements...>>
+    {
+        static constexpr bool value = sizeof...(Elements) == 0;
+    };
+
+
+    /*!
+     * A partial specialization of our \c push_back metafunction for when the compile-time
+     *  list is a std::integer_sequence.
+     *
+     * \tparam           T - The integer type to use for the elements of the sequence 
+     * \tparam ...Elements - The sequence of integer types
+     * \tparam  NewElement - The element we wish to add to the back of the sequence
+     */
     template<typename T, T... Elements, T NewElement>
     struct push_back<std::integer_sequence<T, Elements...>, std::integral_constant<T, NewElement>>
     {
@@ -37,6 +60,14 @@ namespace CppUtils::Meta
     };
 
 
+    /*!
+     * A partial specialization of our \c push_front metafunction for when the compile-time
+     *  list is a std::integer_sequence.
+     *
+     * \tparam           T - The integer type to use for the elements of the sequence 
+     * \tparam ...Elements - The sequence of integer types
+     * \tparam  NewElement - The element we wish to add to the front of the sequence
+     */
     template<typename T, T... Elements, T NewElement>
     struct push_front<std::integer_sequence<T, Elements...>, std::integral_constant<T, NewElement>>
     {
@@ -44,6 +75,14 @@ namespace CppUtils::Meta
     };
 
 
+    /*!
+     * A partial specialization of our \c pop_front metafunction for when the compile-time
+     *  list is a std::integer_sequence.
+     *
+     * \tparam       T - The integer type to use for the elements of the sequence 
+     * \tparam    Head - The first element in the sequence
+     * \tparam ...Tail - All elements but the first in the sequence
+     */
     template<typename T, T Head, T... Tail>
     struct pop_front<std::integer_sequence<T, Head, Tail...>>
     {

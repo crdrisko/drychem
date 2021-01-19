@@ -25,7 +25,7 @@ namespace CppUtils::Files
         /*!
          * A file parser strategy used for splitting the data in a text file into rows.
          * 
-         * \param fileContents The content of a file read in to a std::string
+         * \param fileContents - The content of a file read in to a std::string
          * 
          * \returns A \c std::vector<std::string> where each element of the vector is a line from the file.
          */

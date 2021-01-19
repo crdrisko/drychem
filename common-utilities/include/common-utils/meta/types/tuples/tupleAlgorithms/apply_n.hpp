@@ -20,12 +20,12 @@ namespace CppUtils::Meta
     /*!
      * A function that applies a given function to the first N elements of a tuple
      * 
-     * \tparam N     The number of elements to select
-     * \tparam F     The callable type we are invoking for the first N elements of the tuple
-     * \tparam Tuple The type of tuple we are passing to std::apply
+     * \tparam     N - The number of elements to select
+     * \tparam     F - The callable type we are invoking for the first N elements of the tuple
+     * \tparam Tuple - The type of tuple we are passing to \c std::apply
      * 
-     * \param f     The function we are applying to the new tuple
-     * \param tuple The tuple we are trying to apply the function to
+     * \param     f - The function we are applying to the new tuple
+     * \param tuple - The \c std::tuple we are trying to apply the function to
      */
     template<std::size_t N, typename F, typename Tuple>
     constexpr decltype(auto) apply_n(F&& f, Tuple&& tuple)

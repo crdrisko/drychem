@@ -28,8 +28,8 @@ namespace CppUtils::Strings
         /*!
          * A type trait to determine whether or not the supplied container has a \c mapped_type member.
          *
-         * \tparam (unnamed) A placeholder parameter for the container we are checking
-         * \tparam (unnamed) A placeholder parameter that serves as our default state (i.e. false)
+         * \tparam (unnamed) - A placeholder parameter for the container we are checking
+         * \tparam (unnamed) - A placeholder parameter that serves as our default state (i.e. false)
          */
         template<typename, typename = std::void_t<>>
         struct has_mapped_type : std::false_type
@@ -40,7 +40,7 @@ namespace CppUtils::Strings
          * A partial specialization of our \c has_mapped_type type trait for when the given
          *  container meets the requirements of having a \c mapped_type member.
          *
-         * \tparam T The container that may or may not meet the requirements of having a \c mapped_type member
+         * \tparam T - The container that may or may not meet the requirements of having a \c mapped_type member
          */
         template<typename T>
         struct has_mapped_type<T, std::void_t<typename T::mapped_type>> : std::true_type
@@ -52,7 +52,7 @@ namespace CppUtils::Strings
      * A class template which separates a given string into "tokens", which fall between
      *  specified delimiters.
      *
-     * \tparam CharTraits The character traits used when comparing strings
+     * \tparam CharTraits - The character traits used when comparing strings
      *
      * \note We can make use of Class Template Argument Deduction (CTAD) in most cases with the
      *       provided deduction guides.
@@ -77,7 +77,7 @@ namespace CppUtils::Strings
         /*!
          * A private helper function that is essentially just a wrapper for \c foundSubstr().
          *
-         * \param ch The character we are evaluating from the list of delimiters
+         * \param ch - The character we are evaluating from the list of delimiters
          */
         constexpr bool isDelimiter(const char ch_) const noexcept { return foundSubstr(ch_, delimiters); }
 
@@ -112,10 +112,10 @@ namespace CppUtils::Strings
         /*!
          * A constructor allowing for the user to pass a range to iterate through.
          *
-         * \param begin_          The start of our sequence to iterate over
-         * \param end_            The end of our sequence to iterate over
-         * \param delimiters_     The delimiters we are using as our splitting criterion
-         * \param keepDelimiters_ The delimiters to include as tokens (optional)
+         * \param          begin_ - The start of our sequence to iterate over
+         * \param            end_ - The end of our sequence to iterate over
+         * \param     delimiters_ - The delimiters we are using as our splitting criterion
+         * \param keepDelimiters_ - The delimiters to include as tokens (optional)
          */
         constexpr Tokenizer(const_iterator begin_, const_iterator end_, const_reference delimiters_ = " \t\n",
             std::optional<value_type> keepDelimiters_ = std::nullopt)
@@ -124,9 +124,9 @@ namespace CppUtils::Strings
         /*!
          * Delegating constructor taking a full string instead of just a range.
          *
-         * \param str_            The full string we will be splitting
-         * \param delimiters_     The delimiters we are using as our splitting criterion
-         * \param keepDelimiters_ The delimiters to include as tokens (optional)
+         * \param            str_ - The full string we will be splitting
+         * \param     delimiters_ - The delimiters we are using as our splitting criterion
+         * \param keepDelimiters_ - The delimiters to include as tokens (optional)
          */
         constexpr explicit Tokenizer(const_reference str_, const_reference delimiters_ = " \t\n",
             std::optional<value_type> keepDelimiters_ = std::nullopt)
@@ -135,8 +135,8 @@ namespace CppUtils::Strings
         /*!
          * The main function we call to split our input string into separate tokens.
          *
-         * \tparam Container The container type we wish to return
-         * \tparam T         The type of the value we will cast our tokens into
+         * \tparam Container - The container type we wish to return
+         * \tparam         T - The type of the value we will cast our tokens into
          *
          * \returns A container with the separated tokens cast to whatever type we specified
          *
@@ -183,8 +183,8 @@ namespace CppUtils::Strings
      * Declaration guide for the Tokenizer<> class template so we can still deduce the character
      *  traits when the other arguments are passed as character arrays.
      *
-     * \tparam CharTraits The character traits we are trying to deduce
-     * \tparam ...TArgs   The types of delimiters
+     * \tparam CharTraits - The character traits we are trying to deduce
+     * \tparam   ...TArgs - The types of delimiters
      */
     template<typename CharTraits, typename... TArgs>
     Tokenizer(const std::basic_string<char, CharTraits>&, TArgs...) -> Tokenizer<CharTraits>;

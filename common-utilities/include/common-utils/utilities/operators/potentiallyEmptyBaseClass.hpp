@@ -14,8 +14,8 @@ namespace CppUtils::Operators
     /*!
      * An empty class we can use with our other operators or traits so we don't inhibit the EBCO.
      *
-     * \tparam (unnamed) A template parameter that allows us to make use of the curiously recurring
-     *                   template pattern (CRTP) with our operators
+     * \tparam (unnamed) - A template parameter that allows us to make use of the curiously recurring
+     *                     template pattern (CRTP) with our operators
      *
      * \note If we happen to inherit one of our operator classes but the required conditions aren't satisfied, or
      *  the class is SFINAE'd away, we don't want to be left holding the (non-empty) bag. Thus, we can make use

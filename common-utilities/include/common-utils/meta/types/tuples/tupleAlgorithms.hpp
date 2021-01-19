@@ -16,12 +16,13 @@
 
 namespace CppUtils::Meta
 {
-    template<>
-    struct is_empty<std::tuple<>> : std::true_type
-    {
-    };
-
-
+    /*!
+     * A partial specialization of our \c front metafunction for when the compile-time
+     *  list is a std::tuple.
+     * 
+     * \tparam    Head - The first element in the tuple
+     * \tparam ...Tail - All elements but the first in the tuple
+     */
     template<typename Head, typename... Tail>
     struct front<std::tuple<Head, Tail...>>
     {
@@ -29,6 +30,23 @@ namespace CppUtils::Meta
     };
 
 
+    /*!
+     * A partial specialization of our \c is_empty metafunction for when the compile-time
+     *  list is a std::tuple.
+     */
+    template<>
+    struct is_empty<std::tuple<>> : std::true_type
+    {
+    };
+
+
+    /*!
+     * A partial specialization of our \c push_back metafunction for when the compile-time
+     *  list is a std::tuple.
+     * 
+     * \tparam ...Elements - The elements of the tuple
+     * \tparam  NewElement - The element we wish to add to the back of the tuple
+     */
     template<typename... Elements, typename NewElement>
     struct push_back<std::tuple<Elements...>, NewElement>
     {
@@ -36,6 +54,13 @@ namespace CppUtils::Meta
     };
 
 
+    /*!
+     * A partial specialization of our \c push_front metafunction for when the compile-time
+     *  list is a std::tuple.
+     * 
+     * \tparam ...Elements - The elements of the tuple
+     * \tparam  NewElement - The element we wish to add to the front of the tuple
+     */
     template<typename... Elements, typename NewElement>
     struct push_front<std::tuple<Elements...>, NewElement>
     {
@@ -43,6 +68,13 @@ namespace CppUtils::Meta
     };
 
 
+    /*!
+     * A partial specialization of our \c pop_front metafunction for when the compile-time
+     *  list is a std::tuple.
+     * 
+     * \tparam    Head - The first element in the tuple
+     * \tparam ...Tail - All elements but the first in the tuple
+     */
     template<typename Head, typename... Tail>
     struct pop_front<std::tuple<Head, Tail...>>
     {

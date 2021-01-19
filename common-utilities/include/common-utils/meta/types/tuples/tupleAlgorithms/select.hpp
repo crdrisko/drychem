@@ -18,10 +18,10 @@ namespace CppUtils::Meta
     /*!
      * Function to create a new tuple in a different order from the input tuple.
      * 
-     * \tparam ...Elements The elements of the input tuple
-     * \tparam ...Indices  The new order of indices
+     * \tparam ...Elements - The elements of the input tuple
+     * \tparam  ...Indices - The new order of indices
      * 
-     * \param tuple The tuple we are trying to shuffle
+     * \param tuple - The \c std::tuple we are trying to shuffle
      */
     template<typename... Elements, std::size_t... Indices>
     constexpr auto select(const std::tuple<Elements...>& tuple, std::index_sequence<Indices...>)

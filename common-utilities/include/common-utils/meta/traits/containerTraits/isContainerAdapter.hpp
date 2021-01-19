@@ -17,8 +17,8 @@ namespace CppUtils::Meta
     /*!
      * A type trait to determine whether or not the supplied container is a container adapter.
      *
-     * \tparam (unnamed) A placeholder parameter for the container we are checking
-     * \tparam (unnamed) A placeholder parameter that serves as our default state (i.e. false)
+     * \tparam (unnamed) - A placeholder parameter for the container we are checking
+     * \tparam (unnamed) - A placeholder parameter that serves as our default state (i.e. false)
      */
     template<typename T, typename = std::void_t<>>
     struct is_container_adapter : std::false_type
@@ -29,7 +29,7 @@ namespace CppUtils::Meta
      * A partial specialization of our \c is_container_adapter type trait for when
      *  the given container meets the requirements of a container adapter.
      *
-     * \tparam T The container that may or may not meet the requirements of a container adapter
+     * \tparam T - The container that may or may not meet the requirements of a container adapter
      */
     template<typename T>
     struct is_container_adapter<T, std::void_t<typename T::container_type,

@@ -14,7 +14,7 @@ namespace CppUtils::Meta
     /*!
      * A list of types that can be manipulated through template metaprograms and algorithms.
      * 
-     * \tparam ...Elements The elements of the type_list
+     * \tparam ...Elements - The elements of the type_list
      */
     template<typename... Elements>
     class typelist

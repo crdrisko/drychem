@@ -19,8 +19,8 @@ namespace CppUtils::Meta
     /*!
      * A type trait to determine whether or not the supplied container is an associative container.
      *
-     * \tparam (unnamed) A placeholder parameter for the container we are checking
-     * \tparam (unnamed) A placeholder parameter that serves as our default state (i.e. false)
+     * \tparam (unnamed) - A placeholder parameter for the container we are checking
+     * \tparam (unnamed) - A placeholder parameter that serves as our default state (i.e. false)
      */
     template<typename, typename = std::void_t<>>
     struct is_associative_container : std::false_type
@@ -31,7 +31,7 @@ namespace CppUtils::Meta
      * A partial specialization of our \c is_associative_container type trait for when
      *  the given container meets the requirements of an associative container.
      *
-     * \tparam T The container that may or may not meet the requirements of an associative container
+     * \tparam T - The container that may or may not meet the requirements of an associative container
      */
     template<typename T>
     struct is_associative_container<T, std::void_t<typename T::key_type,

@@ -11,9 +11,17 @@
 
 namespace CppUtils::Meta
 {
+    /*!
+     * The declaration of a metafunction used to insert a new element at the front of the 
+     *  compile-time list for which it is specialized.
+     *
+     * \tparam       List - The compile-time list we are operating on
+     * \tparam NewElement - The type of element we are inserting
+     */
     template<typename List, typename NewElement>
     struct push_front;
 
+    //! Convenience variable template for ease-of-use
     template<typename List, typename NewElement>
     using push_front_t = typename push_front<List, NewElement>::type;
 }   // namespace CppUtils::Meta

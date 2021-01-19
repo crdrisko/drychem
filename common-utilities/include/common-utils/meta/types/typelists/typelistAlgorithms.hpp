@@ -16,12 +16,13 @@
 
 namespace CppUtils::Meta
 {
-    template<>
-    struct is_empty<typelist<>> : std::true_type
-    {
-    };
-
-
+    /*!
+     * A partial specialization of our \c front metafunction for when the compile-time
+     *  list is a typelist.
+     * 
+     * \tparam    Head - The first element in the typelist
+     * \tparam ...Tail - All elements but the first in the typelist
+     */
     template<typename Head, typename... Tail>
     struct front<typelist<Head, Tail...>>
     {
@@ -29,6 +30,23 @@ namespace CppUtils::Meta
     };
 
 
+    /*!
+     * A partial specialization of our \c is_empty metafunction for when the compile-time
+     *  list is a typelist.
+     */
+    template<>
+    struct is_empty<typelist<>> : std::true_type
+    {
+    };
+
+
+    /*!
+     * A partial specialization of our \c push_back metafunction for when the compile-time
+     *  list is a typelist.
+     * 
+     * \tparam ...Elements - The elements of the typelist
+     * \tparam  NewElement - The element we wish to add to the back of the typelist
+     */
     template<typename... Elements, typename NewElement>
     struct push_back<typelist<Elements...>, NewElement>
     {
@@ -36,6 +54,13 @@ namespace CppUtils::Meta
     };
 
 
+    /*!
+     * A partial specialization of our \c push_front metafunction for when the compile-time
+     *  list is a typelist.
+     * 
+     * \tparam ...Elements - The elements of the typelist
+     * \tparam  NewElement - The element we wish to add to the front of the typelist
+     */
     template<typename... Elements, typename NewElement>
     struct push_front<typelist<Elements...>, NewElement>
     {
@@ -43,6 +68,13 @@ namespace CppUtils::Meta
     };
 
 
+    /*!
+     * A partial specialization of our \c pop_front metafunction for when the compile-time
+     *  list is a typelist.
+     * 
+     * \tparam    Head - The first element in the typelist
+     * \tparam ...Tail - All elements but the first in the typelist
+     */
     template<typename Head, typename... Tail>
     struct pop_front<typelist<Head, Tail...>>
     {

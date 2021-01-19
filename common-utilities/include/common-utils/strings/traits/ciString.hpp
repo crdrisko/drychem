@@ -24,7 +24,7 @@ namespace CppUtils::Strings
         /*!
          * Convert a character, \c ch_, to uppercase at compile-time.
          * 
-         * \param ch_ The character to convert to uppercase
+         * \param ch_ - The character to convert to uppercase
          * 
          * \returns The uppercase version of \c ch_ if \c ch_ falls between 'a' and 'z' inclusive
          */
@@ -40,9 +40,9 @@ namespace CppUtils::Strings
          * Lexicographically, and without regard to case, compares the first \c count_
          *  characters of the character strings \c s1_ and \c s2_.
          * 
-         * \param s1_    A pointer to the first character string to compare
-         * \param s2_    A pointer to the second character string to compare
-         * \param count_ The number of characters to compare from each character string
+         * \param    s1_ - A pointer to the first character string to compare
+         * \param    s2_ - A pointer to the second character string to compare
+         * \param count_ - The number of characters to compare from each character string
          * 
          * \returns Zero if the two strings are equal or count is zero
          */
@@ -67,9 +67,9 @@ namespace CppUtils::Strings
          * Searches for character \c ch_ within the first \c count_ characters of the sequence
          *  pointed to by \c p_.
          * 
-         * \param p_     A pointer to a character string to search
-         * \param count_ The number of characters to analyze
-         * \param ch_    The character to search for
+         * \param     p_ - A pointer to a character string to search
+         * \param count_ - The number of characters to analyze
+         * \param    ch_ - The character to search for
          * 
          * \returns \c nullptr if \c ch is not found in the string or count is 0
          */
@@ -96,7 +96,7 @@ namespace CppUtils::Strings
     /*! 
      * A simple function for casting one char_trait to another
      * 
-     * \param input An input string with some char_traits
+     * \param input - An input string with some char_traits
      * 
      * \returns An output string with another type of char_traits
      */
@@ -112,8 +112,8 @@ namespace CppUtils::Strings
      * Allow for case-insensitive strings to be inserted into a ouput stream 
      *  like a normal \c std::string.
      * 
-     * \param os  A character output stream
-     * \param str The string to be inserted     
+     * \param  os - A character output stream
+     * \param str - The string to be inserted     
      */
     inline std::ostream& operator<<(std::ostream& os, const std::basic_string<char, ci_char_traits>& str)
     {

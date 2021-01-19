@@ -23,7 +23,7 @@ namespace CppUtils::Math
      *  part, the functionality is delegated to the internal \c std::array<> and the type is defined using the 
      *  tuple-like API so it can be used with structured bindings.
      * 
-     * \tparam T The type of the value we are storing in the \c Vector3D, must be default constructible
+     * \tparam T - The type of the value we are storing in the \c Vector3D, must be default constructible
      * 
      * \todo Add arithmetic operators (possibly using expression templates)
      * \note The reverse iterators were not added to the interface because I didn't see a need for them

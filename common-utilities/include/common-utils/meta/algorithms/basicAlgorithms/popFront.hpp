@@ -11,9 +11,16 @@
 
 namespace CppUtils::Meta
 {
+    /*!
+     * The declaration of a metafunction used to remove the first element of the compile-time
+     *  list for which it is specialized.
+     *
+     * \tparam List - The compile-time list we are operating on
+     */
     template<typename List>
     struct pop_front;
 
+    //! Convenience variable template for ease-of-use
     template<typename List>
     using pop_front_t = typename pop_front<List>::type;
 }   // namespace CppUtils::Meta

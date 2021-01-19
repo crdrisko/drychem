@@ -16,17 +16,37 @@
 
 namespace CppUtils::Meta
 {
+    /*!
+     * The declaration of a metafunction used to reverse the compile-time list for
+     *  which it is specialized.
+     *
+     * \tparam  List - The compile-time list we are operating on
+     * \tparam Empty - A flag to determine whether the list is empty
+     */
     template<typename List, bool Empty = is_empty_v<List>>
     struct reverse_list;
 
+    //! Convenience variable template for ease-of-use
     template<typename List>
     using reverse_list_t = typename reverse_list<List>::type;
 
+    /*!
+     * A partial specialization of our \c reverse_list metafunction for when the given
+     *  list is not empty.
+     *
+     * \tparam List - The compile-time list we are operating on
+     */
     template<typename List>
     struct reverse_list<List, false> : public push_back<reverse_list_t<pop_front_t<List>>, front_t<List>>
     {
     };
 
+    /*!
+     * A partial specialization of our \c reverse_list metafunction for when the given
+     *  list is empty - signifying the end of the algorithm.
+     *
+     * \tparam List - The compile-time list we are operating on
+     */
     template<typename List>
     struct reverse_list<List, true>
     {

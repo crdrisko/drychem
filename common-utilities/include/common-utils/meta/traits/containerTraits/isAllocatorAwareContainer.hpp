@@ -18,8 +18,8 @@ namespace CppUtils::Meta
     /*!
      * A type trait to determine whether or not the supplied container is an allocator aware container.
      *
-     * \tparam (unnamed) A placeholder parameter for the container we are checking
-     * \tparam (unnamed) A placeholder parameter that serves as our default state (i.e. false)
+     * \tparam (unnamed) - A placeholder parameter for the container we are checking
+     * \tparam (unnamed) - A placeholder parameter that serves as our default state (i.e. false)
      */
     template<typename, typename = std::void_t<>>
     struct is_allocator_aware_container : std::false_type
@@ -30,7 +30,7 @@ namespace CppUtils::Meta
      * A partial specialization of our \c is_allocator_aware_container type trait for when
      *  the given container meets the requirements of an allocator aware container.
      *
-     * \tparam T The container that may or may not meet the requirements of an allocator aware container
+     * \tparam T - The container that may or may not meet the requirements of an allocator aware container
      */
     template<typename T>
     struct is_allocator_aware_container<T, std::void_t<typename T::allocator_type>> : is_container<T>

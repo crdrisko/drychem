@@ -16,8 +16,8 @@ namespace CppUtils::Operators
     /*!
      * The comparison operators that can be derived from the equals-to operator
      *
-     * \tparam Derived The class with the overloaded \c operator==()
-     * \tparam Empty   An empty base class, not really needed for the general user
+     * \tparam Derived - The class with the overloaded \c operator==()
+     * \tparam   Empty - An empty base class, not really needed for the general user
      */
     template<typename Derived, typename Empty = PotentiallyEmptyBaseClass<Derived>>
     class EqualityComparable : public Empty
@@ -29,8 +29,8 @@ namespace CppUtils::Operators
     /*!
      * The comparison operators that can be derived from the less-than operator
      *
-     * \tparam Derived The class with the overloaded \c operator<()
-     * \tparam Empty   An empty base class, not really needed for the general user
+     * \tparam Derived - The class with the overloaded \c operator<()
+     * \tparam   Empty - An empty base class, not really needed for the general user
      */
     template<typename Derived, typename Empty = PotentiallyEmptyBaseClass<Derived>>
     class LessThanComparable : public Empty
@@ -44,8 +44,8 @@ namespace CppUtils::Operators
     /*!
      * An empty class used to combine the EqualityComparable and LessThanComparable class templates
      *
-     * \tparam Derived The class with the overloaded \c operator==() and \c operator<()'s
-     * \tparam Empty   An empty base class, not really needed for the general user
+     * \tparam Derived - The class with the overloaded \c operator==() and \c operator<()'s
+     * \tparam   Empty - An empty base class, not really needed for the general user
      *
      * \note If we were to inherit both \c EqualityComparable and \c LessThanComparable, we could be setting ourselves to
      *  inhibit the EBCO. This way, if we do inherit an empty base class, our compiler can capitalize on that.

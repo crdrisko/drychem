@@ -29,7 +29,7 @@ namespace CppUtils::Networking
 
         // clang-format off
     #ifdef _MSC_VER
-        auto closeResult = ::closesocket(sock); 
+        auto closeResult = ::closesocket(sock);
     #else
         auto closeResult = ::close(sock);
     #endif

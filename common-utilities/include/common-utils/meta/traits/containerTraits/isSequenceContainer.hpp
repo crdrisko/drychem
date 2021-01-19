@@ -20,7 +20,7 @@ namespace CppUtils::Meta
     /*!
      * A type trait to determine whether or not the supplied container is a sequence container.
      *
-     * \tparam (unnamed) A placeholder parameter for the container we are checking
+     * \tparam (unnamed) - A placeholder parameter for the container we are checking
      */
     template<typename T>
     struct is_sequence_container : std::conditional_t<is_container_v<T>,

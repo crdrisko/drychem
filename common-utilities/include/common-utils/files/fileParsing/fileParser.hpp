@@ -52,11 +52,11 @@ namespace CppUtils::Files
         /*!
          * A wrapper to move the parsing of a given input file to the client.
          * 
-         * \tparam F        The type of the function we are calling
-         * \tparam ...TArgs The types of the arguments passed to the function f
+         * \tparam        F - The type of the function we are calling
+         * \tparam ...TArgs - The types of the arguments passed to the function f
          * 
-         * \param f    The function to invoke
-         * \param args The parameters of the function we are invoking
+         * \param    f - The function to invoke
+         * \param args - The parameters of the function we are invoking
          * 
          * \returns Here we return whatever the function, f, returns even if that is a void function.
          * 

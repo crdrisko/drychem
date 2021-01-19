@@ -22,9 +22,9 @@ namespace CppUtils::Errors
      * A simple function to format and print an error message according to 1) the information 
      *  provided, and 2) the severity of the given error.
      * 
-     * \tparam Severity The severity of the error in question (defaults to a warning message)
+     * \tparam Severity - The severity of the error in question (defaults to a warning message)
      * 
-     * \param error The error message and other information about the location of the error
+     * \param error - The error message and other information about the location of the error
      */
     template<ErrorSeverity Severity = ErrorSeverity::Warning>
     inline void printErrorMessage(const ErrorMessage& error)

@@ -36,7 +36,7 @@ namespace CppUtils::Files
         void trimTrainingSeparators() const
         {
             // clang-format off
-            std::transform(columnCache.begin(), columnCache.end(), columnCache.begin(), 
+            std::transform(columnCache.begin(), columnCache.end(), columnCache.begin(),
                 [](const std::string& column) { return column.substr(0, column.size() - 1); });
             //clang-format on
         }
@@ -44,10 +44,10 @@ namespace CppUtils::Files
     public:
         /*!
          * A file parser strategy used for splitting the data in a text file into columns.
-         * 
-         * \param fileContents   The content of a file read in to a std::string
-         * \param fieldSeparator The separator between data fields in the file (optional)
-         * 
+         *
+         * \param   fileContents - The content of a file read in to a std::string
+         * \param fieldSeparator - The separator between data fields in the file (optional)
+         *
          * \returns A \c std::vector<std::string> where each element of the vector is a column from the file.
          */
         auto operator()(

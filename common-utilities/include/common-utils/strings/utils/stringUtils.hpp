@@ -17,10 +17,10 @@ namespace CppUtils::Strings
      * A predicate wrapper for std::basic_string<char, CharTraits>::find() that returns whether the 
      *  substring \c stringToFind was found in \c stringToSearch.
      * 
-     * \tparam CharTraits A trait allowing for either case-sensitive or case-insensitive searches
+     * \tparam CharTraits - A trait allowing for either case-sensitive or case-insensitive searches
      * 
-     * \param stringToFind   The string/substring to seach for
-     * \param stringToSearch The string to seach through
+     * \param   stringToFind - The string/substring to seach for
+     * \param stringToSearch - The string to seach through
      */
     template<typename CharTraits>
     constexpr bool foundSubstr(const std::basic_string<char, CharTraits>& stringToFind,

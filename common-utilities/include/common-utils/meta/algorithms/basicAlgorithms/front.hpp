@@ -11,10 +11,16 @@
 
 namespace CppUtils::Meta
 {
-    // front
+    /*!
+     * The declaration of a metafunction used to extract the first element of the compile-time
+     *  list for which it is specialized.
+     *
+     * \tparam List - The compile-time list we are operating on
+     */
     template<typename List>
     struct front;
 
+    //! Convenience variable template for ease-of-use
     template<typename List>
     using front_t = typename front<List>::type;
 }   // namespace CppUtils::Meta

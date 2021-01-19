@@ -13,12 +13,18 @@
 
 namespace CppUtils::Meta
 {
-    // is_empty
+    /*!
+     * The declaration of a metafunction used to whether the compile-time list for which
+     *  it is specialized is empty.
+     *
+     * \tparam List - The compile-time list we are operating on
+     */
     template<typename List>
     struct is_empty : std::false_type
     {
     };
 
+    //! Convenience variable template for ease-of-use
     template<typename List>
     constexpr bool is_empty_v = is_empty<List>::value;
 }   // namespace CppUtils::Meta

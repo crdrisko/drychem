@@ -19,7 +19,7 @@ namespace CppUtils::Errors
      * A type trait to determine whether or not the supplied ErrorSeverity describes a 
      *  fatal error.
      *
-     * \tparam Severity The severity of the error in question
+     * \tparam Severity - The severity of the error in question
      */
     template<ErrorSeverity Severity>
     struct is_fatal : std::false_type
