@@ -9,10 +9,10 @@
 #ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_META_ALGORITHMS_REVERSELIST_HPP
 #define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_META_ALGORITHMS_REVERSELIST_HPP
 
-#include "common-utils/meta/algorithms/basicAlgorithms/front.hpp"
-#include "common-utils/meta/algorithms/basicAlgorithms/isEmpty.hpp"
-#include "common-utils/meta/algorithms/basicAlgorithms/popFront.hpp"
-#include "common-utils/meta/algorithms/basicAlgorithms/pushBack.hpp"
+#include "common-utils/meta/algorithms/basicAlgorithms/frontList.hpp"
+#include "common-utils/meta/algorithms/basicAlgorithms/isEmptyList.hpp"
+#include "common-utils/meta/algorithms/basicAlgorithms/popFrontList.hpp"
+#include "common-utils/meta/algorithms/basicAlgorithms/pushBackList.hpp"
 
 namespace CppUtils::Meta
 {
@@ -23,7 +23,7 @@ namespace CppUtils::Meta
      * \tparam  List - The compile-time list we are operating on
      * \tparam Empty - A flag to determine whether the list is empty
      */
-    template<typename List, bool Empty = is_empty_v<List>>
+    template<typename List, bool Empty = is_empty_list_v<List>>
     struct reverse_list;
 
     //! Convenience variable template for ease-of-use
@@ -37,7 +37,7 @@ namespace CppUtils::Meta
      * \tparam List - The compile-time list we are operating on
      */
     template<typename List>
-    struct reverse_list<List, false> : public push_back<reverse_list_t<pop_front_t<List>>, front_t<List>>
+    struct reverse_list<List, false> : public push_back_list<reverse_list_t<pop_front_list_t<List>>, front_list_t<List>>
     {
     };
 

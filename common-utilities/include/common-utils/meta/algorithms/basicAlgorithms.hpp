@@ -9,10 +9,10 @@
 #ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_META_ALGORITHMS_BASICALGORITHMS_HPP
 #define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_META_ALGORITHMS_BASICALGORITHMS_HPP
 
-#include "basicAlgorithms/front.hpp"
-#include "basicAlgorithms/isEmpty.hpp"
-#include "basicAlgorithms/popFront.hpp"
-#include "basicAlgorithms/pushBack.hpp"
-#include "basicAlgorithms/pushFront.hpp"
+#include "basicAlgorithms/frontList.hpp"
+#include "basicAlgorithms/isEmptyList.hpp"
+#include "basicAlgorithms/popFrontList.hpp"
+#include "basicAlgorithms/pushBackList.hpp"
+#include "basicAlgorithms/pushFrontList.hpp"
 
 #endif

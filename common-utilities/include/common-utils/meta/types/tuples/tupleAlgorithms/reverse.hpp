@@ -25,7 +25,7 @@ namespace CppUtils::Meta
      * \param tuple - The \c std::tuple we are trying to reverse
      */
     template<typename... Elements>
-    constexpr decltype(auto) reverse(const std::tuple<Elements...>& tuple)
+    constexpr auto reverse(const std::tuple<Elements...>& tuple)
     {
         return select(tuple, Meta::reverse_list_t<std::make_index_sequence<sizeof...(Elements)>>());
     }

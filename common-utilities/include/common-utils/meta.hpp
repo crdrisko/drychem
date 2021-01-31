@@ -18,8 +18,6 @@
 #include "meta/traits/containerTraits.hpp"
 #include "meta/types/integer_sequences/integerSequenceAlgorithms.hpp"
 #include "meta/types/tuples/tupleAlgorithms.hpp"
-#include "meta/types/typelists/typelist.hpp"
-#include "meta/types/typelists/typelistAlgorithms.hpp"
 
 //! Allow for a shorter namespace name for less \c using statements
 namespace DryChem

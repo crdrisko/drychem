@@ -23,6 +23,14 @@ All the functions and classes belonging to the metaprogramming library are wrapp
 
 ### Algorithms
 
+- [Basic Algorithms](../../../include/common-utils/meta/algorithms/basicAlgorithms.hpp)
+
+  ...
+
+- [Reverse](../../../include/common-utils/meta/algorithms/reverseList.hpp)
+
+  ...
+
 ---
 
 ### Traits
@@ -42,9 +50,13 @@ All the functions and classes belonging to the metaprogramming library are wrapp
 
 ### Types
 
+- [Integer Sequence Algorithms](../../../include/common-utils/meta/types/integer_sequences/integerSequenceAlgorithms.hpp)
+
+  ...
+
 - [Tuple Algorithms](../../../include/common-utils/meta/types/tuples/tupleAlgorithms.hpp)
 
-  In this portion of the library, we define a number of basic algorithms revolving around the `std::tuple` class template. Because heterogeneous collections like the `std::tuple` are fairly common but don't have the same interface as other standard containers, basic algorithms have to be defined specifically for this type. One of the most fundamental algorithms for the `std::tuple` is the `select<>()` function template. It takes a tuple and a list of indices and constructs a new tuple in the desired order.
+  In addition to specializations for all the basic algorithms defined above, we have also defined a number of algorithms revolving around the `std::tuple` class template. Because heterogeneous collections like the `std::tuple` are fairly common but don't have the same interface as other standard containers; for this reason, basic algorithms have to be defined specifically for this type. One of the most fundamental algorithms for the `std::tuple` is the `select<>()` function template. It takes a tuple and a list of indices and constructs a new tuple in the desired order. We can define other algorithms like reversing a tuple in terms of the `select<>()` metafunction. We can also define an `apply_n<>()` function that applies a given function to a specified number of elements.
 
 ---
 

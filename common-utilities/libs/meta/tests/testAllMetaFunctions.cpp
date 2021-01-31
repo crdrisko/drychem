@@ -9,6 +9,7 @@
 #include <gtest/gtest.h>
 
 #include "testTraits/testContainerTraits.hpp"
+#include "testTypes/testIntegerSequenceAlgorithms.hpp"
 #include "testTypes/testTupleAlgorithms.hpp"
 
 int main(int argc, char** argv)
