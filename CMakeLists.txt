@@ -71,6 +71,7 @@ if (NOT chem_build_all AND NOT chem_build_tests AND NOT chem_build_samples
     set(exclude_units ON)
 endif()
 
+
 ### Compilation Options ###
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)

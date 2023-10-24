@@ -17,6 +17,7 @@
 #include "math/calculus/integration.hpp"
 #include "math/containers/vector3D.hpp"
 #include "math/statistics/linearLeastSquaresFitting.hpp"
+#include "math/statistics/quadraticLeastSquaresFitting.hpp"
 #include "math/statistics/statistics.hpp"
 #include "math/utils/basicMath.hpp"
 #include "math/utils/mathExceptions.hpp"

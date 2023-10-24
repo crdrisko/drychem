@@ -61,6 +61,8 @@ namespace CppUtils::Testing::details::testing
 
         for (unsigned long long i {}; i < iter; ++i)
             result += i * i;
+
+        std::cout << result << '\n';
     }
 }   // namespace CppUtils::Testing::details::testing
 
