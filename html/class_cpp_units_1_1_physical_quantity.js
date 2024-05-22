@@ -13,12 +13,12 @@ var class_cpp_units_1_1_physical_quantity =
     [ "operator-", "class_cpp_units_1_1_physical_quantity.html#a21149ad62658efb3b8a1df38e05e441a", null ],
     [ "operator*", "class_cpp_units_1_1_physical_quantity.html#a931a9ddf1c7f719d452435104015058b", null ],
     [ "operator*=", "class_cpp_units_1_1_physical_quantity.html#a406bc69d272442e37edcea8ace11437d", null ],
-    [ "operator*=", "class_cpp_units_1_1_physical_quantity.html#a2222fd63f4fe9b4639bf39718342ef29", null ],
+    [ "operator*=", "class_cpp_units_1_1_physical_quantity.html#adc9f5a152303384216d9626e725d45f7", null ],
     [ "operator/", "class_cpp_units_1_1_physical_quantity.html#aa7ba6ee5ee81d96427b79fd736733f71", null ],
     [ "operator/=", "class_cpp_units_1_1_physical_quantity.html#a9595a7c424e58f133329c31d7c5e56e9", null ],
-    [ "operator/=", "class_cpp_units_1_1_physical_quantity.html#a405d828838df90c5c299972d2bfeae2a", null ],
+    [ "operator/=", "class_cpp_units_1_1_physical_quantity.html#a239391e60904258bfa892dbc91d20195", null ],
     [ "operator==", "class_cpp_units_1_1_physical_quantity.html#a7657c779cfaed5a01a9fd07f8dfbc44e", null ],
     [ "operator<", "class_cpp_units_1_1_physical_quantity.html#ae175835b503acd9e9b3f12bc45d90681", null ],
-    [ "operator<<", "class_cpp_units_1_1_physical_quantity.html#a202ff88aa92247422b0b3a7348f20899", null ],
+    [ "operator<<", "class_cpp_units_1_1_physical_quantity.html#a8fd9256265bce5974a639c807117d917", null ],
     [ "magnitude", "class_cpp_units_1_1_physical_quantity.html#a5aa2449c3650a214533510dc56a38645", null ]
 ];

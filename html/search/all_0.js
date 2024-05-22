@@ -1,14 +1,22 @@
 var searchData=
 [
-  ['acceleration_0',['Acceleration',['../namespace_cpp_units.html#abe4e2c6824c8cc407024d75beb750832',1,'CppUnits']]],
-  ['action_1',['Action',['../namespace_cpp_units.html#a094fdfa18fff14573de82b1609b0e48a',1,'CppUnits']]],
-  ['add_5fexecutable_2',['add_executable',['../common-utilities_2_c_make_lists_8txt.html#a34b197a87806446bde4e826992931457',1,'CMakeLists.txt']]],
-  ['amountofsubstance_3',['AmountOfSubstance',['../struct_cpp_units_1_1_dimensionality.html#a21873ff9411bd18a84fe8ca0c153c669',1,'CppUnits::Dimensionality::AmountOfSubstance()'],['../namespace_cpp_units.html#af0869c8018647f66cb0df08322cf311b',1,'CppUnits::AmountOfSubstance()']]],
-  ['angle_4',['Angle',['../namespace_cpp_units.html#a478a005c3a22470bb840c6c9e5d51685',1,'CppUnits']]],
-  ['angularmomentum_5',['AngularMomentum',['../namespace_cpp_units.html#a471f6e2694a49211b29f7086145511f3',1,'CppUnits']]],
-  ['angularmomentumflux_6',['AngularMomentumFlux',['../namespace_cpp_units.html#a7524fb27f16d95bde22f2d07d919b7a0',1,'CppUnits']]],
-  ['angularvelocity_7',['AngularVelocity',['../namespace_cpp_units.html#a2fc318ba03690eb8192ed0d111b2acb1',1,'CppUnits']]],
-  ['area_8',['Area',['../namespace_cpp_units.html#afeff8606d7db8c9640a22836b80ed18d',1,'CppUnits']]],
-  ['at_9',['at',['../class_cpp_utils_1_1_math_1_1_vector3_d.html#af5f18223f1f22ce6ea19a519624c6d95',1,'CppUtils::Math::Vector3D::at(size_type pos)'],['../class_cpp_utils_1_1_math_1_1_vector3_d.html#a2966b11d7a267a0e40db8baa4c19f365',1,'CppUtils::Math::Vector3D::at(size_type pos) const']]],
-  ['avogadrosnumber_10',['avogadrosNumber',['../namespace_cpp_units_1_1_constants.html#a6b87813cd33cfe98fc6191eff13d1dfe',1,'CppUnits::Constants']]]
+  ['a_0',['a',['../struct_cpp_utils_1_1_math_1_1details_1_1_quadratic_least_squares_result.html#adb286444e805f85ab2ce8d6608b9414d',1,'CppUtils::Math::details::QuadraticLeastSquaresResult']]],
+  ['acceleration_1',['Acceleration',['../namespace_cpp_units.html#abbcdb9df729f5756c0619c56f760f95d',1,'CppUnits']]],
+  ['action_2',['Action',['../namespace_cpp_units.html#a6bacaf0cb5cf1c95e1494258410266a6',1,'CppUnits']]],
+  ['add_5fexecutable_3',['add_executable',['../common-utilities_2_c_make_lists_8txt.html#a7e3c6b9f78f575f04e0cbec12575a85b',1,'CMakeLists.txt']]],
+  ['algorithms_4',['Algorithms',['../md_common-utilities_2libs_2meta_2docs_2meta.html#autotoc_md44',1,'']]],
+  ['amountofsubstance_5',['AmountOfSubstance',['../struct_cpp_units_1_1_dimensionality.html#a21873ff9411bd18a84fe8ca0c153c669',1,'CppUnits::Dimensionality::AmountOfSubstance'],['../namespace_cpp_units.html#a99d3113948ca6a335a7338d44d3ab0e9',1,'CppUnits::AmountOfSubstance']]],
+  ['and_20installing_6',['And Installing',['../md_common-utilities_2_r_e_a_d_m_e.html#autotoc_md71',1,'Building and Installing'],['../md_cpp-units_2_r_e_a_d_m_e.html#autotoc_md77',1,'Building and Installing']]],
+  ['angle_7',['Angle',['../namespace_cpp_units.html#a03a92c0a35af09d6368f7005a23ef49c',1,'CppUnits']]],
+  ['angularmomentum_8',['AngularMomentum',['../namespace_cpp_units.html#ab07da46a080744183735236b11932475',1,'CppUnits']]],
+  ['angularmomentumflux_9',['AngularMomentumFlux',['../namespace_cpp_units.html#aadb9941727717d926bff806774530653',1,'CppUnits']]],
+  ['angularvelocity_10',['AngularVelocity',['../namespace_cpp_units.html#abf052b139487b8f0a06303c874570766',1,'CppUnits']]],
+  ['applications_11',['C++ Applications',['../md_common-utilities_2_r_e_a_d_m_e.html#autotoc_md73',1,'']]],
+  ['apply_5fn_12',['apply_n',['../namespace_cpp_utils_1_1_meta.html#a663cab988b3eaae787bd8df3c7662140',1,'CppUtils::Meta']]],
+  ['apply_5fn_2ehpp_13',['apply_n.hpp',['../apply__n_8hpp.html',1,'']]],
+  ['area_14',['Area',['../namespace_cpp_units.html#a01643c86a6d2ae70d6cadc889ba367c5',1,'CppUnits']]],
+  ['ascolumns_15',['AsColumns',['../class_cpp_utils_1_1_files_1_1_as_columns.html',1,'CppUtils::Files']]],
+  ['asrows_16',['AsRows',['../class_cpp_utils_1_1_files_1_1_as_rows.html',1,'CppUtils::Files']]],
+  ['at_17',['at',['../class_cpp_utils_1_1_math_1_1_vector3_d.html#abeb6e131787525eebb0671b48ec126aa',1,'CppUtils::Math::Vector3D::at(size_type pos_)'],['../class_cpp_utils_1_1_math_1_1_vector3_d.html#a2e54feb792d142030b6462a5123e4385',1,'CppUtils::Math::Vector3D::at(size_type pos_) const']]],
+  ['avogadrosnumber_18',['avogadrosNumber',['../namespace_cpp_units_1_1_constants.html#a6b87813cd33cfe98fc6191eff13d1dfe',1,'CppUnits::Constants']]]
 ];

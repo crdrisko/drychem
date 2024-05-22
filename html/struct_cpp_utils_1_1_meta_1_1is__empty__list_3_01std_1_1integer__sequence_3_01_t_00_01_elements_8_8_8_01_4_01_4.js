@@ -1,0 +1,4 @@
+var struct_cpp_utils_1_1_meta_1_1is__empty__list_3_01std_1_1integer__sequence_3_01_t_00_01_elements_8_8_8_01_4_01_4 =
+[
+    [ "value", "struct_cpp_utils_1_1_meta_1_1is__empty__list_3_01std_1_1integer__sequence_3_01_t_00_01_elements_8_8_8_01_4_01_4.html#afc822540fd4797b142cdb6d532f7e603", null ]
+];

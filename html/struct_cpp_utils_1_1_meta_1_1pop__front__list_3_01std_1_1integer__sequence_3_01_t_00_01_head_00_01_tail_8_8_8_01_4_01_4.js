@@ -1,0 +1,4 @@
+var struct_cpp_utils_1_1_meta_1_1pop__front__list_3_01std_1_1integer__sequence_3_01_t_00_01_head_00_01_tail_8_8_8_01_4_01_4 =
+[
+    [ "type", "struct_cpp_utils_1_1_meta_1_1pop__front__list_3_01std_1_1integer__sequence_3_01_t_00_01_head_00_01_tail_8_8_8_01_4_01_4.html#aa7f158f6794c357c1daf54076941ce4f", null ]
+];

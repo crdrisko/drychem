@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['fatalexception_2ehpp_540',['fatalException.hpp',['../fatal_exception_8hpp.html',1,'']]],
-  ['fibonacciexample_2ecpp_541',['fibonacciExample.cpp',['../fibonacci_example_8cpp.html',1,'']]],
-  ['finitedifferencesexample_2ecpp_542',['finiteDifferencesExample.cpp',['../finite_differences_example_8cpp.html',1,'']]],
-  ['forwarddifferencemethod_2ehpp_543',['forwardDifferenceMethod.hpp',['../forward_difference_method_8hpp.html',1,'']]]
+  ['errorhandling_2ehpp_0',['errorHandling.hpp',['../error_handling_8hpp.html',1,'']]],
+  ['errors_2ehpp_1',['errors.hpp',['../errors_8hpp.html',1,'']]],
+  ['errors_2emd_2',['errors.md',['../errors_8md.html',1,'']]],
+  ['errortypes_2ehpp_3',['errorTypes.hpp',['../error_types_8hpp.html',1,'']]]
 ];

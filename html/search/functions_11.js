@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['validate_778',['validate',['../finite_differences_example_8cpp.html#a6cf47d1b98e987a0814acc2ecbb20109',1,'finiteDifferencesExample.cpp']]],
-  ['vector3d_779',['Vector3D',['../class_cpp_utils_1_1_math_1_1_vector3_d.html#a56513c069ffad19f832886836df235ca',1,'CppUtils::Math::Vector3D::Vector3D() noexcept=default'],['../class_cpp_utils_1_1_math_1_1_vector3_d.html#a0f423c1f82ebb06f666c876b53fd02d3',1,'CppUtils::Math::Vector3D::Vector3D(T x_, T y_, T z_) noexcept'],['../class_cpp_utils_1_1_math_1_1_vector3_d.html#a3af51d25c3edea5955ca61aa98c11765',1,'CppUtils::Math::Vector3D::Vector3D(const container_type &amp;data_) noexcept']]],
-  ['voidsumsquares_780',['voidSumSquares',['../namespace_cpp_utils_1_1_testing_1_1details_1_1testing.html#ad7ce60e4168701d5a6d2a8652ca7d97c',1,'CppUtils::Testing::details::testing']]]
+  ['timeandinvoke_0',['timeAndInvoke',['../namespace_cpp_utils_1_1_testing.html#a8d04e181c50817a59e487c2bbdfe49ab',1,'CppUtils::Testing']]],
+  ['tokenizer_1',['Tokenizer',['../class_cpp_utils_1_1_strings_1_1_tokenizer.html#a60bdc82cff8670b4a0ea2f574e48fb39',1,'CppUtils::Strings::Tokenizer::Tokenizer(const_iterator begin_, const_iterator end_, const_reference delimiters_=&quot; \t\n&quot;, std::optional&lt; value_type &gt; keepDelimiters_=std::nullopt)'],['../class_cpp_utils_1_1_strings_1_1_tokenizer.html#a77f7189da13529fbcd10efe59dffef6e',1,'CppUtils::Strings::Tokenizer::Tokenizer(const_reference str_, const_reference delimiters_=&quot; \t\n&quot;, std::optional&lt; value_type &gt; keepDelimiters_=std::nullopt)'],['../namespace_cpp_utils_1_1_strings.html#a36e6697317b9df92027e308e163818f9',1,'CppUtils::Strings::Tokenizer(const std::basic_string&lt; char, CharTraits &gt; &amp;, TArgs...) -&gt; Tokenizer&lt; CharTraits &gt;']]],
+  ['traits_5fcast_2',['traits_cast',['../namespace_cpp_utils_1_1_strings.html#a825163eec8becfc44737262b040bed6c',1,'CppUtils::Strings']]],
+  ['trapz_3',['trapz',['../namespace_cpp_utils_1_1_math.html#a3139a6bdb1903876b007071fb15bb1e5',1,'CppUtils::Math']]],
+  ['trimtrainingseparators_4',['trimTrainingSeparators',['../class_cpp_utils_1_1_files_1_1_as_columns.html#a22676693c3f05d2fe15f365a2369b37e',1,'CppUtils::Files::AsColumns']]]
 ];
