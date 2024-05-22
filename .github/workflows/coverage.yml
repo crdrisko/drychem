@@ -19,8 +19,8 @@ jobs:
     - name: Configure
       shell: bash
       run: |
-        sudo apt-get install python-pip lcov
-        pip install --user cpp-coveralls
+        sudo apt-get install lcov
+        python3-pip install --user cpp-coveralls
         cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=DEBUG -Dchem_enable_coverage=ON
         cmake --build .
         sudo cmake --build . --target install
