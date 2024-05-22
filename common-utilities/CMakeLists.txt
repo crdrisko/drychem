@@ -26,7 +26,10 @@ endif()
 if (utils_build_samples)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${DryChem_BINARY_DIR}/bin/samples)
 
-    add_executable(fibonacciExample         libs/errors/samples/fibonacciExample.cpp)
+    if (NOT WIN32)
+        add_executable(fibonacciExample         libs/errors/samples/fibonacciExample.cpp)
+    endif()
+
     add_executable(markupParsingExample     libs/files/samples/markupParsingExample.cpp)
     add_executable(finiteDifferencesExample libs/math/samples/finiteDifferencesExample.cpp)
     add_executable(ciTokenizerExample       libs/strings/samples/ciTokenizerExample.cpp)
