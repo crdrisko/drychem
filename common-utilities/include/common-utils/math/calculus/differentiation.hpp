@@ -11,7 +11,7 @@
 
 #include "differentiation/backwardsDifferenceMethod.hpp"
 #include "differentiation/centeredDifferenceMethod.hpp"
-#include "differentiation/nPointStencil.hpp"
 #include "differentiation/forwardDifferenceMethod.hpp"
+#include "differentiation/nPointStencil.hpp"
 
 #endif

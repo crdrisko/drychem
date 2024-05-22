@@ -33,7 +33,7 @@ formatFiles()           #@ DESCRIPTION: Use clang-format to format each file in 
             done
 
             printf "Formatting: %s\n" "$elem"
-            /opt/local/libexec/llvm-10/bin/clang-format -i -style=file "$elem"
+            /opt/local/libexec/llvm-16/bin/clang-format -i -style=file "$elem"
 
         elif [[ -d $elem ]]
         then

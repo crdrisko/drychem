@@ -35,8 +35,7 @@ GTEST_TEST(testIntegerSequenceAlgorithms, theIsEmptyAlgorithmChecksIfAnIntegerSe
     using NonEmptyList = std::index_sequence<5, 10, 15, 20, 25>;
 
     static_assert((!DryChem::is_empty_list_v<NonEmptyList>), "is_empty_list_v was not false on a non-empty list.");
-    static_assert(
-        (!DryChem::is_empty_list<NonEmptyList>::value), "is_empty_list was not false on a non-empty list.");
+    static_assert((!DryChem::is_empty_list<NonEmptyList>::value), "is_empty_list was not false on a non-empty list.");
 
     static_assert((DryChem::is_empty_list_v<EmptyList>), "is_empty_list_v was not true on an empty list.");
     static_assert((DryChem::is_empty_list<EmptyList>::value), "is_empty_list was not true on an empty list.");

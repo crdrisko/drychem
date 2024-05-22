@@ -25,10 +25,14 @@ int main()
     std::vector<double> x(num_elements), y(num_elements);
 
     std::iota(x.begin(), x.end(), 0.0l);
-    std::transform(x.begin(), x.end(), y.begin(), [](auto& x) {
-        x /= 10;                            // Scale back x for more accurate results
-        return (4 * x * x) + (2 * x) - 7;   // y = 4x^2 + 2x - 7
-    });
+    std::transform(x.begin(),
+        x.end(),
+        y.begin(),
+        [](auto& x)
+        {
+            x /= 10;                            // Scale back x for more accurate results
+            return (4 * x * x) + (2 * x) - 7;   // y = 4x^2 + 2x - 7
+        });
 
     const double tolerance = 2 * (x[1] - x[0]);
 

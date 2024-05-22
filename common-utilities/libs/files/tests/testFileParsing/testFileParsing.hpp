@@ -80,10 +80,12 @@ GTEST_TEST(testFileParsing, weCanDefineOurOwnNonDefaultParserUsingALambdaExpress
 
     std::vector<std::string> rows;
 
-    parser.parseDataFile([&rows](const std::string& fileContents) {
-        DryChem::Tokenizer tok {fileContents, "\n"};
-        rows = tok.split();
-    });
+    parser.parseDataFile(
+        [&rows](const std::string& fileContents)
+        {
+            DryChem::Tokenizer tok {fileContents, "\n"};
+            rows = tok.split();
+        });
 
     auto expectedRows = parser.parseDataFile(DryChem::AsRows());
 

@@ -37,10 +37,10 @@ namespace CppUtils::Networking
         TCPSocket(SOCKET socket_, std::shared_ptr<TCPState> state_);
 
         virtual ~TCPSocket();
-        TCPSocket(const TCPSocket&) = delete;
-        TCPSocket(TCPSocket&&)      = default;
+        TCPSocket(const TCPSocket&)            = delete;
+        TCPSocket(TCPSocket&&)                 = default;
         TCPSocket& operator=(const TCPSocket&) = delete;
-        TCPSocket& operator=(TCPSocket&&) = default;
+        TCPSocket& operator=(TCPSocket&&)      = default;
 
         void send(std::stringstream&& data_) const;
         std::stringstream receive() const;
