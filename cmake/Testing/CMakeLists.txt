@@ -5,10 +5,6 @@ project(UnitTesting VERSION 1.0.0)
 
 ### Unit Tests ###
 if (units_build_tests)
-    # DryChemNewTest(TESTNAME AllConversionFunctions
-    #                 LIBRARY cpp-units
-    #                 INTERIOR_DIRECTORY conversions)
-
     DryChemNewTest(TESTNAME AllMathFunctions
                    LIBRARY cpp-units
                    INTERIOR_DIRECTORY math)

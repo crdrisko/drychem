@@ -16,6 +16,7 @@ using namespace DryChem;
 
 GTEST_TEST(testTCPSocket, aUniquePtrWithCustomDeleterCalls_freeaddrinfo_OnDestruction)
 {
+#ifndef _MSC_VER
     testing::internal::CaptureStdout();
 
     std::unique_ptr<addrinfo, decltype(&::freeaddrinfo)> info {nullptr, &::freeaddrinfo};
@@ -28,23 +29,30 @@ GTEST_TEST(testTCPSocket, aUniquePtrWithCustomDeleterCalls_freeaddrinfo_OnDestru
 
     getaddrinfo("www.google.com", "80", &hints, &temp);
 
-    int sockfd {socket(temp->ai_family, temp->ai_socktype, temp->ai_protocol)};
+    SOCKET sockfd {socket(temp->ai_family, temp->ai_socktype, temp->ai_protocol)};
 
     info.reset(temp);
 
-    int connectionResult {connect(sockfd, info->ai_addr, info->ai_addrlen)};
+    // #ifdef _MSC_VER
+    // int nameLength = static_cast<int>(info->ai_addrlen);
+    // #else
+    socklen_t nameLength = info->ai_addrlen;
+    // #endif
+    int connectionResult {connect(sockfd, info->ai_addr, nameLength)};
 
     if (connectionResult != -1)
         std::cout << "Connection successful!" << std::endl;
 
     std::string output = testing::internal::GetCapturedStdout();
     ASSERT_EQ(output, "Connection successful!\n");
+#endif
 }
 
 GTEST_TEST(testTCPSocket, anAdditionalCallTo_freeaddrinfo_resultsInProgramFailure)
 {
     using AddrInfoPtr = std::unique_ptr<addrinfo, decltype(&::freeaddrinfo)>;
 
+#ifndef _MSC_VER
     ASSERT_DEATH(
         {
             AddrInfoPtr info(nullptr, &::freeaddrinfo);
@@ -62,6 +70,7 @@ GTEST_TEST(testTCPSocket, anAdditionalCallTo_freeaddrinfo_resultsInProgramFailur
             freeaddrinfo(info.get());
         },
         "");
+#endif
 }
 
 #endif

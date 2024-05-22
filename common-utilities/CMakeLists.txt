@@ -41,7 +41,7 @@ if (utils_build_samples)
         foreach(SAMPLE ${NETWORKING_SAMPLES})
             add_executable(${SAMPLE} libs/networking/samples/${SAMPLE}.cpp)
 
-            target_link_libraries(${SAMPLE} networking Threads::Threads)
+            target_link_libraries(${SAMPLE} networking Threads::Threads networking)
         endforeach()
     endif()
 

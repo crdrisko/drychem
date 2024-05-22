@@ -24,7 +24,7 @@ GTEST_TEST(testNetworkingExceptions, basicNetworkingFailureIsAFatalExceptionAndC
 #if GTEST_USES_POSIX_RE
     deathRegex << "[(]testNetworkingExceptions.hpp: *[0-9]*[)]\n\tsend[(][)]";
 #elif GTEST_USES_SIMPLE_RE
-    deathRegex << "\\(testNetworkingExceptions.hpp: \\d*\\)\n\ttsend\\(\\)";
+    deathRegex << "\\(testNetworkingExceptions.hpp: \\d*\\)\n\tsend\\(\\)";
 #endif
 
     deathRegex << " failed.\n";
