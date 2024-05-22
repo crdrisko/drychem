@@ -32,22 +32,22 @@ GTEST_TEST(testVector3DFunctions, typeWithNoDefaultConstructorGivesACompileTimeE
 
     DryChem::Vector3D<NoDefaultConstructor> test {};
 
-    GTEST_COMPILE_ASSERT_(test.size() == 3UL, "size() of Vector 3D should always be 3.");
+    static_assert(test.size() == 3UL, "size() of Vector 3D should always be 3.");
 }
 
 GTEST_TEST(testVector3DFunctions, memberTypesForAnExampleVector3DTypeAreCorrect)
 {
     // clang-format off
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::value_type, double>),                                      "value_type is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::size_type, std::size_t>),                                  "size_type is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::difference_type, std::ptrdiff_t>),                         "difference_type is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::reference, double&>),                                      "reference is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::const_reference, const double&>),                          "const_reference is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::pointer, double*>),                                        "pointer is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::const_pointer, const double*>),                            "const_pointer is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::iterator, std::array<double, 3>::iterator>),               "iterator is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::const_iterator, std::array<double, 3>::const_iterator>),   "const_iterator is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<DryChem::Vector3D<double>::container_type, std::array<double, 3>>),                   "const_iterator is incorrect.");
+    static_assert((std::is_same_v<DryChem::Vector3D<double>::value_type, double>),                                      "value_type is incorrect.");
+    static_assert((std::is_same_v<DryChem::Vector3D<double>::size_type, std::size_t>),                                  "size_type is incorrect.");
+    static_assert((std::is_same_v<DryChem::Vector3D<double>::difference_type, std::ptrdiff_t>),                         "difference_type is incorrect.");
+    static_assert((std::is_same_v<DryChem::Vector3D<double>::reference, double&>),                                      "reference is incorrect.");
+    static_assert((std::is_same_v<DryChem::Vector3D<double>::const_reference, const double&>),                          "const_reference is incorrect.");
+    static_assert((std::is_same_v<DryChem::Vector3D<double>::pointer, double*>),                                        "pointer is incorrect.");
+    static_assert((std::is_same_v<DryChem::Vector3D<double>::const_pointer, const double*>),                            "const_pointer is incorrect.");
+    static_assert((std::is_same_v<DryChem::Vector3D<double>::iterator, std::array<double, 3>::iterator>),               "iterator is incorrect.");
+    static_assert((std::is_same_v<DryChem::Vector3D<double>::const_iterator, std::array<double, 3>::const_iterator>),   "const_iterator is incorrect.");
+    static_assert((std::is_same_v<DryChem::Vector3D<double>::container_type, std::array<double, 3>>),                   "const_iterator is incorrect.");
     // clang-format on
 }
 

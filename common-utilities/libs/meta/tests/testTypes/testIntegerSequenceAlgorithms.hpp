@@ -22,10 +22,10 @@ GTEST_TEST(testIntegerSequenceAlgorithms, theFrontListAlgorithmReturnsTheFirstEl
     using ActualResultSimplified = DryChem::front_list_t<std::index_sequence<5, 10, 15, 20, 25>>;
     using ActualResultExplicit   = typename DryChem::front_list<std::index_sequence<5, 10, 15, 20, 25>>::type;
 
-    GTEST_COMPILE_ASSERT_((ExpectedResult {} == ActualResultSimplified {}),
+    static_assert((ExpectedResult {} == ActualResultSimplified {}),
         "front_list_t did not return the first element of the index_sequence.");
 
-    GTEST_COMPILE_ASSERT_((ExpectedResult {} == ActualResultExplicit {}),
+    static_assert((ExpectedResult {} == ActualResultExplicit {}),
         "front_list did not return the first element of the index_sequence.");
 }
 
@@ -34,12 +34,12 @@ GTEST_TEST(testIntegerSequenceAlgorithms, theIsEmptyAlgorithmChecksIfAnIntegerSe
     using EmptyList    = std::index_sequence<>;
     using NonEmptyList = std::index_sequence<5, 10, 15, 20, 25>;
 
-    GTEST_COMPILE_ASSERT_((!DryChem::is_empty_list_v<NonEmptyList>), "is_empty_list_v was not false on a non-empty list.");
-    GTEST_COMPILE_ASSERT_(
+    static_assert((!DryChem::is_empty_list_v<NonEmptyList>), "is_empty_list_v was not false on a non-empty list.");
+    static_assert(
         (!DryChem::is_empty_list<NonEmptyList>::value), "is_empty_list was not false on a non-empty list.");
 
-    GTEST_COMPILE_ASSERT_((DryChem::is_empty_list_v<EmptyList>), "is_empty_list_v was not true on an empty list.");
-    GTEST_COMPILE_ASSERT_((DryChem::is_empty_list<EmptyList>::value), "is_empty_list was not true on an empty list.");
+    static_assert((DryChem::is_empty_list_v<EmptyList>), "is_empty_list_v was not true on an empty list.");
+    static_assert((DryChem::is_empty_list<EmptyList>::value), "is_empty_list was not true on an empty list.");
 }
 
 GTEST_TEST(testIntegerSequenceAlgorithms, thePopFrontAlgorithmRemovesAnElementFromTheFrontOfAnIntegerSequence)
@@ -48,10 +48,10 @@ GTEST_TEST(testIntegerSequenceAlgorithms, thePopFrontAlgorithmRemovesAnElementFr
     using ActualResultSimplified = DryChem::pop_front_list_t<std::index_sequence<5, 10, 15, 20, 25>>;
     using ActualResultExplicit   = typename DryChem::pop_front_list<std::index_sequence<5, 10, 15, 20, 25>>::type;
 
-    GTEST_COMPILE_ASSERT_((std::is_same_v<ExpectedResult, ActualResultSimplified>),
+    static_assert((std::is_same_v<ExpectedResult, ActualResultSimplified>),
         "pop_front_list_t did not remove the first element of the index_sequence.");
 
-    GTEST_COMPILE_ASSERT_((std::is_same_v<ExpectedResult, ActualResultExplicit>),
+    static_assert((std::is_same_v<ExpectedResult, ActualResultExplicit>),
         "pop_front_list did not remove the first element of the index_sequence.");
 }
 
@@ -62,10 +62,10 @@ GTEST_TEST(testIntegerSequenceAlgorithms, thePushBackAlgorithmAddsANewElementToT
     using ActualResultSimplified = DryChem::push_back_list_t<std::index_sequence<5, 10, 15, 20, 25>, CT30>;
     using ActualResultExplicit   = typename DryChem::push_back_list<std::index_sequence<5, 10, 15, 20, 25>, CT30>::type;
 
-    GTEST_COMPILE_ASSERT_((std::is_same_v<ExpectedResult, ActualResultSimplified>),
+    static_assert((std::is_same_v<ExpectedResult, ActualResultSimplified>),
         "push_back_list_t did not add a new element to the back of the index_sequence.");
 
-    GTEST_COMPILE_ASSERT_((std::is_same_v<ExpectedResult, ActualResultExplicit>),
+    static_assert((std::is_same_v<ExpectedResult, ActualResultExplicit>),
         "push_back_list did not add a new element to the back of the index_sequence.");
 }
 
@@ -76,10 +76,10 @@ GTEST_TEST(testIntegerSequenceAlgorithms, thePushFrontAlgorithmAddsANewElementTo
     using ActualResultSimplified = DryChem::push_front_list_t<std::index_sequence<5, 10, 15, 20, 25>, CT0>;
     using ActualResultExplicit   = typename DryChem::push_front_list<std::index_sequence<5, 10, 15, 20, 25>, CT0>::type;
 
-    GTEST_COMPILE_ASSERT_((std::is_same_v<ExpectedResult, ActualResultSimplified>),
+    static_assert((std::is_same_v<ExpectedResult, ActualResultSimplified>),
         "push_front_list_t did not add a new element to the front of the index_sequence.");
 
-    GTEST_COMPILE_ASSERT_((std::is_same_v<ExpectedResult, ActualResultExplicit>),
+    static_assert((std::is_same_v<ExpectedResult, ActualResultExplicit>),
         "push_front_list did not add a new element to the front of the index_sequence.");
 }
 
@@ -89,10 +89,10 @@ GTEST_TEST(testIntegerSequenceAlgorithms, theReverseAlgorithmReversesTheSupplied
     using ActualResultSimplified = DryChem::reverse_list_t<std::index_sequence<5, 10, 15, 20, 25>>;
     using ActualResultExplicit   = typename DryChem::reverse_list<std::index_sequence<5, 10, 15, 20, 25>>::type;
 
-    GTEST_COMPILE_ASSERT_(
+    static_assert(
         (std::is_same_v<ExpectedResult, ActualResultSimplified>), "reverse_list_t did not reverse the index_sequence.");
 
-    GTEST_COMPILE_ASSERT_(
+    static_assert(
         (std::is_same_v<ExpectedResult, ActualResultExplicit>), "reverse_list did not reverse the index_sequence.");
 }
 
