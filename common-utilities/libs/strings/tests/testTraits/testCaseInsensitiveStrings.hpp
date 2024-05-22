@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: testCaseInsensitiveStrings.hpp
@@ -27,15 +27,14 @@ GTEST_TEST(testCaseInsensitiveStrings, only_a_to_z_charsAreConvertedToUpperCase)
             ASSERT_TRUE(ch == DryChem::ci_char_traits::ct_toupper(ch));
     }
 
-    GTEST_COMPILE_ASSERT_('A' == DryChem::ci_char_traits::ct_toupper('a'), "'a' wasn't converted to 'A'.");
+    static_assert('A' == DryChem::ci_char_traits::ct_toupper('a'), "'a' wasn't converted to 'A'.");
 }
 
 GTEST_TEST(testCaseInsensitiveStrings, ci_char_traits_compare_ConvertsBothArgsToUpperCaseBeforeComparison)
 {
-    GTEST_COMPILE_ASSERT_(
-        DryChem::ci_char_traits::compare("hello", "hElLoWorld", 11) == -1, "s2 should be greater than s1.");
-    GTEST_COMPILE_ASSERT_(DryChem::ci_char_traits::compare("hello", "hElLo", 6) == 0, "The two strings should be equal.");
-    GTEST_COMPILE_ASSERT_(DryChem::ci_char_traits::compare("helloworld", "hElLo", 6) == 1, "s1 should be greater than s2.");
+    static_assert(DryChem::ci_char_traits::compare("hello", "hElLoWorld", 11) == -1, "s2 should be greater than s1.");
+    static_assert(DryChem::ci_char_traits::compare("hello", "hElLo", 6) == 0, "The two strings should be equal.");
+    static_assert(DryChem::ci_char_traits::compare("helloworld", "hElLo", 6) == 1, "s1 should be greater than s2.");
 }
 
 GTEST_TEST(testCaseInsensitiveStrings, ci_char_traits_find_ConvertsBothArgsToUpperCaseBeforeSearching)
@@ -55,14 +54,14 @@ GTEST_TEST(testCaseInsensitiveStrings, ci_char_traits_find_ConvertsBothArgsToUpp
 
 GTEST_TEST(testCaseInsensitiveStrings, ci_char_traits_eq_ConvertsBothArgsToUpperCaseBeforeComparison)
 {
-    GTEST_COMPILE_ASSERT_(!std::char_traits<char>::eq('t', 'T'), "'t' should not be equal to 'T'.");
-    GTEST_COMPILE_ASSERT_(DryChem::ci_char_traits::eq('t', 'T'), "'t' should be equal to 'T'.");
+    static_assert(!std::char_traits<char>::eq('t', 'T'), "'t' should not be equal to 'T'.");
+    static_assert(DryChem::ci_char_traits::eq('t', 'T'), "'t' should be equal to 'T'.");
 }
 
 GTEST_TEST(testCaseInsensitiveStrings, ci_char_traits_lt_ConvertsBothArgsToUpperCaseBeforeComparison)
 {
-    GTEST_COMPILE_ASSERT_(std::char_traits<char>::lt('Z', 'a'), "'Z' should be less than 'a'.");
-    GTEST_COMPILE_ASSERT_(!DryChem::ci_char_traits::lt('Z', 'a'), "'Z' should not be less than 'a'.");
+    static_assert(std::char_traits<char>::lt('Z', 'a'), "'Z' should be less than 'a'.");
+    static_assert(!DryChem::ci_char_traits::lt('Z', 'a'), "'Z' should not be less than 'a'.");
 }
 
 GTEST_TEST(testCaseInsensitiveStrings, allComparisonOperatorsAreSupportedForA_ci_string)

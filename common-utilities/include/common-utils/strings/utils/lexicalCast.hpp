@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: lexicalCast.hpp
@@ -22,10 +22,10 @@ namespace CppUtils::Strings
     /*!
      * A simple function for converting a string to another type.
      * 
-     * \tparam T          The type to convert the input string to, must be input streamable
-     * \tparam CharTraits A trait allowing for either case-sensitive or case-insensitive searches
+     * \tparam          T - The type to convert the input string to, must be input streamable
+     * \tparam CharTraits - A trait allowing for either case-sensitive or case-insensitive searches
      * 
-     * \param str The input string to convert
+     * \param str - The input string to convert
      * 
      * \returns Either the converted value if nothing goes wrong, or the default constructed value 
      *          and a warning message if something does.

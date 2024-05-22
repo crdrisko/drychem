@@ -22,7 +22,7 @@ All the functions and classes belonging to the errors library are wrapped in the
 
 ### Exception Handling
 
-- [Fatal Exception:](../../../include/common-utils/errors/exceptions/fatalException.hpp)
+- [Fatal Exceptions:](../../../include/common-utils/errors/exceptions/fatalException.hpp)
 
   This library provides an exception handling class: `CppUtils::Errors::FatalException` which derives from `std::exception`, and because of this, it can be caught by statements like the following:
 

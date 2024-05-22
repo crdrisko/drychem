@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: testTokenizer.hpp
@@ -46,11 +46,11 @@ GTEST_TEST(testTokenizer, memberTypesForATokenizerAreCorrect)
     using namespace DryChem;
 
     // clang-format off
-    GTEST_COMPILE_ASSERT_((std::is_same_v<Tokenizer<ci_char_traits>::value_type, ci_string>),                      "value_type is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<Tokenizer<ci_char_traits>::reference, ci_string&>),                      "reference is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<Tokenizer<ci_char_traits>::const_reference, const ci_string&>),          "const_reference is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<Tokenizer<ci_char_traits>::iterator, ci_string::iterator>),              "iterator is incorrect.");
-    GTEST_COMPILE_ASSERT_((std::is_same_v<Tokenizer<ci_char_traits>::const_iterator, ci_string::const_iterator>),  "const_iterator is incorrect.");
+    static_assert((std::is_same_v<Tokenizer<ci_char_traits>::value_type, ci_string>),                      "value_type is incorrect.");
+    static_assert((std::is_same_v<Tokenizer<ci_char_traits>::reference, ci_string&>),                      "reference is incorrect.");
+    static_assert((std::is_same_v<Tokenizer<ci_char_traits>::const_reference, const ci_string&>),          "const_reference is incorrect.");
+    static_assert((std::is_same_v<Tokenizer<ci_char_traits>::iterator, ci_string::iterator>),              "iterator is incorrect.");
+    static_assert((std::is_same_v<Tokenizer<ci_char_traits>::const_iterator, ci_string::const_iterator>),  "const_iterator is incorrect.");
     // clang-format on
 }
 

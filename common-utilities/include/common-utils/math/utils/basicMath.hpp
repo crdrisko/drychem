@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: basicMath.hpp
@@ -18,9 +18,9 @@ namespace CppUtils::Math
     /*!
      * Function to determine whether an integral type is even.
      *
-     * \tparam T The type of the input to check, must be an integral type
+     * \tparam T - The type of the input to check, must be an integral type
      *
-     * \param value The input integral to check
+     * \param value - The input integral to check
      */
     template<typename T, typename = std::enable_if_t<std::is_integral_v<T> && !std::is_same_v<T, bool>>>
     constexpr bool isEven(T value)
@@ -31,9 +31,9 @@ namespace CppUtils::Math
     /*!
      * Function to determine whether an integral type is odd.
      *
-     * \tparam T The type of the input to check, must be an integral type
+     * \tparam T - The type of the input to check, must be an integral type
      *
-     * \param value The input integral to check
+     * \param value - The input integral to check
      */
     template<typename T, typename = std::enable_if_t<std::is_integral_v<T>>>
     constexpr bool isOdd(T value)
@@ -46,11 +46,11 @@ namespace CppUtils::Math
      * A function to determine whether a given value is greater than or equal to a
      *  minimum value and less than or equal to a maximum value.
      *
-     * \tparam T The type of the input variables
+     * \tparam T - The type of the input variables
      *
-     * \param value The value we want to compare
-     * \param min   The minimum number in the range
-     * \param max   The maximum number in the range
+     * \param value - The value we want to compare
+     * \param   min - The minimum number in the range
+     * \param   max - The maximum number in the range
      */
     template<typename T>
     constexpr bool withinRange(T value, T min, T max)
@@ -71,11 +71,11 @@ namespace CppUtils::Math
     /*!
      * A function to linearly interpolate some function over a range set by an input vector.
      *
-     * \tparam T The type of the values we are interpolating
+     * \tparam T - The type of the values we are interpolating
      *
-     * \param x  The input vector containing the values we are interpolating over
-     * \param y1 The value of the function we are interpolating in the beginning of the range
-     * \param y2 The value of the function we are interpolating in the end of the range
+     * \param  x - The input vector containing the values we are interpolating over
+     * \param y1 - The value of the function we are interpolating in the beginning of the range
+     * \param y2 - The value of the function we are interpolating in the end of the range
      *
      * \returns A vector of y values with a size equal to that of the input \c x
      */

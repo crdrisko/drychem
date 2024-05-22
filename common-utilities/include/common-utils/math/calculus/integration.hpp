@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: integration.hpp
@@ -25,13 +25,13 @@ namespace CppUtils::Math
      *  this computes the following approximation for the integral:
      *      \f$\displaystyle \int_{x_1}^{x_2} y \,dx \approx (x_2 - x_1) \cdot {\frac{y_1 + y_2}{2}}.\f$
      *
-     * \tparam Tx The type of x
-     * \tparam Ty The type of y (defaults to the type of x)
+     * \tparam Tx - The type of x
+     * \tparam Ty - The type of y (defaults to the type of x)
      *
-     * \param x1 The beginning of the range we are integrating the function over
-     * \param x2 The end of the range we are integrating the function over
-     * \param y1 The value of the function we are integrating at the point \c x1
-     * \param y2 The end of the function we are integrating at the point \c x2
+     * \param x1 - The beginning of the range we are integrating the function over
+     * \param x2 - The end of the range we are integrating the function over
+     * \param y1 - The value of the function we are integrating at the point \c x1
+     * \param y2 - The end of the function we are integrating at the point \c x2
      *
      * \returns An approximation of the integral of y in the range from x1 to x2
      */
@@ -46,16 +46,16 @@ namespace CppUtils::Math
      * A function taking the integral (by numerical methods) of a given function y with respect to x.
      *  Each of the functions, x and y, are represeted by containers with an iterator interface.
      *
-     * \tparam IteratorX The type of iterator used for the x container
-     * \tparam IteratorY The type of iterator used for the y container (defaults to the type of IteratorX)
-     * \tparam Tx        The type of data in the x container, must be default constructible
-     * \tparam Ty        The type of data in the x container, must be default constructible
+     * \tparam IteratorX - The type of iterator used for the x container
+     * \tparam IteratorY - The type of iterator used for the y container (defaults to the type of IteratorX)
+     * \tparam        Tx - The type of data in the x container, must be default constructible
+     * \tparam        Ty - The type of data in the x container, must be default constructible
      *
-     * \param x_begin      The beginning of the range of x values to use
-     * \param x_end        The end of the range of x values to use
-     * \param y_begin      The beginning of the range of y values to use
-     * \param y_end        The end of the range of y values to use
-     * \param initialValue A value for use as the first point in the returned vector (optional)
+     * \param      x_begin - The beginning of the range of x values to use
+     * \param        x_end - The end of the range of x values to use
+     * \param      y_begin - The beginning of the range of y values to use
+     * \param        y_end - The end of the range of y values to use
+     * \param initialValue - A value for use as the first point in the returned vector (optional)
      *
      * \returns A vector with a size of one less than the input containers, however if the \c initialValue
      *          parameter is set, the size of the output will be the same as than of the input.

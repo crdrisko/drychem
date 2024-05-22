@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: math.hpp
@@ -17,6 +17,7 @@
 #include "math/calculus/integration.hpp"
 #include "math/containers/vector3D.hpp"
 #include "math/statistics/linearLeastSquaresFitting.hpp"
+#include "math/statistics/quadraticLeastSquaresFitting.hpp"
 #include "math/statistics/statistics.hpp"
 #include "math/utils/basicMath.hpp"
 #include "math/utils/mathExceptions.hpp"

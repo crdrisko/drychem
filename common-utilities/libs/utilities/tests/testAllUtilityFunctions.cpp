@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: testAllUtilityFunctions.cpp
@@ -11,7 +11,6 @@
 #include "testOperators/testComparisonOperators.hpp"
 #include "testOperators/testPotentiallyEmptyBaseClass.hpp"
 #include "testTesting/testPerformanceTesting.hpp"
-#include "testTraits/testContainerTraits.hpp"
 
 int main(int argc, char** argv)
 {

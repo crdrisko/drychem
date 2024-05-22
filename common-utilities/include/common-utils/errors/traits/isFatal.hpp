@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: isFatal.hpp
@@ -16,9 +16,10 @@
 namespace CppUtils::Errors
 {
     /*!
-     * A type trait to determine whether or not the supplied ErrorSeverity is fatal.
+     * A type trait to determine whether or not the supplied ErrorSeverity describes a 
+     *  fatal error.
      *
-     * \tparam Severity The severity of the error in question
+     * \tparam Severity - The severity of the error in question
      */
     template<ErrorSeverity Severity>
     struct is_fatal : std::false_type

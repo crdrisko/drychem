@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: testIntegrationMethods.hpp
@@ -20,7 +20,7 @@ GTEST_TEST(testIntegrationMethods, theTrapzMethodCanBeUsedInCompileTimeCalculati
 {
     const int x1 {0}, x2 {15}, y1 {0}, y2 {6};
 
-    GTEST_COMPILE_ASSERT_(45 == DryChem::trapz(x1, x2, y1, y2), "Trapz method failed.");
+    static_assert(45 == DryChem::trapz(x1, x2, y1, y2), "Trapz method failed.");
 }
 
 GTEST_TEST(testIntegrationMethods, theTrapzMethodCanAcceptMultipleTypes)

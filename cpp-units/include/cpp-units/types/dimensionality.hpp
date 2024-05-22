@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: dimensionality.hpp
@@ -14,13 +14,13 @@ namespace CppUnits
     /*!
      * A structure representing the dimensionality of a unit in terms of the seven SI base units.
      * 
-     * \tparam L  The length dimensionality of the unit
-     * \tparam M  The mass dimensionality of the unit
-     * \tparam T  The time dimensionality of the unit
-     * \tparam I  The electric current dimensionality of the unit
-     * \tparam Th The temperature dimensionality of the unit
-     * \tparam N  The amount of substance dimensionality of the unit
-     * \tparam J  The luminous intensity dimensionality of the unit
+     * \tparam  L - The length dimensionality of the unit, defaults to 0
+     * \tparam  M - The mass dimensionality of the unit, defaults to 0
+     * \tparam  T - The time dimensionality of the unit, defaults to 0
+     * \tparam  I - The electric current dimensionality of the unit, defaults to 0
+     * \tparam Th - The temperature dimensionality of the unit, defaults to 0
+     * \tparam  N - The amount of substance dimensionality of the unit, defaults to 0
+     * \tparam  J - The luminous intensity dimensionality of the unit, defaults to 0
      */
     template<int L = 0, int M = 0, int T = 0, int I = 0, int Th = 0, int N = 0, int J = 0>
     struct Dimensionality

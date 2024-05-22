@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: linearLeastSquaresFitting.hpp
@@ -43,15 +43,15 @@ namespace CppUtils::Math
      * Calculates the linear regression of a given function y with respect to x. Each of the functions,
      *  x and y, are represeted by containers with an iterator interface.
      *
-     * \tparam IteratorX The type of iterator used for the x container
-     * \tparam IteratorY The type of iterator used for the y container (defaults to the type of IteratorX)
-     * \tparam Tx        The type of data in the x container, must be default constructible
-     * \tparam Ty        The type of data in the x container, must be default constructible
+     * \tparam IteratorX - The type of iterator used for the x container
+     * \tparam IteratorY - The type of iterator used for the y container (defaults to the type of IteratorX)
+     * \tparam        Tx - The type of data in the x container, must be default constructible
+     * \tparam        Ty - The type of data in the x container, must be default constructible
      *
-     * \param x_begin The beginning of the range of x values to use
-     * \param x_end   The end of the range of x values to use
-     * \param y_begin The beginning of the range of y values to use
-     * \param y_end   The end of the range of y values to use
+     * \param x_begin - The beginning of the range of x values to use
+     * \param   x_end - The end of the range of x values to use
+     * \param y_begin - The beginning of the range of y values to use
+     * \param   y_end - The end of the range of y values to use
      *
      * \returns Three pieces of information which is contained in the specialized structure,
      *          \c details::LinearLeastSquaresResult. However, rather than use this strucure

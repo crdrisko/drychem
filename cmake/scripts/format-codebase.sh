@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+# Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 # Licensed under the MIT License. See the LICENSE file in the project root for more information.
 #
 # Name: format-codebase.sh - Version 1.2.0
@@ -33,7 +33,7 @@ formatFiles()           #@ DESCRIPTION: Use clang-format to format each file in 
             done
 
             printf "Formatting: %s\n" "$elem"
-            /opt/local/libexec/llvm-10/bin/clang-format -i -style=file "$elem"
+            /opt/local/libexec/llvm-16/bin/clang-format -i -style=file "$elem"
 
         elif [[ -d $elem ]]
         then

@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: testPhysicalQuantity.hpp
@@ -70,7 +70,7 @@ GTEST_TEST(testPhysicalQuantity, stringConstructorCanThrowAnException)
     }
     catch (const std::invalid_argument& except)
     {
-        deathRegex << "CPP Units Fatal Error:\n\tException message: " << except.what();
+        deathRegex << "CPP Units Fatal Error:\n    Exception message: " << except.what();
     }
 
     if (number != 0.0l)

@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: finiteDifferencesExample.cpp
@@ -8,13 +8,10 @@
 
 #include <algorithm>
 #include <cstddef>
-#include <exception>
 #include <iostream>
 #include <numeric>
-#include <string>
 #include <vector>
 
-#include <common-utils/errors.hpp>
 #include <common-utils/math.hpp>
 
 // Function prototypes
@@ -24,48 +21,34 @@ void validate(const std::vector<double>& expected, const std::vector<double>& ac
 
 int main()
 {
-    try
-    {
-        try
+    const std::size_t num_elements = 100'002ul;
+    std::vector<double> x(num_elements), y(num_elements);
+
+    std::iota(x.begin(), x.end(), 0.0l);
+    std::transform(x.begin(),
+        x.end(),
+        y.begin(),
+        [](auto& x)
         {
-            const std::size_t num_elements = 100'002ul;
-            std::vector<double> x(num_elements), y(num_elements);
+            x /= 10;                            // Scale back x for more accurate results
+            return (4 * x * x) + (2 * x) - 7;   // y = 4x^2 + 2x - 7
+        });
 
-            std::iota(x.begin(), x.end(), 0.0l);
-            std::transform(x.begin(), x.end(), y.begin(), [](auto& x) {
-                x /= 10;                            // Scale back x for more accurate results
-                return (4 * x * x) + (2 * x) - 7;   // y = 4x^2 + 2x - 7
-            });
-
-            const double tolerance = 2 * (x[1] - x[0]);
+    const double tolerance = 2 * (x[1] - x[0]);
 
 
-            // Expect: ∫ (dy/dx) dx = 4 x^2 + 2x + constant = y
-            std::vector<double> expected1 = differentiateThenIntegrate(x, y);
+    // Expect: ∫ (dy/dx) dx = 4 x^2 + 2x + constant = y
+    std::vector<double> expected1 = differentiateThenIntegrate(x, y);
 
-            std::cout << "The calculation of ∫(dy / dx) dx resulted in ";
-            validate(y, expected1, tolerance);
+    std::cout << "The calculation of ∫(dy / dx) dx resulted in ";
+    validate(y, expected1, tolerance);
 
 
-            // Expect: d (∫ y dx) / dx = 4 x^2 + 2 x - 7 = y
-            std::vector<double> expected2 = integrateThenDifferentiate(x, y);
+    // Expect: d (∫ y dx) / dx = 4 x^2 + 2 x - 7 = y
+    std::vector<double> expected2 = integrateThenDifferentiate(x, y);
 
-            std::cout << "The calculation of d(∫y dx) / dx resulted in ";
-            validate(y, expected2, tolerance);
-        }
-        catch (const std::exception& except)
-        {
-            DryChem::ErrorMessage error;
-            error.programName = "Common-Utilities";
-            error.message     = "An exception was thrown from " + std::string {except.what()};
-
-            throw DryChem::FatalException(error);
-        }
-    }
-    catch (const DryChem::FatalException& except)
-    {
-        except.handleErrorWithMessage();
-    }
+    std::cout << "The calculation of d(∫y dx) / dx resulted in ";
+    validate(y, expected2, tolerance);
 }
 
 // Function definitions

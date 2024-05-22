@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: containerTraits.hpp
@@ -6,8 +6,8 @@
 // Date: 09/23/2020-07:43:03
 // Description: A collection of all the traits relating to the classification of standard library containers
 
-#ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_UTILITIES_TRAITS_CONTAINERTRAITS_HPP
-#define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_UTILITIES_TRAITS_CONTAINERTRAITS_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_META_TRAITS_CONTAINERTRAITS_HPP
+#define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_META_TRAITS_CONTAINERTRAITS_HPP
 
 #include "containerTraits/isAllocatorAwareContainer.hpp"
 #include "containerTraits/isAssociativeContainer.hpp"

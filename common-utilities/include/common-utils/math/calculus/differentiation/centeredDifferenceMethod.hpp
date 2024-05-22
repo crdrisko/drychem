@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: centeredDifferenceMethod.hpp
@@ -27,16 +27,16 @@ namespace CppUtils::Math
      *  function computes the following:
      *      \f$\frac{dy}{dx} \approx \frac{\frac{y_{n+1} - y_n}{x_{n+1} - x_n} + \frac{y_n - y_{n-1}}{x_n - x_{n-1}}}{2}.\f$
      *
-     * \tparam IteratorX The type of iterator used for the x container
-     * \tparam IteratorY The type of iterator used for the y container (defaults to the type of IteratorX)
-     * \tparam Tx        The type of data in the x container, must be default constructible
-     * \tparam Ty        The type of data in the x container, must be default constructible
+     * \tparam IteratorX - The type of iterator used for the x container
+     * \tparam IteratorY - The type of iterator used for the y container (defaults to the type of IteratorX)
+     * \tparam        Tx - The type of data in the x container, must be default constructible
+     * \tparam        Ty - The type of data in the x container, must be default constructible
      *
-     * \param x_begin           The beginning of the range of x values to use
-     * \param x_end             The end of the range of x values to use
-     * \param y_begin           The beginning of the range of y values to use
-     * \param y_end             The end of the range of y values to use
-     * \param correctBoundaries Approximates the derivative on the ends with the forward and backwards methods
+     * \param           x_begin - The beginning of the range of x values to use
+     * \param             x_end - The end of the range of x values to use
+     * \param           y_begin - The beginning of the range of y values to use
+     * \param             y_end - The end of the range of y values to use
+     * \param correctBoundaries - Approximates the derivative on the ends with the forward and backwards methods
      *
      * \returns A vector with the same size as that of the input containers, however if the \c correctBoundaries
      *          flag is set to false, the size of the output will be two less than the input size.

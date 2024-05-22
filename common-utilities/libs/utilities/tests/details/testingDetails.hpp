@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: testingDetails.hpp
@@ -61,6 +61,8 @@ namespace CppUtils::Testing::details::testing
 
         for (unsigned long long i {}; i < iter; ++i)
             result += i * i;
+
+        std::cout << result << '\n';
     }
 }   // namespace CppUtils::Testing::details::testing
 

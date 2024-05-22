@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: performanceTesting.hpp
@@ -22,6 +22,9 @@ namespace CppUtils::Testing
          * An aggregate structure that can be used as the return type of the \c timeAndInvoke<>() 
          *  function template.
          * 
+         * \tparam        F - The type of the function we are calling
+         * \tparam ...TArgs - The types of the arguments passed to the function f
+         * 
          * \note We hide the return type in the \c details namespace so the user is encouraged to use
          *       structured binding as the way to return from \c timeAndInvoke<>().
          */
@@ -36,11 +39,11 @@ namespace CppUtils::Testing
     /*!
      * A function that invokes another function and times how long it took to invoke said function.
      *
-     * \tparam F        The type of the function we are calling
-     * \tparam ...TArgs The types of the arguments passed to the function f
+     * \tparam        F - The type of the function we are calling
+     * \tparam ...TArgs - The types of the arguments passed to the function f
      *
-     * \param f    The function to invoke
-     * \param args The parameters of the function we are invoking
+     * \param    f - The function to invoke
+     * \param args - The parameters of the function we are invoking
      *
      * \returns Because we have two different pieces of information to return, the result of the invoked
      *          function (unless it is a void function) and the time it took to invoke the function, we

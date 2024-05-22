@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: errorHandling.hpp
@@ -22,9 +22,9 @@ namespace CppUtils::Errors
      * A simple function to format and print an error message according to 1) the information 
      *  provided, and 2) the severity of the given error.
      * 
-     * \tparam Severity The severity of the error in question (defaults to a warning message)
+     * \tparam Severity - The severity of the error in question (defaults to a warning message)
      * 
-     * \param error The error message and other information about the location of the error
+     * \param error - The error message and other information about the location of the error
      */
     template<ErrorSeverity Severity = ErrorSeverity::Warning>
     inline void printErrorMessage(const ErrorMessage& error)
@@ -32,7 +32,7 @@ namespace CppUtils::Errors
         std::stringstream errorMessage;
 
         if (error.fileName.empty() && error.lineNumber == 0ul)
-            errorMessage << "\n\t" << error.message;
+            errorMessage << "\n    " << error.message;
         else
             errorMessage << ' ' << error.message;
 
