@@ -18,7 +18,7 @@ option(units_build_samples        "Builds cpp-units library and corresponding co
 option(utils_build_all            "Builds common-utils library, corresponding unit tests, and corresponding code samples." OFF)
 option(utils_build_tests          "Builds common-utils library and corresponding unit tests." OFF)
 option(utils_build_samples        "Builds common-utils library and corresponding code samples." OFF)
-option(utils_enable_networking    "Builds common-utils library including the networking library." OFF)
+# option(utils_enable_networking    "Builds common-utils library including the networking library." OFF)
 option(utils_exclude_scripts      "Builds specified libraries while ignoring the scripts directory." OFF)
 option(utils_install_applications "Builds specified libraries and installs the applications associated with them." OFF)
 
@@ -31,7 +31,7 @@ if (chem_format_codebase AND NOT WIN32)
                                     -i common-utilities/include/common-utils/math/statistics/*
                                     -i common-utilities/include/common-utils/math/utils/mathExceptions.hpp
                                     -i common-utilities/include/common-utils/meta/traits/containerTraits/*
-                                    -i common-utilities/include/common-utils/networking/utils/networkingExceptions.hpp
+                                    # -i common-utilities/include/common-utils/networking/utils/networkingExceptions.hpp
                                     -i common-utilities/include/common-utils/strings/utils/tokenizer.hpp
                                     -i common-utilities/libs/utilities/samples/comparableExample.cpp
                                     -i cpp-units/include/cpp-units/math/basicMath.hpp

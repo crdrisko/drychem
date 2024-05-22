@@ -32,9 +32,9 @@ if (utils_build_tests)
                    LIBRARY common-utilities
                    INTERIOR_DIRECTORY meta)
     
-    DryChemNewTest(TESTNAME AllNetworkingFunctions
-                   LIBRARY common-utilities
-                   INTERIOR_DIRECTORY networking)
+    # DryChemNewTest(TESTNAME AllNetworkingFunctions
+    #                LIBRARY common-utilities
+    #                INTERIOR_DIRECTORY networking)
 
     DryChemNewTest(TESTNAME AllStringFunctions
                    LIBRARY common-utilities

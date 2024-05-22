@@ -13,15 +13,15 @@ endif()
 ### Libraries / Executables ###
 set(LIBRARIES common-utilities/include/common-utils PARENT_SCOPE)
 
-if (utils_enable_networking)
-    set(NETWORKING_SOURCE src/networking/tcp/tcpClient.cpp
-                          src/networking/tcp/tcpServer.cpp
-                          src/networking/tcp/tcpSocket.cpp
-                          src/networking/tcp/tcpStates/tcpClosed.cpp
-                          src/networking/tcp/tcpStates/tcpOpened.cpp)
+# if (utils_enable_networking)
+#     set(NETWORKING_SOURCE src/networking/tcp/tcpClient.cpp
+#                           src/networking/tcp/tcpServer.cpp
+#                           src/networking/tcp/tcpSocket.cpp
+#                           src/networking/tcp/tcpStates/tcpClosed.cpp
+#                           src/networking/tcp/tcpStates/tcpOpened.cpp)
 
-    add_library(networking STATIC ${NETWORKING_SOURCE})
-endif()
+#     add_library(networking STATIC ${NETWORKING_SOURCE})
+# endif()
 
 if (utils_build_samples)
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${DryChem_BINARY_DIR}/bin/samples)
@@ -32,28 +32,28 @@ if (utils_build_samples)
     add_executable(ciTokenizerExample       libs/strings/samples/ciTokenizerExample.cpp)
     add_executable(comparableExample        libs/utilities/samples/comparableExample.cpp)
 
-    if (utils_enable_networking)
-        find_package(Threads)
+    # if (utils_enable_networking)
+    #     find_package(Threads)
 
-        set(NETWORKING_SAMPLES httpExample
-                               serverClientExample)
+    #     set(NETWORKING_SAMPLES httpExample
+    #                            serverClientExample)
 
-        foreach(SAMPLE ${NETWORKING_SAMPLES})
-            add_executable(${SAMPLE} libs/networking/samples/${SAMPLE}.cpp)
+    #     foreach(SAMPLE ${NETWORKING_SAMPLES})
+    #         add_executable(${SAMPLE} libs/networking/samples/${SAMPLE}.cpp)
 
-            target_link_libraries(${SAMPLE} networking Threads::Threads networking)
-        endforeach()
-    endif()
+    #         target_link_libraries(${SAMPLE} networking Threads::Threads networking)
+    #     endforeach()
+    # endif()
 
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${DryChem_BINARY_DIR}/bin)
 endif()
 
 
 ### Installation ###
-if (utils_enable_networking)
-    install(TARGETS networking
-            DESTINATION lib)
-endif()
+# if (utils_enable_networking)
+#     install(TARGETS networking
+#             DESTINATION lib)
+# endif()
 
 if (utils_install_applications)
     foreach (APP ${APPLICATIONS})
