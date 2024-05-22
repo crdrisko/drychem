@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: testTCPSocket.hpp
@@ -6,20 +6,19 @@
 // Date: 10/19/2020-07:23:52
 // Description: Provides ~100% unit test coverage over all functions associated with the TCPSocket class
 
-#ifndef COMMON_UTILITIES_TESTING_TESTTCPSOCKET_HPP
-#define COMMON_UTILITIES_TESTING_TESTTCPSOCKET_HPP
+#ifndef DRYCHEM_COMMON_UTILITIES_LIBS_NETWORKING_TESTS_TESTNETWORKING_TESTTCPSOCKET_HPP
+#define DRYCHEM_COMMON_UTILITIES_LIBS_NETWORKING_TESTS_TESTNETWORKING_TESTTCPSOCKET_HPP
 
+#include <common-utils/networking.hpp>
 #include <gtest/gtest.h>
 
-#include "utilities.hpp"
-
-using namespace CppUtils::Networking;
+using namespace DryChem;
 
 GTEST_TEST(testTCPSocket, aUniquePtrWithCustomDeleterCalls_freeaddrinfo_OnDestruction)
 {
     testing::internal::CaptureStdout();
 
-    std::unique_ptr<addrinfo, decltype(addrinfo_deleter)> info {nullptr, addrinfo_deleter};
+    std::unique_ptr<addrinfo, decltype(&::freeaddrinfo)> info {nullptr, &::freeaddrinfo};
 
     addrinfo* temp {nullptr};
 
@@ -44,11 +43,11 @@ GTEST_TEST(testTCPSocket, aUniquePtrWithCustomDeleterCalls_freeaddrinfo_OnDestru
 
 GTEST_TEST(testTCPSocket, anAdditionalCallTo_freeaddrinfo_resultsInProgramFailure)
 {
-    using AddrInfoPtr = std::unique_ptr<addrinfo, decltype(addrinfo_deleter)>;
+    using AddrInfoPtr = std::unique_ptr<addrinfo, decltype(&::freeaddrinfo)>;
 
     ASSERT_DEATH(
         {
-            AddrInfoPtr info(nullptr, addrinfo_deleter);
+            AddrInfoPtr info(nullptr, &::freeaddrinfo);
 
             addrinfo* temp = nullptr;
 

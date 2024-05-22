@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: differentiation.hpp
@@ -11,7 +11,7 @@
 
 #include "differentiation/backwardsDifferenceMethod.hpp"
 #include "differentiation/centeredDifferenceMethod.hpp"
-#include "differentiation/fivePointStencil.hpp"
+#include "differentiation/nPointStencil.hpp"
 #include "differentiation/forwardDifferenceMethod.hpp"
 
 #endif

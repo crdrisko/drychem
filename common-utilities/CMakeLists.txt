@@ -33,21 +33,19 @@ if (utils_build_samples)
     add_executable(comparableExample        libs/utilities/samples/comparableExample.cpp)
 
     if (utils_enable_networking)
-        # find_package(Threads)
+        find_package(Threads)
 
-        set(NETWORKING_SAMPLES httpExample)
-                               # serverClientExample)
+        set(NETWORKING_SAMPLES httpExample
+                               serverClientExample)
 
         foreach(SAMPLE ${NETWORKING_SAMPLES})
             add_executable(${SAMPLE} libs/networking/samples/${SAMPLE}.cpp)
 
-            target_link_libraries(${SAMPLE} networking) # Threads::Threads)
+            target_link_libraries(${SAMPLE} networking Threads::Threads)
         endforeach()
     endif()
 
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${DryChem_BINARY_DIR}/bin)
-
-    add_executable(passphrase src/applications/passphrase/passphrase.cpp src/applications/passphrase/passphraseGen.cpp)
 endif()
 
 
@@ -58,8 +56,6 @@ if (utils_enable_networking)
 endif()
 
 if (utils_install_applications)
-    set(APPLICATIONS passphrase)
-
     foreach (APP ${APPLICATIONS})
         install(FILES "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${APP}"
                 DESTINATION bin

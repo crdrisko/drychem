@@ -1,4 +1,4 @@
-// Copyright (c) 2020 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: testAllNetworkingFunctions.cpp
@@ -11,6 +11,7 @@
 #include "testNetworking/testTCPClient.hpp"
 #include "testNetworking/testTCPServer.hpp"
 #include "testNetworking/testTCPSocket.hpp"
+#include "testUtilities/testNetworkingExceptions.hpp"
 
 int main(int argc, char** argv)
 {
