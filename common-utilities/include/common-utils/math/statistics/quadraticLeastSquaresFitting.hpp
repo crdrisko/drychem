@@ -4,7 +4,7 @@
 // Name: quadraticLeastSquaresFitting.hpp
 // Author: crdrisko
 // Date: 10/11/2023-07:27:16
-// Description:
+// Description: Function to perform a quadratic least-squares fitting for the supplied inputs
 
 #ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_STATISTICS_QUADRATICLEASTSQUARESFITTING_HPP
 #define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_STATISTICS_QUADRATICLEASTSQUARESFITTING_HPP
@@ -48,7 +48,7 @@ namespace CppUtils::Math
      * \tparam IteratorX - The type of iterator used for the x container
      * \tparam IteratorY - The type of iterator used for the y container (defaults to the type of IteratorX)
      * \tparam        Tx - The type of data in the x container, must be default constructible
-     * \tparam        Ty - The type of data in the x container, must be default constructible
+     * \tparam        Ty - The type of data in the y container, must be default constructible
      *
      * \param x_begin - The beginning of the range of x values to use
      * \param   x_end - The end of the range of x values to use
@@ -64,9 +64,9 @@ namespace CppUtils::Math
      * \todo This is a complicated function and would probably lend itself well to a functor class
      */
     template<typename IteratorX, typename IteratorY = IteratorX,
-        typename Tx = typename std::iterator_traits<IteratorX>::value_type,
-        typename Ty = typename std::iterator_traits<IteratorY>::value_type,
-        typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<Tx>, std::is_default_constructible<Ty>>>>
+             typename Tx = typename std::iterator_traits<IteratorX>::value_type,
+             typename Ty = typename std::iterator_traits<IteratorY>::value_type,
+             typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<Tx>, std::is_default_constructible<Ty>>>>
     constexpr decltype(auto) quadraticLeastSquaresFitting(IteratorX x_begin, IteratorX x_end, IteratorY y_begin, IteratorY y_end)
     {
         using Txx   = decltype(*x_begin * *x_begin);

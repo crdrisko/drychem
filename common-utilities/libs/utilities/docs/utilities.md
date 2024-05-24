@@ -8,7 +8,6 @@ The utilities library consists of a number of miscellaneous functions and classe
 - [Features](#Features)
   - [Operators](#Operators)
   - [Testing](#Testing)
-  - [Tuples](#Tuples)
 - [Usage](#Usage)
 
 ## Getting Started

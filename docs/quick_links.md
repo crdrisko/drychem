@@ -6,11 +6,12 @@
 
 ## Code Coverage
 
-- **Coveralls:** [![Coverage Status](https://coveralls.io/repos/github/crdrisko/drychem/badge.svg?branch=main)](https://coveralls.io/github/crdrisko/drychem?branch=main)
+- **Coveralls:** [![Coverage Status](https://coveralls.io/repos/github/crdrisko/drychem/badge.svg)](https://coveralls.io/github/crdrisko/drychem)
+- **CodeCov:** [![codecov](https://codecov.io/gh/crdrisko/drychem/graph/badge.svg?token=CWAZYZG5VH)](https://codecov.io/gh/crdrisko/drychem)
 
 ## Code Quality Analysis
 
-- **Codacy:** [![Codacy Badge](https://app.codacy.com/project/badge/Grade/5aa0b7f897264e209ba56e207826817c)](https://www.codacy.com/gh/crdrisko/drychem/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=crdrisko/drychem&amp;utm_campaign=Badge_Grade)
+- **Codacy:** [![Codacy Badge](https://app.codacy.com/project/badge/Grade/5aa0b7f897264e209ba56e207826817c)](https://app.codacy.com/gh/crdrisko/drychem/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 - **CodeFactor:** [![CodeFactor](https://www.codefactor.io/repository/github/crdrisko/drychem/badge)](https://www.codefactor.io/repository/github/crdrisko/drychem)
 
 ## General Repository Information

@@ -26,11 +26,11 @@ All the functions and classes belonging to the math library are wrapped in the n
 
 - [Differentiation:](../../../include/common-utils/math/calculus/differentiation.hpp)
 
-  In the differentiation portion of the math library, three finite difference method (FDM) functions are provided for approximating the derivative of a given function. The methods implemented in this library are the forward difference method, the backwards difference method, and finally, the centered difference method. One thing to note when using either the forward or the backwards difference method is the output vector will have a size one less than the input container's sizes.
+  In the differentiation portion of the math library, three finite difference method (FDM) functions are provided for approximating the derivative of a given function. The methods implemented in this library are the forward difference method, the backwards difference method, the centered difference method, and finally, n-point stencils for n = 5, 7, or 9. One thing to note when using either the forward or the backwards difference method is the output vector will have a size one less than the input container's sizes.
 
   The centered difference method, which is effectively an average of the forward and backwards methods, will, by default, approximate the edge cases using the finite and backwards methods. These points will be less accurate than the middle elements of the returned vector, but serve to keep the size of the returned vector equal to those of the input containers. This can be turned off using the `correctBoundaries` flag.
 
-  All FDM methods take four iterators, two from the first container and two from the second container. The first two represent the independent variable in the function, while the second two iterators represent the dependent variable. Put another way, we are differentiating the second two iterators with respect to the first two. The iterator interface allows us to 1) use any conforming container range we want, and 2) differentiate over a range other than just the full container. While the templated interface of the functions may look intimidating, all template parameters can be correctly deduced by the compiler without any specifications from the end user. The interfaces were designed this way to accomodate the `PhysicalQuantity` type in the CppUnits library without any change in how you would call the given function for a built-in type.
+  Other than the n-point stencil method, all FDM methods take four iterators, two from the first container and two from the second container. The first two represent the independent variable in the function, while the second two iterators represent the dependent variable. Put another way, we are differentiating the second two iterators with respect to the first two. The iterator interface allows us to 1) use any conforming container range we want, and 2) differentiate over a range other than just the full container. While the templated interface of the functions may look intimidating, all template parameters can be correctly deduced by the compiler without any specifications from the end user. The interfaces were designed this way to accomodate the `PhysicalQuantity` type in the CppUnits library without any change in how you would call the given function for a built-in type.
 
   The `centeredDifferenceMethod()` function was based loosely off NumPy's `gradient()` function, which you can read more about [here](https://numpy.org/doc/stable/reference/generated/numpy.gradient.html).
 
@@ -57,6 +57,10 @@ All the functions and classes belonging to the math library are wrapped in the n
 - [Linear Least Squares Fitting:](../../../include/common-utils/math/statistics/linearLeastSquaresFitting.hpp)
 
   The `linearLeastSquaresFitting()` function calculates the linear regression of some input function using the least squares method. Because this comes with a lot of information (slope, intercept, variance of the slope), a specialized structure defines its return type. This structure is an aggregate so it can be used with structured binding, which is the preferred way to return the output of this function.
+
+- [Quadratic Least Squares Fitting:](../../../include/common-utils/math/statistics/quadraticLeastSquaresFitting.hpp)
+
+  The `quadraticLeastSquaresFitting()` function calculates a quadratic fit of the function: ax^2 + bx + c, using the least squares method. These three coefficients are stored in a specialized structure for its return type. This structure is an aggregate so it can be used with structured binding, which is the preferred way to return the output of this function.
 
 - [General Statistical Functions:](../../../include/common-utils/math/statistics/statistics.hpp)
 

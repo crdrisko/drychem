@@ -27,7 +27,7 @@ namespace CppUtils::Math
      * \tparam IteratorX - The type of iterator used for the x container
      * \tparam IteratorY - The type of iterator used for the y container (defaults to the type of IteratorX)
      * \tparam        Tx - The type of data in the x container, must be default constructible
-     * \tparam        Ty - The type of data in the x container, must be default constructible
+     * \tparam        Ty - The type of data in the y container, must be default constructible
      *
      * \param x_begin - The beginning of the range of x values to use
      * \param   x_end - The end of the range of x values to use

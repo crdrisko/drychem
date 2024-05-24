@@ -4,7 +4,7 @@
 // Name: nPointStencil.hpp
 // Author: crdrisko
 // Date: 10/06/2023-08:10:58
-// Description:
+// Description: Approximating the derivative of a function using an n-point stencil determined at compile time
 
 #ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_CALCULUS_DIFFERENTIATION_NPOINTSTENCIL_HPP
 #define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_CALCULUS_DIFFERENTIATION_NPOINTSTENCIL_HPP
@@ -23,6 +23,22 @@ namespace CppUtils::Math
 {
     namespace details
     {
+        /*!
+         * A function taking the derivative (by numerical methods) of a given function y with respect to x.
+         *  Each of the functions, x and y, are represeted by containers.
+         *
+         * \tparam          N - The nPointStencilMethod to use (5, 7, or 9)
+         * \tparam ContainerX - A container for a default constructible type x
+         * \tparam ContainerY - A container for a default constructible type y
+         *
+         * \param x - The x values to use
+         * \param y - The y values to use
+         *
+         * \returns A vector of equal size to the input containers with default values for the beginning
+         *           and end of the vector depending on the method used
+         *
+         * \exception CppUtils::Math::InputSizeMismatch If the sizes of the two containers don't match, we will throw an exception
+         */
         template<std::size_t N, typename ContainerX, typename ContainerY = ContainerX,
                                 typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<typename ContainerX::value_type>,
                                                                                std::is_default_constructible<typename ContainerY::value_type>>>>
@@ -64,16 +80,25 @@ namespace CppUtils::Math
         }
     }   // namespace details
 
+    /*!
+     * \overload
+     */
     template<typename ContainerX, typename ContainerY = ContainerX,
              typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<typename ContainerX::value_type>,
                                                             std::is_default_constructible<typename ContainerY::value_type>>>>
     constexpr auto fivePointStencilMethod(const ContainerX& x, const ContainerY& y) { return details::nPointStencilMethod<5>(x, y); }
 
+    /*!
+     * \overload
+     */
     template<typename ContainerX, typename ContainerY = ContainerX,
              typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<typename ContainerX::value_type>,
                                                             std::is_default_constructible<typename ContainerY::value_type>>>>
     constexpr auto sevenPointStencilMethod(const ContainerX& x, const ContainerY& y) { return details::nPointStencilMethod<7>(x, y); }
 
+    /*!
+     * \overload
+     */
     template<typename ContainerX, typename ContainerY = ContainerX,
              typename = std::enable_if_t<std::conjunction_v<std::is_default_constructible<typename ContainerX::value_type>,
                                                             std::is_default_constructible<typename ContainerY::value_type>>>>

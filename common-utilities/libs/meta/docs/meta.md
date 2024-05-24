@@ -72,7 +72,7 @@ make
 
 ## Run the metaprogramming library's samples ##
 cd bin/samples
-./...Example
+./getOptsExample
 
 ## Run the metaprogramming library's unit tests ##
 cd ../tests

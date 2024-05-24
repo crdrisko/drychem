@@ -1,6 +1,6 @@
 # DryChem
 
-[![cmake](https://github.com/crdrisko/drychem/workflows/build/badge.svg)](docs/quick_links.md#Current-Build-Status) [![Coverage Status](https://coveralls.io/repos/github/crdrisko/drychem/badge.svg?branch=main)](docs/quick_links.md#Code-Coverage) [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/crdrisko/drychem?include_prereleases)](https://github.com/crdrisko/drychem/releases)
+[![cmake](https://github.com/crdrisko/drychem/workflows/build/badge.svg)](docs/quick_links.md#Current-Build-Status) [![Coverage Status](https://coveralls.io/repos/github/crdrisko/drychem/badge.svg)](docs/quick_links.md#Code-Coverage) [![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/crdrisko/drychem?include_prereleases)](https://github.com/crdrisko/drychem/releases)
 
 Welcome to the DryChem project! DryChem is a collection of generic C++ libraries, who's main goal is compliance with the "Don't Repeat Yourself" (DRY) principle of modern software development. The libraries we release and maintain are general enough to find use in a number of projects, but don't go much farther than what you would find in your average computational chemistry codebases' utility library.
 
@@ -15,6 +15,7 @@ More detailed documentation for Common-Utilities and C++ Units can be found in t
 ## Features
 
 - A familiar framework for error and exception handling.
+- An intuitive file parsing system based on tokenized strings and lazy evaluation.
 - A number of mathematical functions with domains ranging from calculus to statistics.
 - A number of utility type traits for better, more general programming.
 - A compile-time, header-only physical quantity library.

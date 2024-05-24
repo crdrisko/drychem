@@ -8,8 +8,6 @@ Welcome to the Common-Utilities project! This project is a compilation of a numb
 
 - [C++ Libraries](#C++-Libraries)
 
-- [C++ Applications](#C++-Applications)
-
 - [Bash Scripts](#Bash-Scripts)
 
 ## Building and Installing
@@ -32,10 +30,6 @@ To build the common-utilities libraries and scripts there are a few options that
 
   *Note:* Only the libraries will be installed.
 
-- `utils_enable_networking`
-
-  Allow for the networking libraries to be built and included. The reason for this library having a separate flag is that it's one of the only libraries with source code that isn't fully contained in the header files that make up the library. Because of this, the library must include a static library which may or may not be desirable to the end user.
-
 - `utils_exclude_scripts`
 
   This option won't include or install the bash scripts that go with the repository. This is useful if you're just interested in the C++ libraries. The bash scripts, while useful, may not find much use outside of my own development or research processes.
@@ -52,7 +46,6 @@ The libraries included in this project include the following, and more informati
 - [Files](libs/files/docs/files.md)
 - [Math](libs/math/docs/math.md)
 - [Meta](libs/meta/docs/meta.md)
-- [Networking](libs/networking/docs/networking.md)
 - [Strings](libs/strings/docs/strings.md)
 - [Utilities](libs/utilities/docs/utilities.md)
 
@@ -82,10 +75,6 @@ The following tree diagram shows how a sample library, `library1`, would be orga
 ```
 
 The `libs` directory contains information about the specific library, such as the documentation, example code samples, and unit tests. The `include/common-utils` directory is where the header files for the library are stored. Note that the `libraryName.hpp` file serves as the public API of the library and should be `#include`'d in a user's project. The files in the `libraryName` directory contain the internal implementation details and are subject to change without notice.
-
-## C++ Applications
-
-The applications associated with the Common-Utilities project provide "real-world" examples that utilize a number of the libraries in the project. Currently, the `passphrase` example takes a list of words and randomly generates a passphrase based on the number of words requested. By simulating the dice rolls, you can quickly generate passphrases for a strong and easy-to-remember password.
 
 ## Bash Scripts
 
