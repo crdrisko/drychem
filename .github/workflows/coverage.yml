@@ -38,4 +38,3 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         file: coverage.info
-        exclude: "**/libs/*"
