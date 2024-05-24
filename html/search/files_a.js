@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['operatordetails_2ehpp_0',['operatorDetails.hpp',['../operator_details_8hpp.html',1,'']]]
+  ['npointstencil_2ehpp_0',['nPointStencil.hpp',['../n_point_stencil_8hpp.html',1,'']]]
 ];

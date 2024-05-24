@@ -3,6 +3,7 @@ var namespaces_dup =
     [ "CppUnits", "namespace_cpp_units.html", "namespace_cpp_units" ],
     [ "CppUtils", "namespace_cpp_utils.html", "namespace_cpp_utils" ],
     [ "DryChem", "namespace_dry_chem.html", null ],
+    [ "GetOpts", "namespace_get_opts.html", "namespace_get_opts" ],
     [ "validate", "namespacevalidate.html", [
       [ "x", "namespacevalidate.html#a2d2629351d9c42f81ee7c8505f10d4f0", null ],
       [ "y", "namespacevalidate.html#adf0979cdb48c35c45f4b320e42e7aeb6", null ],

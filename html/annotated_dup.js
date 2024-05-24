@@ -97,6 +97,14 @@ var annotated_dup =
         ] ]
       ] ]
     ] ],
+    [ "GetOpts", "namespace_get_opts.html", [
+      [ "CommandLineOption", "struct_get_opts_1_1_command_line_option.html", "struct_get_opts_1_1_command_line_option" ],
+      [ "CommandLineParser", "class_get_opts_1_1_command_line_parser.html", "class_get_opts_1_1_command_line_parser" ],
+      [ "Optional", "class_get_opts_1_1_optional.html", "class_get_opts_1_1_optional" ],
+      [ "Required", "class_get_opts_1_1_required.html", "class_get_opts_1_1_required" ],
+      [ "WithArgument", "class_get_opts_1_1_with_argument.html", "class_get_opts_1_1_with_argument" ],
+      [ "WithoutArgument", "class_get_opts_1_1_without_argument.html", "class_get_opts_1_1_without_argument" ]
+    ] ],
     [ "std", null, [
       [ "tuple_element< Index, CppUtils::Math::Vector3D< T > >", "structstd_1_1tuple__element_3_01_index_00_01_cpp_utils_1_1_math_1_1_vector3_d_3_01_t_01_4_01_4.html", "structstd_1_1tuple__element_3_01_index_00_01_cpp_utils_1_1_math_1_1_vector3_d_3_01_t_01_4_01_4" ],
       [ "tuple_size< CppUtils::Math::Vector3D< T > >", "structstd_1_1tuple__size_3_01_cpp_utils_1_1_math_1_1_vector3_d_3_01_t_01_4_01_4.html", "structstd_1_1tuple__size_3_01_cpp_utils_1_1_math_1_1_vector3_d_3_01_t_01_4_01_4" ]

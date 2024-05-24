@@ -113,7 +113,7 @@ $(function(){initNavTree('quadratic_least_squares_fitting_8hpp_source.html','');
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// Name: quadraticLeastSquaresFitting.hpp</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// Author: crdrisko</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// Date: 10/11/2023-07:27:16</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// Description:</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// Description: Function to perform a quadratic least-squares fitting for the supplied inputs</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#ifndef DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_STATISTICS_QUADRATICLEASTSQUARESFITTING_HPP</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#define DRYCHEM_COMMON_UTILITIES_INCLUDE_COMMON_UTILS_MATH_STATISTICS_QUADRATICLEASTSQUARESFITTING_HPP</span></div>
@@ -144,9 +144,9 @@ $(function(){initNavTree('quadratic_least_squares_fitting_8hpp_source.html','');
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }   <span class="comment">// namespace details</span></div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> IteratorX, <span class="keyword">typename</span> IteratorY = IteratorX,</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="keyword">typename</span> Tx = <span class="keyword">typename</span> std::iterator_traits&lt;IteratorX&gt;::value_type,</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keyword">typename</span> Ty = <span class="keyword">typename</span> std::iterator_traits&lt;IteratorY&gt;::value_type,</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keyword">typename</span> = std::enable_if_t&lt;std::conjunction_v&lt;std::is_default_constructible&lt;Tx&gt;, std::is_default_constructible&lt;Ty&gt;&gt;&gt;&gt;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>             <span class="keyword">typename</span> Tx = <span class="keyword">typename</span> std::iterator_traits&lt;IteratorX&gt;::value_type,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>             <span class="keyword">typename</span> Ty = <span class="keyword">typename</span> std::iterator_traits&lt;IteratorY&gt;::value_type,</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>             <span class="keyword">typename</span> = std::enable_if_t&lt;std::conjunction_v&lt;std::is_default_constructible&lt;Tx&gt;, std::is_default_constructible&lt;Ty&gt;&gt;&gt;&gt;</div>
 <div class="foldopen" id="foldopen00070" data-start="{" data-end="}">
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="namespace_cpp_utils_1_1_math.html#a363c8317c9603dff990b239e3870beeb">   70</a></span>    <span class="keyword">constexpr</span> <span class="keyword">decltype</span>(<span class="keyword">auto</span>) <a class="code hl_function" href="namespace_cpp_utils_1_1_math.html#a363c8317c9603dff990b239e3870beeb">quadraticLeastSquaresFitting</a>(IteratorX x_begin, IteratorX x_end, IteratorY y_begin, IteratorY y_end)</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    {</div>
@@ -230,7 +230,7 @@ $(function(){initNavTree('quadratic_least_squares_fitting_8hpp_source.html','');
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_0583984bf3346f36c215b565c6efbf15.html">common-utilities</a></li><li class="navelem"><a class="el" href="dir_89c62cf962456d7339e3940c46c58fdc.html">include</a></li><li class="navelem"><a class="el" href="dir_a929251ca6ccf5ee32539366c0a91224.html">common-utils</a></li><li class="navelem"><a class="el" href="dir_5af43d3fa5a1e0b87712b5d54e736b40.html">math</a></li><li class="navelem"><a class="el" href="dir_a13d6845bf71e4425475f7e2b4a8ff78.html">statistics</a></li><li class="navelem"><a class="el" href="quadratic_least_squares_fitting_8hpp.html">quadraticLeastSquaresFitting.hpp</a></li>
-    <li class="footer">Generated on Thu May 23 2024 11:45:20 for DryChem by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+    <li class="footer">Generated on Fri May 24 2024 13:36:08 for DryChem by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
   </ul>
 </div>
 </body>

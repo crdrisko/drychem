@@ -108,7 +108,6 @@ Table Of Contents</h1>
 <ul>
 <li>Building and Installing</li>
 <li>C++ Libraries</li>
-<li>C++ Applications</li>
 <li>Bash Scripts</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md71"></a>
@@ -126,9 +125,6 @@ Building and Installing</h1>
 <p class="startli">If you're interested in building the examples but don't care about the unit tests that accompany the project, this option will build the common-utilities library and the samples.</p>
 <p class="startli"><em>Note:</em> Only the libraries will be installed.</p>
 </li>
-<li><p class="startli"><code>utils_enable_networking</code></p>
-<p class="startli">Allow for the networking libraries to be built and included. The reason for this library having a separate flag is that it's one of the only libraries with source code that isn't fully contained in the header files that make up the library. Because of this, the library must include a static library which may or may not be desirable to the end user.</p>
-</li>
 <li><p class="startli"><code>utils_exclude_scripts</code></p>
 <p class="startli">This option won't include or install the bash scripts that go with the repository. This is useful if you're just interested in the C++ libraries. The bash scripts, while useful, may not find much use outside of my own development or research processes.</p>
 </li>
@@ -144,7 +140,6 @@ C++ Libraries</h1>
 <li><a class="el" href="md_common-utilities_2libs_2files_2docs_2files.html">Files</a></li>
 <li><a class="el" href="md_common-utilities_2libs_2math_2docs_2math.html">Math</a></li>
 <li><a class="el" href="md_common-utilities_2libs_2meta_2docs_2meta.html">Meta</a></li>
-<li>Networking</li>
 <li><a class="el" href="md_common-utilities_2libs_2strings_2docs_2strings.html">Strings</a></li>
 <li><a class="el" href="md_common-utilities_2libs_2utilities_2docs_2utilities.html">Utilities</a></li>
 </ul>
@@ -171,9 +166,6 @@ C++ Libraries</h1>
 <div class="line">    └── ...</div>
 </div><!-- fragment --><p>The <code>libs</code> directory contains information about the specific library, such as the documentation, example code samples, and unit tests. The <code>include/common-utils</code> directory is where the header files for the library are stored. Note that the <code>libraryName.hpp</code> file serves as the public API of the library and should be <code>#include</code>'d in a user's project. The files in the <code>libraryName</code> directory contain the internal implementation details and are subject to change without notice.</p>
 <h1><a class="anchor" id="autotoc_md73"></a>
-C++ Applications</h1>
-<p>The applications associated with the Common-Utilities project provide "real-world" examples that utilize a number of the libraries in the project. Currently, the <code>passphrase</code> example takes a list of words and randomly generates a passphrase based on the number of words requested. By simulating the dice rolls, you can quickly generate passphrases for a strong and easy-to-remember password.</p>
-<h1><a class="anchor" id="autotoc_md74"></a>
 Bash Scripts</h1>
 <p>Consisting of a number of bash scripts for mainly automating some of my most common tasks, the files located in the [<code>root/common-utilities/scripts</code>](scripts) directory are simple scripts and programs that don't really belong in any other repository, so they have been collected here.</p>
 <p>For the programs that support command-line argument parsing, the <code>-h</code> flag will print the help message associated with the program. Scripts like <code>errorHandling.sh</code>, <code>showOpts.sh</code>, and <code>typeParsing.sh</code> are designed to either be incorporated in other bash programs or are so simple, no help option is needed.</p>
@@ -200,7 +192,7 @@ Bash Scripts</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu May 23 2024 11:45:20 for DryChem by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+    <li class="footer">Generated on Fri May 24 2024 13:36:08 for DryChem by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
   </ul>
 </div>
 </body>

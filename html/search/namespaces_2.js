@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['validate_0',['validate',['../namespacevalidate.html',1,'']]]
+  ['getopts_0',['GetOpts',['../namespace_get_opts.html',1,'']]]
 ];

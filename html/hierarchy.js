@@ -5,6 +5,7 @@ var hierarchy =
     [ "std::char_traits", null, [
       [ "CppUtils::Strings::ci_char_traits", "struct_cpp_utils_1_1_strings_1_1ci__char__traits.html", null ]
     ] ],
+    [ "GetOpts::CommandLineParser< TArgs >", "class_get_opts_1_1_command_line_parser.html", null ],
     [ "DryChem::CompletelyComparable", null, [
       [ "CppUnits::PhysicalQuantity< BaseDimensionality >", "class_cpp_units_1_1_physical_quantity.html", null ],
       [ "CppUtils::Operators::details::testing::Comparable", "class_cpp_utils_1_1_operators_1_1details_1_1testing_1_1_comparable.html", null ],
@@ -54,7 +55,11 @@ var hierarchy =
       [ "CppUtils::Operators::details::testing::SomewhatComparable2", "class_cpp_utils_1_1_operators_1_1details_1_1testing_1_1_somewhat_comparable2.html", null ]
     ] ],
     [ "CppUtils::Math::details::LinearLeastSquaresResult< T_slope, T_intercept, T_variance, typename >", "struct_cpp_utils_1_1_math_1_1details_1_1_linear_least_squares_result.html", null ],
+    [ "Mixins", null, [
+      [ "GetOpts::CommandLineOption< Mixins >", "struct_get_opts_1_1_command_line_option.html", null ]
+    ] ],
     [ "CppUtils::Testing::details::testing::MyClass", "class_cpp_utils_1_1_testing_1_1details_1_1testing_1_1_my_class.html", null ],
+    [ "GetOpts::Optional< Derived >", "class_get_opts_1_1_optional.html", null ],
     [ "CppUtils::Meta::pop_front_list< List >", "struct_cpp_utils_1_1_meta_1_1pop__front__list.html", null ],
     [ "CppUtils::Meta::pop_front_list< std::integer_sequence< T, Head, Tail... > >", "struct_cpp_utils_1_1_meta_1_1pop__front__list_3_01std_1_1integer__sequence_3_01_t_00_01_head_00_01_tail_8_8_8_01_4_01_4.html", null ],
     [ "CppUtils::Operators::PotentiallyEmptyBaseClass< typename >", "class_cpp_utils_1_1_operators_1_1_potentially_empty_base_class.html", [
@@ -89,6 +94,7 @@ var hierarchy =
     [ "CppUtils::Meta::push_front_list< List, NewElement >", "struct_cpp_utils_1_1_meta_1_1push__front__list.html", null ],
     [ "CppUtils::Meta::push_front_list< std::integer_sequence< T, Elements... >, std::integral_constant< T, NewElement > >", "struct_cpp_utils_1_1_meta_1_1push__front__list_3_01std_1_1integer__sequence_3_01_t_00_01_element0321fbb126ea73fb67b1c1d4fc1e44b3.html", null ],
     [ "CppUtils::Math::details::QuadraticLeastSquaresResult< T_a, T_b, T_c, typename >", "struct_cpp_utils_1_1_math_1_1details_1_1_quadratic_least_squares_result.html", null ],
+    [ "GetOpts::Required< Derived >", "class_get_opts_1_1_required.html", null ],
     [ "CppUtils::Testing::details::ReturnType< F, TArgs >", "struct_cpp_utils_1_1_testing_1_1details_1_1_return_type.html", null ],
     [ "CppUtils::Meta::reverse_list< List, Empty >", "struct_cpp_utils_1_1_meta_1_1reverse__list.html", null ],
     [ "CppUtils::Meta::reverse_list< List, true >", "struct_cpp_utils_1_1_meta_1_1reverse__list_3_01_list_00_01true_01_4.html", null ],
@@ -102,5 +108,7 @@ var hierarchy =
       [ "CppUtils::Strings::details::has_mapped_type< T, std::void_t< typename T::mapped_type > >", "struct_cpp_utils_1_1_strings_1_1details_1_1has__mapped__type_3_01_t_00_01std_1_1void__t_3_01type5fdce0d6856d31193d2cd7dff65275f1.html", null ]
     ] ],
     [ "std::tuple_element< Index, CppUtils::Math::Vector3D< T > >", "structstd_1_1tuple__element_3_01_index_00_01_cpp_utils_1_1_math_1_1_vector3_d_3_01_t_01_4_01_4.html", null ],
-    [ "std::tuple_size< CppUtils::Math::Vector3D< T > >", "structstd_1_1tuple__size_3_01_cpp_utils_1_1_math_1_1_vector3_d_3_01_t_01_4_01_4.html", null ]
+    [ "std::tuple_size< CppUtils::Math::Vector3D< T > >", "structstd_1_1tuple__size_3_01_cpp_utils_1_1_math_1_1_vector3_d_3_01_t_01_4_01_4.html", null ],
+    [ "GetOpts::WithArgument< T, Derived >", "class_get_opts_1_1_with_argument.html", null ],
+    [ "GetOpts::WithoutArgument< Derived >", "class_get_opts_1_1_without_argument.html", null ]
 ];
