@@ -38,4 +38,4 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         file: coverage.info
-
+        exclude: common-utilities/libs, cpp-units/libs
