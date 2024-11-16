@@ -6,7 +6,7 @@ var searchData=
   ['add_5fexecutable_3',['add_executable',['../common-utilities_2_c_make_lists_8txt.html#ad05a1205209b74808c6b8357a01af468',1,'CMakeLists.txt']]],
   ['algorithms_4',['Algorithms',['../md_common-utilities_2libs_2meta_2docs_2meta.html#autotoc_md44',1,'']]],
   ['amountofsubstance_5',['AmountOfSubstance',['../struct_cpp_units_1_1_dimensionality.html#a21873ff9411bd18a84fe8ca0c153c669',1,'CppUnits::Dimensionality::AmountOfSubstance'],['../namespace_cpp_units.html#a99d3113948ca6a335a7338d44d3ab0e9',1,'CppUnits::AmountOfSubstance']]],
-  ['and_20installing_6',['And Installing',['../md_common-utilities_2_r_e_a_d_m_e.html#autotoc_md71',1,'Building and Installing'],['../md_cpp-units_2_r_e_a_d_m_e.html#autotoc_md76',1,'Building and Installing']]],
+  ['and_20installing_6',['and Installing',['../md_common-utilities_2_r_e_a_d_m_e.html#autotoc_md71',1,'Building and Installing'],['../md_cpp-units_2_r_e_a_d_m_e.html#autotoc_md76',1,'Building and Installing']]],
   ['angle_7',['Angle',['../namespace_cpp_units.html#a03a92c0a35af09d6368f7005a23ef49c',1,'CppUnits']]],
   ['angularmomentum_8',['AngularMomentum',['../namespace_cpp_units.html#ab07da46a080744183735236b11932475',1,'CppUnits']]],
   ['angularmomentumflux_9',['AngularMomentumFlux',['../namespace_cpp_units.html#aadb9941727717d926bff806774530653',1,'CppUnits']]],

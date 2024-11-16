@@ -18,6 +18,11 @@ var hierarchy =
     [ "DryChem::EqualityComparable", null, [
       [ "CppUtils::Operators::details::testing::SomewhatComparable1", "class_cpp_utils_1_1_operators_1_1details_1_1testing_1_1_somewhat_comparable1.html", null ]
     ] ],
+    [ "EqualityComparable< Vector3D< T >, LessThanComparable< Vector3D< T >, PotentiallyEmptyBaseClass< Vector3D< T > > > >", null, [
+      [ "CppUtils::Operators::CompletelyComparable< Vector3D< T > >", "class_cpp_utils_1_1_operators_1_1_completely_comparable.html", [
+        [ "CppUtils::Math::Vector3D< T, typename >", "class_cpp_utils_1_1_math_1_1_vector3_d.html", null ]
+      ] ]
+    ] ],
     [ "CppUtils::Errors::ErrorMessage", "struct_cpp_utils_1_1_errors_1_1_error_message.html", null ],
     [ "std::exception", null, [
       [ "CppUtils::Errors::FatalException", "class_cpp_utils_1_1_errors_1_1_fatal_exception.html", [
@@ -64,9 +69,6 @@ var hierarchy =
     [ "CppUtils::Meta::pop_front_list< std::integer_sequence< T, Head, Tail... > >", "struct_cpp_utils_1_1_meta_1_1pop__front__list_3_01std_1_1integer__sequence_3_01_t_00_01_head_00_01_tail_8_8_8_01_4_01_4.html", null ],
     [ "CppUtils::Operators::PotentiallyEmptyBaseClass< typename >", "class_cpp_utils_1_1_operators_1_1_potentially_empty_base_class.html", [
       [ "CppUtils::Operators::EqualityComparable< Derived, Empty >", "class_cpp_utils_1_1_operators_1_1_equality_comparable.html", [
-        [ "CppUtils::Operators::CompletelyComparable< Vector3D< T > >", "class_cpp_utils_1_1_operators_1_1_completely_comparable.html", [
-          [ "CppUtils::Math::Vector3D< T, typename >", "class_cpp_utils_1_1_math_1_1_vector3_d.html", null ]
-        ] ],
         [ "CppUtils::Operators::CompletelyComparable< Derived, Empty >", "class_cpp_utils_1_1_operators_1_1_completely_comparable.html", null ]
       ] ],
       [ "CppUtils::Operators::LessThanComparable< Derived, Empty >", "class_cpp_utils_1_1_operators_1_1_less_than_comparable.html", null ]
@@ -77,11 +79,6 @@ var hierarchy =
     [ "CppUtils::Operators::PotentiallyEmptyBaseClass< Derived >", "class_cpp_utils_1_1_operators_1_1_potentially_empty_base_class.html", [
       [ "CppUtils::Operators::LessThanComparable< Derived, PotentiallyEmptyBaseClass< Derived > >", "class_cpp_utils_1_1_operators_1_1_less_than_comparable.html", [
         [ "CppUtils::Operators::EqualityComparable< Derived, LessThanComparable< Derived, PotentiallyEmptyBaseClass< Derived > > >", "class_cpp_utils_1_1_operators_1_1_equality_comparable.html", null ]
-      ] ]
-    ] ],
-    [ "CppUtils::Operators::PotentiallyEmptyBaseClass< Vector3D< T > >", "class_cpp_utils_1_1_operators_1_1_potentially_empty_base_class.html", [
-      [ "CppUtils::Operators::LessThanComparable< Vector3D< T >, PotentiallyEmptyBaseClass< Vector3D< T > > >", "class_cpp_utils_1_1_operators_1_1_less_than_comparable.html", [
-        [ "CppUtils::Operators::EqualityComparable< Vector3D< T >, LessThanComparable< Vector3D< T >, PotentiallyEmptyBaseClass< Vector3D< T > > > >", "class_cpp_utils_1_1_operators_1_1_equality_comparable.html", null ]
       ] ]
     ] ],
     [ "CppUnits::Math::details::PowImpl< Power, L, M, T, I, Th, N, J >", "struct_cpp_units_1_1_math_1_1details_1_1_pow_impl.html", null ],

@@ -108,6 +108,8 @@ var NAVTREE =
       [ "C++ Libraries", "md_common-utilities_2_r_e_a_d_m_e.html#autotoc_md72", null ],
       [ "Bash Scripts", "md_common-utilities_2_r_e_a_d_m_e.html#autotoc_md73", null ]
     ] ],
+    [ "math", "md_cpp-units_2libs_2math_2docs_2math.html", null ],
+    [ "types", "md_cpp-units_2libs_2types_2docs_2types.html", null ],
     [ "C++ Units", "md_cpp-units_2_r_e_a_d_m_e.html", [
       [ "Table Of Contents", "md_cpp-units_2_r_e_a_d_m_e.html#autotoc_md75", null ],
       [ "Building and Installing", "md_cpp-units_2_r_e_a_d_m_e.html#autotoc_md76", null ],
@@ -153,11 +155,11 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "class_cpp_utils_1_1_strings_1_1_tokenizer.html#addc69b606ef3973b461dff9822208ee3",
-"dir_cc0bf392e6532945fd5d9429a9f19f8b.html",
-"namespace_cpp_units.html#abf052b139487b8f0a06303c874570766",
-"namespacemembers_y.html",
-"struct_cpp_units_1_1_dimensionality.html#addfc594d32d125328321116200a640a8",
-"test_integer_sequence_algorithms_8hpp_source.html"
+"dir_cbd4e1df0b21ddd7a0ec7fdeb16bb9cb.html",
+"namespace_cpp_units.html#ab53503430b156df29990210d97d4f301",
+"namespacemembers_v.html",
+"struct_cpp_units_1_1_dimensionality.html#a60ef0324a0302e2c0750b0b005934044",
+"test_integer_sequence_algorithms_8hpp.html#a3d349e2f69a5c9da1b8a5ea3bfedda3f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
