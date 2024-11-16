@@ -11,11 +11,11 @@
 ### Functions ###
 printHelpMessage()      #@ DESCRIPTION: Print the format-code program's help message
 {                       #@ USAGE: printHelpMessage
-    printf "\nUSAGE: format-code [-h] [-i fileName]\n\n"
-    printf "  -h  Prints help information about the format-code program.\n\n"
+    printf "\nUSAGE: format-codebase [-h] [-i fileName]\n\n"
+    printf "  -h  Prints help information about the format-codebase program.\n\n"
     printf "  -i  OPTIONAL: Filename and path (relative to project root) to ignore\n"
     printf "        when formatting.\n\n"
-    printf "EXAMPLE: format-code -i cpp-units/include/cpp-units/physicalQuantities.hpp\n\n"
+    printf "EXAMPLE: format-codebase -i cpp-units/include/cpp-units/physicalQuantities.hpp\n\n"
 }
 
 formatFiles()           #@ DESCRIPTION: Use clang-format to format each file in the repository

@@ -19,6 +19,10 @@
 
 namespace CppUnits
 {
+    /*!
+     * A class representing a physical quantity with dimensionality based off the SI units system.
+     *  
+     */
     template<typename BaseDimensionality>
     class PhysicalQuantity : private DryChem::CompletelyComparable<PhysicalQuantity<BaseDimensionality>>
     {
@@ -41,7 +45,7 @@ namespace CppUnits
         constexpr long double getMagnitude() const noexcept { return magnitude; }
         constexpr void setMagnitude(long double Magnitude) noexcept { magnitude = Magnitude; }
 
-        // Comparison Operators
+        //! Comparison Operators
         constexpr friend bool operator==(const PhysicalQuantity<BaseDimensionality>& lhs,
             const PhysicalQuantity<BaseDimensionality>& rhs) noexcept
         {
@@ -54,7 +58,7 @@ namespace CppUnits
             return lhs.magnitude < rhs.magnitude;
         }
 
-        // Arithmetic Operators
+        //! Arithmetic Operators
         constexpr auto operator+=(const PhysicalQuantity<BaseDimensionality>& rhs) noexcept
         {
             magnitude += rhs.magnitude;
@@ -123,7 +127,7 @@ namespace CppUnits
             return *this;
         }
 
-        // Output Stream Operators
+        //! Output Stream Operators
         constexpr friend std::ostream& operator<<(std::ostream& stream, const PhysicalQuantity<BaseDimensionality>& rhs)
         {
             stream << rhs.magnitude;

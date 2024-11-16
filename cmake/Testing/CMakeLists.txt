@@ -11,7 +11,7 @@ if (units_build_tests)
 
     DryChemNewTest(TESTNAME AllPhysicalQuantityFunctions
                    LIBRARY cpp-units
-                   INTERIOR_DIRECTORY physicalQuantities)
+                   INTERIOR_DIRECTORY types)
 endif()
 
 if (utils_build_tests)

@@ -1,7 +1,7 @@
 // Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
-// Name: physicalQuantities.hpp - Version 1.0.0
+// Name: physicalQuantities.hpp
 // Author: crdrisko
 // Date: 03/04/2020-08:13:47
 // Description: The public API for the PhysicalQuantities section of the C++ Units project.
@@ -10,8 +10,8 @@
 // Note: The internal implementation details associated with this API should not be used in any
 //   user program as they are subject to change at any time without warning.
 
-#ifndef DRYCHEM_CPP_UNITS_PHYSICALQUANTITIES_HPP
-#define DRYCHEM_CPP_UNITS_PHYSICALQUANTITIES_HPP
+#ifndef DRYCHEM_CPP_UNITS_INCLUDE_CPP_UNITS_PHYSICALQUANTITIES_HPP
+#define DRYCHEM_CPP_UNITS_INCLUDE_CPP_UNITS_PHYSICALQUANTITIES_HPP
 
 #include "math/basicMath.hpp"
 #include "types/dimensionality.hpp"
@@ -21,7 +21,7 @@ namespace CppUnits
 {
     using DimensionlessQuantity = PhysicalQuantity<Dimensionality<>>;
 
-    // MKS Quantities
+    //! MKS Quantities
     using MassDensity           = PhysicalQuantity<Dimensionality<-3,  1,  0>>;
     using AngularMomentumFlux   = PhysicalQuantity<Dimensionality<-2,  1, -2>>;
     using WaveNumber            = PhysicalQuantity<Dimensionality<-1,  0,  0>>;
@@ -47,7 +47,7 @@ namespace CppUnits
     using SpecificVolume        = PhysicalQuantity<Dimensionality< 3, -1,  0>>;
     using Volume                = PhysicalQuantity<Dimensionality< 3,  0,  0>>;
 
-    // Electromagnetic Quantities
+    //! Electromagnetic Quantities
     using ElectricConductivity  = PhysicalQuantity<Dimensionality<-3, -1,  3,  2>>;
     using Permittivity          = PhysicalQuantity<Dimensionality<-3, -1,  4,  2>>;
     using ElectricChargeDensity = PhysicalQuantity<Dimensionality<-3,  0,  1,  1>>;
@@ -67,13 +67,13 @@ namespace CppUnits
     using Inductance            = PhysicalQuantity<Dimensionality< 2,  1, -2, -2>>;
     using MagneticFlux          = PhysicalQuantity<Dimensionality< 2,  1, -2, -1>>;
 
-    // Thermal Quantities
+    //! Thermal Quantities
     using Temperature           = PhysicalQuantity<Dimensionality< 0,  0,  0,  0,  1>>;
     using ThermalConductivity   = PhysicalQuantity<Dimensionality< 1,  1, -3,  0, -1>>;
     using SpecificEntropy       = PhysicalQuantity<Dimensionality< 2,  0, -2,  0, -1>>;
     using Entropy               = PhysicalQuantity<Dimensionality< 2,  1, -2,  0, -1>>;
 
-    // Molar Quantities
+    //! Molar Quantities
     using AmountOfSubstance     = PhysicalQuantity<Dimensionality< 0,  0,  0,  0,  0,  1>>;
     using Concentration         = PhysicalQuantity<Dimensionality<-3,  0,  0,  0,  0,  1>>;
     using ConcentrationGradient = PhysicalQuantity<Dimensionality<-4,  0,  0,  0,  0,  1>>;
@@ -84,7 +84,7 @@ namespace CppUnits
     using MolarEntropy          = PhysicalQuantity<Dimensionality< 2,  1, -2,  0, -1, -1>>;
     using MolarMass             = PhysicalQuantity<Dimensionality< 0,  1,  0,  0,  0, -1>>;
 
-    // Luminous Quantities
+    //! Luminous Quantities
     using Illuminance           = PhysicalQuantity<Dimensionality<-2,  0,  0,  0,  0,  0,  1>>;
     using LuminousIntensity     = PhysicalQuantity<Dimensionality< 0,  0,  0,  0,  0,  0,  1>>;
     using Luminance             = PhysicalQuantity<Dimensionality< 2,  0,  0,  0,  0,  0,  1>>;
@@ -95,7 +95,7 @@ namespace CppUnits
         // We need a better way to organize the unit literals than just a wall of possible units
         constexpr auto operator"" _(long double magnitude) { return DimensionlessQuantity(magnitude); }
 
-        // User-Defined Literals for MKS Quantities
+        //! User-Defined Literals for MKS Quantities
         constexpr auto operator"" _m_s2(long double magnitude) { return Acceleration(magnitude); }
         constexpr auto operator"" _Js(long double magnitude) { return Action(magnitude); }
         constexpr auto operator"" _rad(long double magnitude) { return Angle(magnitude); }
@@ -143,7 +143,7 @@ namespace CppUnits
         constexpr auto operator"" _L(long double magnitude) { return Volume(magnitude); }
         constexpr auto operator"" _1_m(long double magnitude) { return WaveNumber(magnitude); }
 
-        // User-Defined Literals for Electromagnetic Quantities
+        //! User-Defined Literals for Electromagnetic Quantities
         constexpr auto operator"" _F(long double magnitude) { return Capacitance(magnitude); }
         constexpr auto operator"" _A_m2(long double magnitude) { return CurrentDensity(magnitude); }
         constexpr auto operator"" _e(long double magnitude) { return ElectricCharge(magnitude); }
@@ -168,7 +168,7 @@ namespace CppUnits
         constexpr auto operator"" _H_m(long double magnitude) { return Permeability(magnitude); }
         constexpr auto operator"" _F_m(long double magnitude) { return Permittivity(magnitude); }
 
-        // User-Defined Literals for Molar Quantities
+        //! User-Defined Literals for Molar Quantities
         constexpr auto operator"" _mol(long double magnitude) { return AmountOfSubstance(magnitude); }
         constexpr auto operator"" _part(long double magnitude) { return AmountOfSubstance(magnitude); }
         constexpr auto operator"" _M(long double magnitude) { return Concentration(magnitude); }
@@ -183,7 +183,7 @@ namespace CppUnits
         constexpr auto operator"" _g_mol(long double magnitude) { return MolarMass(magnitude); }
         constexpr auto operator"" _amu(long double magnitude) { return MolarMass(magnitude); }
 
-        // User-Defined Literals for Thermal Quantities
+        //! User-Defined Literals for Thermal Quantities
         constexpr auto operator"" _J_K(long double magnitude) { return Entropy(magnitude); }
         constexpr auto operator"" _eV_K(long double magnitude) { return Entropy(magnitude); }
         constexpr auto operator"" _J_kgK(long double magnitude) { return SpecificEntropy(magnitude); }
@@ -192,7 +192,7 @@ namespace CppUnits
         constexpr auto operator"" _degF(long double magnitude) { return Temperature(magnitude); }
         constexpr auto operator"" _W_mK(long double magnitude) { return ThermalConductivity(magnitude); }
 
-        // User-Defined Literals for Luminous Quantities
+        //! User-Defined Literals for Luminous Quantities
         constexpr auto operator"" _cd_m2(long double magnitude) { return Luminance(magnitude); }
         constexpr auto operator"" _lx(long double magnitude) { return Illuminance(magnitude); }
         constexpr auto operator"" _cd(long double magnitude) { return LuminousIntensity(magnitude); }

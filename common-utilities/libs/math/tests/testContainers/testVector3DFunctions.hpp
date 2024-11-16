@@ -62,7 +62,7 @@ GTEST_TEST(testVector3DFunctions, vector3DIsClassifiedLikeAStdArrayAndAContainer
     ASSERT_FALSE((DryChem::is_unordered_associative_container_v<DryChem::Vector3D<int>>));
 }
 
-GTEST_TEST(testVector3DFunctions, differentConstructorsGiveInitializeObjectsAsExpected)
+GTEST_TEST(testVector3DFunctions, differentConstructorsInitializeObjectsAsExpected)
 {
     std::array<int, 3> sampleArray {1, 2, 3};
 
