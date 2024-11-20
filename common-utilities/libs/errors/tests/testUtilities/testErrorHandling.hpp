@@ -49,9 +49,7 @@ GTEST_TEST(testErrorHandling, defaultTemplateParameterIsAWarning)
 GTEST_TEST(testErrorHandling, aliasLambdaFunctionWorksForAFatalError)
 {
     ASSERT_DEATH(
-        {
-            DryChem::printFatalErrorMessage(DryChem::ErrorMessage {"Common-Utilities", "Fatal Error, Program Terminated."});
-        },
+        { DryChem::printFatalErrorMessage(DryChem::ErrorMessage {"Common-Utilities", "Fatal Error, Program Terminated."}); },
         "Common-Utilities Fatal Error:\n    Fatal Error, Program Terminated.\n");
 }
 

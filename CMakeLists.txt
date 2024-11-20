@@ -22,21 +22,28 @@ option(utils_exclude_scripts      "Builds specified libraries while ignoring the
 option(utils_install_applications "Builds specified libraries and installs the applications associated with them." OFF)
 
 if (chem_format_codebase AND NOT WIN32)
-    ## Run clang-format on all code except the files passed as arguments with the '-i' flag ##
-    execute_process(COMMAND bash cmake/scripts/format-codebase.sh
-                                    -i common-utilities/include/common-utils/files/utils/fileExceptions.hpp
-                                    -i common-utilities/include/common-utils/math/calculus/differentiation/*
-                                    -i common-utilities/include/common-utils/math/calculus/integration.hpp
-                                    -i common-utilities/include/common-utils/math/statistics/*
-                                    -i common-utilities/include/common-utils/math/utils/mathExceptions.hpp
-                                    -i common-utilities/include/common-utils/meta/traits/containerTraits/*
-                                    -i common-utilities/include/common-utils/strings/utils/tokenizer.hpp
-                                    -i common-utilities/libs/utilities/samples/comparableExample.cpp
-                                    -i cpp-units/include/cpp-units/math/basicMath.hpp
-                                    -i cpp-units/include/cpp-units/types/physicalQuantity.hpp
-                                    -i cpp-units/include/cpp-units/physicalQuantities.hpp
-                    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-                    OUTPUT_QUIET)
+    find_program(formatter clang-format HINTS /opt/homebrew/bin/)
+
+    if (NOT formatter_NOTFOUND)
+        message(STATUS "Formatting DryChem")
+        
+        ## Run clang-format on all code except the files passed as arguments with the '-i' flag ##
+        execute_process(COMMAND bash cmake/scripts/format-codebase.sh
+                                        -f ${formatter}
+                                        -i common-utilities/include/common-utils/files/utils/fileExceptions.hpp
+                                        -i common-utilities/include/common-utils/math/calculus/differentiation/*
+                                        -i common-utilities/include/common-utils/math/calculus/integration.hpp
+                                        -i common-utilities/include/common-utils/math/statistics/*
+                                        -i common-utilities/include/common-utils/math/utils/mathExceptions.hpp
+                                        -i common-utilities/include/common-utils/meta/traits/containerTraits/*
+                                        -i common-utilities/include/common-utils/strings/utils/tokenizer.hpp
+                                        -i common-utilities/libs/utilities/samples/comparableExample.cpp
+                                        -i cpp-units/include/cpp-units/math/basicMath.hpp
+                                        -i cpp-units/include/cpp-units/types/physicalQuantity.hpp
+                                        -i cpp-units/include/cpp-units/physicalQuantities.hpp
+                        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+                        OUTPUT_QUIET)
+    endif()
 endif()
 
 if (chem_enable_coverage)
@@ -78,14 +85,14 @@ if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Release")
 endif()
 
-if (WIN32)
-    add_compile_options(/MD /WX)
-else()
-    add_compile_options(-pedantic-errors -Wall -Werror -Wextra)
-endif()
+if (NOT WIN32)
+    add_compile_options(-Wall -Wextra -pedantic -Werror)
 
-if (CMAKE_COMPILER_IS_GNUCXX)
-    add_compile_options(-Wno-psabi)
+    if (CMAKE_COMPILER_IS_GNUCXX)
+        add_definitions(-Wno-psabi)
+    endif()
+else()
+    add_compile_options(/MD /WX)
 endif()
 
 
@@ -118,17 +125,24 @@ install(DIRECTORY ${LIBRARIES}
 
 ### Unit Testing ###
 if (utils_build_tests OR units_build_tests)
-    find_package(GTest)
+    # find_package(GTest)
     find_package(Threads)
 
-    if (NOT ${GTest_FOUND})
-        ## If googletest isn't installed or can't be found, download it from github ##
-        DryChemExternalDownload(PROJECT googletest
-                                REPOSITORY "https://github.com/google/googletest.git")
+    # if (NOT ${GTest_FOUND})
+        include(FetchContent)
 
+        ## If googletest isn't installed or can't be found, download it from github ##
+        message(STATUS "Fetching GoogleTest...")
+        FetchContent_Declare(googletest
+               GIT_REPOSITORY "https://github.com/google/googletest.git"
+               GIT_TAG main)
+                            
         set(GTEST_LIBRARIES gtest)
         set(GTEST_INCLUDE_DIRS "${gtest_SOURCE_DIR}/include")
-    endif()
+                            
+        FetchContent_MakeAvailable(googletest)
+        set(GTest_FOUND TRUE)
+    # endif()
 
     include_directories(${GTEST_INCLUDE_DIRS})
 
@@ -139,6 +153,7 @@ if (utils_build_tests OR units_build_tests)
 
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/tests)
 
+    ## Use a seperate directory for tests to declutter build directory
     add_subdirectory(cmake/Testing ${PROJECT_BINARY_DIR}/Testing)
 
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
