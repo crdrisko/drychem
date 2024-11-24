@@ -6,12 +6,10 @@ project(UnitTesting VERSION 1.0.0)
 ### Unit Tests ###
 if (units_build_tests)
     DryChemNewTest(TESTNAME AllMathFunctions
-                   LIBRARY cpp-units
-                   INTERIOR_DIRECTORY math)
+                   LIBRARY cpp-units)
 
     DryChemNewTest(TESTNAME AllPhysicalQuantityFunctions
-                   LIBRARY cpp-units
-                   INTERIOR_DIRECTORY types)
+                   LIBRARY cpp-units)
 endif()
 
 if (utils_build_tests)

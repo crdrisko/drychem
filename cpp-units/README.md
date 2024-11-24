@@ -32,11 +32,6 @@ To build the cpp-units libraries there are a few options that can be specified w
 
 ## C++ Libraries
 
-The libraries included in this project include the following, and more information can be found in the specific libraries documentation:
-
-- [Math](libs/...)
-- [Types](libs/...)
-
 The following tree diagram shows how a sample library, `library1`, would be organized in the API:
 
 ```bash
@@ -47,19 +42,13 @@ The following tree diagram shows how a sample library, `library1`, would be orga
 │       │   └── ...
 │       ├── library1.hpp
 │       └── ...
-├── libs
-│   └── library1
-│       ├── docs
-│       │   └── ...
-│       ├── samples
-│       │   └── ...
-│       └── tests
-│           ├── testAllLibrary1Functions.cpp
-│           └── ...
+├── tests
+│       ├── testAllLibrary1Functions.cpp
+│       └── ...
 └── src
     ├── library1
     |    └── ...
     └── ...
 ```
 
-The `libs` directory contains information about the specific library, such as the documentation, example code samples, and unit tests. The `include/cpp-units` directory is where the header files for the library are stored. Note that the `libraryName.hpp` file serves as the public API of the library and should be `#include`'d in a user's project. The files in the `libraryName` directory contain the internal implementation details and are subject to change without notice.
+The `include/cpp-units` directory is where the header files for the library are stored and the `tests` directory consists of the relevant unit tests. Note that the `libraryName.hpp` file serves as the public API of the library and should be `#include`'d in a user's project. The files in the `libraryName` directory contain the internal implementation details and are subject to change without notice.
