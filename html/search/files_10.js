@@ -3,15 +3,15 @@ var searchData=
   ['testadvancedmathfunctions_2ehpp_0',['testAdvancedMathFunctions.hpp',['../test_advanced_math_functions_8hpp.html',1,'']]],
   ['testallerrorfunctions_2ecpp_1',['testAllErrorFunctions.cpp',['../test_all_error_functions_8cpp.html',1,'']]],
   ['testallfilefunctions_2ecpp_2',['testAllFileFunctions.cpp',['../test_all_file_functions_8cpp.html',1,'']]],
-  ['testallmathfunctions_2ecpp_3',['testAllMathFunctions.cpp',['../common-utilities_2libs_2math_2tests_2test_all_math_functions_8cpp.html',1,'(Global Namespace)'],['../cpp-units_2libs_2math_2tests_2test_all_math_functions_8cpp.html',1,'(Global Namespace)']]],
+  ['testallmathfunctions_2ecpp_3',['testAllMathFunctions.cpp',['../common-utilities_2libs_2math_2tests_2test_all_math_functions_8cpp.html',1,'(Global Namespace)'],['../cpp-units_2tests_2test_all_math_functions_8cpp.html',1,'(Global Namespace)']]],
   ['testallmetafunctions_2ecpp_4',['testAllMetaFunctions.cpp',['../test_all_meta_functions_8cpp.html',1,'']]],
   ['testallphysicalquantityfunctions_2ecpp_5',['testAllPhysicalQuantityFunctions.cpp',['../test_all_physical_quantity_functions_8cpp.html',1,'']]],
   ['testallstringfunctions_2ecpp_6',['testAllStringFunctions.cpp',['../test_all_string_functions_8cpp.html',1,'']]],
   ['testallutilityfunctions_2ecpp_7',['testAllUtilityFunctions.cpp',['../test_all_utility_functions_8cpp.html',1,'']]],
   ['testarithmeticoperators_2ehpp_8',['testArithmeticOperators.hpp',['../test_arithmetic_operators_8hpp.html',1,'']]],
-  ['testbasicmathfunctions_2ehpp_9',['testBasicMathFunctions.hpp',['../common-utilities_2libs_2math_2tests_2test_utilities_2test_basic_math_functions_8hpp.html',1,'(Global Namespace)'],['../cpp-units_2libs_2math_2tests_2test_math_functions_2test_basic_math_functions_8hpp.html',1,'(Global Namespace)']]],
+  ['testbasicmathfunctions_2ehpp_9',['testBasicMathFunctions.hpp',['../common-utilities_2libs_2math_2tests_2test_utilities_2test_basic_math_functions_8hpp.html',1,'(Global Namespace)'],['../cpp-units_2tests_2test_math_functions_2test_basic_math_functions_8hpp.html',1,'(Global Namespace)']]],
   ['testcaseinsensitivestrings_2ehpp_10',['testCaseInsensitiveStrings.hpp',['../test_case_insensitive_strings_8hpp.html',1,'']]],
-  ['testcomparisonoperators_2ehpp_11',['testComparisonOperators.hpp',['../common-utilities_2libs_2utilities_2tests_2test_operators_2test_comparison_operators_8hpp.html',1,'(Global Namespace)'],['../cpp-units_2libs_2types_2tests_2test_operators_2test_comparison_operators_8hpp.html',1,'(Global Namespace)']]],
+  ['testcomparisonoperators_2ehpp_11',['testComparisonOperators.hpp',['../common-utilities_2libs_2utilities_2tests_2test_operators_2test_comparison_operators_8hpp.html',1,'(Global Namespace)'],['../cpp-units_2tests_2test_operators_2test_comparison_operators_8hpp.html',1,'(Global Namespace)']]],
   ['testcontainertraits_2ehpp_12',['testContainerTraits.hpp',['../test_container_traits_8hpp.html',1,'']]],
   ['testdifferentiationmethods_2ehpp_13',['testDifferentiationMethods.hpp',['../test_differentiation_methods_8hpp.html',1,'']]],
   ['testdimensionality_2ehpp_14',['testDimensionality.hpp',['../test_dimensionality_8hpp.html',1,'']]],
@@ -37,6 +37,5 @@ var searchData=
   ['testtuplealgorithms_2ehpp_34',['testTupleAlgorithms.hpp',['../test_tuple_algorithms_8hpp.html',1,'']]],
   ['testvector3dfunctions_2ehpp_35',['testVector3DFunctions.hpp',['../test_vector3_d_functions_8hpp.html',1,'']]],
   ['tokenizer_2ehpp_36',['tokenizer.hpp',['../tokenizer_8hpp.html',1,'']]],
-  ['tuplealgorithms_2ehpp_37',['tupleAlgorithms.hpp',['../tuple_algorithms_8hpp.html',1,'']]],
-  ['types_2emd_38',['types.md',['../types_8md.html',1,'']]]
+  ['tuplealgorithms_2ehpp_37',['tupleAlgorithms.hpp',['../tuple_algorithms_8hpp.html',1,'']]]
 ];

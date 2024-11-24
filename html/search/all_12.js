@@ -6,15 +6,15 @@ var searchData=
   ['testadvancedmathfunctions_2ehpp_3',['testAdvancedMathFunctions.hpp',['../test_advanced_math_functions_8hpp.html',1,'']]],
   ['testallerrorfunctions_2ecpp_4',['testAllErrorFunctions.cpp',['../test_all_error_functions_8cpp.html',1,'']]],
   ['testallfilefunctions_2ecpp_5',['testAllFileFunctions.cpp',['../test_all_file_functions_8cpp.html',1,'']]],
-  ['testallmathfunctions_2ecpp_6',['testAllMathFunctions.cpp',['../common-utilities_2libs_2math_2tests_2test_all_math_functions_8cpp.html',1,'(Global Namespace)'],['../cpp-units_2libs_2math_2tests_2test_all_math_functions_8cpp.html',1,'(Global Namespace)']]],
+  ['testallmathfunctions_2ecpp_6',['testAllMathFunctions.cpp',['../common-utilities_2libs_2math_2tests_2test_all_math_functions_8cpp.html',1,'(Global Namespace)'],['../cpp-units_2tests_2test_all_math_functions_8cpp.html',1,'(Global Namespace)']]],
   ['testallmetafunctions_2ecpp_7',['testAllMetaFunctions.cpp',['../test_all_meta_functions_8cpp.html',1,'']]],
   ['testallphysicalquantityfunctions_2ecpp_8',['testAllPhysicalQuantityFunctions.cpp',['../test_all_physical_quantity_functions_8cpp.html',1,'']]],
   ['testallstringfunctions_2ecpp_9',['testAllStringFunctions.cpp',['../test_all_string_functions_8cpp.html',1,'']]],
   ['testallutilityfunctions_2ecpp_10',['testAllUtilityFunctions.cpp',['../test_all_utility_functions_8cpp.html',1,'']]],
   ['testarithmeticoperators_2ehpp_11',['testArithmeticOperators.hpp',['../test_arithmetic_operators_8hpp.html',1,'']]],
-  ['testbasicmathfunctions_2ehpp_12',['testBasicMathFunctions.hpp',['../common-utilities_2libs_2math_2tests_2test_utilities_2test_basic_math_functions_8hpp.html',1,'(Global Namespace)'],['../cpp-units_2libs_2math_2tests_2test_math_functions_2test_basic_math_functions_8hpp.html',1,'(Global Namespace)']]],
+  ['testbasicmathfunctions_2ehpp_12',['testBasicMathFunctions.hpp',['../common-utilities_2libs_2math_2tests_2test_utilities_2test_basic_math_functions_8hpp.html',1,'(Global Namespace)'],['../cpp-units_2tests_2test_math_functions_2test_basic_math_functions_8hpp.html',1,'(Global Namespace)']]],
   ['testcaseinsensitivestrings_2ehpp_13',['testCaseInsensitiveStrings.hpp',['../test_case_insensitive_strings_8hpp.html',1,'']]],
-  ['testcomparisonoperators_2ehpp_14',['testComparisonOperators.hpp',['../common-utilities_2libs_2utilities_2tests_2test_operators_2test_comparison_operators_8hpp.html',1,'(Global Namespace)'],['../cpp-units_2libs_2types_2tests_2test_operators_2test_comparison_operators_8hpp.html',1,'(Global Namespace)']]],
+  ['testcomparisonoperators_2ehpp_14',['testComparisonOperators.hpp',['../common-utilities_2libs_2utilities_2tests_2test_operators_2test_comparison_operators_8hpp.html',1,'(Global Namespace)'],['../cpp-units_2tests_2test_operators_2test_comparison_operators_8hpp.html',1,'(Global Namespace)']]],
   ['testcontainertraits_2ehpp_15',['testContainerTraits.hpp',['../test_container_traits_8hpp.html',1,'']]],
   ['testdifferentiationmethods_2ehpp_16',['testDifferentiationMethods.hpp',['../test_differentiation_methods_8hpp.html',1,'']]],
   ['testdimensionality_2ehpp_17',['testDimensionality.hpp',['../test_dimensionality_8hpp.html',1,'']]],
@@ -60,7 +60,5 @@ var searchData=
   ['type_57',['type',['../structstd_1_1tuple__element_3_01_index_00_01_cpp_utils_1_1_math_1_1_vector3_d_3_01_t_01_4_01_4.html#afc11b36aad9b9d9384241b5be6effb06',1,'std::tuple_element&lt; Index, CppUtils::Math::Vector3D&lt; T &gt; &gt;::type'],['../struct_cpp_utils_1_1_meta_1_1reverse__list_3_01_list_00_01true_01_4.html#a79631475b8eb86fa6e523bdea342faee',1,'CppUtils::Meta::reverse_list&lt; List, true &gt;::type'],['../struct_cpp_utils_1_1_meta_1_1front__list_3_01std_1_1integer__sequence_3_01_t_00_01_head_00_01_tail_8_8_8_01_4_01_4.html#a6e8eb9d4da5653c8964730f7cc00d655',1,'CppUtils::Meta::front_list&lt; std::integer_sequence&lt; T, Head, Tail... &gt; &gt;::type'],['../struct_cpp_utils_1_1_meta_1_1pop__front__list_3_01std_1_1integer__sequence_3_01_t_00_01_head_00_01_tail_8_8_8_01_4_01_4.html#aa7f158f6794c357c1daf54076941ce4f',1,'CppUtils::Meta::pop_front_list&lt; std::integer_sequence&lt; T, Head, Tail... &gt; &gt;::type'],['../struct_cpp_utils_1_1_meta_1_1push__back__list_3_01std_1_1integer__sequence_3_01_t_00_01_elementsaecf02ea8908b0ca163272732dc4afae.html#a7644af8f79786ec7c77f5e466cc28831',1,'CppUtils::Meta::push_back_list&lt; std::integer_sequence&lt; T, Elements... &gt;, std::integral_constant&lt; T, NewElement &gt; &gt;::type'],['../struct_cpp_utils_1_1_meta_1_1push__front__list_3_01std_1_1integer__sequence_3_01_t_00_01_element0321fbb126ea73fb67b1c1d4fc1e44b3.html#a8cc0102c1bc6f17573e17ef74293f89e',1,'CppUtils::Meta::push_front_list&lt; std::integer_sequence&lt; T, Elements... &gt;, std::integral_constant&lt; T, NewElement &gt; &gt;::type']]],
   ['type_20traits_58',['String Type Traits',['../md_common-utilities_2libs_2strings_2docs_2strings.html#autotoc_md55',1,'']]],
   ['type_5fnames_59',['type_names',['../namespace_get_opts.html#a39c25a5a84e98dc3b315653f9626125f',1,'GetOpts']]],
-  ['types_60',['Types',['../md_common-utilities_2libs_2meta_2docs_2meta.html#autotoc_md48',1,'']]],
-  ['types_61',['types',['../md_cpp-units_2libs_2types_2docs_2types.html',1,'']]],
-  ['types_2emd_62',['types.md',['../types_8md.html',1,'']]]
+  ['types_60',['Types',['../md_common-utilities_2libs_2meta_2docs_2meta.html#autotoc_md48',1,'']]]
 ];
