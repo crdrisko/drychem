@@ -29,17 +29,17 @@ namespace CppUnits::Math
         return PhysicalQuantity<Dimensionality<>>(std::NAME(physicalQuantity.getMagnitude()));                              \
     }
 
-    // Basic operations
+    //! Basic operations
     DECLARE_CMATH_FUNCTION(abs)
 
-    // Exponential functions
+    //! Exponential functions
     DECLARE_DIMENSIONLESS_CMATH_FUNCTION(exp)
     DECLARE_DIMENSIONLESS_CMATH_FUNCTION(exp2)
     DECLARE_DIMENSIONLESS_CMATH_FUNCTION(log)
     DECLARE_DIMENSIONLESS_CMATH_FUNCTION(log2)
     DECLARE_DIMENSIONLESS_CMATH_FUNCTION(log10)
 
-    // Power functions
+    //! Power functions
     namespace details
     {
         template<unsigned int Power, int L, int M, int T, int I, int Th, int N, int J>
@@ -97,7 +97,7 @@ namespace CppUnits::Math
         return TReturn {std::cbrt(physicalQuantity.getMagnitude())};
     }
 
-    // Trigonometric functions
+    //! Trigonometric functions
     DECLARE_DIMENSIONLESS_CMATH_FUNCTION(sin)
     DECLARE_DIMENSIONLESS_CMATH_FUNCTION(cos)
     DECLARE_DIMENSIONLESS_CMATH_FUNCTION(tan)
@@ -105,7 +105,7 @@ namespace CppUnits::Math
     DECLARE_DIMENSIONLESS_CMATH_FUNCTION(acos)
     DECLARE_DIMENSIONLESS_CMATH_FUNCTION(atan)
 
-    // Hyperbolic functions
+    //! Hyperbolic functions
     DECLARE_DIMENSIONLESS_CMATH_FUNCTION(sinh)
     DECLARE_DIMENSIONLESS_CMATH_FUNCTION(cosh)
     DECLARE_DIMENSIONLESS_CMATH_FUNCTION(tanh)

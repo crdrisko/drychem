@@ -20,8 +20,13 @@
 namespace CppUnits
 {
     /*!
-     * A class representing a physical quantity with dimensionality based off the SI units system.
+     * A class representing a physical quantity with dimensionality based off the SI units system. Since these
+     *  units are designed to work with user-defined literals, the internal data type must be a long double.
      *  
+     * \tparam BaseDimensionality - Dimensionality of the given physical quantity in SI units
+     * 
+     * \note Physical quantities and dimensionless quantities can only be multiplied or divided by each other,
+     *          adding or subtracting is an error due to a dimensionality mismatch.
      */
     template<typename BaseDimensionality>
     class PhysicalQuantity : private DryChem::CompletelyComparable<PhysicalQuantity<BaseDimensionality>>
@@ -87,8 +92,6 @@ namespace CppUnits
             return *this;
         }
 
-        /* Physical quantities and dimensionless quantities can only be multiplied or divided by each other,
-            adding or subtracting is an error due to a dimensionality mismatch */
         template<typename T, typename = std::enable_if_t<std::is_arithmetic_v<T>>>
         constexpr auto operator*(T rhs) const noexcept
         {

@@ -92,7 +92,7 @@ namespace CppUnits
 
     namespace Literals
     {
-        // We need a better way to organize the unit literals than just a wall of possible units
+        //! \todo We need a better way to organize the unit literals than just a wall of possible units
         constexpr auto operator"" _(long double magnitude) { return DimensionlessQuantity(magnitude); }
 
         //! User-Defined Literals for MKS Quantities
@@ -203,6 +203,7 @@ namespace CppUnits
     {
         using namespace Literals;
 
+        //! Useful physical constants in their SI units
         constexpr DimensionlessQuantity avogadrosNumber       = 6.02214076e23_;
         constexpr Length                bohrRadius            = 5.29177210903e-11_m;
         constexpr Entropy               boltzmannConstant     = 1.380649e-23_J_K;

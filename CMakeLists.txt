@@ -133,9 +133,9 @@ if (utils_build_tests OR units_build_tests)
 
         ## If googletest isn't installed or can't be found, download it from github ##
         message(STATUS "Fetching GoogleTest...")
-        FetchContent_Declare(googletest
-               GIT_REPOSITORY "https://github.com/google/googletest.git"
-               GIT_TAG main)
+        FetchContent_Declare(googletest     # v1.15.2
+                             GIT_REPOSITORY "https://github.com/google/googletest.git"
+                             GIT_TAG        "b514bdc898e2951020cbdca1304b75f5950d1f59")
                             
         set(GTEST_LIBRARIES gtest)
         set(GTEST_INCLUDE_DIRS "${gtest_SOURCE_DIR}/include")
