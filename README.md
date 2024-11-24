@@ -8,9 +8,7 @@ This repository is a merger of the formerly separate C++ Units and Common-Utilit
 
 ## Getting started
 
-General information for getting started using DryChem is available in the documentation [here](docs/primer.md).
-
-More detailed documentation for Common-Utilities and C++ Units can be found in the interior [common-utilities/README.md](common-utilities/README.md) and [cpp-units/README.md](cpp-units/README.md) files, respectively.
+Detailed documentation for Common-Utilities and C++ Units can be found in the interior [common-utilities/README.md](common-utilities/README.md) and [cpp-units/README.md](cpp-units/README.md) files, respectively.
 
 ## Features
 

@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Configure
-        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -Dchem_build_all=ON -Dutils_enable_networking=ON -Dutils_exclude_scripts=ON # -Dutils_install_applications=ON
+        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -Dchem_build_all=ON -Dutils_exclude_scripts=ON
 
       - name: Build
         run: cmake --build .
@@ -35,13 +35,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-20.04]
+        os: [macos-latest, ubuntu-latest]
 
     steps:
       - uses: actions/checkout@v4
 
       - name: Configure
-        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -Dchem_build_all=ON -Dutils_enable_networking=ON -Dutils_install_applications=ON
+        run: cmake $GITHUB_WORKSPACE -DCMAKE_BUILD_TYPE=$BUILD_TYPE -Dchem_build_all=ON -Dutils_install_applications=ON
 
       - name: Build
         run: cmake --build .
