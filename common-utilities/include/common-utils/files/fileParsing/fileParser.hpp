@@ -77,7 +77,7 @@ namespace CppUtils::Files
                 return std::invoke(std::forward<F>(f_), std::cref(fileContentCache), std::forward<TArgs>(args_)...);
         }
 
-        constexpr void clearCache() noexcept { fileContentCache.clear(); }
+        void clearCache() noexcept { fileContentCache.clear(); }
     };
 }   // namespace CppUtils::Files
 
