@@ -102,17 +102,6 @@ var NAVTREE =
       ] ],
       [ "Usage", "md_common-utilities_2libs_2utilities_2docs_2utilities.html#autotoc_md68", null ]
     ] ],
-    [ "Common-Utilities", "md_common-utilities_2_r_e_a_d_m_e.html", [
-      [ "Table Of Contents", "md_common-utilities_2_r_e_a_d_m_e.html#autotoc_md70", null ],
-      [ "Building and Installing", "md_common-utilities_2_r_e_a_d_m_e.html#autotoc_md71", null ],
-      [ "C++ Libraries", "md_common-utilities_2_r_e_a_d_m_e.html#autotoc_md72", null ],
-      [ "Bash Scripts", "md_common-utilities_2_r_e_a_d_m_e.html#autotoc_md73", null ]
-    ] ],
-    [ "C++ Units", "md_cpp-units_2_r_e_a_d_m_e.html", [
-      [ "Table Of Contents", "md_cpp-units_2_r_e_a_d_m_e.html#autotoc_md75", null ],
-      [ "Building and Installing", "md_cpp-units_2_r_e_a_d_m_e.html#autotoc_md76", null ],
-      [ "C++ Libraries", "md_cpp-units_2_r_e_a_d_m_e.html#autotoc_md77", null ]
-    ] ],
     [ "Todo List", "todo.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -152,13 +141,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"class_cpp_utils_1_1_strings_1_1_tokenizer.html#addc69b606ef3973b461dff9822208ee3",
-"dir_de8e5db45c011294d8ecd5842066630f.html",
-"namespace_cpp_units.html#acdabd345cf0baa273d4f04c1ddaef201",
-"namespacevalidate.html#a3ce2c6dd48daee44a2ca04c7450ee1b0",
+"class_cpp_utils_1_1_strings_1_1details_1_1testing_1_1_bad_value.html#a66026c4349c090137042fab4307dc3dc",
+"files_8hpp_source.html",
+"namespace_cpp_units_1_1_literals.html#a80cf93d1919ef6277bb2a6e951f876f1",
 "struct_cpp_units_1_1_dimensionality.html#ae43ad160811b0425a16e864842efdfd3",
-"test_integration_methods_8hpp.html#a5069d4384c2237b3dc714830d5c15ff8"
+"test_integration_methods_8hpp.html#a2e766c9c86286682717bfd58f33539ca"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronisation';
-var SYNCOFFMSG = 'click to enable panel synchronisation';
+var SYNCONMSG = 'click to disable panel synchronization';
+var SYNCOFFMSG = 'click to enable panel synchronization';

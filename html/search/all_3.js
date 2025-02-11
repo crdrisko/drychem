@@ -12,7 +12,9 @@ var searchData=
   ['differentiation_2ehpp_9',['differentiation.hpp',['../differentiation_8hpp.html',1,'']]],
   ['dimensionality_10',['Dimensionality',['../struct_cpp_units_1_1_dimensionality.html',1,'CppUnits']]],
   ['dimensionality_2ehpp_11',['dimensionality.hpp',['../dimensionality_8hpp.html',1,'']]],
-  ['dimensionalitytype_12',['DimensionalityType',['../class_cpp_units_1_1_physical_quantity.html#a46db8d1f463eb5a44157c84096f4fe71',1,'CppUnits::PhysicalQuantity']]],
-  ['dimensionlessquantity_13',['DimensionlessQuantity',['../namespace_cpp_units.html#a704edc7297b56315d868c3d3e0a9dfcf',1,'CppUnits']]],
-  ['drychem_14',['DryChem',['../namespace_dry_chem.html',1,'DryChem'],['../md__r_e_a_d_m_e.html',1,'DryChem'],['../index.html',1,'DryChem']]]
+  ['dimensionality_3c_20length_2c_20mass_2c_20time_2c_20electriccurrent_2c_20temperature_2c_20amountofsubstance_2c_20luminousintensity_20_3e_12',['Dimensionality&lt; Length, Mass, Time, ElectricCurrent, Temperature, AmountOfSubstance, LuminousIntensity &gt;',['../struct_cpp_units_1_1_dimensionality.html',1,'CppUnits']]],
+  ['dimensionalitytype_13',['DimensionalityType',['../class_cpp_units_1_1_physical_quantity.html#a46db8d1f463eb5a44157c84096f4fe71',1,'CppUnits::PhysicalQuantity']]],
+  ['dimensionlessquantity_14',['DimensionlessQuantity',['../namespace_cpp_units.html#a704edc7297b56315d868c3d3e0a9dfcf',1,'CppUnits']]],
+  ['drychem_15',['DryChem',['../namespace_dry_chem.html',1,'DryChem'],['../md__r_e_a_d_m_e.html',1,'DryChem'],['../index.html',1,'DryChem']]],
+  ['drychem_2ehpp_16',['drychem.hpp',['../drychem_8hpp.html',1,'']]]
 ];
