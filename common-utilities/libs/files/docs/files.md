@@ -24,7 +24,7 @@ All the functions and classes belonging to the file handling library are wrapped
 
 - [File Parsing:](../../../include/common-utils/files/fileParsing/fileParser.hpp)
 
-  The `FileParser` class, the flagship of the file handling library, takes an input file or `std::filesystem::path` and through lazy evaluation will read and parse the file. Designed using the Strategy designed pattern but templated and localized to only the calling function, the end user decides how they want the file parsed using the contents that have been cached for them. Another benefit to localizing the strategies is that should the user wish to parse the same file two or more ways, the file is only read once and each parser can easily access that data. If we had templated the entire class, new parsers would have to be created each time the same file needed to be parsed in a new way.
+  The `FileParser` class, the flagship of the file handling library, takes an input file or `std::filesystem::path` and through lazy evaluation will read and parse the file. Designed using the Strategy design pattern but templated and localized to only the calling function, the end user decides how they want the file parsed using the contents that have been cached for them. Another benefit to localizing the strategies is that should the user wish to parse the same file two or more ways, the file is only read once and each parser can easily access that data. If we had templated the entire class, new parsers would have to be created each time the same file needed to be parsed in a new way.
 
 - [Concrete File Parsers:](../../../include/common-utils/files/fileParsing/parserStrategies.hpp)
 

@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
+// Copyright (c) 2020-2025 Cody R. Drisko. All rights reserved.
 // Licensed under the MIT License. See the LICENSE file in the project root for more information.
 //
 // Name: fileParser.hpp
@@ -76,6 +76,8 @@ namespace CppUtils::Files
             else
                 return std::invoke(std::forward<F>(f_), std::cref(fileContentCache), std::forward<TArgs>(args_)...);
         }
+
+        constexpr void clearCache() noexcept { fileContentCache.clear(); }
     };
 }   // namespace CppUtils::Files
 

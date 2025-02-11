@@ -48,6 +48,6 @@ Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) for details on how you ca
 
 ## License
 
-Copyright (c) 2020-2024 Cody R. Drisko. All rights reserved.
+Copyright (c) 2020-2025 Cody R. Drisko. All rights reserved.
 
 Licensed under the [MIT License](LICENSE).

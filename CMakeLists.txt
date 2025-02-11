@@ -125,7 +125,7 @@ install(DIRECTORY ${LIBRARIES}
 
 ### Unit Testing ###
 if (utils_build_tests OR units_build_tests)
-    find_package(GTest)
+    find_package(GTest 1.15.2)
     find_package(Threads)
 
     if (NOT GTEST_FOUND)
@@ -142,8 +142,6 @@ if (utils_build_tests OR units_build_tests)
         set(GTEST_FOUND TRUE)
         set(GTEST_LIBRARIES gtest)
         set(GTEST_INCLUDE_DIRS "${gtest_SOURCE_DIR}/include")
-    else()
-        set(GTEST_INCLUDE_DIRS "${googletest_SOURCE_DIR}/include")
     endif()
 
     include_directories(${GTEST_INCLUDE_DIRS})
