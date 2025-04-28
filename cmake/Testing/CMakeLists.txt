@@ -1,40 +1,42 @@
 ### Lower Level CMake Script for DryChem ###
-cmake_minimum_required(VERSION 3.12.0)
-project(UnitTesting VERSION 1.0.0)
+cmake_minimum_required(VERSION 3.20.0)
+project(UnitTesting VERSION 1.2.0)
 
 
 ### Unit Tests ###
 if (units_build_tests)
     DryChemNewTest(TESTNAME AllMathFunctions
-                   LIBRARY cpp-units)
+                   LIBRARY Units
+                   INTERIOR_DIRECTORY CppUnits)
 
     DryChemNewTest(TESTNAME AllPhysicalQuantityFunctions
-                   LIBRARY cpp-units)
+                   LIBRARY Units
+                   INTERIOR_DIRECTORY CppUnits)
 endif()
 
 if (utils_build_tests)
     DryChemNewTest(TESTNAME AllErrorFunctions
-                   LIBRARY common-utilities
-                   INTERIOR_DIRECTORY errors)
+                   LIBRARY Utilities
+                   INTERIOR_DIRECTORY Errors)
 
     DryChemNewTest(TESTNAME AllFileFunctions
-                   LIBRARY common-utilities
-                   INTERIOR_DIRECTORY files
+                   LIBRARY Utilities
+                   INTERIOR_DIRECTORY Files
                    USEFILESYSTEM)
 
     DryChemNewTest(TESTNAME AllMathFunctions
-                   LIBRARY common-utilities
-                   INTERIOR_DIRECTORY math)
+                   LIBRARY Utilities
+                   INTERIOR_DIRECTORY Math)
 
     DryChemNewTest(TESTNAME AllMetaFunctions
-                   LIBRARY common-utilities
-                   INTERIOR_DIRECTORY meta)
+                   LIBRARY Utilities
+                   INTERIOR_DIRECTORY Meta)
 
     DryChemNewTest(TESTNAME AllStringFunctions
-                   LIBRARY common-utilities
-                   INTERIOR_DIRECTORY strings)
+                   LIBRARY Utilities
+                   INTERIOR_DIRECTORY Strings)
 
     DryChemNewTest(TESTNAME AllUtilityFunctions
-                   LIBRARY common-utilities
-                   INTERIOR_DIRECTORY utilities)
+                   LIBRARY Utilities
+                   INTERIOR_DIRECTORY Utilities)
 endif()

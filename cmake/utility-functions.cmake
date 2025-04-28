@@ -9,9 +9,7 @@ function(DryChemNewTest)
     cmake_parse_arguments(TEST_ARGS "${options}" "${one_value_keywords}" "${multi_value_keywords}" ${ARGN})
 
     if (TEST_ARGS_INTERIOR_DIRECTORY)
-        set(TESTPATH ${DryChem_SOURCE_DIR}/${TEST_ARGS_LIBRARY}/libs/${TEST_ARGS_INTERIOR_DIRECTORY}/tests)
-    else()
-        set(TESTPATH ${DryChem_SOURCE_DIR}/${TEST_ARGS_LIBRARY}/tests)
+        set(TESTPATH ${DryChem_SOURCE_DIR}/tests/test${TEST_ARGS_INTERIOR_DIRECTORY})
     endif()
 
     add_executable(${TEST_ARGS_LIBRARY}Test${TEST_ARGS_TESTNAME} ${TESTPATH}/test${TEST_ARGS_TESTNAME}.cpp)

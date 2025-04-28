@@ -39,5 +39,4 @@ out/
 CMakeSettings.json
 
 ## Testing Files
-common-utilities/libs/files/tests/test.*
-common-utilities/src/applications/passphrase/wordLists*
+tests/testFiles/test.*

@@ -1,6 +1,6 @@
 ### Top Level CMake Script for DryChem ###
-cmake_minimum_required(VERSION 3.12.0)
-project(DryChem VERSION 1.0.0)
+cmake_minimum_required(VERSION 3.20.0)
+project(DryChem VERSION 1.2.0)
 
 
 ### Options ###
@@ -30,17 +30,17 @@ if (chem_format_codebase AND NOT WIN32)
         ## Run clang-format on all code except the files passed as arguments with the '-i' flag ##
         execute_process(COMMAND bash cmake/scripts/format-codebase.sh
                                         -f ${formatter}
-                                        -i common-utilities/include/common-utils/files/utils/fileExceptions.hpp
-                                        -i common-utilities/include/common-utils/math/calculus/differentiation/*
-                                        -i common-utilities/include/common-utils/math/calculus/integration.hpp
-                                        -i common-utilities/include/common-utils/math/statistics/*
-                                        -i common-utilities/include/common-utils/math/utils/mathExceptions.hpp
-                                        -i common-utilities/include/common-utils/meta/traits/containerTraits/*
-                                        -i common-utilities/include/common-utils/strings/utils/tokenizer.hpp
-                                        -i common-utilities/libs/utilities/samples/comparableExample.cpp
-                                        -i cpp-units/include/cpp-units/math/basicMath.hpp
-                                        -i cpp-units/include/cpp-units/types/physicalQuantity.hpp
-                                        -i cpp-units/include/cpp-units/physicalQuantities.hpp
+                                        -i include/drychem/files/utils/fileExceptions.hpp
+                                        -i include/drychem/math/calculus/differentiation/*
+                                        -i include/drychem/math/calculus/integration.hpp
+                                        -i include/drychem/math/statistics/*
+                                        -i include/drychem/math/utils/mathExceptions.hpp
+                                        -i include/drychem/meta/traits/containerTraits/*
+                                        -i include/drychem/strings/utils/tokenizer.hpp
+                                        -i include/cpp-units/math/basicMath.hpp
+                                        -i include/cpp-units/types/physicalQuantity.hpp
+                                        -i include/cpp-units/physicalQuantities.hpp
+                                        -i samples/comparableExample.cpp
                         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
                         OUTPUT_QUIET)
     endif()
@@ -76,6 +76,16 @@ if (NOT chem_build_all AND NOT chem_build_tests AND NOT chem_build_samples
     set(exclude_units ON)
 endif()
 
+if (utils_build_all)
+    set(utils_build_tests ON)
+    set(utils_build_samples ON)
+endif()
+
+if (units_build_all)
+    set(units_build_tests ON)
+    set(units_build_samples ON)
+endif()
+
 
 ### Compilation Options ###
 set(CMAKE_CXX_STANDARD 17)
@@ -109,12 +119,32 @@ SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib
 
 
 ### Libraries / Executables ###
-include_directories(common-utilities/include)
-add_subdirectory(common-utilities)
+include_directories("${PROJECT_SOURCE_DIR}/include")
+set(LIBRARIES include/drychem)
+
+if (utils_build_samples)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/samples)
+
+    add_executable(fibonacciExample         samples/fibonacciExample.cpp)
+    add_executable(markupParsingExample     samples/markupParsingExample.cpp)
+    add_executable(finiteDifferencesExample samples/finiteDifferencesExample.cpp)
+    add_executable(getOptsExample           samples/getOptsExample.cpp)
+    add_executable(ciTokenizerExample       samples/ciTokenizerExample.cpp)
+    add_executable(comparableExample        samples/comparableExample.cpp)
+
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
+endif()
 
 if (NOT exclude_units)
-    include_directories(cpp-units/include)
-    add_subdirectory(cpp-units)
+    set(LIBRARIES ${LIBRARIES} include/cpp-units)
+
+    if (units_build_samples)
+        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin/samples)
+
+        # add_executable(***Example cpp-units/libs/***/samples/***Example.cpp)
+
+        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
+    endif()
 endif()
 
 
@@ -122,10 +152,44 @@ endif()
 install(DIRECTORY ${LIBRARIES}
         DESTINATION include)
 
+if (utils_install_applications)
+    foreach (APP ${APPLICATIONS})
+        install(FILES "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${APP}"
+                DESTINATION bin
+                PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+                            GROUP_READ             GROUP_EXECUTE
+                            WORLD_READ             WORLD_EXECUTE)
+    endforeach()
+endif()
+
+if (NOT utils_exclude_scripts)
+    set(SCRIPTS scripts/changeCase.sh
+                scripts/compiler.sh
+                scripts/fileMaker.sh
+                scripts/linkLogin.sh
+                scripts/modifyFiles.sh
+                scripts/utilities/errorHandling.sh
+                scripts/utilities/showOpts.sh
+                scripts/utilities/typeParsing.sh)
+
+    foreach (SCRIPT ${SCRIPTS})
+        ## Remove extensions and make scripts executable ##
+        get_filename_component(filename "${SCRIPT}" NAME_WE)
+
+        configure_file(${SCRIPT} "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${filename}" @ONLY)
+
+        install(FILES "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${filename}"
+                DESTINATION bin
+                PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+                            GROUP_READ             GROUP_EXECUTE
+                            WORLD_READ             WORLD_EXECUTE)
+    endforeach()
+endif()
+
 
 ### Unit Testing ###
 if (utils_build_tests OR units_build_tests)
-    find_package(GTest 1.15.2)
+    # find_package(GTest 1.15.2)
     find_package(Threads)
 
     if (NOT GTEST_FOUND)
